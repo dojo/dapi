@@ -4,7 +4,7 @@
 /*
  * Grab a custom font from Google
  */
-@import url("http://fonts.googleapis.com/css?family=Quicksand");
+/* @import url('http://fonts.googleapis.com/css?family=Quicksand') */
 /*
  * Nib provides a CSS reset
  */
@@ -176,3 +176,4 @@ footer {
   padding-top: 5px;
   font-size: 13px;
 }
+/* lee styles */

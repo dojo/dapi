@@ -1,22 +1,44 @@
 extend layout
-block content
-  p
-    | Vivamus hendrerit arcu sed erat molestie
-    | vehicula. Sed auctor neque eu tellus
-    | rhoncus ut eleifend nibh porttitor. Ut in.
-  p
-    | Donec congue lacinia dui, a porttitor
-    | lectus condimentum laoreet. Nunc eu
-    | ullamcorper orci. Quisque eget odio ac
-    | lectus vestibulum faucibus eget in metus.
-    | In pellentesque faucibus vestibulum. Nulla
-    | at nulla justo, eget luctus tortor.
-block sidebar
-  .widget
-    h1 Widget
-    p
-      | Sed auctor neque eu tellus rhoncus ut
-      | eleifend nibh porttitor. Ut in nulla enim.
-    p
-      | Vivamus hendrerit arcu sed erat molestie
-      | vehicula.
+block main
+    div#main(data-dojo-type="dijit.layout.BorderContainer", data-dojo-props="liveSplitters: false") 
+    
+        block header
+            div#head(data-dojo-type="dijit.layout.ContentPane", data-dojo-props="region: 'top'")
+                div#header
+                    div.container
+                        span#logo
+                            a(href="/", title="home")
+                                img(src="/themes/dtk/images/logo.png", alt="Dojo Toolkit")
+                        ul#navigation
+                            li.home
+                                a
+                                    span home
+                            li.donwload
+                                a download
+                            li.features
+                                a features
+                            li.docs
+                                a docs
+                            li.community
+                                a community
+                            li.blog
+                                a blog
+        block navigation
+            div#navigation(data-dojo-type="dijit.layout.BorderContainer", data-dojo-props="minSize: 20, region:\'leading\', splitter: true, gutters: false")
+                div(data-dojo-type="dijit.layout.ContentPane", data-dojo-props="title:'Search', region:'top'")
+                    div(style="padding:4px")
+                        label(for="versionSelector") Version:
+                        select#versionSelector(style="width:auto")
+                        
+                div(data-dojo-type="dijit.layout.AccordionContainer",data-dojo-props="region: 'center'")
+                    div#moduleTreePane(data-dojo-type="dijit.layout.ContentPane", data-dojo-props="title: 'By Module', selected: true")
+                    
+                div(data-dojo-type="dijit.layout.ContentPane", data-dojo-props="region: 'bottom'", style="height:18px;background-color:#f2f2f2;border-top:1px solid #dedede;padding:0 2px 4px 48px;position:relative;overflow:hidden;")
+                    span(style="position:absolute;top:5px;left:3px;font-size:11px;") Legend:
+                    img(src="<?php echo $basePath ?>/css/icons/16x16/array.png",align="middle",title="Array",alt="Array",border="0")
+
+        block content            
+            div#content(data-dojo-type="dijit.layout.TabContainer", data-dojo-props="region: 'center', tabStrip: true")
+                div#baseTab(data-dojo-type="dijit.layout.ContentPane",data-dojo-props="title: 'Welcome'")
+                
+

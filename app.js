@@ -3,7 +3,15 @@ var express = require('express'),
 //    jade = require('jade'),
     nib = require('nib');
 
+// static config - move to configurable arguments object
+
+var config = {dojobase:'scripts/dojo-release-1.8.3-src', theme:'claro'};
+
 var app = express();
+// jade indenting
+app.locals.pretty = true;
+
+
 function compile(str, path) {
   return stylus(str)
     .set('filename', path)
@@ -26,8 +34,7 @@ app.get('/', function (req, res) {
 */
 
 app.get('/', function (req, res) {
-  res.render('index',
-  { title : 'Home' }
-  )
+//res.render('your page', {pageData: {name : ['name 1', name 2]}});
+  res.render('index', { title : 'Home', config:config})
 });
 app.listen(3000);

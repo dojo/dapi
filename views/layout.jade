@@ -2,14 +2,20 @@
 html
   head
     title #{title} - My Site
-    link(rel='stylesheet', href='/css/styles.css')
-  body
-    header
-      h1 My Site
-    .container
-      .main-content
+    link(rel='stylesheet', href="/css/styles.css")
+    link(rel='stylesheet', href="/css/jsdoc.css")
+    link(rel='stylesheet', href="/#{config.dojobase}/dijit/themes/#{config.theme}/#{config.theme}.css")
+
+    script(src="/#{config.dojobase}/dojo/dojo.js")
+    script(src="scripts/api.js")
+  body(class="#{config.theme}")
+    block main
+        block header
+        block navigation
         block content
-      .sidebar
-        block sidebar
-    footer
-      p Running on node with Express, Jade and Stylus
+        
+
+        div#foot(data-dojo-type="dijit.layout.ContentPane",data-dojo-props="region: 'bottom'")
+        
+        
+      
