@@ -4,6 +4,7 @@ block main
     
         block header
             div#head(data-dojo-type="dijit.layout.ContentPane", data-dojo-props="region: 'top'")
+                // move this header to a block later
                 div#header
                     div.container
                         span#logo
@@ -11,20 +12,20 @@ block main
                                 img(src="/themes/dtk/images/logo.png", alt="Dojo Toolkit")
                         ul#navigation
                             li.home
-                                a
-                                    span home
-                            li.donwload
-                                a download
+                                a(href="/")
+                                    span.homeIcon
+                            li.download
+                                a(href="/download/") download
                             li.features
-                                a features
+                                a(href="/features/") features
                             li.docs
-                                a docs
+                                a(href="/docs/") docs
                             li.community
-                                a community
+                                a(href="/community/") community
                             li.blog
-                                a blog
+                                a(href="/blog/") blog
         block navigation
-            div#navigation(data-dojo-type="dijit.layout.BorderContainer", data-dojo-props="minSize: 20, region:\'leading\', splitter: true, gutters: false")
+            div#navigation(data-dojo-type="dijit.layout.BorderContainer", data-dojo-props="minSize: 20, region:\'leading\', splitter: true, gutters: false", style="min-width:200px;") 
                 div(data-dojo-type="dijit.layout.ContentPane", data-dojo-props="title:'Search', region:'top'")
                     div(style="padding:4px")
                         label(for="versionSelector") Version:
