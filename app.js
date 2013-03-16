@@ -27,11 +27,6 @@ app.use(stylus.middleware(
 ));
 app.use(express.static(__dirname + '/public'));
 
-/*
-app.get('/', function (req, res) {
-  res.end('Hi there!')
-});
-*/
 
 app.get('/', function (req, res) {
 //res.render('your page', {pageData: {name : ['name 1', name 2]}});
