@@ -4,6 +4,11 @@ html
     title #{title} - My Site
     link(rel='stylesheet', href="/css/styles.css")
     link(rel='stylesheet', href="/css/jsdoc.css")
+    script
+        dojoConfig = {async:1, debug:1, noGlobals:1, 
+            packages: [{name:"api", location:"/scripts/api"}],
+            apiPath : '/scripts/apidata'     
+        }
     link(rel='stylesheet', href="/#{config.dojobase}/dijit/themes/#{config.theme}/#{config.theme}.css")
 
     script(src="/#{config.dojobase}/dojo/dojo.js")

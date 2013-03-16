@@ -5,7 +5,7 @@ var express = require('express'),
 
 // static config - move to configurable arguments object
 
-var config = {dojobase:'scripts/dojo-release-1.8.3-src', theme:'claro'};
+var config = {dojobase:'scripts/dojo-release-1.8.3', theme:'claro'};
 
 var app = express();
 // jade indenting
