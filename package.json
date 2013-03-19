@@ -6,7 +6,8 @@
         "express" : "3.x",
         "stylus" : "*",
         "nib" : "*",
-        "jade" : "*"
+        "jade" : "*",
+        "xml2js" : "*"
     }
 }
 
