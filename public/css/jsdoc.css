@@ -1,7 +1,45 @@
 html, body {
 	height: 100%; width: 100%; padding: 0; border: 0;
-	font-family: Helvetica, Arial, sans-serif !important;
-	font-size: 0.85em !important;
+	font-family: Helvetica, Arial, sans-serif;
+	font-size: 0.85em;
 	margin: 0;
 }
 #main { height: 100%; width: 100%; border: 0; }
+
+h1.jsdoc-title { 
+	font-size: 2.5em;
+	margin: 0.35em 0;
+	font-weight: normal;
+}
+h1.jsdoc-title img {
+	float: left;
+	padding-right: 0.25em;
+}
+div.jsdoc-field div.jsdoc-title {
+	font-weight: bold;
+}
+
+div.jsdoc-field div.jsdoc-title span img {
+	float: left;
+	padding-right: 4px;
+}
+
+/* h1.jsdoc-title title version */
+.djversion1 {
+    font-size:11px; 
+    color:#999;
+}
+
+div.jsdoc-mixins, .jsdoc-inheritance {
+	font-size: 0.8em;
+}
+div.jsdoc-prototype a, div.jsdoc-mixins a,
+.jsdoc-inheritance a {
+	text-decoration: none;
+}
+div.jsdoc-prototype a:hover,
+div.jsdoc-mixins a:hover,
+
+div.jsdoc-full-summary {
+	margin: 1em 0;
+}

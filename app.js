@@ -7,8 +7,10 @@ var express = require('express'),
     generate = require('./lib/generate');
 
 // static config - move to configurable arguments object
+//var details = __dirname +'/public/scripts/apidata/version/details.xml'; // only dojo exists
+var details = __dirname +'/public/scripts/apidata/version/details_dijit.xml'; // dijit/_WidgetBase good 1 to try
 
-var config = {dojobase:'scripts/dojo-release-1.8.3', theme:'claro'};
+var config = {dojobase:'scripts/dojo-release-1.8.3', theme:'claro', version:'1.8_not_implemented_yet', detailsFile:details};
 
 var app = express();
 // jade indenting
@@ -41,11 +43,11 @@ app.get('/apidata*', function (req, res) {
     //res.jsonp(500, { error: 'not implemented yet' });
     
     console.log(__dirname);
-    var returnstr = "<p>req.params : " + req.params.toString()+"</p>";
+    var returnstr = "<div>req.params : " + req.params.toString()+"</div>";
     // again replace properly
     var modulefile =  req.params.toString().replace(/\/version\//, "");
     
-    generate.generateObjectHtml(__dirname +'/public/scripts/apidata/version/details.xml', modulefile, function(mydata){
+    generate.generateObjectHtml(config.detailsFile, modulefile, config, function(mydata){
         res.send(returnstr + mydata);    
     });    
 });
