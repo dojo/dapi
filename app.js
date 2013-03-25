@@ -8,8 +8,9 @@ var express = require('express'),
 
 // static config - move to configurable arguments object
 //var details = __dirname +'/public/scripts/apidata/version/details.xml'; // only dojo exists
-var details = __dirname +'/public/scripts/apidata/version/details_dijit.xml'; // dijit/_WidgetBase good 1 to try
-
+//var details = __dirname +'/public/scripts/apidata/version/details_dijit.xml'; // dijit/_WidgetBase good 1 to try
+//var details = __dirname +'/public/scripts/apidata/version/details_huge.xml'; // all mods
+var details = __dirname +'/public/scripts/apidata/version/details_all.xml'; // latest doc parse with all packs 
 var config = {dojobase:'scripts/dojo-release-1.8.3', theme:'claro', version:'1.8_not_implemented_yet', detailsFile:details};
 
 var app = express();
