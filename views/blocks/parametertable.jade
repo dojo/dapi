@@ -1,0 +1,15 @@
+- if (parameters)
+    table.jsdoc-parameters
+        tr
+            th.blah1 Parameter
+            th.blah2 Type
+            th.blah3 Description
+        each item in parameters
+            tr
+                td.jsdoc-param-name #{item.$.name}
+                td.jsdoc-param-type #{item.$.type}
+                if (item.summary)
+                    //- ! used instead of # to unescape
+                    td.jsdoc-param-description !{item.summary[0]} 
+                else
+                    td.jsdoc-param-description NOT IMPLEMENTED 

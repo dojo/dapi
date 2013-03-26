@@ -1,0 +1,7 @@
+- if (methods)
+    h2.jsdoc-summary-heading Method Summary
+        span.jsdoc-summary-toggle
+    div.jsdoc-summary-list
+        ul.jsdoc-property-list
+            each method in methods
+                li !{method.$.name}  -  !{method.$.scope}  -  !{method.$.type}  -   !{method.$.from}
