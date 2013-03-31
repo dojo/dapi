@@ -76,7 +76,7 @@ if (config.generate==='static') {
     var fn = jade.compile(data, {filename: indexjade, pretty:true});
     var indexhtml = fn({ title : 'Home', config:config});
     console.log(indexhtml);
-    // mkdir the dir first - should probabley delete all dirs first
+    // mkdir the dir first - should probably delete all dirs first
     mkdirp.sync(config.staticfolder + config.version);
     // wont work unless the dir is already created - need to search if the dir exists and if not create it
     fs.writeFileSync(config.staticfolder + config.version+ "/index.html", indexhtml); 
@@ -85,21 +85,40 @@ if (config.generate==='static') {
     // generate modules
     var modulefile = "dijit/_Templated"; // hardcode test for now
     // get details json (so it can be iterate over the objects and generate html and so it's also cached)
+    
+    var starttime = new Date().getTime();
     generate.loadDetails(config.detailsFile,  config.version, function(details){
-        generate.generateObjectHtml(config.detailsFile, modulefile, config, function(html){
-            //console.log(html); 
-            // wont work unless the dir is already created - need to search if the dir exists and if not create it
-            mkdirp.sync(config.staticfolder + config.version+"/modules/");
-            // modulefile.match(/[^/]*/); // move to regex
-            var patharr = modulefile.split("/");
-            var modname =  patharr.pop();
-            if (patharr >1){
-                mkdirp.sync(config.staticfolder + config.version+"/modules/" + patharr.join("/"));
-            };
+        mkdirp.sync(config.staticfolder + config.version);
+        var modulefile = null;
+        details.javascript.object.forEach(function(item){
             
-            fs.writeFileSync(config.staticfolder + config.version+ "/modules/"+modname+".html", html);
-        });    
+            var leemodulefile = item.$.location;
+            generate.generateObjectHtml(config.detailsFile, leemodulefile, config, function(html){
+                //console.log(html); 
+                // wont work unless the dir is already created - need to search if the dir exists and if not create it
+                // modulefile.match(/[^/]*/); // move to regex
+                var patharr = leemodulefile.split("/");
+                console.log(leemodulefile);
+                var modname =  patharr.pop();
+                if (patharr.length >0){ // means a path - do this better
+                    if (!fs.existsSync(config.staticfolder + config.version+"/" + patharr.join("/"))) {
+                        mkdirp.sync(config.staticfolder + config.version+"/" + patharr.join("/"));
+                    }
+                };
+                fs.writeFileSync(config.staticfolder + config.version+ "/"+patharr.join("/") + "/"+ modname+".html", html);
+            });
+            
+        });
+        
+            
     });
+
+    process.on('exit', function() {
+        console.log("elapsed time = "+ (new Date().getTime() - starttime) +" ms");
+    });
+
+
+    
     // end generate modules
 }
 
