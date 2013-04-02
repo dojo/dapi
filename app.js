@@ -64,18 +64,18 @@ if (config.generate==='live') {
         // should do some error handling http responses    
     });
     app.listen(3000);
-    console.log("api viewer started");
+    console.log("API viewer started");
 }
 
 /// todo: static generation -- move to seperate module 
 if (config.generate==='static') {
-    
+    console.log("Static API viewer generation started");
     // generate index  config.version config.staticfolder
     var indexjade = __dirname + "/views/index.jade";
     var data = fs.readFileSync(indexjade, "utf8");
     var fn = jade.compile(data, {filename: indexjade, pretty:true});
     var indexhtml = fn({ title : 'Home', config:config});
-    console.log(indexhtml);
+    //console.log(indexhtml);
     // mkdir the dir first - should probably delete all dirs first
     mkdirp.sync(config.staticfolder + config.version);
     // wont work unless the dir is already created - need to search if the dir exists and if not create it

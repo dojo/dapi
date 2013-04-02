@@ -3,11 +3,11 @@
     "description" : "node.js dojo api viewer", 
     "version" : "0.0.1",
     "dependencies" : {
-        "express" : "3.x",
+        "express" : "3.1.0",
         "stylus" : "*",
         "nib" : "*",
-        "jade" : "*",
-        "xml2js" : "*",
+        "jade" : "0.28.2",
+        "xml2js" : "0.2.6",
         "mkdirp" : "*"
     }
 }
