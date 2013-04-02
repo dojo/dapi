@@ -1,0 +1,9 @@
+- if (events != null)
+    h2.jsdoc-summary-heading Event Summary
+        span.jsdoc-summary-toggle
+    div.jsdoc-summary-list
+        ul.jsdoc-property-list
+            each prop in events
+                li.functionIcon
+                    a.inline-link(href='##{prop.$.name}')  !{prop.$.name}  -  !{prop.$.scope}  -  !{prop.$.type}  -   !{prop.$.from}
+                    span !{prop.summary}                
