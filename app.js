@@ -42,7 +42,6 @@ app.use(stylus.middleware(
 ));
 app.use(express.static(__dirname + '/public'));
 
-
 if (config.generate==='live') {
     // index - / at the moment - change so it's more specific/configurable 
     app.get('/', function (req, res) {
@@ -53,13 +52,12 @@ if (config.generate==='live') {
     // apidata should be config - already used in dojoConfig // for module clicks
     // also should be able to generate htlml from module urls (and version) e.g. this currently works http://localhost:3000/apidata/version/dijit/_TemplatedMixin 
     app.get('/apidata*', function (req, res) {
-        console.log(__dirname);
-        var returnstr = "<div>req.params : " + req.params.toString()+"</div>";
-        // again replace properly
-        var modulefile =  req.params.toString().replace(/\/version\//, "");
+        //var returnstr = "<div>req.params : " + req.params.toString()+"</div>";
 
-        generate.generateObjectHtml(config.detailsFile, modulefile, config, function(html) {
-            res.send(returnstr + html);
+        var modulefile =  req.params.toString().replace(/\/version\//, "");
+        /// and a jade modulefile render
+        generate.generate(config.detailsFile, modulefile, config, function(retObjectItem) {
+            res.render('module', { module : retObjectItem, config:config});
         });
         // should do some error handling http responses    
     });
@@ -93,24 +91,26 @@ if (config.generate==='static') {
         details.javascript.object.forEach(function(item){
             
             var leemodulefile = item.$.location;
-            generate.generateObjectHtml(config.detailsFile, leemodulefile, config, function(html){
-                //console.log(html); 
-                // wont work unless the dir is already created - need to search if the dir exists and if not create it
-                // modulefile.match(/[^/]*/); // move to regex
+            generate.generate(config.detailsFile, leemodulefile, config, function(retObjectItem) {
+                // modulefile.match(/[^/]* /); // move to regex
                 var patharr = leemodulefile.split("/");
-                console.log(leemodulefile);
+
                 var modname =  patharr.pop();
                 if (patharr.length >0){ // means a path - do this better
                     if (!fs.existsSync(config.staticfolder + config.version+"/" + patharr.join("/"))) {
                         mkdirp.sync(config.staticfolder + config.version+"/" + patharr.join("/"));
                     }
                 };
+                var modulejade = __dirname + "/views/module.jade";
+                var data = fs.readFileSync(modulejade, "utf8");
+                var fn = jade.compile(data, {filename: modulejade, pretty:true});
+                var html = fn({ module : retObjectItem, config:config});
+                
                 fs.writeFileSync(config.staticfolder + config.version+ "/"+patharr.join("/") + "/"+ modname+".html", html);
-            });
-            
+                console.log("wrote file " + leemodulefile);
+                
+            });            
         });
-        
-            
     });
 
     process.on('exit', function() {

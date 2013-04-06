@@ -1,0 +1,25 @@
+h1.jsdoc-title #{module.location}
+        span.djversion1 #{module.type} (version #{config.version})
+- if (module.mixins != null)
+    div.jsdoc-mixins
+        label Extends 
+        each item in module.mixins
+            a.jsdoc-link(href='##{config.version}/#{item.location}') #{item.location} --  
+- if (module.summary != null)
+      div.jsdoc-full-summary !{module.summary}
+- if (module.description != null)
+      div.jsdoc-full-summary !{module.description}
+- if (module.usage !=null)
+      div.jsdoc-function-information 
+        h3 Usage
+        div.function-signature #{module.location}
+            span.parameters (#{module.usage.parameterList})
+      div.jsdoc-inheritance Defined by #{module.usage.from}
+      - if (module.usage.description !=null)
+        div.jsdoc-summary
+            !{module.usage.description}
+include module/parametertable
+include module/examples
+include module/propertiessummary
+include module/methodssummary
+include module/eventssummary
