@@ -1,7 +1,0 @@
-- if (examples)
-    div.jsdoc-examples
-        h2 Examples
-        each example, idx in examples
-            div.jsdoc-example
-                h3 Example #{idx+1}
-                !{example}
