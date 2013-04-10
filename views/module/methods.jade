@@ -1,0 +1,13 @@
+- if (module.methods)
+    h2 Methods
+    div.jsdoc-property-list
+        each prop in module.methods
+            div.jsdoc-field.TODO
+                div.jsdoc-title
+                    a(name='#{prop.name}')
+                div.jsdoc-inheritance.TODO Defined by: 
+                    a.jsdoc-link(href='#{prop.from}') #{prop.from} 
+                    span.jsdoc-inherited.TODO(title='inherited')       
+                
+                div.jsdoc-summary !{prop.summary}
+                
