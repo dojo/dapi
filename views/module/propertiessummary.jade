@@ -5,5 +5,6 @@
         ul.jsdoc-property-list
             each prop in module.properties
                 li.todoIcon
-                    a.inline-link(href='##{prop.name}')  !{prop.name}  -  !{prop.scope}  -  !{prop.type}  -   !{prop.from}
-                    span !{prop.summary}
+                    a.inline-link(href='##{prop.name}')  !{prop.name}  -  !{prop.scope}  -  !{prop.type}  -   !{prop.from} 
+                    span !{prop.shortSummary}
+                    // span !{prop.summary}

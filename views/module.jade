@@ -19,7 +19,18 @@ h1.jsdoc-title #{module.location}
         div.jsdoc-summary
             !{module.usage.description}
 include module/parametertable
-include module/examples
-include module/propertiessummary
-include module/methodssummary
-include module/eventssummary
+p See the 
+    a(href='##{module.location}', taget='_blank') #{module.location} reference documentation
+    |  for more information  TODO:
+     
+div.jsdoc-children
+    div.jsdoc-fieldlist
+        include module/examples
+        include module/propertiessummary
+        include module/methodssummary
+        include module/eventssummary
+div.jsdoc-children
+    div.jsdoc-fields
+        include module/properties
+        include module/methods
+        include module/events
