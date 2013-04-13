@@ -4,7 +4,7 @@
         each prop in module.properties
             div.jsdoc-field.TODO
                 div.jsdoc-title
-                    a(name='#{prop.name}')
+                    a(name='#{prop.name}') #{prop.name}
                 div.jsdoc-inheritance.TODO Defined by: 
                     a.jsdoc-link(href='#{prop.from}') #{prop.from} 
                     span.jsdoc-inherited.TODO(title='inherited')       
