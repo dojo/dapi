@@ -10,6 +10,9 @@
     "xml2js": "0.2.6",
     "mkdirp": "*"
   },
+    "scripts": {
+      "test": "grunt travis --verbose"
+    },
   "devDependencies": {
     "grunt": "~0.4.1",
     "grunt-contrib-jshint": "~0.4.3",
