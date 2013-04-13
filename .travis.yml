@@ -4,6 +4,8 @@ node_js:
   - "0.10"
   - "0.8"
   - "0.6"
+before_script:
+  - npm install -g grunt-cli  
 notifications:
   email:
-    on_failure : "change"  
+    on_failure : "change"
