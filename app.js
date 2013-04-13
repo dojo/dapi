@@ -18,7 +18,7 @@ var config = {dojobase:'scripts/dojo-release-1.8.3',
                         theme:'claro', 
                         version:'1.8_not_implemented_yet', 
                         detailsFile:details, 
-                        generate:'static',
+                        generate:'live',
                         staticfolder :__dirname + '/staticoutput/'
                      };
 /* config.generate='live' (default), config.generate='static' static html, maybe add template config e.g. mobile or flat structure e.g. non tab container */  
