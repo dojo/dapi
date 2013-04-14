@@ -70,3 +70,34 @@ table.jsdoc-parameters td {
 table.jsdoc-parameters .jsdoc-param-description p {
 	margin: 0;
 }
+
+/* The legend listing the meanings of each icon */
+ul.jsdoc-legend {
+	list-style-type: none;
+}
+
+ul.jsdoc-legend img, ul.jsdoc-legend li > span:first-child {
+	/* align icon vertically with text; note that icons in second list are <span> nodes */
+	vertical-align: middle;
+}
+.jsdoc-private, .jsdoc-extension, .jsdoc-inherited {
+    display: inline-block;
+    width: 16px;
+    height: 16px;
+    opacity: 0.5;   /* so icons don't stand out so much */
+}
+.jsdoc-private {
+    background-image: url("icons/16x16/private.png")
+}
+.jsdoc-extension {
+    background-image: url("icons/16x16/extension.png")
+}
+.jsdoc-inherited {
+    background-image: url("icons/16x16/inherited.png")
+}
+
+/* toolbar, to show/hide private, inherited, and extension properties */
+div.jsdoc-toolbar .jsdoc-private {
+    background-image: none;     /* done via actual <img> tag instead */
+    right: 28px;
+}

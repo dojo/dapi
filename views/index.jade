@@ -33,10 +33,8 @@ block main
                         
                 div(data-dojo-type="dijit.layout.AccordionContainer",data-dojo-props="region: 'center'") 
                     div#moduleTreePane(data-dojo-type="dijit.layout.ContentPane", data-dojo-props="title: 'By Module', selected: true") 
-                     
-                div(data-dojo-type="dijit.layout.ContentPane", data-dojo-props="region: 'bottom'", style="height:18px;background-color:#f2f2f2;border-top:1px solid #dedede;padding:0 2px 4px 48px;position:relative;overflow:hidden;")
-                    span(style="position:absolute;top:5px;left:3px;font-size:11px;") Legend:
-                    img(src="<?php echo $basePath ?>/css/icons/16x16/array.png",align="middle",title="Array",alt="Array",border="0")
+                
+                    include legend   
 
         block content            
             div#content(data-dojo-type="dijit.layout.TabContainer", data-dojo-props="region: 'center', tabStrip: true")
