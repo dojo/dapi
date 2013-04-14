@@ -37,6 +37,9 @@ autoHyperlink = function (args) {
     obj.anchor = "<a href='" + args.location + "'>" + args.location + "</a>";
     return obj;
 };
+
+convertType = generate.convertType;
+app.locals.convertType = convertType;
 app.locals.autoHyperlink = autoHyperlink;
 
 
@@ -119,7 +122,7 @@ if (config.generate === 'static') {
                 }
                 var modulejade = __dirname + "/views/module.jade";
                 var data = fs.readFileSync(modulejade, "utf8");
-                var fn = jade.compile(data, {filename: modulejade, pretty: true, autoHyperlink: autoHyperlink});
+                var fn = jade.compile(data, {filename: modulejade, pretty: true, autoHyperlink: autoHyperlink, convertType: convertType});
                 var html = fn({ module : retObjectItem, config: config, autoHyperLink: autoHyperlink});
                 fs.writeFileSync(config.staticfolder + config.version + "/" + patharr.join("/") + "/" + modname + ".html", html);
                 console.log("wrote file " + leemodulefile);

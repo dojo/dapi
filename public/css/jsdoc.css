@@ -101,3 +101,108 @@ div.jsdoc-toolbar .jsdoc-private {
     background-image: none;     /* done via actual <img> tag instead */
     right: 28px;
 }
+
+/* summary */
+div.jsdoc-summary-list ul {
+	list-style-type: none;
+	padding: 0;
+	margin: 0;
+}
+div.jsdoc-summary-list ul li {
+	background-repeat: no-repeat;
+	padding-left: 20px;
+	margin: 0.5em 0;
+}
+div.jsdoc-summary-list ul li a {
+	font-weight: bold;
+}
+div.jsdoc-summary-list ul li span {
+	font-size: 0.9em;
+}
+div.jsdoc-summary-list ul li span.parameters {
+	font-size: 1em;
+}
+div.jsdoc-summary-list ul li .jsdoc-returns {
+	font-weight: bold;
+}
+/* end summary */
+
+
+/* icons */
+span.arrayIcon,
+span.booleanIcon,
+span.constructorIcon,
+span.dateIcon,
+span.domnodeIcon,
+span.errorIcon,
+span.functionIcon,
+span.namespaceIcon,
+span.numberIcon,
+span.objectIcon,
+span.regexpIcon,
+span.singletonIcon,
+span.stringIcon {
+	display: inline-block;
+	padding-left: 20px;
+	background-repeat: no-repeat;
+}
+.arrayIcon,
+.arrayIcon16{ background-image:url('icons/16x16/array.png'); }
+.booleanIcon,
+.booleanIcon16{ background-image:url('icons/16x16/boolean.png'); }
+.constructorIcon,
+.constructorIcon16{ background-image:url('icons/16x16/constructor.png'); }
+.dateIcon,
+.dateIcon16{ background-image:url('icons/16x16/date.png'); }
+.domnodeIcon,
+.domnodeIcon16{ background-image:url('icons/16x16/domnode.png'); }
+.errorIcon,
+.errorIcon16{ background-image:url('icons/16x16/error.png'); }
+.functionIcon,
+.functionIcon16{ background-image:url('icons/16x16/function.png'); }
+.namespaceIcon,
+.namespaceIcon16{ background-image:url('icons/16x16/namespace.png'); }
+.numberIcon,
+.numberIcon16{ background-image:url('icons/16x16/number.png'); }
+.objectIcon,
+.objectIcon16{ background-image:url('icons/16x16/object.png'); }
+.regexpIcon,
+.regexpIcon16{ background-image:url('icons/16x16/regexp.png'); }
+.singletonIcon,
+.singletonIcon16{ background-image:url('icons/16x16/singleton.png'); }
+.stringIcon,
+.stringIcon16{ background-image:url('icons/16x16/string.png'); }
+
+.icon16{ width: 16px; height: 16px; }
+
+.icon24{ width: 24px; height: 24px; }
+.arrayIcon24{ background-image:url('icons/24x24/array.png'); }
+.booleanIcon24{ background-image:url('icons/24x24/boolean.png'); }
+.constructorIcon24{ background-image:url('icons/24x24/constructor.png'); }
+.dateIcon24{ background-image:url('icons/24x24/date.png'); }
+.domnodeIcon24{ background-image:url('icons/24x24/domnode.png'); }
+.errorIcon24{ background-image:url('icons/24x24/error.png'); }
+.functionIcon24{ background-image:url('icons/24x24/function.png'); }
+.namespaceIcon24{ background-image:url('icons/24x24/namespace.png'); }
+.numberIcon24{ background-image:url('icons/24x24/number.png'); }
+.objectIcon24{ background-image:url('icons/24x24/object.png'); }
+.regexpIcon24{ background-image:url('icons/24x24/regexp.png'); }
+.singletonIcon24{ background-image:url('icons/24x24/singleton.png'); }
+.stringIcon24{ background-image:url('icons/24x24/string.png'); }
+
+.icon36{ width: 36px; height: 36px; }
+.arrayIcon36{ background-image:url('icons/36x36/array.png'); }
+.booleanIcon36{ background-image:url('icons/36x36/boolean.png'); }
+.constructorIcon36{ background-image:url('icons/36x36/constructor.png'); }
+.dateIcon36{ background-image:url('icons/36x36/date.png'); }
+.domnodeIcon36{ background-image:url('icons/36x36/domnode.png'); }
+.errorIcon36{ background-image:url('icons/36x36/error.png'); }
+.functionIcon36{ background-image:url('icons/36x36/function.png'); }
+.namespaceIcon36{ background-image:url('icons/36x36/namespace.png'); }
+.numberIcon36{ background-image:url('icons/36x36/number.png'); }
+.objectIcon36{ background-image:url('icons/36x36/object.png'); }
+.regexpIcon36{ background-image:url('icons/36x36/regexp.png'); }
+.singletonIcon36{ background-image:url('icons/36x36/singleton.png'); }
+.stringIcon36{ background-image:url('icons/36x36/string.png'); }
+/* end icons */
+

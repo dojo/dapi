@@ -2,9 +2,10 @@
     h2 Properties
     div.jsdoc-property-list
         each prop in module.properties
-            div.jsdoc-field.TODO
+            div.jsdoc-field.TODOpublic
                 div.jsdoc-title
-                    a(name='#{prop.name}') #{prop.name}
+                    a(name='#{prop.name}')
+                    span(class="#{convertType(prop.types[0])}Icon") #{prop.name}
                 div.jsdoc-inheritance.TODO Defined by: 
                     a.jsdoc-link(href='#{prop.from}') #{prop.from} 
                     span.jsdoc-inherited.TODO(title='inherited')       
