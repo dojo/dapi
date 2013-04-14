@@ -9,6 +9,9 @@
                 div.jsdoc-inheritance.TODO Defined by: 
                     a.jsdoc-link(href='#{prop.from}') #{prop.from} 
                     span.jsdoc-inherited.TODO(title='inherited')       
-                
-                div.jsdoc-summary !{prop.summary}
+                - if (prop.summary !=null)
+                    div.jsdoc-summary !{autoHyperlink(prop.summary)}
+                - else
+                    div.jsdoc-summary
+                        h1 PROP.SUMMARY WAS NULL
                 
