@@ -27,7 +27,8 @@ var app = express();
 app.locals.pretty = true;
 
 // testing macro calls
-// fails with static generation - todo: FOR SOME REASON I NEED TO USE A GLOBAL so it works??? 
+// fails with static generation - todo: FOR SOME REASON I NEED TO USE A GLOBAL so it works???
+/* 
 autoHyperlink = function (args) {
     var obj = {};
     //obj.location = args.location;
@@ -36,10 +37,12 @@ autoHyperlink = function (args) {
     obj.anchor = "<a href='" + args.location + "'>" + args.location + "</a>";
     return obj;
 };
+*/
 
 convertType = generate.convertType;
 app.locals.convertType = convertType;
-app.locals.autoHyperlink = autoHyperlink;
+autoHyperlink = generate.autoHyperlink;
+app.locals.autoHyperlink = generate.autoHyperlink;
 
 
 function compile(str, path) {

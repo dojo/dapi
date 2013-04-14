@@ -1,6 +1,7 @@
-h1.jsdoc-title #{module.location}
+h1(class="#{convertType(module.type)}Icon36 jsdoc-title") #{module.location}
         span.djversion1 #{module.type} (version #{config.version})
-h2 !{autoHyperlink(module).anchor + " " + autoHyperlink(module).text} 
+//  h2 !{autoHyperlink(module.description)}  SUMMARY - broke - need to understand hyperlink      
+     
 - if (module.mixins != null)
     div.jsdoc-mixins
         label Extends 

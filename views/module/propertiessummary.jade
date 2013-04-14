@@ -4,7 +4,7 @@
     div.jsdoc-summary-list
         ul.jsdoc-property-list
             each prop in module.properties
-                li.todoIcon
-                    a.inline-link(href='##{prop.name}')  !{prop.name}  -  !{prop.scope}  -  !{prop.type}  -   !{prop.from} 
+                li(class="#{convertType(prop.types[0])}Icon")
+                    a.inline-link(href='##{prop.name}')  !{prop.name} 
                     span !{prop.shortSummary}
                     // span !{prop.summary}

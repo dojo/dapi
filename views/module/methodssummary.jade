@@ -7,7 +7,12 @@
                 li.functionIcon
                     a.inline-link(href='##{method.name}') !{method.name} 
                     // -  !{method.scope}  -  !{method.type}  -   !{method.from}
-                    span.parameters (#{method.parameters}) 
+                    span.parameters (
+                    -  each parm, idx in method.parameters
+                        | #{parm.name}
+                        - if (idx < method.parameters.length-1)
+                            | , 
+                    | ) 
                     span !{method.shortSummary}
                     // span !{method.summary}
                     
