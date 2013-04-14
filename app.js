@@ -1,6 +1,5 @@
 var express = require('express'),
     stylus = require('stylus'),
-    xml2js = require('xml2js'),
     fs = require('fs'),
     util = require("util"),
     nib = require('nib'),
