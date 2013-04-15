@@ -1,14 +1,20 @@
 - if (module.methods)
     h2 Methods
     div.jsdoc-property-list
-        each prop in module.methods
+        each method in module.methods
             div.jsdoc-field.TODOpublic
                 div.jsdoc-title
-                    a(name='#{prop.name}')
-                    span.functionIcon #{prop.name}
+                    a(name='#{method.name}')
+                    span.functionIcon #{method.name}
+                    span.parameters (
+                    -  each parm, idx in method.parameters
+                        | #{parm.name}
+                        - if (idx < method.parameters.length-1)
+                            | , 
+                    | ) 
                 div.jsdoc-inheritance.TODO Defined by: 
-                    a.jsdoc-link(href='#{prop.from}') #{prop.from} 
+                    a.jsdoc-link(href='#{method.from}') #{method.from} 
                     span.jsdoc-inherited.TODO(title='inherited')       
                 
-                div.jsdoc-summary !{prop.summary}
+                div.jsdoc-summary !{method.summary}
                 

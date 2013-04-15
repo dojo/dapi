@@ -1,13 +1,19 @@
 - if (module.events)
     h2 Events
     div.jsdoc-property-list
-        each prop in module.events
+        each event in module.events
             div.jsdoc-field.TODOpublic
                 div.jsdoc-title
-                    a(name='#{prop.name}')
-                    span.functionIcon #{prop.name}
+                    a(name='#{event.name}')
+                    span.functionIcon #{event.name}
+                    span.parameters (
+                    -  each parm, idx in event.parameters
+                        | #{parm.name}
+                        - if (idx < event.parameters.length-1)
+                            | , 
+                    | ) 
                 div.jsdoc-inheritance.TODO Defined by: 
-                    a.jsdoc-link(href='#{prop.from}') #{prop.from} 
+                    a.jsdoc-link(href='#{event.from}') #{event.from} 
                     span.jsdoc-inherited.TODO(title='inherited')       
                 
-                div.jsdoc-summary !{prop.summary}
+                div.jsdoc-summary !{event.summary}
