@@ -5,8 +5,7 @@
         ul.jsdoc-property-list
             each method in module.methods
                 li.functionIcon
-                    a.inline-link(href='##{method.name}') !{method.name} 
-                    // -  !{method.scope}  -  !{method.type}  -   !{method.from}
+                    a.inline-link(href='##{method.name}') !{method.name}
                     span.parameters (
                     -  each parm, idx in method.parameters
                         | #{parm.name}

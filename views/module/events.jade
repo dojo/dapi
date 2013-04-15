@@ -2,12 +2,12 @@
     h2 Events
     div.jsdoc-property-list
         each prop in module.events
-            div.jsdoc-field.TODO
+            div.jsdoc-field.TODOpublic
                 div.jsdoc-title
                     a(name='#{prop.name}')
+                    span.functionIcon #{prop.name}
                 div.jsdoc-inheritance.TODO Defined by: 
                     a.jsdoc-link(href='#{prop.from}') #{prop.from} 
                     span.jsdoc-inherited.TODO(title='inherited')       
                 
                 div.jsdoc-summary !{prop.summary}
-                
