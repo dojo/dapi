@@ -2282,3 +2282,13 @@ h4.commentsTitle, div.js-kit-comments {
     color: #6F6F6F;
     border-top: 1px solid #E5E5E5;
 }
+
+
+
+/* FROM THEME.CSS */
+#head {
+	padding: 0;
+	border: none;
+}
+
+/* END FROM THEME */
