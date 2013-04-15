@@ -1,10 +1,17 @@
-- if (module.events != null)
+- if (module.events)
     h2.jsdoc-summary-heading Event Summary
         span.jsdoc-summary-toggle
     div.jsdoc-summary-list
         ul.jsdoc-property-list
-            each prop in module.events
+            each event in module.events
                 li.functionIcon
-                    a.inline-link(href='##{prop.name}')  !{prop.name}  -  !{prop.scope}  -  !{prop.type}  -   !{prop.from} 
-                    span !{prop.shortSummary}
-                    // span !{prop.summary}
+                    a.inline-link(href='##{event.name}') !{event.name}
+                    span.parameters (
+                    -  each parm, idx in event.parameters
+                        | #{parm.name}
+                        - if (idx < event.parameters.length-1)
+                            | , 
+                    | ) 
+                    span !{event.shortSummary}
+                    span.jsdoc-extension(title="TODO")
+                    

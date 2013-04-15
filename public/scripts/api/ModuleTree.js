@@ -1,20 +1,20 @@
-define(["dojo/_base/declare", "dojo/_base/lang", "dijit/Tree", "dijit/registry","dijit/layout/ContentPane"
-    ], function(declare, lang, Tree, registry, ContentPane){
+define(["dojo/_base/declare", "dojo/_base/lang", "dijit/Tree", "dijit/registry", "dijit/layout/ContentPane", "dojo/query", "dojo/dom-construct"
+    ], function (declare, lang, Tree, registry, ContentPane, query, domConstruct) {
 
 	return declare("ModuleTree", Tree, {
 		// summary:
 		//		Variation on Tree to have icons and correct click behavior
 
-		getIconClass: function(item, /*Boolean*/ opened){
+		getIconClass: function (item, /*Boolean*/ opened) {
 
 			var type = item.type.toLowerCase();
 
-			if(type == "folder"){
+			if (type === "folder") {
 				return opened ? "dijitFolderOpened" : "dijitFolderClosed";
-			}else{
+			} else {
 				// Lots of modules are marked as type undefined, for which we have no icon, so use object instead.
 				// TODO: we also have no icon for instance, so use object icon.
-				if(/undefined|instance/.test(type)){
+				if (/undefined|instance/.test(type)) {
 					type = "object";
 				}
 
@@ -22,39 +22,35 @@ define(["dojo/_base/declare", "dojo/_base/lang", "dijit/Tree", "dijit/registry",
 			}
 		},
 
-		onClick: function(item, nodeWidget){
+		onClick: function (item, nodeWidget) {
 			var type = item.type;
-			if(type == "folder"){
+			if (type === "folder") {
 				// Since folders have no associated pages, expand the TreeNode instead, to hint the user
 				// that they need to descendant on a child of this node.
 				this._onExpandoClick({node: nodeWidget});
-			}else{
+			} else {
 				// Open the page for this module.
 				this.addTabPane(item, item.fullname, this.version);
 			}
 		},
 
-		selectAndClick: function(path){
+		selectAndClick: function (path) {
 			// summary:
 			//		Helper method used from welcome screen, ex: moduleTree.selectAndClick(["dojo/", "dojo/query"])
 
-			this.set("path", ["root"].concat(path)).then(lang.hitch(this, function(){
+			this.set("path", ["root"].concat(path)).then(lang.hitch(this, function () {
 				var node = this.get("selectedNode");
 				this.onClick(node.item, node);
 			}));
 		},
-		
-        addTabPane : function(item, page, version){
-        	var p = registry.byId("content");
-        	// Get the URL to get the tab content.
-        	// versions[] lists what directory (lib or lib.old) contains the item.php script used to display this page
-        	//var url = baseUrl + versions[version] + "/item.php?p=" + page + "&v=" + (version || currentVersion);
-        	
-        	// clean this, apidata moved to config, fullname - start docing jsstructures
-        	var url = "/apidata/version/" + item.fullname; 
-        	console.log(item);
-        	
-
+        addTabPane : function (item, page, version) {
+            var p = registry.byId("content");
+            // Get the URL to get the tab content.
+            // versions[] lists what directory (lib or lib.old) contains the item.php script used to display this page
+            //var url = baseUrl + versions[version] + "/item.php?p=" + page + "&v=" + (version || currentVersion);
+            // clean this, apidata moved to config, fullname - start docing jsstructures
+            var url = "/apidata/version/" + item.fullname;
+            console.log(item);
             var pane = new ContentPane({
                 id: page.replace(/[\/.]/g, "_") + "_" + version,
                 page: page,		// save page because when we select a tab we locate the corresponding TreeNode
@@ -63,16 +59,28 @@ define(["dojo/_base/declare", "dojo/_base/lang", "dijit/Tree", "dijit/registry",
                 //title: title,
                 title: item.fullname,
                 closable: true,
-                parseOnLoad: false
-//                onLoad: lang.hitch(pane, paneOnLoad)
+                parseOnLoad: false,
+                onLoad: lang.hitch(pane, this.paneOnLoad)
             });
             p.addChild(pane);
             p.selectChild(pane);
             return pane;
-
-            //console.log("url = ", url);
-            // return null; 	
-        }      
-
+        },
+        paneOnLoad : function (data) {
+            var context = this.domNode;
+            console.log(this.domNode);
+            var link = query("div.jsdoc-permalink", context)[0].innerHTML;
+            // TODO baseUrl ??
+            var baseUrl = "/";
+            var tbc = (link ? '<span class="jsdoc-permalink"><a class="jsdoc-link" href="' + link + '">Permalink</a></span>' : '')
+                + '<label>View options: </label>'
+                + '<span class="trans-icon jsdoc-extension"><img src="' + baseUrl + 'css/icons/24x24/extension.png" align="middle" border="0" alt="Toggle extension module members" title="Toggle extension module members" /></span>'
+                + '<span class="trans-icon jsdoc-private"><img src="' + baseUrl + 'css/icons/24x24/private.png" align="middle" border="0" alt="Toggle private members" title="Toggle private members" /></span>'
+                + '<span class="trans-icon jsdoc-inherited"><img src="' + baseUrl + 'css/icons/24x24/inherited.png" align="middle" border="0" alt="Toggle inherited members" title="Toggle inherited members" /></span>';
+            var toolbar = domConstruct.create("div", {
+                className: "jsdoc-toolbar",
+                innerHTML: tbc
+            }, this.domNode, "first");
+        }
 	});
 });
