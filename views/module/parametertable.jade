@@ -10,6 +10,6 @@
                 td.jsdoc-param-type #{item.type}
                 if (item.summary)
                     //- ! used instead of # to unescape
-                    td.jsdoc-param-description !{item.summary[0]} 
+                    td.jsdoc-param-description !{item.summary} 
                 else
-                    td.jsdoc-param-description NOT IMPLEMENTED 
+                    td.jsdoc-param-description !{item.description} 
