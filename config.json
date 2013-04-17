@@ -1,0 +1,7 @@
+{
+    "dojobase" : "scripts/dojo-release-1.8.3",
+    "theme" : "claro",
+    "version" : "1.8_not_implemented_yet",
+    "detailsFile" : "/var/www/dapi/public/scripts/apidata/version/details.json",
+    "staticFolder" : "/staticoutput/"
+}
