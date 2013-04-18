@@ -1,6 +1,5 @@
 var stylus = require('stylus'),
     fs = require('fs'),
-    util = require("util"),
     nib = require('nib'),
     jade = require('jade'),
     mkdirp = require("mkdirp"),
@@ -45,13 +44,12 @@ var data = fs.readFileSync(indexjade, "utf8");
 var fn = jade.compile(data, {filename: indexjade, pretty: true});
 var indexhtml = fn({ title : 'Home', config: config});
 // generate modules
-var modulefile = "dijit/_Templated"; // hardcode test for now
 var staticFolder = process.cwd() + config.staticFolder + config.version;
-// get details json (so it can be iterate over the objects and generate html and so it's also cached)
-
+mkdirp.sync(staticFolder);
+fs.writeFileSync(staticFolder + "/index.html", indexhtml);
 var starttime = new Date().getTime();
+// get details json (so it can iterate over the objects, generate html and so it's also cached)
 generate.loadDetails(config.detailsFile,  config.version, function (details) {
-    mkdirp.sync(staticFolder);
     var modulefile = null;
     //debugger;
 

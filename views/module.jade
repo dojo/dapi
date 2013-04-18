@@ -21,6 +21,7 @@ h1(class="#{convertType(module.type)}Icon36 jsdoc-title") #{module.location}
       - if (module.usage.description !=null)
         div.jsdoc-summary
             !{module.usage.description}
+params = module.parameters
 include module/parametertable
 p See the 
     a(href='##{module.location}', target='_blank') #{module.location} reference documentation

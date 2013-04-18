@@ -1,13 +1,13 @@
-- if (module.parameters)
+- if (params && params.length > 0)
     table.jsdoc-parameters
         tr
             th.blah1 Parameter
             th.blah2 Type
             th.blah3 Description
-        each item in module.parameters
+        each item in params
             tr
                 td.jsdoc-param-name #{item.name}
-                td.jsdoc-param-type #{item.type}
+                td.jsdoc-param-type !{item.types.join(" | ")}
                 if (item.summary)
                     //- ! used instead of # to unescape
                     td.jsdoc-param-description !{item.summary} 

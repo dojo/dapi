@@ -1,7 +1,6 @@
 var express = require('express'),
     stylus = require('stylus'),
     fs = require('fs'),
-    util = require("util"),
     nib = require('nib'),
     jade = require('jade'),
     mkdirp = require("mkdirp"),
@@ -15,21 +14,10 @@ var express = require('express'),
 //var details = __dirn  ame +'/public/scripts/apidata/version/details_huge.xml'; // all mods
 //var details = __dirname +'/public/scripts/apidata/version/details_all.xml'; // latest doc parse with all packs 
 var details = __dirname + '/public/scripts/apidata/version/details.json'; // latest doc parse with all packs
-/*
-var config = {dojobase: 'scripts/dojo-release-1.8.3',
-                        theme: 'claro',
-                        version: '1.8_not_implemented_yet',
-                        detailsFile: details,
-                        staticfolder : __dirname + '/staticoutput/'
-                     };
-/*                     
-/* config.generate='live' (default), config.generate='static' static html, maybe add template config e.g. mobile or flat structure e.g. non tab container */
-
 var app = express();
 // jade indenting
 app.locals.pretty = true;
 
-// testing macro calls
 // fails with static generation - todo: FOR SOME REASON I NEED TO USE A GLOBAL so it works???
 app.locals.convertType = generate.convertType;
 app.locals.autoHyperlink = generate.autoHyperlink;
