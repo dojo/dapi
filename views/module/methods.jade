@@ -6,15 +6,18 @@
                 div.jsdoc-title
                     a(name='#{method.name}')
                     span.functionIcon #{method.name}
-                    span.parameters (
+                    | <span class="parameters">(
                     -  each parm, idx in method.parameters
                         | #{parm.name}
                         - if (idx < method.parameters.length-1)
                             | , 
-                    | ) 
+                    | )</span>
                 div.jsdoc-inheritance.TODO Defined by: 
                     a.jsdoc-link(href='#{method.from}') #{method.from} 
                     span.jsdoc-inherited.TODO(title='inherited')       
                 
-                div.jsdoc-summary !{method.summary}
+                div.jsdoc-full-summary !{method.summary}
+                - if (method.parameters)
+                    params = method.parameters
+                    include parametertable
                 

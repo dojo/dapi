@@ -6,12 +6,12 @@
                 div.jsdoc-title
                     a(name='#{event.name}')
                     span.functionIcon #{event.name}
-                    span.parameters (
+                    | <span class="parameters">(
                     -  each parm, idx in event.parameters
                         | #{parm.name}
                         - if (idx < event.parameters.length-1)
                             | , 
-                    | ) 
+                    | )</span>
                 div.jsdoc-inheritance.TODO Defined by: 
                     a.jsdoc-link(href='#{event.from}') #{event.from} 
                     span.jsdoc-inherited.TODO(title='inherited')       
