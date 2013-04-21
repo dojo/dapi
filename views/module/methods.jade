@@ -2,7 +2,10 @@
     h2 Methods
     div.jsdoc-property-list
         each method in module.methods
-            div.jsdoc-field.TODOpublic
+            - var klass = 'jsdoc-field' 
+            - klass += (method.private == true ? " private" : "")
+            - if (method.inherited) klass += ' inherited' 
+            div(class="#{klass}")
                 div.jsdoc-title
                     a(name='#{method.name}')
                     span.functionIcon #{method.name}

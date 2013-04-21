@@ -4,7 +4,14 @@
     div.jsdoc-summary-list
         ul.jsdoc-property-list
             each prop in module.properties
-                li(class="#{convertType(prop.types[0])}Icon")
+                - var klass = convertType(prop.types[0]) + 'Icon' 
+                - klass += (prop.private == true ? " private" : "")
+                - if (prop.inherited) klass += ' inherited' 
+                li(class="#{klass}")
                     a.inline-link(href='##{prop.name}')  !{prop.name} 
                     span !{prop.shortSummary}
-                    // span !{prop.summary}
+                    - if (prop.private)
+                      span.jsdoc-private(title="private")
+                    - if (prop.inherited)
+                      span.jsdoc-inherited(title='inherited from #{prop.from}')
+
