@@ -44,34 +44,32 @@ var data = fs.readFileSync(indexjade, "utf8");
 var fn = jade.compile(data, {filename: indexjade, pretty: true});
 var indexhtml = fn({ title : 'Home', config: config});
 // generate modules
-var staticFolder = process.cwd() + config.staticFolder + config.version;
+var staticFolder = process.cwd() + config.staticFolder;
 mkdirp.sync(staticFolder);
 fs.writeFileSync(staticFolder + "/index.html", indexhtml);
 var starttime = new Date().getTime();
 // get details json (so it can iterate over the objects, generate html and so it's also cached)
 generate.loadDetails(config.detailsFile,  config.version, function (details) {
-    var modulefile = null;
-    //debugger;
-
+    var versionfolder = staticFolder + config.version + "/";
     Object.keys(details).forEach(function (item) {
         var itemlcl = details[item];
-        var leemodulefile = itemlcl.location;
-        generate.generate(config.detailsFile, leemodulefile, config, function (retObjectItem) {
+        var modulefile = itemlcl.location;
+        generate.generate(config.detailsFile, modulefile, config, function (retObjectItem) {
             // modulefile.match(/[^/]* /); // move to regex
-            var patharr = leemodulefile.split("/");
+            var patharr = modulefile.split("/");
 
             var modname =  patharr.pop();
             if (patharr.length > 0) { // means a path - do this better
-                if (!fs.existsSync(staticFolder + "/" + patharr.join("/"))) {
-                    mkdirp.sync(staticFolder + "/" + patharr.join("/"));
+                if (!fs.existsSync(versionfolder + patharr.join("/"))) {
+                    mkdirp.sync(versionfolder + patharr.join("/"));
                 }
             }
             var modulejade = __dirname + "/views/module.jade";
             var data = fs.readFileSync(modulejade, "utf8");
             var fn = jade.compile(data, {filename: modulejade, pretty: true, autoHyperlink: autoHyperlink, convertType: convertType});
             var html = fn({ module : retObjectItem, config: config, autoHyperLink: autoHyperlink});
-            fs.writeFileSync(staticFolder + "/" + patharr.join("/") + "/" + modname + ".html", html);
-            console.log("wrote file " + staticFolder + "/" + leemodulefile);
+            fs.writeFileSync(versionfolder + patharr.join("/") + "/" + modname + ".html", html);
+            console.log("wrote file " + versionfolder + modulefile);
         });
     });
 });

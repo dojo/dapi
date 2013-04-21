@@ -11,13 +11,17 @@
                         | #{parm.name}
                         - if (idx < method.parameters.length-1)
                             | , 
-                    | )</span>
-                div.jsdoc-inheritance.TODO Defined by: 
-                    a.jsdoc-link(href='#{method.from}') #{method.from} 
-                    span.jsdoc-inherited.TODO(title='inherited')       
-                
+                    | )</span> 
+                    - if (method.private)
+                      span.jsdoc-private(title="private") 
+                div.jsdoc-inheritance.TODO Defined by 
+                    a.jsdoc-link(href='#{method.from}') #{method.from}
+                    - if (method.inherited)
+                      span.jsdoc-inherited(title='inherited')
                 div.jsdoc-full-summary !{method.summary}
                 - if (method.parameters)
                     params = method.parameters
+                    returnTypes = method.returnTypes
+                    returnDescription = method.returnDescription
                     include parametertable
                 
