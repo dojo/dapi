@@ -2,16 +2,22 @@
     h2 Properties
     div.jsdoc-property-list
         each prop in module.properties
-            div.jsdoc-field.TODOpublic
+            - var klass = 'jsdoc-field' 
+            - klass += (prop.private == true ? " private" : " public")
+            - if (prop.extensionModule) klass += ' extension-module' 
+            div(class="#{klass}")
                 div.jsdoc-title
                     a(name='#{prop.name}')
                     span(class="#{convertType(prop.types[0])}Icon") #{prop.name}
+                    - if (prop.private)
+                      span.jsdoc-private(title="private") 
+                    
                 div.jsdoc-inheritance.TODO Defined by: 
                     a.jsdoc-link(href='#{prop.from}') #{prop.from} 
                     span.jsdoc-inherited.TODO(title='inherited')       
                 - if (prop.summary !=null)
                     div.jsdoc-summary !{autoHyperlink(prop.summary)}
-                - else
+                - else if (prop.description !=null)
                     div.jsdoc-summary
-                        h1 PROP.SUMMARY WAS NULL
+                        div.jsdoc-summary !{autoHyperlink(prop.description)}
                 
