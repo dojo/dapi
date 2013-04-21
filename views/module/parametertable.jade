@@ -12,4 +12,11 @@
                     //- ! used instead of # to unescape
                     td.jsdoc-param-description !{item.summary} 
                 else
-                    td.jsdoc-param-description !{item.description} 
+                    td.jsdoc-param-description !{item.description}
+                     
+- if (returnTypes != null && returnTypes.length > 0)
+    div
+        strong Returns: 
+        span.jsdoc-return-type !{returnTypes.join(" | ")}
+- if (returnDescription)
+    div.jsdoc-return-description !{returnDescription}

@@ -4,7 +4,9 @@
     div.jsdoc-summary-list
         ul.jsdoc-property-list
             each method in module.methods
-                li.functionIcon
+                - var klass = (method.private == true ? "private" : "")
+                - if (method.inherited) klass = klass + ' inherited' 
+                li.functionIcon(class="#{klass}")
                     a.inline-link(href='##{method.name}') !{method.name}
                     span.parameters (
                     -  each parm, idx in method.parameters
@@ -13,5 +15,8 @@
                             | , 
                     | ) 
                     span !{method.shortSummary}
-                    // span !{method.summary}
+                    - if (method.private)
+                      span.jsdoc-private(title="private") 
+                    - if (method.inherited)
+                      span.jsdoc-inherited(title='inherited from #{method.from}')
                     
