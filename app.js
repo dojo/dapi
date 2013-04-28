@@ -9,11 +9,11 @@ var express = require('express'),
     config = envConfig.appConfig;
 
 // hardcoded config atm - move to configurable arguments object with these as defaults - mixins
-//var details = __dirname +'/public/scripts/apidata/version/details.xml'; // only dojo exists
-//var details = __dirname +'/public/scripts/apidata/version/details_dijit.xml'; // dijit/_WidgetBase good 1 to try
-//var details = __dirn  ame +'/public/scripts/apidata/version/details_huge.xml'; // all mods
-//var details = __dirname +'/public/scripts/apidata/version/details_all.xml'; // latest doc parse with all packs 
-var details = __dirname + '/public/scripts/apidata/version/details.json'; // latest doc parse with all packs
+//var details = __dirname +'/public/apidata/version/details.xml'; // only dojo exists
+//var details = __dirname +'/public/apidata/version/details_dijit.xml'; // dijit/_WidgetBase good 1 to try
+//var details = __dirn  ame +'/public/apidata/version/details_huge.xml'; // all mods
+//var details = __dirname +'/public/apidata/version/details_all.xml'; // latest doc parse with all packs 
+var details = __dirname + '/public/apidata/' + config.defaultVersion + '/details.json'; // latest doc parse with all packs
 var app = express();
 // jade indenting
 app.locals.pretty = true;
@@ -36,6 +36,7 @@ app.use(stylus.middleware(
   compile: compile
   }
 ));
+
 app.use(express.static(__dirname + '/public'));
 
 /// do rendering
@@ -47,15 +48,21 @@ app.get('/', function (req, res) {
 
 // apidata should be config - already used in dojoConfig // for module clicks
 // also should be able to generate htlml from module urls (and version) e.g. this currently works http://localhost:3000/apidata/version/dijit/_TemplatedMixin 
-app.get('/apidata*', function (req, res) {
+app.get('/apidata/*', function (req, res) {
     //var returnstr = "<div>req.params : " + req.params.toString()+"</div>";
-
-    var modulefile =  req.params.toString().replace(/\/version\//, "");
+    // replace with regex
+    var requested =  req.params.toString().replace(/\/version\//, "");
+    console.log("requested = " + requested);
+    var idxslash = requested.indexOf("/");
+    var version = requested.slice(0, idxslash);
+    var modulefile = requested.slice(++idxslash);
+    console.log("version = " + version + ", modulefile = " + modulefile);
+    var detailsFile = "./public/apidata/" + version + "/details.json";
     /// and a jade modulefile render
-    generate.generate(config.detailsFile, modulefile, config, function (retObjectItem) {
+    generate.generate(detailsFile, modulefile, version, function (retObjectItem) {
         res.render('module', { module : retObjectItem, config: config});
     });
     // should do some error handling http responses    
 });
-app.listen(3000);
-console.log("API viewer started");
+app.listen(config.port);
+console.log("API viewer started on port " + config.port);

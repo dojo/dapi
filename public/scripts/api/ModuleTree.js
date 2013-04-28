@@ -49,15 +49,15 @@ define(["dojo/_base/declare", "dojo/_base/lang", "dijit/Tree", "dijit/registry",
             // versions[] lists what directory (lib or lib.old) contains the item.php script used to display this page
             //var url = baseUrl + versions[version] + "/item.php?p=" + page + "&v=" + (version || currentVersion);
             // clean this, apidata moved to config, fullname - start docing jsstructures
-            var url = "/apidata/version/" + item.fullname;
-            console.log(item);
+            console.log(item.fullname);
+            var url = "apidata/" + version + "/" + item.fullname;  // TODO fix this later, should pass in the context 
             var pane = new ContentPane({
                 id: page.replace(/[\/.]/g, "_") + "_" + version,
                 page: page,		// save page because when we select a tab we locate the corresponding TreeNode
                 href: url,
                 //content : {version: "version" , itemtid: item.id, namel: item.name, fullname : item.fullname, type: item.type},  
                 //title: title,
-                title: item.fullname,
+                title: item.fullname + " (" + version + ")",
                 closable: true,
                 parseOnLoad: false,
                 onLoad: lang.hitch(pane, this.paneOnLoad)
@@ -74,9 +74,9 @@ define(["dojo/_base/declare", "dojo/_base/lang", "dijit/Tree", "dijit/registry",
             var baseUrl = "/";
             var tbc = (link ? '<span class="jsdoc-permalink"><a class="jsdoc-link" href="' + link + '">Permalink</a></span>' : '')
                 + '<label>View options: </label>'
-                + '<span class="trans-icon jsdoc-extension"><img src="' + baseUrl + 'css/icons/24x24/extension.png" align="middle" border="0" alt="Toggle extension module members" title="Toggle extension module members" /></span>'
-                + '<span class="trans-icon jsdoc-private"><img src="' + baseUrl + 'css/icons/24x24/private.png" align="middle" border="0" alt="Toggle private members" title="Toggle private members" /></span>'
-                + '<span class="trans-icon jsdoc-inherited"><img src="' + baseUrl + 'css/icons/24x24/inherited.png" align="middle" border="0" alt="Toggle inherited members" title="Toggle inherited members" /></span>';
+                + '<span class="trans-icon jsdoc-extension"><img src="css/icons/24x24/extension.png" align="middle" border="0" alt="Toggle extension module members" title="Toggle extension module members" /></span>'
+                + '<span class="trans-icon jsdoc-private"><img src="css/icons/24x24/private.png" align="middle" border="0" alt="Toggle private members" title="Toggle private members" /></span>'
+                + '<span class="trans-icon jsdoc-inherited"><img src="css/icons/24x24/inherited.png" align="middle" border="0" alt="Toggle inherited members" title="Toggle inherited members" /></span>';
             var toolbar = domConstruct.create("div", {
                 className: "jsdoc-toolbar",
                 innerHTML: tbc

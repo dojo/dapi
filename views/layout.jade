@@ -2,18 +2,19 @@
 html
   head
     title #{title} - My Site
-    link(rel='stylesheet', href="/css/jsdoc_original.css")
-    link(rel='stylesheet', href="/css/site_original.css")
-    script
+    link(rel='stylesheet', href="#{config.contextPath}css/jsdoc_original.css")
+    link(rel='stylesheet', href="#{config.contextPath}css/site_original.css")
+    script(type="text/javascript")
         dojoConfig = {async:0, debug:1, noGlobals:0, 
-            packages: [{name:"api", location:"/scripts/api"}],
-            apiPath : '/scripts/apidata'     
+            packages: [{name:"api", location:location.pathname.replace(/\/[^/]+$/, '/') + "#{config.contextPath}scripts/api"}],
+            apiPath : '#{config.contextPath}apidata',
+            apiDefault : '#{config.defaultVersion}'
         }
-    link(rel='stylesheet', href="//ajax.googleapis.com/ajax/libs/dojo/1.8.3/dijit/themes/claro/claro.css")
+    link(rel='stylesheet', href="//ajax.googleapis.com/ajax/libs/dojo/1.8.3/dijit/themes/#{config.theme}/#{config.theme}.css")
     // link(rel='stylesheet', href="/#{config.dojobase}/dijit/themes/#{config.theme}/#{config.theme}.css")
 
-    script(src="//ajax.googleapis.com/ajax/libs/dojo/1.8.3/dojo/dojo.js")
-    script(src="/scripts/api.js")
+    script(type="text/javascript", src="//ajax.googleapis.com/ajax/libs/dojo/1.8.3/dojo/dojo.js")
+    script(type="text/javascript", src="#{config.contextPath}scripts/api.js")
   body(class="#{config.theme}")
     block main
         block header
