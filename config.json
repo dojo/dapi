@@ -1,8 +1,10 @@
 {
     "dojobase" : "scripts/dojo-release-1.8.3",
     "theme" : "claro",
-    "version" : "1.8_not_implemented_yet",
-    "detailsFile" : "./public/scripts/apidata/version/details.json",
+    "detailsFile" : "./public/scripts/version/details.json",
     "staticFolder" : "/staticoutput/",
-    "contextpath" : ""
+    "contextPath" : "",
+    "port" : 3000,
+    "defaultVersion" : "1.9rc2",
+    "versions" : ["1.7", "1.8", "1.9rc2"]
 }
