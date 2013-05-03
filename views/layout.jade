@@ -7,7 +7,7 @@ html
     script(type="text/javascript")
         dojoConfig = {async:0, debug:1, noGlobals:0, 
             packages: [{name:"api", location:location.pathname.replace(/\/[^/]+$/, '/') + "#{config.contextPath}scripts/api"}],
-            apiPath : '#{config.contextPath}apidata',
+            apiPath : '#{config.contextPath}#{config.apiDataPath}',
             apiDefault : '#{config.defaultVersion}'
         }
     link(rel='stylesheet', href="//ajax.googleapis.com/ajax/libs/dojo/1.8.3/dijit/themes/#{config.theme}/#{config.theme}.css")

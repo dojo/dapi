@@ -13,7 +13,7 @@ var express = require('express'),
 //var details = __dirname +'/public/apidata/version/details_dijit.xml'; // dijit/_WidgetBase good 1 to try
 //var details = __dirn  ame +'/public/apidata/version/details_huge.xml'; // all mods
 //var details = __dirname +'/public/apidata/version/details_all.xml'; // latest doc parse with all packs 
-var details = __dirname + '/public/apidata/' + config.defaultVersion + '/details.json'; // latest doc parse with all packs
+var details = __dirname + '/public/' + config.apiDataPath + '/' + config.defaultVersion + '/details.json'; // latest doc parse with all packs
 var app = express();
 // jade indenting
 app.locals.pretty = true;
@@ -36,7 +36,7 @@ app.use(stylus.middleware(
   compile: compile
   }
 ));
-
+// note I needed to add 'chmod -R +u *'  on 1.6 to set read permissions on all files (this was for the legacy exported spider.php html files)  
 app.use(express.static(__dirname + '/public'));
 
 /// do rendering
@@ -47,8 +47,8 @@ app.get('/', function (req, res) {
 });
 
 // apidata should be config - already used in dojoConfig // for module clicks
-// also should be able to generate htlml from module urls (and version) e.g. this currently works http://localhost:3000/apidata/version/dijit/_TemplatedMixin 
-app.get('/apidata/*', function (req, res) {
+// also should be able to generate htlml from module urls (and version) e.g. this currently works http://localhost:3000/apidata/version/dijit/_TemplatedMixin
+app.get('/' + config.apiDataPath + '/*', function (req, res) {
     //var returnstr = "<div>req.params : " + req.params.toString()+"</div>";
     // replace with regex
     var requested =  req.params.toString().replace(/\/version\//, "");
@@ -57,7 +57,7 @@ app.get('/apidata/*', function (req, res) {
     var version = requested.slice(0, idxslash);
     var modulefile = requested.slice(++idxslash);
     console.log("version = " + version + ", modulefile = " + modulefile);
-    var detailsFile = "./public/apidata/" + version + "/details.json";
+    var detailsFile = "./public/" + config.apiDataPath + "/" + version + "/details.json";
     /// and a jade modulefile render
     generate.generate(detailsFile, modulefile, version, function (retObjectItem) {
         res.render('module', { module : retObjectItem, config: config});
@@ -65,4 +65,5 @@ app.get('/apidata/*', function (req, res) {
     // should do some error handling http responses    
 });
 app.listen(config.port);
+console.error("REMEMBER TO DELETE ANY STATIC .HTML FILES WHICH EXPRESS STATIC WILL RENDER INSTEAD OF TEMPLATES");
 console.log("API viewer started on port " + config.port);

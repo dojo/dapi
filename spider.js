@@ -12,7 +12,7 @@ var stylus = require('stylus'),
 //var details = __dirname +'/public/scripts/apidata/version/details_dijit.xml'; // dijit/_WidgetBase good 1 to try
 //var details = __dirn  ame +'/public/scripts/apidata/version/details_huge.xml'; // all mods
 //var details = __dirname +'/public/scripts/apidata/version/details_all.xml'; // latest doc parse with all packs 
-var details = __dirname + '/public/scripts/apidata/' + config.defaultVersion + '/details.json'; // latest doc parse with all packs
+var details = __dirname + '/public/scripts/' + config.apiDataPath + '/' + config.defaultVersion + '/details.json'; // latest doc parse with all packs
 /*
 var config = {dojobase: 'scripts/dojo-release-1.8.3',
                         theme: 'claro',
@@ -45,13 +45,13 @@ var fn = jade.compile(data, {filename: indexjade, pretty: true});
 var indexhtml = fn({ title : 'Home', config: config});
 // generate modules
 //var staticFolder = process.cwd() + config.staticFolder;
-var staticFolder = process.cwd() + "/public/apidata/";
+var staticFolder = process.cwd() + "/public/" + config.apiDataPath + "/";
 mkdirp.sync(staticFolder);
 //fs.writeFileSync(staticFolder + "/index.html", indexhtml);
 fs.writeFileSync("public/staticapi.html", indexhtml); // FTM make sure it's a different name from index.html, express static will load generated spider index.html first (before template)
 var starttime = new Date().getTime();
 // get details json (so it can iterate over the objects, generate html and so it's also cached)
-var detailsFile = "./public/apidata/" + config.defaultVersion + "/details.json";
+var detailsFile = "./public/" + config.apiDataPath + "/" + config.defaultVersion + "/details.json";
 generate.loadDetails(detailsFile,  config.defaultVersion, function (details) {
     var versionfolder = staticFolder + config.defaultVersion + "/";
     Object.keys(details).forEach(function (item) {
