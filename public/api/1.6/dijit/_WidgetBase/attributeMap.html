@@ -1,0 +1,28 @@
+<div class="jsdoc-permalink" style="display:none;">http://api.dojotoolkit.org/1.6/dijit/_WidgetBase/attributeMap</div><h1 class="jsdoc-title objectIcon36">dijit._WidgetBase.attributeMap <span style="font-size:11px;color:#999;">(version 1.6)</span></h1><div class="jsdoc-prototype">Object &raquo; dijit._WidgetBase.attributeMap</div><div class="jsdoc-require">dojo.require("dijit._WidgetBase");</div><div class="jsdoc-prototype">Defined in dijit/_WidgetBase.js</div><div class="jsdoc-full-summary"><p>attributeMap sets up a &quot;binding&quot; between attributes (aka properties)
+of the widget and the widget's DOM.
+Changes to widget attributes listed in attributeMap will be
+reflected into the DOM.
+For example, calling set('title', 'hello')
+on a TitlePane will automatically cause the TitlePane's DOM to update
+with the new title.
+attributeMap is a hash where the key is an attribute of the widget,
+and the value reflects a binding to a:
+- DOM node attribute
+        focus: {node: &quot;focusNode&quot;, type: &quot;attribute&quot;}
+Maps this.focus to this.focusNode.focus
+- DOM node innerHTML
+        title: { node: &quot;titleNode&quot;, type: &quot;innerHTML&quot; }
+Maps this.title to this.titleNode.innerHTML
+- DOM node innerText
+        title: { node: &quot;titleNode&quot;, type: &quot;innerText&quot; }
+Maps this.title to this.titleNode.innerText
+- DOM node CSS class
+        myClass: { node: &quot;domNode&quot;, type: &quot;class&quot; }
+Maps this.myClass to this.domNode.className
+If the value is an array, then each element in the array matches one of the
+formats of the above list.
+There are also some shorthands for backwards compatibility:
+- string --&gt; { node: string, type: &quot;attribute&quot; }, for example:
+    &quot;focusNode&quot; ---&gt; { node: &quot;focusNode&quot;, type: &quot;attribute&quot; }
+- &quot;&quot; --&gt; { node: &quot;domNode&quot;, type: &quot;attribute&quot; }</p>
+</div><div class="jsdoc-children"><div class="jsdoc-field-list"><h2 class="jsdoc-summary-heading">Property Summary <span class="jsdoc-summary-toggle"></span></h2><div class="jsdoc-summary-list"><ul><li class="stringIcon public inherited even"><a class="inline-link" href="#dijit._WidgetBase.attributeMap.class">dijit._WidgetBase.attributeMap.class</a></li><li class="stringIcon public inherited odd"><a class="inline-link" href="#dijit._WidgetBase.attributeMap.dir">dijit._WidgetBase.attributeMap.dir</a></li><li class="stringIcon public inherited even"><a class="inline-link" href="#dijit._WidgetBase.attributeMap.id">dijit._WidgetBase.attributeMap.id</a></li><li class="stringIcon public inherited odd"><a class="inline-link" href="#dijit._WidgetBase.attributeMap.lang">dijit._WidgetBase.attributeMap.lang</a></li><li class="stringIcon public inherited even"><a class="inline-link" href="#dijit._WidgetBase.attributeMap.style">dijit._WidgetBase.attributeMap.style</a></li><li class="stringIcon public inherited odd"><a class="inline-link" href="#dijit._WidgetBase.attributeMap.title">dijit._WidgetBase.attributeMap.title</a></li></ul></div></div></div><div class="jsdoc-children"><div class="jsdoc-fields"><h2>Properties</h2><div class="jsdoc-field public inherited even"><div class="jsdoc-title"><a name="dijit._WidgetBase.attributeMap.class"></a><span class="stringIcon">dijit._WidgetBase.attributeMap.class</span></div><div class="jsdoc-inheritance">Defined by <a class="jsdoc-link" href="http://api.dojotoolkit.org/1.6/dijit/_WidgetBase/attributeMap">dijit._WidgetBase.attributeMap</a></div></div><div class="jsdoc-field public inherited odd"><div class="jsdoc-title"><a name="dijit._WidgetBase.attributeMap.dir"></a><span class="stringIcon">dijit._WidgetBase.attributeMap.dir</span></div><div class="jsdoc-inheritance">Defined by <a class="jsdoc-link" href="http://api.dojotoolkit.org/1.6/dijit/_WidgetBase/attributeMap">dijit._WidgetBase.attributeMap</a></div></div><div class="jsdoc-field public inherited even"><div class="jsdoc-title"><a name="dijit._WidgetBase.attributeMap.id"></a><span class="stringIcon">dijit._WidgetBase.attributeMap.id</span></div><div class="jsdoc-inheritance">Defined by <a class="jsdoc-link" href="http://api.dojotoolkit.org/1.6/dijit/_WidgetBase/attributeMap">dijit._WidgetBase.attributeMap</a></div></div><div class="jsdoc-field public inherited odd"><div class="jsdoc-title"><a name="dijit._WidgetBase.attributeMap.lang"></a><span class="stringIcon">dijit._WidgetBase.attributeMap.lang</span></div><div class="jsdoc-inheritance">Defined by <a class="jsdoc-link" href="http://api.dojotoolkit.org/1.6/dijit/_WidgetBase/attributeMap">dijit._WidgetBase.attributeMap</a></div></div><div class="jsdoc-field public inherited even"><div class="jsdoc-title"><a name="dijit._WidgetBase.attributeMap.style"></a><span class="stringIcon">dijit._WidgetBase.attributeMap.style</span></div><div class="jsdoc-inheritance">Defined by <a class="jsdoc-link" href="http://api.dojotoolkit.org/1.6/dijit/_WidgetBase/attributeMap">dijit._WidgetBase.attributeMap</a></div></div><div class="jsdoc-field public inherited odd"><div class="jsdoc-title"><a name="dijit._WidgetBase.attributeMap.title"></a><span class="stringIcon">dijit._WidgetBase.attributeMap.title</span></div><div class="jsdoc-inheritance">Defined by <a class="jsdoc-link" href="http://api.dojotoolkit.org/1.6/dijit/_WidgetBase/attributeMap">dijit._WidgetBase.attributeMap</a></div></div></div></div>

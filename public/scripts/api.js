@@ -9,8 +9,9 @@ require([
 	"dijit/layout/AccordionContainer",
 	"api/ModuleTreeModel",
 	"api/ModuleTree",
-	"dojo/_base/config"
-], function (parser, dom, lang, ready, BorderContainer, TabContainer, ContentPane, AccordionContainer, ModuleTreeModel, ModuleTree, config) {
+	"dojo/_base/config",
+	"dojo/query"
+], function (parser, dom, lang, ready, BorderContainer, TabContainer, ContentPane, AccordionContainer, ModuleTreeModel, ModuleTree, config, query) {
     var moduleModel = null, moduleTree = null, currentVersion = null;
     ready(function () {
         var parsed = parser.parse();
@@ -46,5 +47,8 @@ require([
         currentVersion = v;
         buildTree();
     };
+
+
+
 });
 

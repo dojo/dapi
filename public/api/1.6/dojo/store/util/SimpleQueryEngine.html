@@ -1,0 +1,21 @@
+<div class="jsdoc-permalink" style="display:none;">http://api.dojotoolkit.org/1.6/dojo/store/util/SimpleQueryEngine</div><h1 class="jsdoc-title functionIcon36">dojo.store.util.SimpleQueryEngine <span style="font-size:11px;color:#999;">(version 1.6)</span></h1><div class="jsdoc-prototype">Object &raquo; dojo.store.util.SimpleQueryEngine</div><div class="jsdoc-require">dojo.require("dojo.store.util.SimpleQueryEngine");</div><div class="jsdoc-prototype">Defined in dojo/store/util/SimpleQueryEngine.js</div><div class="jsdoc-full-summary"><p>The SimpleQueryEngine provides a way of getting a QueryResults through
+the use of a simple object hash as a filter.  The hash will be used to
+match properties on data objects with the corresponding value given. In
+other words, only exact matches will be returned.
+This function can be used as a template for more complex query engines;
+for example, an engine can be created that accepts an object hash that
+contains filtering functions, or a string that gets evaluated, etc.
+When creating a new dojo.store, simply set the store's queryEngine
+field as a reference to this function.</p>
+</div><div class="jsdoc-examples"><h2>Examples:</h2><div class="jsdoc-example"><h3>Example 1</h3>
+Define a store with a reference to this engine, and set up a query method.
+<pre class="brush: js;" lang="javascript">
+	var myStore = function(options){
+		//	...more properties here
+		this.queryEngine = dojo.store.util.SimpleQueryEngine;
+		//	define our query method
+		this.query = function(query, options){
+			return dojo.store.util.QueryResults(this.queryEngine(query, options)(this.data));
+		};
+	};
+</pre></div></div><div class="jsdoc-children"><div class="jsdoc-field-list"></div></div><div class="jsdoc-children"><div class="jsdoc-fields"></div></div>

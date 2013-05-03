@@ -1,0 +1,3720 @@
+{
+	"id": "root",
+	"type": "folder",
+	"children": [
+		{
+			"id": "dijit/",
+			"name": "dijit",
+			"fullname": "dijit",
+			"type": "folder",
+			"children": [
+				{
+					"id": "dijit/_AttachMixin",
+					"name": "_AttachMixin",
+					"fullname": "dijit/_AttachMixin",
+					"type": "constructor"
+				},
+				{
+					"id": "dijit/_base",
+					"name": "_base",
+					"fullname": "dijit/_base",
+					"type": "object"
+				},
+				{
+					"id": "dijit/_base/",
+					"name": "_base",
+					"fullname": "dijit/_base",
+					"type": "folder",
+					"children": [
+						{
+							"id": "dijit/_base/focus",
+							"name": "focus",
+							"fullname": "dijit/_base/focus",
+							"type": "object"
+						},
+						{
+							"id": "dijit/_base/manager",
+							"name": "manager",
+							"fullname": "dijit/_base/manager",
+							"type": "object"
+						},
+						{
+							"id": "dijit/_base/place",
+							"name": "place",
+							"fullname": "dijit/_base/place",
+							"type": "object"
+						},
+						{
+							"id": "dijit/_base/popup",
+							"name": "popup",
+							"fullname": "dijit/_base/popup",
+							"type": "object"
+						},
+						{
+							"id": "dijit/_base/scroll",
+							"name": "scroll",
+							"fullname": "dijit/_base/scroll",
+							"type": "object"
+						},
+						{
+							"id": "dijit/_base/sniff",
+							"name": "sniff",
+							"fullname": "dijit/_base/sniff",
+							"type": "object"
+						},
+						{
+							"id": "dijit/_base/typematic",
+							"name": "typematic",
+							"fullname": "dijit/_base/typematic",
+							"type": "object"
+						},
+						{
+							"id": "dijit/_base/wai",
+							"name": "wai",
+							"fullname": "dijit/_base/wai",
+							"type": "object"
+						},
+						{
+							"id": "dijit/_base/window",
+							"name": "window",
+							"fullname": "dijit/_base/window",
+							"type": "object"
+						}
+					]
+				},
+				{
+					"id": "dijit/_BidiMixin",
+					"name": "_BidiMixin",
+					"fullname": "dijit/_BidiMixin",
+					"type": "object"
+				},
+				{
+					"id": "dijit/_BidiSupport",
+					"name": "_BidiSupport",
+					"fullname": "dijit/_BidiSupport",
+					"type": "function"
+				},
+				{
+					"id": "dijit/_Calendar",
+					"name": "_Calendar",
+					"fullname": "dijit/_Calendar",
+					"type": "object"
+				},
+				{
+					"id": "dijit/_Contained",
+					"name": "_Contained",
+					"fullname": "dijit/_Contained",
+					"type": "constructor"
+				},
+				{
+					"id": "dijit/_Container",
+					"name": "_Container",
+					"fullname": "dijit/_Container",
+					"type": "constructor"
+				},
+				{
+					"id": "dijit/_CssStateMixin",
+					"name": "_CssStateMixin",
+					"fullname": "dijit/_CssStateMixin",
+					"type": "constructor"
+				},
+				{
+					"id": "dijit/_DialogMixin",
+					"name": "_DialogMixin",
+					"fullname": "dijit/_DialogMixin",
+					"type": "constructor"
+				},
+				{
+					"id": "dijit/_editor/",
+					"name": "_editor",
+					"fullname": "dijit/_editor",
+					"type": "folder",
+					"children": [
+						{
+							"id": "dijit/_editor/_Plugin",
+							"name": "_Plugin",
+							"fullname": "dijit/_editor/_Plugin",
+							"type": "constructor",
+							"children": [
+								{
+									"id": "dijit/_editor/_Plugin.registry",
+									"name": "registry",
+									"fullname": "dijit/_editor/_Plugin.registry",
+									"type": "object",
+									"children": []
+								}
+							]
+						},
+						{
+							"id": "dijit/_editor/html",
+							"name": "html",
+							"fullname": "dijit/_editor/html",
+							"type": "object"
+						},
+						{
+							"id": "dijit/_editor/plugins/",
+							"name": "plugins",
+							"fullname": "dijit/_editor/plugins",
+							"type": "folder",
+							"children": [
+								{
+									"id": "dijit/_editor/plugins/AlwaysShowToolbar",
+									"name": "AlwaysShowToolbar",
+									"fullname": "dijit/_editor/plugins/AlwaysShowToolbar",
+									"type": "constructor"
+								},
+								{
+									"id": "dijit/_editor/plugins/EnterKeyHandling",
+									"name": "EnterKeyHandling",
+									"fullname": "dijit/_editor/plugins/EnterKeyHandling",
+									"type": "constructor"
+								},
+								{
+									"id": "dijit/_editor/plugins/FontChoice",
+									"name": "FontChoice",
+									"fullname": "dijit/_editor/plugins/FontChoice",
+									"type": "constructor",
+									"children": [
+										{
+											"id": "dijit/_editor/plugins/FontChoice._FontDropDown",
+											"name": "_FontDropDown",
+											"fullname": "dijit/_editor/plugins/FontChoice._FontDropDown",
+											"type": "constructor",
+											"children": []
+										},
+										{
+											"id": "dijit/_editor/plugins/FontChoice._FontNameDropDown",
+											"name": "_FontNameDropDown",
+											"fullname": "dijit/_editor/plugins/FontChoice._FontNameDropDown",
+											"type": "constructor",
+											"children": []
+										},
+										{
+											"id": "dijit/_editor/plugins/FontChoice._FontSizeDropDown",
+											"name": "_FontSizeDropDown",
+											"fullname": "dijit/_editor/plugins/FontChoice._FontSizeDropDown",
+											"type": "constructor",
+											"children": []
+										},
+										{
+											"id": "dijit/_editor/plugins/FontChoice._FormatBlockDropDown",
+											"name": "_FormatBlockDropDown",
+											"fullname": "dijit/_editor/plugins/FontChoice._FormatBlockDropDown",
+											"type": "constructor",
+											"children": []
+										}
+									]
+								},
+								{
+									"id": "dijit/_editor/plugins/FullScreen",
+									"name": "FullScreen",
+									"fullname": "dijit/_editor/plugins/FullScreen",
+									"type": "constructor"
+								},
+								{
+									"id": "dijit/_editor/plugins/LinkDialog",
+									"name": "LinkDialog",
+									"fullname": "dijit/_editor/plugins/LinkDialog",
+									"type": "constructor",
+									"children": [
+										{
+											"id": "dijit/_editor/plugins/LinkDialog.ImgLinkDialog",
+											"name": "ImgLinkDialog",
+											"fullname": "dijit/_editor/plugins/LinkDialog.ImgLinkDialog",
+											"type": "constructor",
+											"children": []
+										}
+									]
+								},
+								{
+									"id": "dijit/_editor/plugins/NewPage",
+									"name": "NewPage",
+									"fullname": "dijit/_editor/plugins/NewPage",
+									"type": "constructor"
+								},
+								{
+									"id": "dijit/_editor/plugins/Print",
+									"name": "Print",
+									"fullname": "dijit/_editor/plugins/Print",
+									"type": "constructor"
+								},
+								{
+									"id": "dijit/_editor/plugins/TabIndent",
+									"name": "TabIndent",
+									"fullname": "dijit/_editor/plugins/TabIndent",
+									"type": "constructor"
+								},
+								{
+									"id": "dijit/_editor/plugins/TextColor",
+									"name": "TextColor",
+									"fullname": "dijit/_editor/plugins/TextColor",
+									"type": "constructor"
+								},
+								{
+									"id": "dijit/_editor/plugins/ToggleDir",
+									"name": "ToggleDir",
+									"fullname": "dijit/_editor/plugins/ToggleDir",
+									"type": "constructor"
+								},
+								{
+									"id": "dijit/_editor/plugins/ViewSource",
+									"name": "ViewSource",
+									"fullname": "dijit/_editor/plugins/ViewSource",
+									"type": "constructor"
+								}
+							]
+						},
+						{
+							"id": "dijit/_editor/range",
+							"name": "range",
+							"fullname": "dijit/_editor/range",
+							"type": "object",
+							"children": [
+								{
+									"id": "dijit/_editor/range.ie",
+									"name": "ie",
+									"fullname": "dijit/_editor/range.ie",
+									"type": "object",
+									"children": []
+								},
+								{
+									"id": "dijit/_editor/range.W3CRange",
+									"name": "W3CRange",
+									"fullname": "dijit/_editor/range.W3CRange",
+									"type": "constructor",
+									"children": []
+								}
+							]
+						},
+						{
+							"id": "dijit/_editor/RichText",
+							"name": "RichText",
+							"fullname": "dijit/_editor/RichText",
+							"type": "constructor"
+						},
+						{
+							"id": "dijit/_editor/selection",
+							"name": "selection",
+							"fullname": "dijit/_editor/selection",
+							"type": "object"
+						}
+					]
+				},
+				{
+					"id": "dijit/_FocusMixin",
+					"name": "_FocusMixin",
+					"fullname": "dijit/_FocusMixin",
+					"type": "constructor"
+				},
+				{
+					"id": "dijit/_HasDropDown",
+					"name": "_HasDropDown",
+					"fullname": "dijit/_HasDropDown",
+					"type": "constructor"
+				},
+				{
+					"id": "dijit/_KeyNavContainer",
+					"name": "_KeyNavContainer",
+					"fullname": "dijit/_KeyNavContainer",
+					"type": "constructor"
+				},
+				{
+					"id": "dijit/_KeyNavMixin",
+					"name": "_KeyNavMixin",
+					"fullname": "dijit/_KeyNavMixin",
+					"type": "constructor"
+				},
+				{
+					"id": "dijit/_MenuBase",
+					"name": "_MenuBase",
+					"fullname": "dijit/_MenuBase",
+					"type": "constructor"
+				},
+				{
+					"id": "dijit/_OnDijitClickMixin",
+					"name": "_OnDijitClickMixin",
+					"fullname": "dijit/_OnDijitClickMixin",
+					"type": "constructor",
+					"children": [
+						{
+							"id": "dijit/_OnDijitClickMixin.a11yclick",
+							"name": "a11yclick",
+							"fullname": "dijit/_OnDijitClickMixin.a11yclick",
+							"type": "object",
+							"children": []
+						}
+					]
+				},
+				{
+					"id": "dijit/_PaletteMixin",
+					"name": "_PaletteMixin",
+					"fullname": "dijit/_PaletteMixin",
+					"type": "constructor",
+					"children": [
+						{
+							"id": "dijit/_PaletteMixin.__Dye",
+							"name": "__Dye",
+							"fullname": "dijit/_PaletteMixin.__Dye",
+							"type": "constructor",
+							"children": []
+						}
+					]
+				},
+				{
+					"id": "dijit/_Templated",
+					"name": "_Templated",
+					"fullname": "dijit/_Templated",
+					"type": "constructor"
+				},
+				{
+					"id": "dijit/_TemplatedMixin",
+					"name": "_TemplatedMixin",
+					"fullname": "dijit/_TemplatedMixin",
+					"type": "constructor",
+					"children": [
+						{
+							"id": "dijit/_TemplatedMixin._templateCache",
+							"name": "_templateCache",
+							"fullname": "dijit/_TemplatedMixin._templateCache",
+							"type": "object",
+							"children": []
+						}
+					]
+				},
+				{
+					"id": "dijit/_TimePicker",
+					"name": "_TimePicker",
+					"fullname": "dijit/_TimePicker",
+					"type": "constructor",
+					"children": [
+						{
+							"id": "dijit/_TimePicker.__Constraints",
+							"name": "__Constraints",
+							"fullname": "dijit/_TimePicker.__Constraints",
+							"type": "constructor",
+							"children": []
+						}
+					]
+				},
+				{
+					"id": "dijit/_tree/",
+					"name": "_tree",
+					"fullname": "dijit/_tree",
+					"type": "folder",
+					"children": [
+						{
+							"id": "dijit/_tree/dndSource",
+							"name": "dndSource",
+							"fullname": "dijit/_tree/dndSource",
+							"type": "object"
+						}
+					]
+				},
+				{
+					"id": "dijit/_Widget",
+					"name": "_Widget",
+					"fullname": "dijit/_Widget",
+					"type": "constructor"
+				},
+				{
+					"id": "dijit/_WidgetBase",
+					"name": "_WidgetBase",
+					"fullname": "dijit/_WidgetBase",
+					"type": "constructor"
+				},
+				{
+					"id": "dijit/_WidgetsInTemplateMixin",
+					"name": "_WidgetsInTemplateMixin",
+					"fullname": "dijit/_WidgetsInTemplateMixin",
+					"type": "constructor"
+				},
+				{
+					"id": "dijit/a11y",
+					"name": "a11y",
+					"fullname": "dijit/a11y",
+					"type": "object"
+				},
+				{
+					"id": "dijit/a11yclick",
+					"name": "a11yclick",
+					"fullname": "dijit/a11yclick",
+					"type": "object"
+				},
+				{
+					"id": "dijit/BackgroundIframe",
+					"name": "BackgroundIframe",
+					"fullname": "dijit/BackgroundIframe",
+					"type": "function"
+				},
+				{
+					"id": "dijit/Calendar",
+					"name": "Calendar",
+					"fullname": "dijit/Calendar",
+					"type": "constructor",
+					"children": [
+						{
+							"id": "dijit/Calendar._MonthDropDown",
+							"name": "_MonthDropDown",
+							"fullname": "dijit/Calendar._MonthDropDown",
+							"type": "constructor",
+							"children": []
+						},
+						{
+							"id": "dijit/Calendar._MonthDropDownButton",
+							"name": "_MonthDropDownButton",
+							"fullname": "dijit/Calendar._MonthDropDownButton",
+							"type": "constructor",
+							"children": []
+						}
+					]
+				},
+				{
+					"id": "dijit/CalendarLite",
+					"name": "CalendarLite",
+					"fullname": "dijit/CalendarLite",
+					"type": "constructor",
+					"children": [
+						{
+							"id": "dijit/CalendarLite._MonthWidget",
+							"name": "_MonthWidget",
+							"fullname": "dijit/CalendarLite._MonthWidget",
+							"type": "constructor",
+							"children": []
+						}
+					]
+				},
+				{
+					"id": "dijit/CheckedMenuItem",
+					"name": "CheckedMenuItem",
+					"fullname": "dijit/CheckedMenuItem",
+					"type": "constructor"
+				},
+				{
+					"id": "dijit/ColorPalette",
+					"name": "ColorPalette",
+					"fullname": "dijit/ColorPalette",
+					"type": "constructor",
+					"children": [
+						{
+							"id": "dijit/ColorPalette._Color",
+							"name": "_Color",
+							"fullname": "dijit/ColorPalette._Color",
+							"type": "constructor",
+							"children": []
+						}
+					]
+				},
+				{
+					"id": "dijit/Declaration",
+					"name": "Declaration",
+					"fullname": "dijit/Declaration",
+					"type": "constructor"
+				},
+				{
+					"id": "dijit/Destroyable",
+					"name": "Destroyable",
+					"fullname": "dijit/Destroyable",
+					"type": "constructor"
+				},
+				{
+					"id": "dijit/Dialog",
+					"name": "Dialog",
+					"fullname": "dijit/Dialog",
+					"type": "constructor",
+					"children": [
+						{
+							"id": "dijit/Dialog._DialogBase",
+							"name": "_DialogBase",
+							"fullname": "dijit/Dialog._DialogBase",
+							"type": "constructor",
+							"children": []
+						},
+						{
+							"id": "dijit/Dialog._DialogLevelManager",
+							"name": "_DialogLevelManager",
+							"fullname": "dijit/Dialog._DialogLevelManager",
+							"type": "object",
+							"children": []
+						}
+					]
+				},
+				{
+					"id": "dijit/DialogUnderlay",
+					"name": "DialogUnderlay",
+					"fullname": "dijit/DialogUnderlay",
+					"type": "constructor"
+				},
+				{
+					"id": "dijit/dijit",
+					"name": "dijit",
+					"fullname": "dijit/dijit",
+					"type": "object"
+				},
+				{
+					"id": "dijit/dijit-all",
+					"name": "dijit-all",
+					"fullname": "dijit/dijit-all",
+					"type": "object"
+				},
+				{
+					"id": "dijit/DropDownMenu",
+					"name": "DropDownMenu",
+					"fullname": "dijit/DropDownMenu",
+					"type": "constructor"
+				},
+				{
+					"id": "dijit/Editor",
+					"name": "Editor",
+					"fullname": "dijit/Editor",
+					"type": "constructor"
+				},
+				{
+					"id": "dijit/Fieldset",
+					"name": "Fieldset",
+					"fullname": "dijit/Fieldset",
+					"type": "constructor"
+				},
+				{
+					"id": "dijit/focus",
+					"name": "focus",
+					"fullname": "dijit/focus",
+					"type": "instance"
+				},
+				{
+					"id": "dijit/form/",
+					"name": "form",
+					"fullname": "dijit/form",
+					"type": "folder",
+					"children": [
+						{
+							"id": "dijit/form/_AutoCompleterMixin",
+							"name": "_AutoCompleterMixin",
+							"fullname": "dijit/form/_AutoCompleterMixin",
+							"type": "constructor"
+						},
+						{
+							"id": "dijit/form/_ButtonMixin",
+							"name": "_ButtonMixin",
+							"fullname": "dijit/form/_ButtonMixin",
+							"type": "constructor"
+						},
+						{
+							"id": "dijit/form/_CheckBoxMixin",
+							"name": "_CheckBoxMixin",
+							"fullname": "dijit/form/_CheckBoxMixin",
+							"type": "constructor"
+						},
+						{
+							"id": "dijit/form/_ComboBoxMenu",
+							"name": "_ComboBoxMenu",
+							"fullname": "dijit/form/_ComboBoxMenu",
+							"type": "constructor"
+						},
+						{
+							"id": "dijit/form/_ComboBoxMenuMixin",
+							"name": "_ComboBoxMenuMixin",
+							"fullname": "dijit/form/_ComboBoxMenuMixin",
+							"type": "constructor"
+						},
+						{
+							"id": "dijit/form/_DateTimeTextBox",
+							"name": "_DateTimeTextBox",
+							"fullname": "dijit/form/_DateTimeTextBox",
+							"type": "constructor",
+							"children": [
+								{
+									"id": "dijit/form/_DateTimeTextBox.__Constraints",
+									"name": "__Constraints",
+									"fullname": "dijit/form/_DateTimeTextBox.__Constraints",
+									"type": "constructor",
+									"children": []
+								}
+							]
+						},
+						{
+							"id": "dijit/form/_ExpandingTextAreaMixin",
+							"name": "_ExpandingTextAreaMixin",
+							"fullname": "dijit/form/_ExpandingTextAreaMixin",
+							"type": "constructor"
+						},
+						{
+							"id": "dijit/form/_FormMixin",
+							"name": "_FormMixin",
+							"fullname": "dijit/form/_FormMixin",
+							"type": "constructor"
+						},
+						{
+							"id": "dijit/form/_FormSelectWidget",
+							"name": "_FormSelectWidget",
+							"fullname": "dijit/form/_FormSelectWidget",
+							"type": "constructor",
+							"children": [
+								{
+									"id": "dijit/form/_FormSelectWidget.__SelectOption",
+									"name": "__SelectOption",
+									"fullname": "dijit/form/_FormSelectWidget.__SelectOption",
+									"type": "object",
+									"children": []
+								}
+							]
+						},
+						{
+							"id": "dijit/form/_FormValueMixin",
+							"name": "_FormValueMixin",
+							"fullname": "dijit/form/_FormValueMixin",
+							"type": "constructor"
+						},
+						{
+							"id": "dijit/form/_FormValueWidget",
+							"name": "_FormValueWidget",
+							"fullname": "dijit/form/_FormValueWidget",
+							"type": "constructor"
+						},
+						{
+							"id": "dijit/form/_FormWidget",
+							"name": "_FormWidget",
+							"fullname": "dijit/form/_FormWidget",
+							"type": "constructor"
+						},
+						{
+							"id": "dijit/form/_FormWidgetMixin",
+							"name": "_FormWidgetMixin",
+							"fullname": "dijit/form/_FormWidgetMixin",
+							"type": "constructor"
+						},
+						{
+							"id": "dijit/form/_ListBase",
+							"name": "_ListBase",
+							"fullname": "dijit/form/_ListBase",
+							"type": "constructor"
+						},
+						{
+							"id": "dijit/form/_ListMouseMixin",
+							"name": "_ListMouseMixin",
+							"fullname": "dijit/form/_ListMouseMixin",
+							"type": "constructor"
+						},
+						{
+							"id": "dijit/form/_RadioButtonMixin",
+							"name": "_RadioButtonMixin",
+							"fullname": "dijit/form/_RadioButtonMixin",
+							"type": "constructor"
+						},
+						{
+							"id": "dijit/form/_SearchMixin",
+							"name": "_SearchMixin",
+							"fullname": "dijit/form/_SearchMixin",
+							"type": "constructor"
+						},
+						{
+							"id": "dijit/form/_Spinner",
+							"name": "_Spinner",
+							"fullname": "dijit/form/_Spinner",
+							"type": "constructor"
+						},
+						{
+							"id": "dijit/form/_TextBoxMixin",
+							"name": "_TextBoxMixin",
+							"fullname": "dijit/form/_TextBoxMixin",
+							"type": "constructor"
+						},
+						{
+							"id": "dijit/form/_ToggleButtonMixin",
+							"name": "_ToggleButtonMixin",
+							"fullname": "dijit/form/_ToggleButtonMixin",
+							"type": "constructor"
+						},
+						{
+							"id": "dijit/form/Button",
+							"name": "Button",
+							"fullname": "dijit/form/Button",
+							"type": "constructor"
+						},
+						{
+							"id": "dijit/form/CheckBox",
+							"name": "CheckBox",
+							"fullname": "dijit/form/CheckBox",
+							"type": "constructor"
+						},
+						{
+							"id": "dijit/form/ComboBox",
+							"name": "ComboBox",
+							"fullname": "dijit/form/ComboBox",
+							"type": "constructor"
+						},
+						{
+							"id": "dijit/form/ComboBoxMixin",
+							"name": "ComboBoxMixin",
+							"fullname": "dijit/form/ComboBoxMixin",
+							"type": "constructor"
+						},
+						{
+							"id": "dijit/form/ComboButton",
+							"name": "ComboButton",
+							"fullname": "dijit/form/ComboButton",
+							"type": "constructor"
+						},
+						{
+							"id": "dijit/form/CurrencyTextBox",
+							"name": "CurrencyTextBox",
+							"fullname": "dijit/form/CurrencyTextBox",
+							"type": "constructor"
+						},
+						{
+							"id": "dijit/form/DataList",
+							"name": "DataList",
+							"fullname": "dijit/form/DataList",
+							"type": "constructor"
+						},
+						{
+							"id": "dijit/form/DateTextBox",
+							"name": "DateTextBox",
+							"fullname": "dijit/form/DateTextBox",
+							"type": "constructor"
+						},
+						{
+							"id": "dijit/form/DropDownButton",
+							"name": "DropDownButton",
+							"fullname": "dijit/form/DropDownButton",
+							"type": "constructor"
+						},
+						{
+							"id": "dijit/form/FilteringSelect",
+							"name": "FilteringSelect",
+							"fullname": "dijit/form/FilteringSelect",
+							"type": "constructor"
+						},
+						{
+							"id": "dijit/form/Form",
+							"name": "Form",
+							"fullname": "dijit/form/Form",
+							"type": "constructor"
+						},
+						{
+							"id": "dijit/form/HorizontalRule",
+							"name": "HorizontalRule",
+							"fullname": "dijit/form/HorizontalRule",
+							"type": "constructor"
+						},
+						{
+							"id": "dijit/form/HorizontalRuleLabels",
+							"name": "HorizontalRuleLabels",
+							"fullname": "dijit/form/HorizontalRuleLabels",
+							"type": "constructor"
+						},
+						{
+							"id": "dijit/form/HorizontalSlider",
+							"name": "HorizontalSlider",
+							"fullname": "dijit/form/HorizontalSlider",
+							"type": "constructor",
+							"children": [
+								{
+									"id": "dijit/form/HorizontalSlider._Mover",
+									"name": "_Mover",
+									"fullname": "dijit/form/HorizontalSlider._Mover",
+									"type": "constructor",
+									"children": []
+								}
+							]
+						},
+						{
+							"id": "dijit/form/MappedTextBox",
+							"name": "MappedTextBox",
+							"fullname": "dijit/form/MappedTextBox",
+							"type": "constructor"
+						},
+						{
+							"id": "dijit/form/MultiSelect",
+							"name": "MultiSelect",
+							"fullname": "dijit/form/MultiSelect",
+							"type": "constructor"
+						},
+						{
+							"id": "dijit/form/NumberSpinner",
+							"name": "NumberSpinner",
+							"fullname": "dijit/form/NumberSpinner",
+							"type": "constructor"
+						},
+						{
+							"id": "dijit/form/NumberTextBox",
+							"name": "NumberTextBox",
+							"fullname": "dijit/form/NumberTextBox",
+							"type": "constructor",
+							"children": [
+								{
+									"id": "dijit/form/NumberTextBox.__Constraints",
+									"name": "__Constraints",
+									"fullname": "dijit/form/NumberTextBox.__Constraints",
+									"type": "constructor",
+									"children": []
+								},
+								{
+									"id": "dijit/form/NumberTextBox.Mixin",
+									"name": "Mixin",
+									"fullname": "dijit/form/NumberTextBox.Mixin",
+									"type": "constructor",
+									"children": []
+								}
+							]
+						},
+						{
+							"id": "dijit/form/RadioButton",
+							"name": "RadioButton",
+							"fullname": "dijit/form/RadioButton",
+							"type": "constructor"
+						},
+						{
+							"id": "dijit/form/RangeBoundTextBox",
+							"name": "RangeBoundTextBox",
+							"fullname": "dijit/form/RangeBoundTextBox",
+							"type": "constructor",
+							"children": [
+								{
+									"id": "dijit/form/RangeBoundTextBox.__Constraints",
+									"name": "__Constraints",
+									"fullname": "dijit/form/RangeBoundTextBox.__Constraints",
+									"type": "constructor",
+									"children": []
+								}
+							]
+						},
+						{
+							"id": "dijit/form/Select",
+							"name": "Select",
+							"fullname": "dijit/form/Select",
+							"type": "constructor",
+							"children": [
+								{
+									"id": "dijit/form/Select._Menu",
+									"name": "_Menu",
+									"fullname": "dijit/form/Select._Menu",
+									"type": "constructor",
+									"children": []
+								}
+							]
+						},
+						{
+							"id": "dijit/form/SimpleTextarea",
+							"name": "SimpleTextarea",
+							"fullname": "dijit/form/SimpleTextarea",
+							"type": "constructor"
+						},
+						{
+							"id": "dijit/form/Slider",
+							"name": "Slider",
+							"fullname": "dijit/form/Slider",
+							"type": "object"
+						},
+						{
+							"id": "dijit/form/Textarea",
+							"name": "Textarea",
+							"fullname": "dijit/form/Textarea",
+							"type": "constructor"
+						},
+						{
+							"id": "dijit/form/TextBox",
+							"name": "TextBox",
+							"fullname": "dijit/form/TextBox",
+							"type": "constructor"
+						},
+						{
+							"id": "dijit/form/TimeTextBox",
+							"name": "TimeTextBox",
+							"fullname": "dijit/form/TimeTextBox",
+							"type": "constructor"
+						},
+						{
+							"id": "dijit/form/ToggleButton",
+							"name": "ToggleButton",
+							"fullname": "dijit/form/ToggleButton",
+							"type": "constructor"
+						},
+						{
+							"id": "dijit/form/ValidationTextBox",
+							"name": "ValidationTextBox",
+							"fullname": "dijit/form/ValidationTextBox",
+							"type": "constructor"
+						},
+						{
+							"id": "dijit/form/VerticalRule",
+							"name": "VerticalRule",
+							"fullname": "dijit/form/VerticalRule",
+							"type": "constructor"
+						},
+						{
+							"id": "dijit/form/VerticalRuleLabels",
+							"name": "VerticalRuleLabels",
+							"fullname": "dijit/form/VerticalRuleLabels",
+							"type": "constructor"
+						},
+						{
+							"id": "dijit/form/VerticalSlider",
+							"name": "VerticalSlider",
+							"fullname": "dijit/form/VerticalSlider",
+							"type": "constructor"
+						}
+					]
+				},
+				{
+					"id": "dijit/hccss",
+					"name": "hccss",
+					"fullname": "dijit/hccss",
+					"type": "function"
+				},
+				{
+					"id": "dijit/InlineEditBox",
+					"name": "InlineEditBox",
+					"fullname": "dijit/InlineEditBox",
+					"type": "constructor",
+					"children": [
+						{
+							"id": "dijit/InlineEditBox._InlineEditor",
+							"name": "_InlineEditor",
+							"fullname": "dijit/InlineEditBox._InlineEditor",
+							"type": "constructor",
+							"children": []
+						}
+					]
+				},
+				{
+					"id": "dijit/layout/",
+					"name": "layout",
+					"fullname": "dijit/layout",
+					"type": "folder",
+					"children": [
+						{
+							"id": "dijit/layout/_ContentPaneResizeMixin",
+							"name": "_ContentPaneResizeMixin",
+							"fullname": "dijit/layout/_ContentPaneResizeMixin",
+							"type": "constructor"
+						},
+						{
+							"id": "dijit/layout/_LayoutWidget",
+							"name": "_LayoutWidget",
+							"fullname": "dijit/layout/_LayoutWidget",
+							"type": "constructor"
+						},
+						{
+							"id": "dijit/layout/_TabContainerBase",
+							"name": "_TabContainerBase",
+							"fullname": "dijit/layout/_TabContainerBase",
+							"type": "constructor"
+						},
+						{
+							"id": "dijit/layout/AccordionContainer",
+							"name": "AccordionContainer",
+							"fullname": "dijit/layout/AccordionContainer",
+							"type": "constructor",
+							"children": [
+								{
+									"id": "dijit/layout/AccordionContainer._Button",
+									"name": "_Button",
+									"fullname": "dijit/layout/AccordionContainer._Button",
+									"type": "constructor",
+									"children": []
+								},
+								{
+									"id": "dijit/layout/AccordionContainer._InnerContainer",
+									"name": "_InnerContainer",
+									"fullname": "dijit/layout/AccordionContainer._InnerContainer",
+									"type": "constructor",
+									"children": []
+								}
+							]
+						},
+						{
+							"id": "dijit/layout/AccordionPane",
+							"name": "AccordionPane",
+							"fullname": "dijit/layout/AccordionPane",
+							"type": "constructor"
+						},
+						{
+							"id": "dijit/layout/BorderContainer",
+							"name": "BorderContainer",
+							"fullname": "dijit/layout/BorderContainer",
+							"type": "constructor",
+							"children": [
+								{
+									"id": "dijit/layout/BorderContainer._Gutter",
+									"name": "_Gutter",
+									"fullname": "dijit/layout/BorderContainer._Gutter",
+									"type": "constructor",
+									"children": []
+								},
+								{
+									"id": "dijit/layout/BorderContainer._Splitter",
+									"name": "_Splitter",
+									"fullname": "dijit/layout/BorderContainer._Splitter",
+									"type": "constructor",
+									"children": []
+								},
+								{
+									"id": "dijit/layout/BorderContainer.ChildWidgetProperties",
+									"name": "ChildWidgetProperties",
+									"fullname": "dijit/layout/BorderContainer.ChildWidgetProperties",
+									"type": "object",
+									"children": []
+								}
+							]
+						},
+						{
+							"id": "dijit/layout/ContentPane",
+							"name": "ContentPane",
+							"fullname": "dijit/layout/ContentPane",
+							"type": "constructor"
+						},
+						{
+							"id": "dijit/layout/LayoutContainer",
+							"name": "LayoutContainer",
+							"fullname": "dijit/layout/LayoutContainer",
+							"type": "constructor",
+							"children": [
+								{
+									"id": "dijit/layout/LayoutContainer.ChildWidgetProperties",
+									"name": "ChildWidgetProperties",
+									"fullname": "dijit/layout/LayoutContainer.ChildWidgetProperties",
+									"type": "object",
+									"children": []
+								}
+							]
+						},
+						{
+							"id": "dijit/layout/LinkPane",
+							"name": "LinkPane",
+							"fullname": "dijit/layout/LinkPane",
+							"type": "constructor"
+						},
+						{
+							"id": "dijit/layout/ScrollingTabController",
+							"name": "ScrollingTabController",
+							"fullname": "dijit/layout/ScrollingTabController",
+							"type": "constructor"
+						},
+						{
+							"id": "dijit/layout/SplitContainer",
+							"name": "SplitContainer",
+							"fullname": "dijit/layout/SplitContainer",
+							"type": "constructor",
+							"children": [
+								{
+									"id": "dijit/layout/SplitContainer.ChildWidgetProperties",
+									"name": "ChildWidgetProperties",
+									"fullname": "dijit/layout/SplitContainer.ChildWidgetProperties",
+									"type": "object",
+									"children": []
+								}
+							]
+						},
+						{
+							"id": "dijit/layout/StackContainer",
+							"name": "StackContainer",
+							"fullname": "dijit/layout/StackContainer",
+							"type": "constructor",
+							"children": [
+								{
+									"id": "dijit/layout/StackContainer.ChildWidgetProperties",
+									"name": "ChildWidgetProperties",
+									"fullname": "dijit/layout/StackContainer.ChildWidgetProperties",
+									"type": "object",
+									"children": []
+								}
+							]
+						},
+						{
+							"id": "dijit/layout/StackController",
+							"name": "StackController",
+							"fullname": "dijit/layout/StackController",
+							"type": "constructor",
+							"children": [
+								{
+									"id": "dijit/layout/StackController.StackButton",
+									"name": "StackButton",
+									"fullname": "dijit/layout/StackController.StackButton",
+									"type": "constructor",
+									"children": []
+								}
+							]
+						},
+						{
+							"id": "dijit/layout/TabContainer",
+							"name": "TabContainer",
+							"fullname": "dijit/layout/TabContainer",
+							"type": "constructor"
+						},
+						{
+							"id": "dijit/layout/TabController",
+							"name": "TabController",
+							"fullname": "dijit/layout/TabController",
+							"type": "constructor",
+							"children": [
+								{
+									"id": "dijit/layout/TabController.TabButton",
+									"name": "TabButton",
+									"fullname": "dijit/layout/TabController.TabButton",
+									"type": "constructor",
+									"children": []
+								}
+							]
+						},
+						{
+							"id": "dijit/layout/utils",
+							"name": "utils",
+							"fullname": "dijit/layout/utils",
+							"type": "object"
+						}
+					]
+				},
+				{
+					"id": "dijit/main",
+					"name": "main",
+					"fullname": "dijit/main",
+					"type": "object",
+					"children": [
+						{
+							"id": "dijit/main._Calendar",
+							"name": "_Calendar",
+							"fullname": "dijit/main._Calendar",
+							"type": "constructor",
+							"children": []
+						},
+						{
+							"id": "dijit/main.place",
+							"name": "place",
+							"fullname": "dijit/main.place",
+							"type": "object",
+							"children": []
+						},
+						{
+							"id": "dijit/main.registry",
+							"name": "registry",
+							"fullname": "dijit/main.registry",
+							"type": "object",
+							"children": []
+						},
+						{
+							"id": "dijit/main.typematic",
+							"name": "typematic",
+							"fullname": "dijit/main.typematic",
+							"type": "object",
+							"children": []
+						}
+					]
+				},
+				{
+					"id": "dijit/Menu",
+					"name": "Menu",
+					"fullname": "dijit/Menu",
+					"type": "constructor"
+				},
+				{
+					"id": "dijit/MenuBar",
+					"name": "MenuBar",
+					"fullname": "dijit/MenuBar",
+					"type": "constructor"
+				},
+				{
+					"id": "dijit/MenuBarItem",
+					"name": "MenuBarItem",
+					"fullname": "dijit/MenuBarItem",
+					"type": "constructor",
+					"children": [
+						{
+							"id": "dijit/MenuBarItem._MenuBarItemMixin",
+							"name": "_MenuBarItemMixin",
+							"fullname": "dijit/MenuBarItem._MenuBarItemMixin",
+							"type": "constructor",
+							"children": []
+						}
+					]
+				},
+				{
+					"id": "dijit/MenuItem",
+					"name": "MenuItem",
+					"fullname": "dijit/MenuItem",
+					"type": "constructor"
+				},
+				{
+					"id": "dijit/MenuSeparator",
+					"name": "MenuSeparator",
+					"fullname": "dijit/MenuSeparator",
+					"type": "constructor"
+				},
+				{
+					"id": "dijit/place",
+					"name": "place",
+					"fullname": "dijit/place",
+					"type": "object",
+					"children": [
+						{
+							"id": "dijit/place.__Position",
+							"name": "__Position",
+							"fullname": "dijit/place.__Position",
+							"type": "object",
+							"children": []
+						},
+						{
+							"id": "dijit/place.__Rectangle",
+							"name": "__Rectangle",
+							"fullname": "dijit/place.__Rectangle",
+							"type": "object",
+							"children": []
+						}
+					]
+				},
+				{
+					"id": "dijit/popup",
+					"name": "popup",
+					"fullname": "dijit/popup",
+					"type": "instance"
+				},
+				{
+					"id": "dijit/PopupMenuBarItem",
+					"name": "PopupMenuBarItem",
+					"fullname": "dijit/PopupMenuBarItem",
+					"type": "constructor"
+				},
+				{
+					"id": "dijit/PopupMenuItem",
+					"name": "PopupMenuItem",
+					"fullname": "dijit/PopupMenuItem",
+					"type": "constructor"
+				},
+				{
+					"id": "dijit/ProgressBar",
+					"name": "ProgressBar",
+					"fullname": "dijit/ProgressBar",
+					"type": "constructor"
+				},
+				{
+					"id": "dijit/RadioMenuItem",
+					"name": "RadioMenuItem",
+					"fullname": "dijit/RadioMenuItem",
+					"type": "constructor"
+				},
+				{
+					"id": "dijit/registry",
+					"name": "registry",
+					"fullname": "dijit/registry",
+					"type": "object",
+					"children": [
+						{
+							"id": "dijit/registry._hash",
+							"name": "_hash",
+							"fullname": "dijit/registry._hash",
+							"type": "object",
+							"children": []
+						}
+					]
+				},
+				{
+					"id": "dijit/robot",
+					"name": "robot",
+					"fullname": "dijit/robot",
+					"type": "undefined"
+				},
+				{
+					"id": "dijit/robotx",
+					"name": "robotx",
+					"fullname": "dijit/robotx",
+					"type": "undefined"
+				},
+				{
+					"id": "dijit/selection",
+					"name": "selection",
+					"fullname": "dijit/selection",
+					"type": "instance"
+				},
+				{
+					"id": "dijit/TitlePane",
+					"name": "TitlePane",
+					"fullname": "dijit/TitlePane",
+					"type": "constructor"
+				},
+				{
+					"id": "dijit/Toolbar",
+					"name": "Toolbar",
+					"fullname": "dijit/Toolbar",
+					"type": "constructor"
+				},
+				{
+					"id": "dijit/ToolbarSeparator",
+					"name": "ToolbarSeparator",
+					"fullname": "dijit/ToolbarSeparator",
+					"type": "constructor"
+				},
+				{
+					"id": "dijit/Tooltip",
+					"name": "Tooltip",
+					"fullname": "dijit/Tooltip",
+					"type": "constructor",
+					"children": [
+						{
+							"id": "dijit/Tooltip._MasterTooltip",
+							"name": "_MasterTooltip",
+							"fullname": "dijit/Tooltip._MasterTooltip",
+							"type": "constructor",
+							"children": []
+						}
+					]
+				},
+				{
+					"id": "dijit/TooltipDialog",
+					"name": "TooltipDialog",
+					"fullname": "dijit/TooltipDialog",
+					"type": "constructor"
+				},
+				{
+					"id": "dijit/Tree",
+					"name": "Tree",
+					"fullname": "dijit/Tree",
+					"type": "constructor",
+					"children": [
+						{
+							"id": "dijit/Tree._TreeNode",
+							"name": "_TreeNode",
+							"fullname": "dijit/Tree._TreeNode",
+							"type": "constructor",
+							"children": []
+						}
+					]
+				},
+				{
+					"id": "dijit/tree/",
+					"name": "tree",
+					"fullname": "dijit/tree",
+					"type": "folder",
+					"children": [
+						{
+							"id": "dijit/tree/_dndContainer",
+							"name": "_dndContainer",
+							"fullname": "dijit/tree/_dndContainer",
+							"type": "constructor"
+						},
+						{
+							"id": "dijit/tree/_dndSelector",
+							"name": "_dndSelector",
+							"fullname": "dijit/tree/_dndSelector",
+							"type": "constructor"
+						},
+						{
+							"id": "dijit/tree/dndSource",
+							"name": "dndSource",
+							"fullname": "dijit/tree/dndSource",
+							"type": "constructor",
+							"children": [
+								{
+									"id": "dijit/tree/dndSource.__Item",
+									"name": "__Item",
+									"fullname": "dijit/tree/dndSource.__Item",
+									"type": "object",
+									"children": []
+								}
+							]
+						},
+						{
+							"id": "dijit/tree/ForestStoreModel",
+							"name": "ForestStoreModel",
+							"fullname": "dijit/tree/ForestStoreModel",
+							"type": "constructor"
+						},
+						{
+							"id": "dijit/tree/model",
+							"name": "model",
+							"fullname": "dijit/tree/model",
+							"type": "constructor"
+						},
+						{
+							"id": "dijit/tree/ObjectStoreModel",
+							"name": "ObjectStoreModel",
+							"fullname": "dijit/tree/ObjectStoreModel",
+							"type": "constructor"
+						},
+						{
+							"id": "dijit/tree/TreeStoreModel",
+							"name": "TreeStoreModel",
+							"fullname": "dijit/tree/TreeStoreModel",
+							"type": "constructor"
+						}
+					]
+				},
+				{
+					"id": "dijit/typematic",
+					"name": "typematic",
+					"fullname": "dijit/typematic",
+					"type": "object"
+				},
+				{
+					"id": "dijit/Viewport",
+					"name": "Viewport",
+					"fullname": "dijit/Viewport",
+					"type": "object"
+				},
+				{
+					"id": "dijit/WidgetSet",
+					"name": "WidgetSet",
+					"fullname": "dijit/WidgetSet",
+					"type": "constructor"
+				}
+			]
+		},
+		{
+			"id": "doh/",
+			"name": "doh",
+			"fullname": "doh",
+			"type": "folder",
+			"children": [
+				{
+					"id": "doh/_browserRunner",
+					"name": "_browserRunner",
+					"fullname": "doh/_browserRunner",
+					"type": "object",
+					"children": [
+						{
+							"id": "doh/_browserRunner._groups",
+							"name": "_groups",
+							"fullname": "doh/_browserRunner._groups",
+							"type": "object",
+							"children": []
+						},
+						{
+							"id": "doh/_browserRunner._testTypes",
+							"name": "_testTypes",
+							"fullname": "doh/_browserRunner._testTypes",
+							"type": "object",
+							"children": []
+						},
+						{
+							"id": "doh/_browserRunner.robot",
+							"name": "robot",
+							"fullname": "doh/_browserRunner.robot",
+							"type": "object",
+							"children": []
+						}
+					]
+				},
+				{
+					"id": "doh/_nodeRunner",
+					"name": "_nodeRunner",
+					"fullname": "doh/_nodeRunner",
+					"type": "object"
+				},
+				{
+					"id": "doh/_parseURLargs",
+					"name": "_parseURLargs",
+					"fullname": "doh/_parseURLargs",
+					"type": "object"
+				},
+				{
+					"id": "doh/_rhinoRunner",
+					"name": "_rhinoRunner",
+					"fullname": "doh/_rhinoRunner",
+					"type": "object"
+				},
+				{
+					"id": "doh/main",
+					"name": "main",
+					"fullname": "doh/main",
+					"type": "object",
+					"children": [
+						{
+							"id": "doh/main._groups",
+							"name": "_groups",
+							"fullname": "doh/main._groups",
+							"type": "object",
+							"children": []
+						},
+						{
+							"id": "doh/main._testTypes",
+							"name": "_testTypes",
+							"fullname": "doh/main._testTypes",
+							"type": "object",
+							"children": []
+						},
+						{
+							"id": "doh/main.robot",
+							"name": "robot",
+							"fullname": "doh/main.robot",
+							"type": "object",
+							"children": []
+						}
+					]
+				},
+				{
+					"id": "doh/plugins/",
+					"name": "plugins",
+					"fullname": "doh/plugins",
+					"type": "folder",
+					"children": [
+						{
+							"id": "doh/plugins/alwaysAudio",
+							"name": "alwaysAudio",
+							"fullname": "doh/plugins/alwaysAudio",
+							"type": "undefined"
+						},
+						{
+							"id": "doh/plugins/android-webdriver-robot",
+							"name": "android-webdriver-robot",
+							"fullname": "doh/plugins/android-webdriver-robot",
+							"type": "object"
+						},
+						{
+							"id": "doh/plugins/hello",
+							"name": "hello",
+							"fullname": "doh/plugins/hello",
+							"type": "undefined"
+						},
+						{
+							"id": "doh/plugins/remoteRobot",
+							"name": "remoteRobot",
+							"fullname": "doh/plugins/remoteRobot",
+							"type": "object"
+						}
+					]
+				},
+				{
+					"id": "doh/robot",
+					"name": "robot",
+					"fullname": "doh/robot",
+					"type": "object",
+					"children": [
+						{
+							"id": "doh/robot._runsemaphore",
+							"name": "_runsemaphore",
+							"fullname": "doh/robot._runsemaphore",
+							"type": "object",
+							"children": []
+						}
+					]
+				},
+				{
+					"id": "doh/runner",
+					"name": "runner",
+					"fullname": "doh/runner",
+					"type": "object",
+					"children": [
+						{
+							"id": "doh/runner._groups",
+							"name": "_groups",
+							"fullname": "doh/runner._groups",
+							"type": "object",
+							"children": []
+						},
+						{
+							"id": "doh/runner._testTypes",
+							"name": "_testTypes",
+							"fullname": "doh/runner._testTypes",
+							"type": "object",
+							"children": []
+						},
+						{
+							"id": "doh/runner.robot",
+							"name": "robot",
+							"fullname": "doh/runner.robot",
+							"type": "object",
+							"children": []
+						}
+					]
+				}
+			]
+		},
+		{
+			"id": "dojo/",
+			"name": "dojo",
+			"fullname": "dojo",
+			"type": "folder",
+			"children": [
+				{
+					"id": "dojo/_base/",
+					"name": "_base",
+					"fullname": "dojo/_base",
+					"type": "folder",
+					"children": [
+						{
+							"id": "dojo/_base/array",
+							"name": "array",
+							"fullname": "dojo/_base/array",
+							"type": "object"
+						},
+						{
+							"id": "dojo/_base/browser",
+							"name": "browser",
+							"fullname": "dojo/_base/browser",
+							"type": "object"
+						},
+						{
+							"id": "dojo/_base/Color",
+							"name": "Color",
+							"fullname": "dojo/_base/Color",
+							"type": "function",
+							"children": [
+								{
+									"id": "dojo/_base/Color.named",
+									"name": "named",
+									"fullname": "dojo/_base/Color.named",
+									"type": "object",
+									"children": []
+								}
+							]
+						},
+						{
+							"id": "dojo/_base/config",
+							"name": "config",
+							"fullname": "dojo/_base/config",
+							"type": "object",
+							"children": [
+								{
+									"id": "dojo/_base/config.modulePaths",
+									"name": "modulePaths",
+									"fullname": "dojo/_base/config.modulePaths",
+									"type": "object",
+									"children": []
+								}
+							]
+						},
+						{
+							"id": "dojo/_base/connect",
+							"name": "connect",
+							"fullname": "dojo/_base/connect",
+							"type": "object"
+						},
+						{
+							"id": "dojo/_base/declare",
+							"name": "declare",
+							"fullname": "dojo/_base/declare",
+							"type": "function",
+							"children": [
+								{
+									"id": "dojo/_base/declare.__DeclareCreatedObject",
+									"name": "__DeclareCreatedObject",
+									"fullname": "dojo/_base/declare.__DeclareCreatedObject",
+									"type": "object",
+									"children": []
+								}
+							]
+						},
+						{
+							"id": "dojo/_base/Deferred",
+							"name": "Deferred",
+							"fullname": "dojo/_base/Deferred",
+							"type": "function"
+						},
+						{
+							"id": "dojo/_base/event",
+							"name": "event",
+							"fullname": "dojo/_base/event",
+							"type": "object"
+						},
+						{
+							"id": "dojo/_base/fx",
+							"name": "fx",
+							"fullname": "dojo/_base/fx",
+							"type": "object"
+						},
+						{
+							"id": "dojo/_base/html",
+							"name": "html",
+							"fullname": "dojo/_base/html",
+							"type": "object"
+						},
+						{
+							"id": "dojo/_base/json",
+							"name": "json",
+							"fullname": "dojo/_base/json",
+							"type": "object"
+						},
+						{
+							"id": "dojo/_base/kernel",
+							"name": "kernel",
+							"fullname": "dojo/_base/kernel",
+							"type": "object",
+							"children": [
+								{
+									"id": "dojo/_base/kernel.__IoArgs",
+									"name": "__IoArgs",
+									"fullname": "dojo/_base/kernel.__IoArgs",
+									"type": "constructor",
+									"children": []
+								},
+								{
+									"id": "dojo/_base/kernel.__IoCallbackArgs",
+									"name": "__IoCallbackArgs",
+									"fullname": "dojo/_base/kernel.__IoCallbackArgs",
+									"type": "constructor",
+									"children": []
+								},
+								{
+									"id": "dojo/_base/kernel.__IoPublish",
+									"name": "__IoPublish",
+									"fullname": "dojo/_base/kernel.__IoPublish",
+									"type": "constructor",
+									"children": []
+								},
+								{
+									"id": "dojo/_base/kernel.__XhrArgs",
+									"name": "__XhrArgs",
+									"fullname": "dojo/_base/kernel.__XhrArgs",
+									"type": "constructor",
+									"children": []
+								},
+								{
+									"id": "dojo/_base/kernel._contentHandlers",
+									"name": "_contentHandlers",
+									"fullname": "dojo/_base/kernel._contentHandlers",
+									"type": "object",
+									"children": []
+								},
+								{
+									"id": "dojo/_base/kernel._hasResource",
+									"name": "_hasResource",
+									"fullname": "dojo/_base/kernel._hasResource",
+									"type": "object",
+									"children": []
+								},
+								{
+									"id": "dojo/_base/kernel._nodeDataCache",
+									"name": "_nodeDataCache",
+									"fullname": "dojo/_base/kernel._nodeDataCache",
+									"type": "object",
+									"children": []
+								},
+								{
+									"id": "dojo/_base/kernel.back",
+									"name": "back",
+									"fullname": "dojo/_base/kernel.back",
+									"type": "object",
+									"children": []
+								},
+								{
+									"id": "dojo/_base/kernel.cldr",
+									"name": "cldr",
+									"fullname": "dojo/_base/kernel.cldr",
+									"type": "object",
+									"children": []
+								},
+								{
+									"id": "dojo/_base/kernel.colors",
+									"name": "colors",
+									"fullname": "dojo/_base/kernel.colors",
+									"type": "object",
+									"children": []
+								},
+								{
+									"id": "dojo/_base/kernel.config",
+									"name": "config",
+									"fullname": "dojo/_base/kernel.config",
+									"type": "object",
+									"children": []
+								},
+								{
+									"id": "dojo/_base/kernel.contentHandlers",
+									"name": "contentHandlers",
+									"fullname": "dojo/_base/kernel.contentHandlers",
+									"type": "object",
+									"children": []
+								},
+								{
+									"id": "dojo/_base/kernel.currency",
+									"name": "currency",
+									"fullname": "dojo/_base/kernel.currency",
+									"type": "object",
+									"children": []
+								},
+								{
+									"id": "dojo/_base/kernel.data",
+									"name": "data",
+									"fullname": "dojo/_base/kernel.data",
+									"type": "object",
+									"children": []
+								},
+								{
+									"id": "dojo/_base/kernel.date",
+									"name": "date",
+									"fullname": "dojo/_base/kernel.date",
+									"type": "object",
+									"children": []
+								},
+								{
+									"id": "dojo/_base/kernel.dijit",
+									"name": "dijit",
+									"fullname": "dojo/_base/kernel.dijit",
+									"type": "object",
+									"children": []
+								},
+								{
+									"id": "dojo/_base/kernel.dnd",
+									"name": "dnd",
+									"fullname": "dojo/_base/kernel.dnd",
+									"type": "object",
+									"children": []
+								},
+								{
+									"id": "dojo/_base/kernel.doc",
+									"name": "doc",
+									"fullname": "dojo/_base/kernel.doc",
+									"type": "object",
+									"children": []
+								},
+								{
+									"id": "dojo/_base/kernel.dojox",
+									"name": "dojox",
+									"fullname": "dojo/_base/kernel.dojox",
+									"type": "object",
+									"children": []
+								},
+								{
+									"id": "dojo/_base/kernel.fx",
+									"name": "fx",
+									"fullname": "dojo/_base/kernel.fx",
+									"type": "object",
+									"children": []
+								},
+								{
+									"id": "dojo/_base/kernel.gears",
+									"name": "gears",
+									"fullname": "dojo/_base/kernel.gears",
+									"type": "object",
+									"children": []
+								},
+								{
+									"id": "dojo/_base/kernel.global",
+									"name": "global",
+									"fullname": "dojo/_base/kernel.global",
+									"type": "object",
+									"children": []
+								},
+								{
+									"id": "dojo/_base/kernel.html",
+									"name": "html",
+									"fullname": "dojo/_base/kernel.html",
+									"type": "object",
+									"children": []
+								},
+								{
+									"id": "dojo/_base/kernel.i18n",
+									"name": "i18n",
+									"fullname": "dojo/_base/kernel.i18n",
+									"type": "object",
+									"children": []
+								},
+								{
+									"id": "dojo/_base/kernel.io",
+									"name": "io",
+									"fullname": "dojo/_base/kernel.io",
+									"type": "object",
+									"children": []
+								},
+								{
+									"id": "dojo/_base/kernel.keys",
+									"name": "keys",
+									"fullname": "dojo/_base/kernel.keys",
+									"type": "object",
+									"children": []
+								},
+								{
+									"id": "dojo/_base/kernel.mouseButtons",
+									"name": "mouseButtons",
+									"fullname": "dojo/_base/kernel.mouseButtons",
+									"type": "object",
+									"children": []
+								},
+								{
+									"id": "dojo/_base/kernel.number",
+									"name": "number",
+									"fullname": "dojo/_base/kernel.number",
+									"type": "object",
+									"children": []
+								},
+								{
+									"id": "dojo/_base/kernel.parser",
+									"name": "parser",
+									"fullname": "dojo/_base/kernel.parser",
+									"type": "object",
+									"children": []
+								},
+								{
+									"id": "dojo/_base/kernel.regexp",
+									"name": "regexp",
+									"fullname": "dojo/_base/kernel.regexp",
+									"type": "object",
+									"children": []
+								},
+								{
+									"id": "dojo/_base/kernel.rpc",
+									"name": "rpc",
+									"fullname": "dojo/_base/kernel.rpc",
+									"type": "object",
+									"children": []
+								},
+								{
+									"id": "dojo/_base/kernel.scopeMap",
+									"name": "scopeMap",
+									"fullname": "dojo/_base/kernel.scopeMap",
+									"type": "object",
+									"children": []
+								},
+								{
+									"id": "dojo/_base/kernel.Stateful",
+									"name": "Stateful",
+									"fullname": "dojo/_base/kernel.Stateful",
+									"type": "constructor",
+									"children": []
+								},
+								{
+									"id": "dojo/_base/kernel.store",
+									"name": "store",
+									"fullname": "dojo/_base/kernel.store",
+									"type": "object",
+									"children": []
+								},
+								{
+									"id": "dojo/_base/kernel.string",
+									"name": "string",
+									"fullname": "dojo/_base/kernel.string",
+									"type": "object",
+									"children": []
+								},
+								{
+									"id": "dojo/_base/kernel.tests",
+									"name": "tests",
+									"fullname": "dojo/_base/kernel.tests",
+									"type": "object",
+									"children": []
+								},
+								{
+									"id": "dojo/_base/kernel.touch",
+									"name": "touch",
+									"fullname": "dojo/_base/kernel.touch",
+									"type": "object",
+									"children": []
+								},
+								{
+									"id": "dojo/_base/kernel.version",
+									"name": "version",
+									"fullname": "dojo/_base/kernel.version",
+									"type": "object",
+									"children": []
+								},
+								{
+									"id": "dojo/_base/kernel.window",
+									"name": "window",
+									"fullname": "dojo/_base/kernel.window",
+									"type": "object",
+									"children": []
+								}
+							]
+						},
+						{
+							"id": "dojo/_base/lang",
+							"name": "lang",
+							"fullname": "dojo/_base/lang",
+							"type": "object"
+						},
+						{
+							"id": "dojo/_base/loader",
+							"name": "loader",
+							"fullname": "dojo/_base/loader",
+							"type": "number"
+						},
+						{
+							"id": "dojo/_base/NodeList",
+							"name": "NodeList",
+							"fullname": "dojo/_base/NodeList",
+							"type": "object"
+						},
+						{
+							"id": "dojo/_base/query",
+							"name": "query",
+							"fullname": "dojo/_base/query",
+							"type": "object"
+						},
+						{
+							"id": "dojo/_base/sniff",
+							"name": "sniff",
+							"fullname": "dojo/_base/sniff",
+							"type": "object"
+						},
+						{
+							"id": "dojo/_base/unload",
+							"name": "unload",
+							"fullname": "dojo/_base/unload",
+							"type": "object"
+						},
+						{
+							"id": "dojo/_base/url",
+							"name": "url",
+							"fullname": "dojo/_base/url",
+							"type": "function",
+							"children": [
+								{
+									"id": "dojo/_base/url.authority",
+									"name": "authority",
+									"fullname": "dojo/_base/url.authority",
+									"type": "object",
+									"children": []
+								},
+								{
+									"id": "dojo/_base/url.fragment",
+									"name": "fragment",
+									"fullname": "dojo/_base/url.fragment",
+									"type": "object",
+									"children": []
+								},
+								{
+									"id": "dojo/_base/url.password",
+									"name": "password",
+									"fullname": "dojo/_base/url.password",
+									"type": "object",
+									"children": []
+								},
+								{
+									"id": "dojo/_base/url.port",
+									"name": "port",
+									"fullname": "dojo/_base/url.port",
+									"type": "object",
+									"children": []
+								},
+								{
+									"id": "dojo/_base/url.query",
+									"name": "query",
+									"fullname": "dojo/_base/url.query",
+									"type": "object",
+									"children": []
+								},
+								{
+									"id": "dojo/_base/url.scheme",
+									"name": "scheme",
+									"fullname": "dojo/_base/url.scheme",
+									"type": "object",
+									"children": []
+								},
+								{
+									"id": "dojo/_base/url.user",
+									"name": "user",
+									"fullname": "dojo/_base/url.user",
+									"type": "object",
+									"children": []
+								}
+							]
+						},
+						{
+							"id": "dojo/_base/window",
+							"name": "window",
+							"fullname": "dojo/_base/window",
+							"type": "object",
+							"children": [
+								{
+									"id": "dojo/_base/window.doc",
+									"name": "doc",
+									"fullname": "dojo/_base/window.doc",
+									"type": "object",
+									"children": []
+								},
+								{
+									"id": "dojo/_base/window.global",
+									"name": "global",
+									"fullname": "dojo/_base/window.global",
+									"type": "object",
+									"children": []
+								}
+							]
+						},
+						{
+							"id": "dojo/_base/xhr",
+							"name": "xhr",
+							"fullname": "dojo/_base/xhr",
+							"type": "function",
+							"children": [
+								{
+									"id": "dojo/_base/xhr.contentHandlers",
+									"name": "contentHandlers",
+									"fullname": "dojo/_base/xhr.contentHandlers",
+									"type": "object",
+									"children": []
+								}
+							]
+						}
+					]
+				},
+				{
+					"id": "dojo/_firebug/",
+					"name": "_firebug",
+					"fullname": "dojo/_firebug",
+					"type": "folder",
+					"children": [
+						{
+							"id": "dojo/_firebug/firebug",
+							"name": "firebug",
+							"fullname": "dojo/_firebug/firebug",
+							"type": "undefined"
+						}
+					]
+				},
+				{
+					"id": "dojo/AdapterRegistry",
+					"name": "AdapterRegistry",
+					"fullname": "dojo/AdapterRegistry",
+					"type": "function"
+				},
+				{
+					"id": "dojo/aspect",
+					"name": "aspect",
+					"fullname": "dojo/aspect",
+					"type": "object"
+				},
+				{
+					"id": "dojo/back",
+					"name": "back",
+					"fullname": "dojo/back",
+					"type": "object"
+				},
+				{
+					"id": "dojo/behavior",
+					"name": "behavior",
+					"fullname": "dojo/behavior",
+					"type": "instance"
+				},
+				{
+					"id": "dojo/cache",
+					"name": "cache",
+					"fullname": "dojo/cache",
+					"type": "function"
+				},
+				{
+					"id": "dojo/cldr/",
+					"name": "cldr",
+					"fullname": "dojo/cldr",
+					"type": "folder",
+					"children": [
+						{
+							"id": "dojo/cldr/monetary",
+							"name": "monetary",
+							"fullname": "dojo/cldr/monetary",
+							"type": "object"
+						},
+						{
+							"id": "dojo/cldr/supplemental",
+							"name": "supplemental",
+							"fullname": "dojo/cldr/supplemental",
+							"type": "object"
+						}
+					]
+				},
+				{
+					"id": "dojo/colors",
+					"name": "colors",
+					"fullname": "dojo/colors",
+					"type": "object"
+				},
+				{
+					"id": "dojo/cookie",
+					"name": "cookie",
+					"fullname": "dojo/cookie",
+					"type": "function"
+				},
+				{
+					"id": "dojo/currency",
+					"name": "currency",
+					"fullname": "dojo/currency",
+					"type": "object",
+					"children": [
+						{
+							"id": "dojo/currency.__FormatOptions",
+							"name": "__FormatOptions",
+							"fullname": "dojo/currency.__FormatOptions",
+							"type": "constructor",
+							"children": []
+						},
+						{
+							"id": "dojo/currency.__ParseOptions",
+							"name": "__ParseOptions",
+							"fullname": "dojo/currency.__ParseOptions",
+							"type": "constructor",
+							"children": []
+						}
+					]
+				},
+				{
+					"id": "dojo/data/",
+					"name": "data",
+					"fullname": "dojo/data",
+					"type": "folder",
+					"children": [
+						{
+							"id": "dojo/data/api/",
+							"name": "api",
+							"fullname": "dojo/data/api",
+							"type": "folder",
+							"children": [
+								{
+									"id": "dojo/data/api/Identity",
+									"name": "Identity",
+									"fullname": "dojo/data/api/Identity",
+									"type": "constructor"
+								},
+								{
+									"id": "dojo/data/api/Item",
+									"name": "Item",
+									"fullname": "dojo/data/api/Item",
+									"type": "constructor"
+								},
+								{
+									"id": "dojo/data/api/Notification",
+									"name": "Notification",
+									"fullname": "dojo/data/api/Notification",
+									"type": "constructor"
+								},
+								{
+									"id": "dojo/data/api/Read",
+									"name": "Read",
+									"fullname": "dojo/data/api/Read",
+									"type": "constructor"
+								},
+								{
+									"id": "dojo/data/api/Request",
+									"name": "Request",
+									"fullname": "dojo/data/api/Request",
+									"type": "constructor"
+								},
+								{
+									"id": "dojo/data/api/Write",
+									"name": "Write",
+									"fullname": "dojo/data/api/Write",
+									"type": "constructor"
+								}
+							]
+						},
+						{
+							"id": "dojo/data/ItemFileReadStore",
+							"name": "ItemFileReadStore",
+							"fullname": "dojo/data/ItemFileReadStore",
+							"type": "constructor"
+						},
+						{
+							"id": "dojo/data/ItemFileWriteStore",
+							"name": "ItemFileWriteStore",
+							"fullname": "dojo/data/ItemFileWriteStore",
+							"type": "constructor"
+						},
+						{
+							"id": "dojo/data/ObjectStore",
+							"name": "ObjectStore",
+							"fullname": "dojo/data/ObjectStore",
+							"type": "constructor"
+						},
+						{
+							"id": "dojo/data/util/",
+							"name": "util",
+							"fullname": "dojo/data/util",
+							"type": "folder",
+							"children": [
+								{
+									"id": "dojo/data/util/filter",
+									"name": "filter",
+									"fullname": "dojo/data/util/filter",
+									"type": "object"
+								},
+								{
+									"id": "dojo/data/util/simpleFetch",
+									"name": "simpleFetch",
+									"fullname": "dojo/data/util/simpleFetch",
+									"type": "object"
+								},
+								{
+									"id": "dojo/data/util/sorter",
+									"name": "sorter",
+									"fullname": "dojo/data/util/sorter",
+									"type": "object"
+								}
+							]
+						}
+					]
+				},
+				{
+					"id": "dojo/date",
+					"name": "date",
+					"fullname": "dojo/date",
+					"type": "object"
+				},
+				{
+					"id": "dojo/date/",
+					"name": "date",
+					"fullname": "dojo/date",
+					"type": "folder",
+					"children": [
+						{
+							"id": "dojo/date/locale",
+							"name": "locale",
+							"fullname": "dojo/date/locale",
+							"type": "object",
+							"children": [
+								{
+									"id": "dojo/date/locale.__FormatOptions",
+									"name": "__FormatOptions",
+									"fullname": "dojo/date/locale.__FormatOptions",
+									"type": "constructor",
+									"children": []
+								}
+							]
+						},
+						{
+							"id": "dojo/date/stamp",
+							"name": "stamp",
+							"fullname": "dojo/date/stamp",
+							"type": "object"
+						}
+					]
+				},
+				{
+					"id": "dojo/Deferred",
+					"name": "Deferred",
+					"fullname": "dojo/Deferred",
+					"type": "function"
+				},
+				{
+					"id": "dojo/DeferredList",
+					"name": "DeferredList",
+					"fullname": "dojo/DeferredList",
+					"type": "function"
+				},
+				{
+					"id": "dojo/dnd/",
+					"name": "dnd",
+					"fullname": "dojo/dnd",
+					"type": "folder",
+					"children": [
+						{
+							"id": "dojo/dnd/autoscroll",
+							"name": "autoscroll",
+							"fullname": "dojo/dnd/autoscroll",
+							"type": "object",
+							"children": [
+								{
+									"id": "dojo/dnd/autoscroll._validNodes",
+									"name": "_validNodes",
+									"fullname": "dojo/dnd/autoscroll._validNodes",
+									"type": "object",
+									"children": []
+								},
+								{
+									"id": "dojo/dnd/autoscroll._validOverflow",
+									"name": "_validOverflow",
+									"fullname": "dojo/dnd/autoscroll._validOverflow",
+									"type": "object",
+									"children": []
+								}
+							]
+						},
+						{
+							"id": "dojo/dnd/AutoSource",
+							"name": "AutoSource",
+							"fullname": "dojo/dnd/AutoSource",
+							"type": "constructor"
+						},
+						{
+							"id": "dojo/dnd/Avatar",
+							"name": "Avatar",
+							"fullname": "dojo/dnd/Avatar",
+							"type": "constructor"
+						},
+						{
+							"id": "dojo/dnd/common",
+							"name": "common",
+							"fullname": "dojo/dnd/common",
+							"type": "object",
+							"children": [
+								{
+									"id": "dojo/dnd/common._defaultCreatorNodes",
+									"name": "_defaultCreatorNodes",
+									"fullname": "dojo/dnd/common._defaultCreatorNodes",
+									"type": "object",
+									"children": []
+								},
+								{
+									"id": "dojo/dnd/common._empty",
+									"name": "_empty",
+									"fullname": "dojo/dnd/common._empty",
+									"type": "object",
+									"children": []
+								}
+							]
+						},
+						{
+							"id": "dojo/dnd/Container",
+							"name": "Container",
+							"fullname": "dojo/dnd/Container",
+							"type": "constructor",
+							"children": [
+								{
+									"id": "dojo/dnd/Container.__ContainerArgs",
+									"name": "__ContainerArgs",
+									"fullname": "dojo/dnd/Container.__ContainerArgs",
+									"type": "constructor",
+									"children": []
+								}
+							]
+						},
+						{
+							"id": "dojo/dnd/Manager",
+							"name": "Manager",
+							"fullname": "dojo/dnd/Manager",
+							"type": "constructor"
+						},
+						{
+							"id": "dojo/dnd/move",
+							"name": "move",
+							"fullname": "dojo/dnd/move",
+							"type": "object",
+							"children": [
+								{
+									"id": "dojo/dnd/move.boxConstrainedMoveable",
+									"name": "boxConstrainedMoveable",
+									"fullname": "dojo/dnd/move.boxConstrainedMoveable",
+									"type": "constructor",
+									"children": []
+								},
+								{
+									"id": "dojo/dnd/move.constrainedMoveable",
+									"name": "constrainedMoveable",
+									"fullname": "dojo/dnd/move.constrainedMoveable",
+									"type": "constructor",
+									"children": []
+								},
+								{
+									"id": "dojo/dnd/move.parentConstrainedMoveable",
+									"name": "parentConstrainedMoveable",
+									"fullname": "dojo/dnd/move.parentConstrainedMoveable",
+									"type": "constructor",
+									"children": []
+								}
+							]
+						},
+						{
+							"id": "dojo/dnd/Moveable",
+							"name": "Moveable",
+							"fullname": "dojo/dnd/Moveable",
+							"type": "constructor",
+							"children": [
+								{
+									"id": "dojo/dnd/Moveable.__MoveableArgs",
+									"name": "__MoveableArgs",
+									"fullname": "dojo/dnd/Moveable.__MoveableArgs",
+									"type": "constructor",
+									"children": []
+								}
+							]
+						},
+						{
+							"id": "dojo/dnd/Mover",
+							"name": "Mover",
+							"fullname": "dojo/dnd/Mover",
+							"type": "constructor"
+						},
+						{
+							"id": "dojo/dnd/Selector",
+							"name": "Selector",
+							"fullname": "dojo/dnd/Selector",
+							"type": "constructor"
+						},
+						{
+							"id": "dojo/dnd/Source",
+							"name": "Source",
+							"fullname": "dojo/dnd/Source",
+							"type": "constructor"
+						},
+						{
+							"id": "dojo/dnd/Target",
+							"name": "Target",
+							"fullname": "dojo/dnd/Target",
+							"type": "constructor"
+						},
+						{
+							"id": "dojo/dnd/TimedMoveable",
+							"name": "TimedMoveable",
+							"fullname": "dojo/dnd/TimedMoveable",
+							"type": "constructor"
+						}
+					]
+				},
+				{
+					"id": "dojo/dom",
+					"name": "dom",
+					"fullname": "dojo/dom",
+					"type": "object"
+				},
+				{
+					"id": "dojo/dom-attr",
+					"name": "dom-attr",
+					"fullname": "dojo/dom-attr",
+					"type": "object"
+				},
+				{
+					"id": "dojo/dom-class",
+					"name": "dom-class",
+					"fullname": "dojo/dom-class",
+					"type": "object"
+				},
+				{
+					"id": "dojo/dom-construct",
+					"name": "dom-construct",
+					"fullname": "dojo/dom-construct",
+					"type": "object"
+				},
+				{
+					"id": "dojo/dom-form",
+					"name": "dom-form",
+					"fullname": "dojo/dom-form",
+					"type": "object"
+				},
+				{
+					"id": "dojo/dom-geometry",
+					"name": "dom-geometry",
+					"fullname": "dojo/dom-geometry",
+					"type": "object"
+				},
+				{
+					"id": "dojo/dom-prop",
+					"name": "dom-prop",
+					"fullname": "dojo/dom-prop",
+					"type": "object",
+					"children": [
+						{
+							"id": "dojo/dom-prop.names",
+							"name": "names",
+							"fullname": "dojo/dom-prop.names",
+							"type": "object",
+							"children": []
+						}
+					]
+				},
+				{
+					"id": "dojo/dom-style",
+					"name": "dom-style",
+					"fullname": "dojo/dom-style",
+					"type": "object"
+				},
+				{
+					"id": "dojo/domReady",
+					"name": "domReady",
+					"fullname": "dojo/domReady",
+					"type": "function"
+				},
+				{
+					"id": "dojo/errors/",
+					"name": "errors",
+					"fullname": "dojo/errors",
+					"type": "folder",
+					"children": [
+						{
+							"id": "dojo/errors/CancelError",
+							"name": "CancelError",
+							"fullname": "dojo/errors/CancelError",
+							"type": "function"
+						},
+						{
+							"id": "dojo/errors/create",
+							"name": "create",
+							"fullname": "dojo/errors/create",
+							"type": "function"
+						},
+						{
+							"id": "dojo/errors/RequestError",
+							"name": "RequestError",
+							"fullname": "dojo/errors/RequestError",
+							"type": "function"
+						},
+						{
+							"id": "dojo/errors/RequestTimeoutError",
+							"name": "RequestTimeoutError",
+							"fullname": "dojo/errors/RequestTimeoutError",
+							"type": "function"
+						}
+					]
+				},
+				{
+					"id": "dojo/Evented",
+					"name": "Evented",
+					"fullname": "dojo/Evented",
+					"type": "function"
+				},
+				{
+					"id": "dojo/fx",
+					"name": "fx",
+					"fullname": "dojo/fx",
+					"type": "object",
+					"children": [
+						{
+							"id": "dojo/fx.easing",
+							"name": "easing",
+							"fullname": "dojo/fx.easing",
+							"type": "object",
+							"children": []
+						},
+						{
+							"id": "dojo/fx.Toggler",
+							"name": "Toggler",
+							"fullname": "dojo/fx.Toggler",
+							"type": "constructor",
+							"children": []
+						}
+					]
+				},
+				{
+					"id": "dojo/fx/",
+					"name": "fx",
+					"fullname": "dojo/fx",
+					"type": "folder",
+					"children": [
+						{
+							"id": "dojo/fx/easing",
+							"name": "easing",
+							"fullname": "dojo/fx/easing",
+							"type": "object"
+						},
+						{
+							"id": "dojo/fx/Toggler",
+							"name": "Toggler",
+							"fullname": "dojo/fx/Toggler",
+							"type": "constructor"
+						}
+					]
+				},
+				{
+					"id": "dojo/gears",
+					"name": "gears",
+					"fullname": "dojo/gears",
+					"type": "object",
+					"children": [
+						{
+							"id": "dojo/gears.available",
+							"name": "available",
+							"fullname": "dojo/gears.available",
+							"type": "object",
+							"children": []
+						}
+					]
+				},
+				{
+					"id": "dojo/has",
+					"name": "has",
+					"fullname": "dojo/has",
+					"type": "function"
+				},
+				{
+					"id": "dojo/hash",
+					"name": "hash",
+					"fullname": "dojo/hash",
+					"type": "function"
+				},
+				{
+					"id": "dojo/hccss",
+					"name": "hccss",
+					"fullname": "dojo/hccss",
+					"type": "function"
+				},
+				{
+					"id": "dojo/html",
+					"name": "html",
+					"fullname": "dojo/html",
+					"type": "object",
+					"children": [
+						{
+							"id": "dojo/html._ContentSetter",
+							"name": "_ContentSetter",
+							"fullname": "dojo/html._ContentSetter",
+							"type": "constructor",
+							"children": []
+						}
+					]
+				},
+				{
+					"id": "dojo/i18n",
+					"name": "i18n",
+					"fullname": "dojo/i18n",
+					"type": "object",
+					"children": [
+						{
+							"id": "dojo/i18n.cache",
+							"name": "cache",
+							"fullname": "dojo/i18n.cache",
+							"type": "object",
+							"children": []
+						}
+					]
+				},
+				{
+					"id": "dojo/io-query",
+					"name": "io-query",
+					"fullname": "dojo/io-query",
+					"type": "object"
+				},
+				{
+					"id": "dojo/io/",
+					"name": "io",
+					"fullname": "dojo/io",
+					"type": "folder",
+					"children": [
+						{
+							"id": "dojo/io/iframe",
+							"name": "iframe",
+							"fullname": "dojo/io/iframe",
+							"type": "object"
+						},
+						{
+							"id": "dojo/io/script",
+							"name": "script",
+							"fullname": "dojo/io/script",
+							"type": "object"
+						}
+					]
+				},
+				{
+					"id": "dojo/json",
+					"name": "json",
+					"fullname": "dojo/json",
+					"type": "object"
+				},
+				{
+					"id": "dojo/keys",
+					"name": "keys",
+					"fullname": "dojo/keys",
+					"type": "object"
+				},
+				{
+					"id": "dojo/loadInit",
+					"name": "loadInit",
+					"fullname": "dojo/loadInit",
+					"type": "object"
+				},
+				{
+					"id": "dojo/main",
+					"name": "main",
+					"fullname": "dojo/main",
+					"type": "object",
+					"children": [
+						{
+							"id": "dojo/main.__IoArgs",
+							"name": "__IoArgs",
+							"fullname": "dojo/main.__IoArgs",
+							"type": "constructor",
+							"children": []
+						},
+						{
+							"id": "dojo/main.__IoCallbackArgs",
+							"name": "__IoCallbackArgs",
+							"fullname": "dojo/main.__IoCallbackArgs",
+							"type": "constructor",
+							"children": []
+						},
+						{
+							"id": "dojo/main.__IoPublish",
+							"name": "__IoPublish",
+							"fullname": "dojo/main.__IoPublish",
+							"type": "constructor",
+							"children": []
+						},
+						{
+							"id": "dojo/main.__XhrArgs",
+							"name": "__XhrArgs",
+							"fullname": "dojo/main.__XhrArgs",
+							"type": "constructor",
+							"children": []
+						},
+						{
+							"id": "dojo/main._contentHandlers",
+							"name": "_contentHandlers",
+							"fullname": "dojo/main._contentHandlers",
+							"type": "object",
+							"children": []
+						},
+						{
+							"id": "dojo/main._hasResource",
+							"name": "_hasResource",
+							"fullname": "dojo/main._hasResource",
+							"type": "object",
+							"children": []
+						},
+						{
+							"id": "dojo/main._nodeDataCache",
+							"name": "_nodeDataCache",
+							"fullname": "dojo/main._nodeDataCache",
+							"type": "object",
+							"children": []
+						},
+						{
+							"id": "dojo/main.back",
+							"name": "back",
+							"fullname": "dojo/main.back",
+							"type": "object",
+							"children": []
+						},
+						{
+							"id": "dojo/main.cldr",
+							"name": "cldr",
+							"fullname": "dojo/main.cldr",
+							"type": "object",
+							"children": []
+						},
+						{
+							"id": "dojo/main.colors",
+							"name": "colors",
+							"fullname": "dojo/main.colors",
+							"type": "object",
+							"children": []
+						},
+						{
+							"id": "dojo/main.config",
+							"name": "config",
+							"fullname": "dojo/main.config",
+							"type": "object",
+							"children": []
+						},
+						{
+							"id": "dojo/main.contentHandlers",
+							"name": "contentHandlers",
+							"fullname": "dojo/main.contentHandlers",
+							"type": "object",
+							"children": []
+						},
+						{
+							"id": "dojo/main.currency",
+							"name": "currency",
+							"fullname": "dojo/main.currency",
+							"type": "object",
+							"children": []
+						},
+						{
+							"id": "dojo/main.data",
+							"name": "data",
+							"fullname": "dojo/main.data",
+							"type": "object",
+							"children": []
+						},
+						{
+							"id": "dojo/main.date",
+							"name": "date",
+							"fullname": "dojo/main.date",
+							"type": "object",
+							"children": []
+						},
+						{
+							"id": "dojo/main.dijit",
+							"name": "dijit",
+							"fullname": "dojo/main.dijit",
+							"type": "object",
+							"children": []
+						},
+						{
+							"id": "dojo/main.dnd",
+							"name": "dnd",
+							"fullname": "dojo/main.dnd",
+							"type": "object",
+							"children": []
+						},
+						{
+							"id": "dojo/main.doc",
+							"name": "doc",
+							"fullname": "dojo/main.doc",
+							"type": "object",
+							"children": []
+						},
+						{
+							"id": "dojo/main.dojox",
+							"name": "dojox",
+							"fullname": "dojo/main.dojox",
+							"type": "object",
+							"children": []
+						},
+						{
+							"id": "dojo/main.fx",
+							"name": "fx",
+							"fullname": "dojo/main.fx",
+							"type": "object",
+							"children": []
+						},
+						{
+							"id": "dojo/main.gears",
+							"name": "gears",
+							"fullname": "dojo/main.gears",
+							"type": "object",
+							"children": []
+						},
+						{
+							"id": "dojo/main.global",
+							"name": "global",
+							"fullname": "dojo/main.global",
+							"type": "object",
+							"children": []
+						},
+						{
+							"id": "dojo/main.html",
+							"name": "html",
+							"fullname": "dojo/main.html",
+							"type": "object",
+							"children": []
+						},
+						{
+							"id": "dojo/main.i18n",
+							"name": "i18n",
+							"fullname": "dojo/main.i18n",
+							"type": "object",
+							"children": []
+						},
+						{
+							"id": "dojo/main.io",
+							"name": "io",
+							"fullname": "dojo/main.io",
+							"type": "object",
+							"children": []
+						},
+						{
+							"id": "dojo/main.keys",
+							"name": "keys",
+							"fullname": "dojo/main.keys",
+							"type": "object",
+							"children": []
+						},
+						{
+							"id": "dojo/main.mouseButtons",
+							"name": "mouseButtons",
+							"fullname": "dojo/main.mouseButtons",
+							"type": "object",
+							"children": []
+						},
+						{
+							"id": "dojo/main.number",
+							"name": "number",
+							"fullname": "dojo/main.number",
+							"type": "object",
+							"children": []
+						},
+						{
+							"id": "dojo/main.parser",
+							"name": "parser",
+							"fullname": "dojo/main.parser",
+							"type": "object",
+							"children": []
+						},
+						{
+							"id": "dojo/main.regexp",
+							"name": "regexp",
+							"fullname": "dojo/main.regexp",
+							"type": "object",
+							"children": []
+						},
+						{
+							"id": "dojo/main.rpc",
+							"name": "rpc",
+							"fullname": "dojo/main.rpc",
+							"type": "object",
+							"children": []
+						},
+						{
+							"id": "dojo/main.scopeMap",
+							"name": "scopeMap",
+							"fullname": "dojo/main.scopeMap",
+							"type": "object",
+							"children": []
+						},
+						{
+							"id": "dojo/main.Stateful",
+							"name": "Stateful",
+							"fullname": "dojo/main.Stateful",
+							"type": "constructor",
+							"children": []
+						},
+						{
+							"id": "dojo/main.store",
+							"name": "store",
+							"fullname": "dojo/main.store",
+							"type": "object",
+							"children": []
+						},
+						{
+							"id": "dojo/main.string",
+							"name": "string",
+							"fullname": "dojo/main.string",
+							"type": "object",
+							"children": []
+						},
+						{
+							"id": "dojo/main.tests",
+							"name": "tests",
+							"fullname": "dojo/main.tests",
+							"type": "object",
+							"children": []
+						},
+						{
+							"id": "dojo/main.touch",
+							"name": "touch",
+							"fullname": "dojo/main.touch",
+							"type": "object",
+							"children": []
+						},
+						{
+							"id": "dojo/main.version",
+							"name": "version",
+							"fullname": "dojo/main.version",
+							"type": "object",
+							"children": []
+						},
+						{
+							"id": "dojo/main.window",
+							"name": "window",
+							"fullname": "dojo/main.window",
+							"type": "object",
+							"children": []
+						}
+					]
+				},
+				{
+					"id": "dojo/mouse",
+					"name": "mouse",
+					"fullname": "dojo/mouse",
+					"type": "object"
+				},
+				{
+					"id": "dojo/node",
+					"name": "node",
+					"fullname": "dojo/node",
+					"type": "object"
+				},
+				{
+					"id": "dojo/NodeList",
+					"name": "NodeList",
+					"fullname": "dojo/NodeList",
+					"type": "function",
+					"children": [
+						{
+							"id": "dojo/NodeList._nodeDataCache",
+							"name": "_nodeDataCache",
+							"fullname": "dojo/NodeList._nodeDataCache",
+							"type": "object",
+							"children": []
+						}
+					]
+				},
+				{
+					"id": "dojo/NodeList-data",
+					"name": "NodeList-data",
+					"fullname": "dojo/NodeList-data",
+					"type": "function"
+				},
+				{
+					"id": "dojo/NodeList-dom",
+					"name": "NodeList-dom",
+					"fullname": "dojo/NodeList-dom",
+					"type": "function"
+				},
+				{
+					"id": "dojo/NodeList-fx",
+					"name": "NodeList-fx",
+					"fullname": "dojo/NodeList-fx",
+					"type": "function"
+				},
+				{
+					"id": "dojo/NodeList-html",
+					"name": "NodeList-html",
+					"fullname": "dojo/NodeList-html",
+					"type": "function"
+				},
+				{
+					"id": "dojo/NodeList-manipulate",
+					"name": "NodeList-manipulate",
+					"fullname": "dojo/NodeList-manipulate",
+					"type": "function"
+				},
+				{
+					"id": "dojo/NodeList-traverse",
+					"name": "NodeList-traverse",
+					"fullname": "dojo/NodeList-traverse",
+					"type": "function"
+				},
+				{
+					"id": "dojo/number",
+					"name": "number",
+					"fullname": "dojo/number",
+					"type": "object",
+					"children": [
+						{
+							"id": "dojo/number.__FormatAbsoluteOptions",
+							"name": "__FormatAbsoluteOptions",
+							"fullname": "dojo/number.__FormatAbsoluteOptions",
+							"type": "constructor",
+							"children": []
+						},
+						{
+							"id": "dojo/number.__FormatOptions",
+							"name": "__FormatOptions",
+							"fullname": "dojo/number.__FormatOptions",
+							"type": "constructor",
+							"children": []
+						},
+						{
+							"id": "dojo/number.__IntegerRegexpFlags",
+							"name": "__IntegerRegexpFlags",
+							"fullname": "dojo/number.__IntegerRegexpFlags",
+							"type": "constructor",
+							"children": []
+						},
+						{
+							"id": "dojo/number.__ParseOptions",
+							"name": "__ParseOptions",
+							"fullname": "dojo/number.__ParseOptions",
+							"type": "constructor",
+							"children": []
+						},
+						{
+							"id": "dojo/number.__RealNumberRegexpFlags",
+							"name": "__RealNumberRegexpFlags",
+							"fullname": "dojo/number.__RealNumberRegexpFlags",
+							"type": "constructor",
+							"children": []
+						},
+						{
+							"id": "dojo/number.__RegexpOptions",
+							"name": "__RegexpOptions",
+							"fullname": "dojo/number.__RegexpOptions",
+							"type": "constructor",
+							"children": []
+						}
+					]
+				},
+				{
+					"id": "dojo/on",
+					"name": "on",
+					"fullname": "dojo/on",
+					"type": "function"
+				},
+				{
+					"id": "dojo/parser",
+					"name": "parser",
+					"fullname": "dojo/parser",
+					"type": "object"
+				},
+				{
+					"id": "dojo/promise/",
+					"name": "promise",
+					"fullname": "dojo/promise",
+					"type": "folder",
+					"children": [
+						{
+							"id": "dojo/promise/all",
+							"name": "all",
+							"fullname": "dojo/promise/all",
+							"type": "function"
+						},
+						{
+							"id": "dojo/promise/first",
+							"name": "first",
+							"fullname": "dojo/promise/first",
+							"type": "function"
+						},
+						{
+							"id": "dojo/promise/instrumentation",
+							"name": "instrumentation",
+							"fullname": "dojo/promise/instrumentation",
+							"type": "function"
+						},
+						{
+							"id": "dojo/promise/Promise",
+							"name": "Promise",
+							"fullname": "dojo/promise/Promise",
+							"type": "function"
+						},
+						{
+							"id": "dojo/promise/tracer",
+							"name": "tracer",
+							"fullname": "dojo/promise/tracer",
+							"type": "object"
+						}
+					]
+				},
+				{
+					"id": "dojo/query",
+					"name": "query",
+					"fullname": "dojo/query",
+					"type": "function"
+				},
+				{
+					"id": "dojo/ready",
+					"name": "ready",
+					"fullname": "dojo/ready",
+					"type": "function"
+				},
+				{
+					"id": "dojo/regexp",
+					"name": "regexp",
+					"fullname": "dojo/regexp",
+					"type": "object"
+				},
+				{
+					"id": "dojo/request",
+					"name": "request",
+					"fullname": "dojo/request",
+					"type": "function",
+					"children": [
+						{
+							"id": "dojo/request.__BaseOptions",
+							"name": "__BaseOptions",
+							"fullname": "dojo/request.__BaseOptions",
+							"type": "constructor",
+							"children": []
+						},
+						{
+							"id": "dojo/request.__MethodOptions",
+							"name": "__MethodOptions",
+							"fullname": "dojo/request.__MethodOptions",
+							"type": "constructor",
+							"children": []
+						},
+						{
+							"id": "dojo/request.__Options",
+							"name": "__Options",
+							"fullname": "dojo/request.__Options",
+							"type": "constructor",
+							"children": []
+						},
+						{
+							"id": "dojo/request.__Promise",
+							"name": "__Promise",
+							"fullname": "dojo/request.__Promise",
+							"type": "constructor",
+							"children": []
+						}
+					]
+				},
+				{
+					"id": "dojo/request/",
+					"name": "request",
+					"fullname": "dojo/request",
+					"type": "folder",
+					"children": [
+						{
+							"id": "dojo/request/default",
+							"name": "default",
+							"fullname": "dojo/request/default",
+							"type": "object"
+						},
+						{
+							"id": "dojo/request/handlers",
+							"name": "handlers",
+							"fullname": "dojo/request/handlers",
+							"type": "function"
+						},
+						{
+							"id": "dojo/request/iframe",
+							"name": "iframe",
+							"fullname": "dojo/request/iframe",
+							"type": "function",
+							"children": [
+								{
+									"id": "dojo/request/iframe.__BaseOptions",
+									"name": "__BaseOptions",
+									"fullname": "dojo/request/iframe.__BaseOptions",
+									"type": "constructor",
+									"children": []
+								},
+								{
+									"id": "dojo/request/iframe.__MethodOptions",
+									"name": "__MethodOptions",
+									"fullname": "dojo/request/iframe.__MethodOptions",
+									"type": "constructor",
+									"children": []
+								},
+								{
+									"id": "dojo/request/iframe.__Options",
+									"name": "__Options",
+									"fullname": "dojo/request/iframe.__Options",
+									"type": "constructor",
+									"children": []
+								}
+							]
+						},
+						{
+							"id": "dojo/request/node",
+							"name": "node",
+							"fullname": "dojo/request/node",
+							"type": "function",
+							"children": [
+								{
+									"id": "dojo/request/node.__BaseOptions",
+									"name": "__BaseOptions",
+									"fullname": "dojo/request/node.__BaseOptions",
+									"type": "constructor",
+									"children": []
+								},
+								{
+									"id": "dojo/request/node.__MethodOptions",
+									"name": "__MethodOptions",
+									"fullname": "dojo/request/node.__MethodOptions",
+									"type": "constructor",
+									"children": []
+								},
+								{
+									"id": "dojo/request/node.__Options",
+									"name": "__Options",
+									"fullname": "dojo/request/node.__Options",
+									"type": "constructor",
+									"children": []
+								}
+							]
+						},
+						{
+							"id": "dojo/request/notify",
+							"name": "notify",
+							"fullname": "dojo/request/notify",
+							"type": "function"
+						},
+						{
+							"id": "dojo/request/registry",
+							"name": "registry",
+							"fullname": "dojo/request/registry",
+							"type": "function"
+						},
+						{
+							"id": "dojo/request/script",
+							"name": "script",
+							"fullname": "dojo/request/script",
+							"type": "function",
+							"children": [
+								{
+									"id": "dojo/request/script.__BaseOptions",
+									"name": "__BaseOptions",
+									"fullname": "dojo/request/script.__BaseOptions",
+									"type": "constructor",
+									"children": []
+								},
+								{
+									"id": "dojo/request/script.__MethodOptions",
+									"name": "__MethodOptions",
+									"fullname": "dojo/request/script.__MethodOptions",
+									"type": "constructor",
+									"children": []
+								},
+								{
+									"id": "dojo/request/script.__Options",
+									"name": "__Options",
+									"fullname": "dojo/request/script.__Options",
+									"type": "constructor",
+									"children": []
+								}
+							]
+						},
+						{
+							"id": "dojo/request/util",
+							"name": "util",
+							"fullname": "dojo/request/util",
+							"type": "object"
+						},
+						{
+							"id": "dojo/request/watch",
+							"name": "watch",
+							"fullname": "dojo/request/watch",
+							"type": "function"
+						},
+						{
+							"id": "dojo/request/xhr",
+							"name": "xhr",
+							"fullname": "dojo/request/xhr",
+							"type": "function",
+							"children": [
+								{
+									"id": "dojo/request/xhr.__BaseOptions",
+									"name": "__BaseOptions",
+									"fullname": "dojo/request/xhr.__BaseOptions",
+									"type": "constructor",
+									"children": []
+								},
+								{
+									"id": "dojo/request/xhr.__MethodOptions",
+									"name": "__MethodOptions",
+									"fullname": "dojo/request/xhr.__MethodOptions",
+									"type": "constructor",
+									"children": []
+								},
+								{
+									"id": "dojo/request/xhr.__Options",
+									"name": "__Options",
+									"fullname": "dojo/request/xhr.__Options",
+									"type": "constructor",
+									"children": []
+								}
+							]
+						}
+					]
+				},
+				{
+					"id": "dojo/require",
+					"name": "require",
+					"fullname": "dojo/require",
+					"type": "object"
+				},
+				{
+					"id": "dojo/robot",
+					"name": "robot",
+					"fullname": "dojo/robot",
+					"type": "object",
+					"children": [
+						{
+							"id": "dojo/robot._runsemaphore",
+							"name": "_runsemaphore",
+							"fullname": "dojo/robot._runsemaphore",
+							"type": "object",
+							"children": []
+						}
+					]
+				},
+				{
+					"id": "dojo/robotx",
+					"name": "robotx",
+					"fullname": "dojo/robotx",
+					"type": "object",
+					"children": [
+						{
+							"id": "dojo/robotx._runsemaphore",
+							"name": "_runsemaphore",
+							"fullname": "dojo/robotx._runsemaphore",
+							"type": "object",
+							"children": []
+						}
+					]
+				},
+				{
+					"id": "dojo/router",
+					"name": "router",
+					"fullname": "dojo/router",
+					"type": "object"
+				},
+				{
+					"id": "dojo/router/",
+					"name": "router",
+					"fullname": "dojo/router",
+					"type": "folder",
+					"children": [
+						{
+							"id": "dojo/router/RouterBase",
+							"name": "RouterBase",
+							"fullname": "dojo/router/RouterBase",
+							"type": "constructor"
+						}
+					]
+				},
+				{
+					"id": "dojo/rpc/",
+					"name": "rpc",
+					"fullname": "dojo/rpc",
+					"type": "folder",
+					"children": [
+						{
+							"id": "dojo/rpc/JsonpService",
+							"name": "JsonpService",
+							"fullname": "dojo/rpc/JsonpService",
+							"type": "constructor"
+						},
+						{
+							"id": "dojo/rpc/JsonService",
+							"name": "JsonService",
+							"fullname": "dojo/rpc/JsonService",
+							"type": "constructor"
+						},
+						{
+							"id": "dojo/rpc/RpcService",
+							"name": "RpcService",
+							"fullname": "dojo/rpc/RpcService",
+							"type": "constructor"
+						}
+					]
+				},
+				{
+					"id": "dojo/selector/",
+					"name": "selector",
+					"fullname": "dojo/selector",
+					"type": "folder",
+					"children": [
+						{
+							"id": "dojo/selector/_loader",
+							"name": "_loader",
+							"fullname": "dojo/selector/_loader",
+							"type": "object"
+						},
+						{
+							"id": "dojo/selector/acme",
+							"name": "acme",
+							"fullname": "dojo/selector/acme",
+							"type": "function"
+						},
+						{
+							"id": "dojo/selector/lite",
+							"name": "lite",
+							"fullname": "dojo/selector/lite",
+							"type": "function"
+						}
+					]
+				},
+				{
+					"id": "dojo/sniff",
+					"name": "sniff",
+					"fullname": "dojo/sniff",
+					"type": "function"
+				},
+				{
+					"id": "dojo/Stateful",
+					"name": "Stateful",
+					"fullname": "dojo/Stateful",
+					"type": "constructor"
+				},
+				{
+					"id": "dojo/store/",
+					"name": "store",
+					"fullname": "dojo/store",
+					"type": "folder",
+					"children": [
+						{
+							"id": "dojo/store/api/",
+							"name": "api",
+							"fullname": "dojo/store/api",
+							"type": "folder",
+							"children": [
+								{
+									"id": "dojo/store/api/Store",
+									"name": "Store",
+									"fullname": "dojo/store/api/Store",
+									"type": "constructor",
+									"children": [
+										{
+											"id": "dojo/store/api/Store.PutDirectives",
+											"name": "PutDirectives",
+											"fullname": "dojo/store/api/Store.PutDirectives",
+											"type": "constructor",
+											"children": []
+										},
+										{
+											"id": "dojo/store/api/Store.QueryOptions",
+											"name": "QueryOptions",
+											"fullname": "dojo/store/api/Store.QueryOptions",
+											"type": "constructor",
+											"children": []
+										},
+										{
+											"id": "dojo/store/api/Store.QueryResults",
+											"name": "QueryResults",
+											"fullname": "dojo/store/api/Store.QueryResults",
+											"type": "constructor",
+											"children": []
+										},
+										{
+											"id": "dojo/store/api/Store.SortInformation",
+											"name": "SortInformation",
+											"fullname": "dojo/store/api/Store.SortInformation",
+											"type": "constructor",
+											"children": []
+										},
+										{
+											"id": "dojo/store/api/Store.Transaction",
+											"name": "Transaction",
+											"fullname": "dojo/store/api/Store.Transaction",
+											"type": "constructor",
+											"children": []
+										}
+									]
+								}
+							]
+						},
+						{
+							"id": "dojo/store/Cache",
+							"name": "Cache",
+							"fullname": "dojo/store/Cache",
+							"type": "constructor"
+						},
+						{
+							"id": "dojo/store/DataStore",
+							"name": "DataStore",
+							"fullname": "dojo/store/DataStore",
+							"type": "constructor"
+						},
+						{
+							"id": "dojo/store/JsonRest",
+							"name": "JsonRest",
+							"fullname": "dojo/store/JsonRest",
+							"type": "constructor"
+						},
+						{
+							"id": "dojo/store/Memory",
+							"name": "Memory",
+							"fullname": "dojo/store/Memory",
+							"type": "constructor"
+						},
+						{
+							"id": "dojo/store/Observable",
+							"name": "Observable",
+							"fullname": "dojo/store/Observable",
+							"type": "function"
+						},
+						{
+							"id": "dojo/store/util/",
+							"name": "util",
+							"fullname": "dojo/store/util",
+							"type": "folder",
+							"children": [
+								{
+									"id": "dojo/store/util/QueryResults",
+									"name": "QueryResults",
+									"fullname": "dojo/store/util/QueryResults",
+									"type": "function"
+								},
+								{
+									"id": "dojo/store/util/SimpleQueryEngine",
+									"name": "SimpleQueryEngine",
+									"fullname": "dojo/store/util/SimpleQueryEngine",
+									"type": "function"
+								}
+							]
+						}
+					]
+				},
+				{
+					"id": "dojo/string",
+					"name": "string",
+					"fullname": "dojo/string",
+					"type": "object"
+				},
+				{
+					"id": "dojo/text",
+					"name": "text",
+					"fullname": "dojo/text",
+					"type": "object"
+				},
+				{
+					"id": "dojo/topic",
+					"name": "topic",
+					"fullname": "dojo/topic",
+					"type": "object"
+				},
+				{
+					"id": "dojo/touch",
+					"name": "touch",
+					"fullname": "dojo/touch",
+					"type": "object"
+				},
+				{
+					"id": "dojo/uacss",
+					"name": "uacss",
+					"fullname": "dojo/uacss",
+					"type": "object"
+				},
+				{
+					"id": "dojo/when",
+					"name": "when",
+					"fullname": "dojo/when",
+					"type": "function"
+				},
+				{
+					"id": "dojo/window",
+					"name": "window",
+					"fullname": "dojo/window",
+					"type": "object"
+				}
+			]
+		}
+	]
+}

@@ -1,0 +1,59 @@
+<div class="jsdoc-permalink" style="display:none;">http://api.dojotoolkit.org/1.6/dojo/fx</div><h1 class="jsdoc-title objectIcon36">dojo.fx <span style="font-size:11px;color:#999;">(version 1.6)</span></h1><div class="jsdoc-prototype">Object &raquo; dojo.fx</div><div class="jsdoc-full-summary"><p>Effects library on top of Base animations</p>
+</div><div class="jsdoc-children"><div class="jsdoc-field-list"><h2 class="jsdoc-summary-heading">Method Summary <span class="jsdoc-summary-toggle"></span></h2><div class="jsdoc-summary-list"><ul><li class="functionIcon public inherited even"><a class="inline-link" href="#dojo.fx.chain">dojo.fx.chain</a><span class="parameters">(animations)</span><span class="jsdoc-returns"> returns dojo.Animation</span> <span>Chain a list of <code>dojo.Animation</code>s to run in sequence</span></li><li class="functionIcon public inherited odd"><a class="inline-link" href="#dojo.fx.combine">dojo.fx.combine</a><span class="parameters">(animations)</span><span class="jsdoc-returns"> returns dojo.Animation</span> <span>Combine a list of <code>dojo.Animation</code>s to run in parallel</span></li><li class="functionIcon public inherited even"><a class="inline-link" href="#dojo.fx.slideTo">dojo.fx.slideTo</a><span class="parameters">(args)</span><span class="jsdoc-returns"> returns dojo.Animation</span> <span>Slide a node to a new top/left position</span></li><li class="functionIcon public inherited odd"><a class="inline-link" href="#dojo.fx.wipeIn">dojo.fx.wipeIn</a><span class="parameters">(args)</span><span class="jsdoc-returns"> returns dojo.Animation</span> <span>Expand a node to it's natural height.</span></li><li class="functionIcon public inherited even"><a class="inline-link" href="#dojo.fx.wipeOut">dojo.fx.wipeOut</a><span class="parameters">(args)</span><span class="jsdoc-returns"> returns dojo.Animation</span> <span>Shrink a node to nothing and hide it.</span></li></ul></div><h2 class="jsdoc-summary-heading">Attached Objects <span class="jsdoc-summary-toggle"></span></h2><div class="jsdoc-summary-list"><div class="jsdoc-field"><div class="jsdoc-title"><span class="constructor"><a class="jsdoc-link" href="http://api.dojotoolkit.org/1.6/dojo/fx/Toggler">dojo.fx.Toggler</a></span></div></div><div class="jsdoc-field"><div class="jsdoc-title"><span class="object"><a class="jsdoc-link" href="http://api.dojotoolkit.org/1.6/dojo/fx/easing">dojo.fx.easing</a></span></div></div></div></div></div><div class="jsdoc-children"><div class="jsdoc-fields"><h2>Methods</h2><div class="jsdoc-field public inherited even"><div class="jsdoc-title"><a name="dojo.fx.chain"></a><span class="functionIcon">dojo.fx.chain</span></div><div class="jsdoc-inheritance">Defined by <a class="jsdoc-link" href="http://api.dojotoolkit.org/1.6/dojo/fx">dojo.fx</a></div><div class="jsdoc-return-type">Returns <strong>dojo.Animation</strong></div><div class="jsdoc-summary"><p>Return a <code>dojo.Animation</code> which will play all passed
+<code>dojo.Animation</code> instances in sequence, firing its own
+synthesized events simulating a single animation. (eg:
+onEnd of this animation means the end of the chain,
+not the individual animations within)</p>
+</div><table class="jsdoc-parameters"><tr><th>Parameter</th><th>Type</th><th>Description</th></tr><tr><td class="jsdoc-param-name">animations</td><td class="jsdoc-param-type">dojo.Animation[]</td><td class="jsdoc-param-description"></td></tr></table><div class="jsdoc-examples"><div class="jsdoc-example"><div><strong>Example 1</strong></div>
+Once `node` is faded out, fade in `otherNode`
+<pre class="brush: js;" lang="javascript">
+	dojo.fx.chain([
+		dojo.fadeIn({ node:node }),
+		dojo.fadeOut({ node:otherNode })
+	]).play();
+</pre></div></div></div><div class="jsdoc-field public inherited odd"><div class="jsdoc-title"><a name="dojo.fx.combine"></a><span class="functionIcon">dojo.fx.combine</span></div><div class="jsdoc-inheritance">Defined by <a class="jsdoc-link" href="http://api.dojotoolkit.org/1.6/dojo/fx">dojo.fx</a></div><div class="jsdoc-return-type">Returns <strong>dojo.Animation</strong></div><div class="jsdoc-summary"><p>Combine an array of <code>dojo.Animation</code>s to run in parallel,
+providing a new <code>dojo.Animation</code> instance encompasing each
+animation, firing standard animation events.</p>
+</div><table class="jsdoc-parameters"><tr><th>Parameter</th><th>Type</th><th>Description</th></tr><tr><td class="jsdoc-param-name">animations</td><td class="jsdoc-param-type">dojo.Animation[]</td><td class="jsdoc-param-description"></td></tr></table><div class="jsdoc-examples"><div class="jsdoc-example"><div><strong>Example 1</strong></div>
+Fade out `node` while fading in `otherNode` simultaneously
+<pre class="brush: js;" lang="javascript">
+	dojo.fx.combine([
+		dojo.fadeIn({ node:node }),
+		dojo.fadeOut({ node:otherNode })
+	]).play();
+</pre></div><div class="jsdoc-example"><div><strong>Example 2</strong></div>
+When the longest animation ends, execute a function:
+<pre class="brush: js;" lang="javascript">
+	var anim = dojo.fx.combine([
+		dojo.fadeIn({ node: n, duration:700 }),
+		dojo.fadeOut({ node: otherNode, duration: 300 })
+	]);
+	dojo.connect(anim, &quot;onEnd&quot;, function(){
+		// overall animation is done.
+	});
+	anim.play(); // play the animation
+</pre></div></div></div><div class="jsdoc-field public inherited even"><div class="jsdoc-title"><a name="dojo.fx.slideTo"></a><span class="functionIcon">dojo.fx.slideTo</span></div><div class="jsdoc-inheritance">Defined by <a class="jsdoc-link" href="http://api.dojotoolkit.org/1.6/dojo/fx">dojo.fx</a></div><div class="jsdoc-return-type">Returns <strong>dojo.Animation</strong></div><div class="jsdoc-summary"><p>Returns an animation that will slide "node"
+defined in args Object from its current position to
+the position defined by (args.left, args.top).</p>
+</div><table class="jsdoc-parameters"><tr><th>Parameter</th><th>Type</th><th>Description</th></tr><tr><td class="jsdoc-param-name">args</td><td class="jsdoc-param-type">Object</td><td class="jsdoc-param-description">A hash-map of standard <code>dojo.Animation</code> constructor properties
+	(such as easing: node: duration: and so on). Special args members
+	are <code>top</code> and <code>left</code>, which indicate the new position to slide to.</td></tr></table><div class="jsdoc-examples"><div class="jsdoc-example"><div><strong>Example 1</strong></div>
+<pre class="brush: js;" lang="javascript">
+	dojo.fx.slideTo({ node: node, left:&quot;40&quot;, top:&quot;50&quot;, units:&quot;px&quot; }).play()
+</pre></div></div></div><div class="jsdoc-field public inherited odd"><div class="jsdoc-title"><a name="dojo.fx.wipeIn"></a><span class="functionIcon">dojo.fx.wipeIn</span></div><div class="jsdoc-inheritance">Defined by <a class="jsdoc-link" href="http://api.dojotoolkit.org/1.6/dojo/fx">dojo.fx</a></div><div class="jsdoc-return-type">Returns <strong>dojo.Animation</strong></div><div class="jsdoc-summary"><p>Returns an animation that will expand the
+node defined in 'args' object from it's current height to
+it's natural height (with no scrollbar).
+Node must have no margin/border/padding.</p>
+</div><table class="jsdoc-parameters"><tr><th>Parameter</th><th>Type</th><th>Description</th></tr><tr><td class="jsdoc-param-name">args</td><td class="jsdoc-param-type">Object</td><td class="jsdoc-param-description">A hash-map of standard <code>dojo.Animation</code> constructor properties
+	(such as easing: node: duration: and so on)</td></tr></table><div class="jsdoc-examples"><div class="jsdoc-example"><div><strong>Example 1</strong></div>
+<pre class="brush: js;" lang="javascript">
+	dojo.fx.wipeIn({
+		node:&quot;someId&quot;
+	}).play()
+</pre></div></div></div><div class="jsdoc-field public inherited even"><div class="jsdoc-title"><a name="dojo.fx.wipeOut"></a><span class="functionIcon">dojo.fx.wipeOut</span></div><div class="jsdoc-inheritance">Defined by <a class="jsdoc-link" href="http://api.dojotoolkit.org/1.6/dojo/fx">dojo.fx</a></div><div class="jsdoc-return-type">Returns <strong>dojo.Animation</strong></div><div class="jsdoc-summary"><p>Returns an animation that will shrink node defined in "args"
+from it's current height to 1px, and then hide it.</p>
+</div><table class="jsdoc-parameters"><tr><th>Parameter</th><th>Type</th><th>Description</th></tr><tr><td class="jsdoc-param-name">args</td><td class="jsdoc-param-type">Object</td><td class="jsdoc-param-description">A hash-map of standard <code>dojo.Animation</code> constructor properties
+	(such as easing: node: duration: and so on)</td></tr></table><div class="jsdoc-examples"><div class="jsdoc-example"><div><strong>Example 1</strong></div>
+<pre class="brush: js;" lang="javascript">
+	dojo.fx.wipeOut({ node:&quot;someId&quot; }).play()
+</pre></div></div></div></div></div>

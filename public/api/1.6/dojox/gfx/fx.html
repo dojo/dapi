@@ -1,0 +1,37 @@
+<div class="jsdoc-permalink" style="display:none;">http://api.dojotoolkit.org/1.6/dojox/gfx/fx</div><h1 class="jsdoc-title objectIcon36">dojox.gfx.fx <span style="font-size:11px;color:#999;">(version 1.6)</span></h1><div class="jsdoc-prototype">Object &raquo; dojox.gfx.fx</div><div class="jsdoc-children"><div class="jsdoc-field-list"><h2 class="jsdoc-summary-heading">Method Summary <span class="jsdoc-summary-toggle"></span></h2><div class="jsdoc-summary-list"><ul><li class="functionIcon public inherited even"><a class="inline-link" href="#dojox.gfx.fx.animateFill">dojox.gfx.fx.animateFill</a><span class="parameters">(args)</span><span class="jsdoc-returns"> returns dojo.Animation</span> <span>Returns an animation which will change fill color over time.
+	Only solid fill color is supported at the moment</span></li><li class="functionIcon public inherited odd"><a class="inline-link" href="#dojox.gfx.fx.animateFont">dojox.gfx.fx.animateFont</a><span class="parameters">(args)</span><span class="jsdoc-returns"> returns dojo.Animation</span> <span>Returns an animation which will change font properties over time</span></li><li class="functionIcon public inherited even"><a class="inline-link" href="#dojox.gfx.fx.animateStroke">dojox.gfx.fx.animateStroke</a><span class="parameters">(args)</span><span class="jsdoc-returns"> returns dojo.Animation</span> <span>Returns an animation which will change stroke properties over time</span></li><li class="functionIcon public inherited odd"><a class="inline-link" href="#dojox.gfx.fx.animateTransform">dojox.gfx.fx.animateTransform</a><span class="parameters">(args)</span><span class="jsdoc-returns"> returns dojo.Animation</span> <span>Returns an animation which will change transformation over time</span></li></ul></div></div></div><div class="jsdoc-children"><div class="jsdoc-fields"><h2>Methods</h2><div class="jsdoc-field public inherited even"><div class="jsdoc-title"><a name="dojox.gfx.fx.animateFill"></a><span class="functionIcon">dojox.gfx.fx.animateFill</span></div><div class="jsdoc-inheritance">Defined by <a class="jsdoc-link" href="http://api.dojotoolkit.org/1.6/dojox/gfx/fx">dojox.gfx.fx</a></div><div class="jsdoc-return-type">Returns <strong>dojo.Animation</strong></div><div class="jsdoc-summary">Returns an animation which will change fill color over time.
+	Only solid fill color is supported at the moment</div><table class="jsdoc-parameters"><tr><th>Parameter</th><th>Type</th><th>Description</th></tr><tr><td class="jsdoc-param-name">args</td><td class="jsdoc-param-type">Object</td><td class="jsdoc-param-description"></td></tr></table><div class="jsdoc-examples"><div class="jsdoc-example"><div><strong>Example 1</strong></div>
+<pre class="brush: js;" lang="javascript">
+	dojox.gfx.fx.animateFill{{
+		shape: shape,
+		duration: 500,
+		color: {start: &quot;red&quot;, end: &quot;green&quot;}
+	}).play();
+</pre></div></div></div><div class="jsdoc-field public inherited odd"><div class="jsdoc-title"><a name="dojox.gfx.fx.animateFont"></a><span class="functionIcon">dojox.gfx.fx.animateFont</span></div><div class="jsdoc-inheritance">Defined by <a class="jsdoc-link" href="http://api.dojotoolkit.org/1.6/dojox/gfx/fx">dojox.gfx.fx</a></div><div class="jsdoc-return-type">Returns <strong>dojo.Animation</strong></div><div class="jsdoc-summary">Returns an animation which will change font properties over time</div><table class="jsdoc-parameters"><tr><th>Parameter</th><th>Type</th><th>Description</th></tr><tr><td class="jsdoc-param-name">args</td><td class="jsdoc-param-type">Object</td><td class="jsdoc-param-description"></td></tr></table><div class="jsdoc-examples"><div class="jsdoc-example"><div><strong>Example 1</strong></div>
+<pre class="brush: js;" lang="javascript">
+	dojox.gfx.fx.animateFont{{
+		shape: shape,
+		duration: 500,
+		variant: {values: [&quot;normal&quot;, &quot;small-caps&quot;]},
+		size:  {end: 10, units: &quot;pt&quot;}
+	}).play();
+</pre></div></div></div><div class="jsdoc-field public inherited even"><div class="jsdoc-title"><a name="dojox.gfx.fx.animateStroke"></a><span class="functionIcon">dojox.gfx.fx.animateStroke</span></div><div class="jsdoc-inheritance">Defined by <a class="jsdoc-link" href="http://api.dojotoolkit.org/1.6/dojox/gfx/fx">dojox.gfx.fx</a></div><div class="jsdoc-return-type">Returns <strong>dojo.Animation</strong></div><div class="jsdoc-summary">Returns an animation which will change stroke properties over time</div><table class="jsdoc-parameters"><tr><th>Parameter</th><th>Type</th><th>Description</th></tr><tr><td class="jsdoc-param-name">args</td><td class="jsdoc-param-type">Object</td><td class="jsdoc-param-description"></td></tr></table><div class="jsdoc-examples"><div class="jsdoc-example"><div><strong>Example 1</strong></div>
+<pre class="brush: js;" lang="javascript">
+	dojox.gfx.fx.animateStroke{{
+		shape: shape,
+		duration: 500,
+		color: {start: &quot;red&quot;, end: &quot;green&quot;},
+		width: {end: 15},
+		join:  {values: [&quot;miter&quot;, &quot;bevel&quot;, &quot;round&quot;]}
+	}).play();
+</pre></div></div></div><div class="jsdoc-field public inherited odd"><div class="jsdoc-title"><a name="dojox.gfx.fx.animateTransform"></a><span class="functionIcon">dojox.gfx.fx.animateTransform</span></div><div class="jsdoc-inheritance">Defined by <a class="jsdoc-link" href="http://api.dojotoolkit.org/1.6/dojox/gfx/fx">dojox.gfx.fx</a></div><div class="jsdoc-return-type">Returns <strong>dojo.Animation</strong></div><div class="jsdoc-summary">Returns an animation which will change transformation over time</div><table class="jsdoc-parameters"><tr><th>Parameter</th><th>Type</th><th>Description</th></tr><tr><td class="jsdoc-param-name">args</td><td class="jsdoc-param-type">Object</td><td class="jsdoc-param-description"></td></tr></table><div class="jsdoc-examples"><div class="jsdoc-example"><div><strong>Example 1</strong></div>
+<pre class="brush: js;" lang="javascript">
+	dojox.gfx.fx.animateTransform{{
+		shape: shape,
+		duration: 500,
+		transform: [
+			{name: &quot;translate&quot;, start: [0, 0], end: [200, 200]},
+			{name: &quot;original&quot;}
+		]
+	}).play();
+</pre></div></div></div></div></div>

@@ -1,0 +1,38 @@
+<div class="jsdoc-permalink" style="display:none;">http://api.dojotoolkit.org/1.6/dojo/NodeList/addContent</div><h1 class="jsdoc-title functionIcon36">dojo.NodeList.addContent <span style="font-size:11px;color:#999;">(version 1.6)</span></h1><div class="jsdoc-prototype">Object &raquo; dojo.NodeList.addContent</div><div class="jsdoc-require">dojo.require("dojo._base.NodeList");</div><div class="jsdoc-prototype">Defined in dojo/_base/NodeList.js</div><div class="jsdoc-full-summary"><p>a copy of the HTML content is added to each item in the
+list, with an optional position argument. If no position
+argument is provided, the content is appended to the end of
+each item.</p>
+</div><div class="jsdoc-examples"><h2>Examples:</h2><div class="jsdoc-example"><h3>Example 1</h3>
+appends content to the end if the position is omitted
+<pre class="brush: js;" lang="javascript">
+	dojo.query(&quot;h3 &gt; p&quot;).addContent(&quot;hey there!&quot;);
+</pre></div><div class="jsdoc-example"><h3>Example 2</h3>
+add something to the front of each element that has a
+&quot;thinger&quot; property:
+<pre class="brush: js;" lang="javascript">
+	dojo.query(&quot;[thinger]&quot;).addContent(&quot;...&quot;, &quot;first&quot;);
+</pre></div><div class="jsdoc-example"><h3>Example 3</h3>
+adds a header before each element of the list
+<pre class="brush: js;" lang="javascript">
+	dojo.query(&quot;.note&quot;).addContent(&quot;&lt;h4&gt;NOTE:&lt;/h4&gt;&quot;, &quot;before&quot;);
+</pre></div><div class="jsdoc-example"><h3>Example 4</h3>
+add a clone of a DOM node to the end of every element in
+the list, removing it from its existing parent.
+<pre class="brush: js;" lang="javascript">
+	dojo.query(&quot;.note&quot;).addContent(dojo.byId(&quot;foo&quot;));
+</pre></div><div class="jsdoc-example"><h3>Example 5</h3>
+Append nodes from a templatized string.
+dojo.require(&quot;dojo.string&quot;);
+dojo.query(&quot;.note&quot;).addContent({
+template: '&lt;b&gt;${id}: &lt;/b&gt;&lt;span&gt;${name}&lt;/span&gt;',
+id: &quot;user332&quot;,
+name: &quot;Mr. Anderson&quot;
+});</div><div class="jsdoc-example"><h3>Example 6</h3>
+Append nodes from a templatized string that also has widgets parsed.
+dojo.require(&quot;dojo.string&quot;);
+dojo.require(&quot;dojo.parser&quot;);
+var notes = dojo.query(&quot;.note&quot;).addContent({
+template: '&lt;button dojoType=&quot;dijit.form.Button&quot;&gt;${text}&lt;/button&gt;',
+parse: true,
+text: &quot;Send&quot;
+});</div></div><div class="jsdoc-children"><div class="jsdoc-field-list"><h2 class="jsdoc-summary-heading">Method Summary <span class="jsdoc-summary-toggle"></span></h2><div class="jsdoc-summary-list"><ul><li class="functionIcon public inherited even"><a class="inline-link" href="#dojo.NodeList.addContent.safetyCheck">dojo.NodeList.addContent.safetyCheck</a><span class="parameters">(content)</span></li></ul></div></div></div><div class="jsdoc-children"><div class="jsdoc-fields"><h2>Methods</h2><div class="jsdoc-field public inherited even"><div class="jsdoc-title"><a name="dojo.NodeList.addContent.safetyCheck"></a><span class="functionIcon">dojo.NodeList.addContent.safetyCheck</span></div><div class="jsdoc-inheritance">Defined by <a class="jsdoc-link" href="http://api.dojotoolkit.org/1.6/dojo/NodeList/addContent">dojo.NodeList.addContent</a></div><table class="jsdoc-parameters"><tr><th>Parameter</th><th>Type</th><th>Description</th></tr><tr><td class="jsdoc-param-name">content</td><td class="jsdoc-param-type"></td><td class="jsdoc-param-description"></td></tr></table></div></div></div>

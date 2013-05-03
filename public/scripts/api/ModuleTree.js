@@ -1,10 +1,10 @@
-define(["dojo/_base/declare", "dojo/_base/lang", "dijit/Tree", "dijit/registry", "dijit/layout/ContentPane", "dojo/query", "dojo/dom-construct"
-    ], function (declare, lang, Tree, registry, ContentPane, query, domConstruct) {
+define(["dojo/_base/declare", "dojo/_base/lang", "dijit/Tree", "dijit/registry", "dijit/layout/ContentPane",
+        "dojo/query", "dojo/dom-construct", "dojo/_base/config", "dojo/on", "dojo/dom-class", "dojo/dom-style"
+    ], function (declare, lang, Tree, registry, ContentPane, query, domConstruct, config, on, domClass, domStyle) {
 
 	return declare("ModuleTree", Tree, {
 		// summary:
 		//		Variation on Tree to have icons and correct click behavior
-
 		getIconClass: function (item, /*Boolean*/ opened) {
 
 			var type = item.type.toLowerCase();
@@ -50,7 +50,15 @@ define(["dojo/_base/declare", "dojo/_base/lang", "dijit/Tree", "dijit/registry",
             //var url = baseUrl + versions[version] + "/item.php?p=" + page + "&v=" + (version || currentVersion);
             // clean this, apidata moved to config, fullname - start docing jsstructures
             console.log(item.fullname);
-            var url = "apidata/" + version + "/" + item.fullname;  // TODO fix this later, should pass in the context 
+            // TODO - this is shit and need to change - probably push node side -
+            var fullName = item.fullname;
+            if (parseFloat(version.match(/[0-9]../)) < 1.8) {
+                fullName = item.fullname.replace(/\./g, "/") + ".html";
+            }
+            // END TODO
+
+            var url = config.apiPath + "/" + version + "/" + fullName;  // TODO fix this later, should pass in the context
+
             var pane = new ContentPane({
                 id: page.replace(/[\/.]/g, "_") + "_" + version,
                 page: page,		// save page because when we select a tab we locate the corresponding TreeNode
@@ -62,6 +70,7 @@ define(["dojo/_base/declare", "dojo/_base/lang", "dijit/Tree", "dijit/registry",
                 parseOnLoad: false,
                 onLoad: lang.hitch(pane, this.paneOnLoad)
             });
+            pane.startup();
             p.addChild(pane);
             p.selectChild(pane);
             return pane;
@@ -69,6 +78,15 @@ define(["dojo/_base/declare", "dojo/_base/lang", "dijit/Tree", "dijit/registry",
         paneOnLoad : function (data) {
             var context = this.domNode;
             console.log(this.domNode);
+
+            this.extensionOn = true; //possibly move to the contructor though its not an object
+            this.privateOn = false; //possibly move to the contructor though its not an object
+            this.inheritedOn = true; //possibly move to the contructor though its not an object
+
+
+
+///////////////// TODO: IN PROGRESS
+
             var link = query("div.jsdoc-permalink", context)[0].innerHTML;
             // TODO baseUrl ??
             var baseUrl = "/";
@@ -81,6 +99,100 @@ define(["dojo/_base/declare", "dojo/_base/lang", "dijit/Tree", "dijit/registry",
                 className: "jsdoc-toolbar",
                 innerHTML: tbc
             }, this.domNode, "first");
-        }
+            //this.adjustLists(this.domNode);
+
+
+
+            var extensionBtn = query(".jsdoc-extension", toolbar)[0];
+            on(extensionBtn, "click", lang.hitch(this, function (e) {
+                this.extensionOn = !this.extensionOn;
+                var _this = this;
+                domClass.toggle(extensionBtn, "off", !this.extensionOn);
+                adjustLists(context, _this);
+            }));
+
+            var privateBtn = query(".jsdoc-private", toolbar)[0];
+            domClass.add(privateBtn, "off");	// initially off
+            on(privateBtn, "click", lang.hitch(this, function (e) {
+                this.privateOn = !this.privateOn;
+                var _this = this;
+                domClass.toggle(privateBtn, "off", !this.privateOn);
+                adjustLists(context, _this);
+            }));
+
+            var inheritedBtn =  query(".jsdoc-inherited", toolbar)[0];
+            on(inheritedBtn, "click", lang.hitch(this, function (e) {
+                this.inheritedOn = !this.inheritedOn;
+                var _this = this;
+                domClass.toggle(inheritedBtn, "off", !this.inheritedOn);
+                adjustLists(context, _this);
+            }));
+
+
+            function adjustLists(context, obj) {
+                // summary:
+                //		Hide/show privates and inherited methods according to setting of private and inherited toggle buttons.
+                //		Set/remove "odd" class on alternating rows.
+
+                // The alternate approach is to do this through CSS: Toggle a jsdoc-hide-privates and jsdoc-hide-inherited
+                // class on the pane's DOMNode, and use :nth-child(odd) to get the gray/white shading of table rows.   The
+                // only problem (besides not working on IE6-8) is that the row shading won't account for hidden rows, so you
+                // might get contiguous white rows or contiguous gray rows.
+                // number of visible rows so far
+                //var context = this.domNode;
+                console.log("obj");
+                console.log(obj);
+                var cnt = 1;
+                query(".jsdoc-property-list > *", context).forEach(function (li) {
+                    var hide =
+                    (!obj.extensionOn && domClass.contains(li, "extension-module")) ||
+                    (!obj.privateOn && domClass.contains(li, "private")) ||
+                    (!obj.inheritedOn && domClass.contains(li, "inherited"));
+                    if (hide === true) {
+                        console.log(li);
+                    }
+                    domStyle.set(li, "display", hide ? "none" : "block");
+                    domClass.toggle(li, "odd", cnt % 2);
+                    if (!hide) {
+                        cnt++;
+                    }
+                });
+            }
+            adjustLists(context, this);
+
+
+            //	make the summary sections collapsible.
+            query("h2.jsdoc-summary-heading", this.domNode).forEach(function (item) {
+                on(item, "click", function (e) {
+                    var d = e.target.nextSibling;
+                    while (d.nodeType !== 1 && d.nextSibling) { d = d.nextSibling; }
+                    if (d) {
+                        var dsp = domStyle.get(d, "display");
+                        domStyle.set(d, "display", (dsp === "none" ? "": "none"));
+                        query("span.jsdoc-summary-toggle", e.target).forEach(function (item) {
+                            domClass.toggle(item, "closed", dsp === "none");
+                        });
+                    }
+                });
+
+                query("span.jsdoc-summary-toggle", item).addClass("closed");
+
+                //	probably should replace this with next or something.
+                var d = item.nextSibling;
+                while (d.nodeType !== 1 && d.nextSibling) { d = d.nextSibling; }
+                if (d) {
+                    domStyle.set(d, "display", "none");
+                }
+            });
+
+
+
+
+
+
+///////////////// TODO: END IN PROGRESS
+
+        } /// end paneOnLoad
+
 	});
 });

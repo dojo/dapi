@@ -1,0 +1,42 @@
+<div class="jsdoc-permalink" style="display:none;">http://api.dojotoolkit.org/1.6/dojo/AdapterRegistry</div><h1 class="jsdoc-title constructorIcon36">dojo.AdapterRegistry <span style="font-size:11px;color:#999;">(version 1.6)</span></h1><div class="jsdoc-prototype">Object &raquo; dojo.AdapterRegistry</div><div class="jsdoc-require">dojo.require("dojo.AdapterRegistry");</div><div class="jsdoc-prototype">Defined in dojo/AdapterRegistry.js</div><div class="jsdoc-function-information"><h3>Usage:</h3><div class="function-signature"><span class="keyword">var</span> foo = new dojo.AdapterRegistry(<span class="jsdoc-comment-type">/* Boolean? */</span> returnWrappers);</div></div><div class="jsdoc-full-summary"><p>Objects of this class keep list of arrays in the form [name, check,
+wrap, directReturn] that are used to determine what the contextual
+result of a set of checked arguments is. All check/wrap functions
+in this registry should be of the same arity.</p>
+</div><div class="jsdoc-examples"><h2>Examples:</h2><div class="jsdoc-example"><h3>Example 1</h3>
+<pre class="brush: js;" lang="javascript">
+	// create a new registry
+	var reg = new dojo.AdapterRegistry();
+	reg.register(&quot;handleString&quot;,
+		dojo.isString,
+		function(str){
+			// do something with the string here
+		}
+	);
+	reg.register(&quot;handleArr&quot;,
+		dojo.isArray,
+		function(arr){
+			// do something with the array here
+		}
+	);
+	// now we can pass reg.match() *either* an array or a string and
+	// the value we pass will get handled by the right function
+	reg.match(&quot;someValue&quot;); // will call the first function
+	reg.match([&quot;someValue&quot;]); // will call the second
+</pre></div></div><div class="jsdoc-children"><div class="jsdoc-field-list"><h2 class="jsdoc-summary-heading">Property Summary <span class="jsdoc-summary-toggle"></span></h2><div class="jsdoc-summary-list"><ul><li class="arrayIcon public inherited even"><a class="inline-link" href="#pairs">pairs</a></li><li class="objectIcon public inherited odd"><a class="inline-link" href="#returnWrappers">returnWrappers</a></li></ul></div><h2 class="jsdoc-summary-heading">Method Summary <span class="jsdoc-summary-toggle"></span></h2><div class="jsdoc-summary-list"><ul><li class="functionIcon public  even"><a class="inline-link" href="#constructor">constructor</a><span class="parameters">(returnWrappers)</span><span class="jsdoc-returns"> returns dojo.AdapterRegistry</span> <span>A reference to the constructor function for this object.</span></li><li class="functionIcon public inherited odd"><a class="inline-link" href="#match">match</a><span class="parameters">()</span> <span>Find an adapter for the given arguments. If no suitable adapter
+	is found, throws an exception. match() accepts any number of
+	arguments, all of which are passed to all matching functions
+	from the registered pairs.</span></li><li class="functionIcon public inherited even"><a class="inline-link" href="#register">register</a><span class="parameters">(name, check, wrap, directReturn, override)</span> <span>register a check function to determine if the wrap function or
+	object gets selected</span></li><li class="functionIcon public inherited odd"><a class="inline-link" href="#unregister">unregister</a><span class="parameters">(name)</span> <span>Remove a named adapter from the registry</span></li></ul></div></div></div><div class="jsdoc-children"><div class="jsdoc-fields"><h2>Properties</h2><div class="jsdoc-field public inherited even"><div class="jsdoc-title"><a name="pairs"></a><span class="arrayIcon">pairs</span></div><div class="jsdoc-inheritance">Defined by <a class="jsdoc-link" href="http://api.dojotoolkit.org/1.6/dojo/AdapterRegistry">dojo.AdapterRegistry</a></div></div><div class="jsdoc-field public inherited odd"><div class="jsdoc-title"><a name="returnWrappers"></a><span class="objectIcon">returnWrappers</span></div><div class="jsdoc-inheritance">Defined by <a class="jsdoc-link" href="http://api.dojotoolkit.org/1.6/dojo/AdapterRegistry">dojo.AdapterRegistry</a></div></div><h2>Methods</h2><div class="jsdoc-field public  even"><div class="jsdoc-title"><a name="constructor"></a><span class="functionIcon">constructor</span></div><div class="jsdoc-inheritance">Overrides <a class="jsdoc-link" href="http://api.dojotoolkit.org/1.6/Object">Object</a></div><div class="jsdoc-return-type">Returns <strong>dojo.AdapterRegistry</strong></div><div class="jsdoc-summary">A reference to the constructor function for this object.</div><table class="jsdoc-parameters"><tr><th>Parameter</th><th>Type</th><th>Description</th></tr><tr><td class="jsdoc-param-name">returnWrappers</td><td class="jsdoc-param-type">Boolean</td><td class="jsdoc-param-description"><div><em>Optional.</em></div></td></tr></table></div><div class="jsdoc-field public inherited odd"><div class="jsdoc-title"><a name="match"></a><span class="functionIcon">match</span></div><div class="jsdoc-inheritance">Defined by <a class="jsdoc-link" href="http://api.dojotoolkit.org/1.6/dojo/AdapterRegistry">dojo.AdapterRegistry</a></div><div class="jsdoc-summary">Find an adapter for the given arguments. If no suitable adapter
+	is found, throws an exception. match() accepts any number of
+	arguments, all of which are passed to all matching functions
+	from the registered pairs.</div></div><div class="jsdoc-field public inherited even"><div class="jsdoc-title"><a name="register"></a><span class="functionIcon">register</span></div><div class="jsdoc-inheritance">Defined by <a class="jsdoc-link" href="http://api.dojotoolkit.org/1.6/dojo/AdapterRegistry">dojo.AdapterRegistry</a></div><div class="jsdoc-summary">register a check function to determine if the wrap function or
+	object gets selected</div><table class="jsdoc-parameters"><tr><th>Parameter</th><th>Type</th><th>Description</th></tr><tr><td class="jsdoc-param-name">name</td><td class="jsdoc-param-type">String</td><td class="jsdoc-param-description">a way to identify this matcher.</td></tr><tr><td class="jsdoc-param-name">check</td><td class="jsdoc-param-type">Function</td><td class="jsdoc-param-description">a function that arguments are passed to from the adapter's
+	match() function.  The check function should return true if the
+	given arguments are appropriate for the wrap function.</td></tr><tr><td class="jsdoc-param-name">wrap</td><td class="jsdoc-param-type">Function</td><td class="jsdoc-param-description"></td></tr><tr><td class="jsdoc-param-name">directReturn</td><td class="jsdoc-param-type">Boolean</td><td class="jsdoc-param-description"><div><em>Optional.</em></div>If directReturn is true, the value passed in for wrap will be
+	returned instead of being called. Alternately, the
+	AdapterRegistry can be set globally to &quot;return not call&quot; using
+	the returnWrappers property. Either way, this behavior allows
+	the registry to act as a &quot;search&quot; function instead of a
+	function interception library.</td></tr><tr><td class="jsdoc-param-name">override</td><td class="jsdoc-param-type">Boolean</td><td class="jsdoc-param-description"><div><em>Optional.</em></div>If override is given and true, the check function will be given
+	highest priority. Otherwise, it will be the lowest priority
+	adapter.</td></tr></table></div><div class="jsdoc-field public inherited odd"><div class="jsdoc-title"><a name="unregister"></a><span class="functionIcon">unregister</span></div><div class="jsdoc-inheritance">Defined by <a class="jsdoc-link" href="http://api.dojotoolkit.org/1.6/dojo/AdapterRegistry">dojo.AdapterRegistry</a></div><div class="jsdoc-summary">Remove a named adapter from the registry</div><table class="jsdoc-parameters"><tr><th>Parameter</th><th>Type</th><th>Description</th></tr><tr><td class="jsdoc-param-name">name</td><td class="jsdoc-param-type"></td><td class="jsdoc-param-description"></td></tr></table></div></div></div>

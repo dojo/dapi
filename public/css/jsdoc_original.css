@@ -51,7 +51,7 @@ html, body {
 	height: 24px;
 	margin-top: -12px;
 	margin-left: -12px;
-	background-image: url("images/loader_md.gif");
+	background-image: url("../images/loader_md.gif");
 	/* small loader image */
 	/*
 	width: 16px;

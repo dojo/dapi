@@ -1,0 +1,36 @@
+<div class="jsdoc-permalink" style="display:none;">http://api.dojotoolkit.org/1.6/dojo/cache</div><h1 class="jsdoc-title functionIcon36">dojo.cache <span style="font-size:11px;color:#999;">(version 1.6)</span></h1><div class="jsdoc-prototype">Object &raquo; dojo.cache</div><div class="jsdoc-require">dojo.require("dojo.cache");</div><div class="jsdoc-prototype">Defined in dojo/cache.js</div><div class="jsdoc-full-summary"><p>module and url are used to call <code>dojo.moduleUrl()</code> to generate a module URL.
+If value is specified, the cache value for the moduleUrl will be set to
+that value. Otherwise, dojo.cache will fetch the moduleUrl and store it
+in its internal cache and return that cached value for the URL. To clear
+a cache value pass null for value. Since XMLHttpRequest (XHR) is used to fetch the
+the URL contents, only modules on the same domain of the page can use this capability.
+The build system can inline the cache values though, to allow for xdomain hosting.</p>
+</div><div class="jsdoc-examples"><h2>Examples:</h2><div class="jsdoc-example"><h3>Example 1</h3>
+To ask dojo.cache to fetch content and store it in the cache (the dojo["cache"] style
+of call is used to avoid an issue with the build system erroneously trying to intern
+this example. To get the build system to intern your dojo.cache calls, use the
+&quot;dojo.cache&quot; style of call):
+<pre class="brush: js;" lang="javascript">
+	//If template.html contains &quot;&lt;h1&gt;Hello&lt;/h1&gt;&quot; that will be
+	//the value for the text variable.
+	var text = dojo[&quot;cache&quot;](&quot;my.module&quot;, &quot;template.html&quot;);
+</pre></div><div class="jsdoc-example"><h3>Example 2</h3>
+To ask dojo.cache to fetch content and store it in the cache, and sanitize the input
+(the dojo[&quot;cache&quot;] style of call is used to avoid an issue with the build system
+erroneously trying to intern this example. To get the build system to intern your
+dojo.cache calls, use the &quot;dojo.cache&quot; style of call):
+<pre class="brush: js;" lang="javascript">
+	//If template.html contains &quot;&lt;html&gt;&lt;body&gt;&lt;h1&gt;Hello&lt;/h1&gt;&lt;/body&gt;&lt;/html&gt;&quot;, the
+	//text variable will contain just &quot;&lt;h1&gt;Hello&lt;/h1&gt;&quot;.
+	var text = dojo[&quot;cache&quot;](&quot;my.module&quot;, &quot;template.html&quot;, {sanitize: true});
+</pre></div><div class="jsdoc-example"><h3>Example 3</h3>
+Same example as previous, but demostrates how an object can be passed in as
+the first argument, then the value argument can then be the second argument.
+<pre class="brush: js;" lang="javascript">
+	//If template.html contains &quot;&lt;html&gt;&lt;body&gt;&lt;h1&gt;Hello&lt;/h1&gt;&lt;/body&gt;&lt;/html&gt;&quot;, the
+	//text variable will contain just &quot;&lt;h1&gt;Hello&lt;/h1&gt;&quot;.
+	var text = dojo[&quot;cache&quot;](new dojo._Url(&quot;my/module/template.html&quot;), {sanitize: true});
+</pre></div></div><div class="jsdoc-children"><div class="jsdoc-field-list"><h2 class="jsdoc-summary-heading">Method Summary <span class="jsdoc-summary-toggle"></span></h2><div class="jsdoc-summary-list"><ul><li class="functionIcon private inherited even"><a class="inline-link" href="#dojo.cache._sanitize">dojo.cache._sanitize</a><span class="parameters">(val)</span><span class="jsdoc-returns"> returns String</span> <span>Strips &lt;?xml ...?&gt; declarations so that external SVG and XML
+	documents can be added to a document without worry. Also, if the string
+	is an HTML document, only the part inside the body tag is returned.</span></li></ul></div></div></div><div class="jsdoc-children"><div class="jsdoc-fields"><h2>Methods</h2><div class="jsdoc-field private inherited even"><div class="jsdoc-title"><a name="dojo.cache._sanitize"></a><span class="functionIcon">dojo.cache._sanitize</span></div><div class="jsdoc-inheritance">Defined by <a class="jsdoc-link" href="http://api.dojotoolkit.org/1.6/dojo/cache">dojo.cache</a></div><div class="jsdoc-return-type">Returns <strong>String</strong></div><div class="jsdoc-summary"><p>Copied from dijit.<em>Templated.</em>sanitizeTemplateString.</p>
+</div><table class="jsdoc-parameters"><tr><th>Parameter</th><th>Type</th><th>Description</th></tr><tr><td class="jsdoc-param-name">val</td><td class="jsdoc-param-type">String</td><td class="jsdoc-param-description"></td></tr></table></div></div></div>
