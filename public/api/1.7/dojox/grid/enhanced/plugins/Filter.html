@@ -1,0 +1,74 @@
+<div class="jsdoc-permalink" style="display:none;">/api/1.7/dojox/grid/enhanced/plugins/Filter</div><h1 class="jsdoc-title constructorIcon36">dojox.grid.enhanced.plugins.Filter <span style="font-size:11px;color:#999;">(version 1.7)</span></h1><div class="jsdoc-prototype">Object &raquo; <a class="jsdoc-link" href="/api/1.7/_Plugin">_Plugin</a> &raquo; dojox.grid.enhanced.plugins.Filter</div><div class="jsdoc-require">dojo.require("dojox.grid.enhanced.plugins.Filter");</div><div class="jsdoc-prototype">Defined in dojox/grid/enhanced/plugins/Filter.js</div><div class="jsdoc-function-information"><h3>Usage:</h3><div class="function-signature"><span class="keyword">var</span> foo = new dojox.grid.enhanced.plugins.Filter(<span class="jsdoc-comment-type">/*  */</span> grid, <span class="jsdoc-comment-type">/*  */</span> args);</div></div><div class="jsdoc-full-summary"><p>Provide filter functionality for grid.</p>
+
+<p>Acceptable plugin parameters:
+1. itemsName: string
+the name shown on the filter bar.
+2. statusTipTimeout: number
+when does the status tip show.
+3. ruleCount: number
+default to 3, should not change to more. The Claro theme limits it.
+4. disabledConditions: object
+If you don't need all of the conditions provided for a data type,
+you can explicitly declare them here:
+e.g.: disabledConditions: {string: [&quot;contains&quot;, &quot;is&quot;], number: [&quot;equalto&quot;], ...}
+5. isServerSide: boolean
+Whether to use server side filtering. Default to false.
+6. isStateful: boolean
+If isServerSide is true, set the server side filter to be stateful or not. default to false.
+7. url: string
+If using stateful, this is the url to send commands. default to store.url.
+8. ruleCountToConfirmClearFilter: Integer | null |Infinity
+If the filter rule count is larger than or equal to this value, then a confirm dialog will show when clearing filter.
+If set to less than 1 or null, then always show the confirm dialog.
+If set to Infinity, then never show the confirm dialog.
+Default value is 2.</p>
+
+<p>Acceptable cell parameters defined in layout:
+1. filterable: boolean
+The column is not filterable only when this is set to false explicitly.
+2. datatype: string
+The data type of this column. Can be &quot;string&quot;, &quot;number&quot;, &quot;date&quot;, &quot;time&quot;, &quot;boolean&quot;.
+Default to &quot;string&quot;.
+3. autoComplete: boolean
+If need auto-complete in the ComboBox for String type, set this to true.
+4. dataTypeArgs: object
+Some arguments helping convert store data to something the filter UI understands.
+Different data type arguments can be provided to different data types.
+For date/time, this is a dojo.date.locale.__FormatOptions, so the DataTimeBox can understand the store data.
+For boolean, this object contains:
+trueLabel: string
+A label to display in the filter definition dialog for true value. Default to &quot;True&quot;.
+falseLable: string
+A label to display in the filter definition dialog for false value. Default to &quot;False&quot;.
+5. disabledConditions: object
+If you don't need all of the conditions provided by the filter UI on this column, you can explicitly say it out here.
+e.g.: disabledConditions: [&quot;contains&quot;, &quot;is&quot;]
+This will disable the &quot;contains&quot; condition for this column, if this column is of string type.
+For full set of conditions, please refer to dojox.grid.enhanced.plugins.filter.FilterDefDialog._setupData.</p>
+</div><div class="jsdoc-examples"><h2>Examples:</h2><div class="jsdoc-example"><h3>Example 1</h3>
+<pre class="brush: js;" lang="javascript">
+	&lt;div dojoType=&quot;dojox.grid.EnhancedGrid&quot; plugins=&quot;{GridFilter: true}&quot; ...&gt;&lt;/div&gt;
+	or provide some parameters:
+	&lt;div dojoType=&quot;dojox.grid.EnhancedGrid&quot; plugins=&quot;{GridFilter: {itemsName: 'songs'}}&quot; ...&gt;&lt;/div&gt;
+	Customize columns for filter:
+	var layout = [
+		...
+		//define a column to be un-filterable in layout/structure
+		{field: &quot;Genre&quot;, filterable: false, ...}
+		//define a column of type string and supports autoComplete when you type in filter conditions.
+		{field: &quot;Writer&quot;, datatype: &quot;string&quot;, autoCommplete: true, ...}
+		//define a column of type date and the data in store has format: &quot;yyyy/M/d&quot;
+		{field: &quot;Publish Date&quot;, datatype: &quot;date&quot;, dataTypeArgs: {datePattern: &quot;yyyy/M/d&quot;}, ...}
+		//disable some conditions for a column
+		{field: &quot;Track&quot;, disabledConditions: [&quot;equalto&quot;,&quot;notequalto&quot;], ...}
+		...
+	];
+</pre></div></div><div class="jsdoc-children"><div class="jsdoc-field-list"><h2 class="jsdoc-summary-heading">Method Summary <span class="jsdoc-summary-toggle"></span></h2><div class="jsdoc-summary-list"><ul><li class="functionIcon private inherited even"><a class="inline-link" href="#_clientFilterGetter">_clientFilterGetter</a><span class="parameters">(datarow, cell, rowIndex)</span> <span>Define the grid-specific way to get data from a row.
+	Argument &quot;cell&quot; is provided by FilterDefDialog when defining filter expressions.
+	Argument &quot;rowIndex&quot; is provided by FilterLayer when checking a row.
+	FilterLayer also provides a forth argument: &quot;store&quot;, which is grid.store,
+	but we don't need it here.</span></li><li class="functionIcon private inherited odd"><a class="inline-link" href="#_wrapStore">_wrapStore</a><span class="parameters">()</span></li><li class="functionIcon public  even"><a class="inline-link" href="#constructor">constructor</a><span class="parameters">(grid, args)</span><span class="jsdoc-returns"> returns dojox.grid.enhanced.plugins.Filter</span> <span>See constructor of dojox.grid.enhanced._Plugin.</span></li><li class="functionIcon public inherited odd"><a class="inline-link" href="#destroy">destroy</a><span class="parameters">()</span></li></ul></div><h2 class="jsdoc-summary-heading">Event Summary <span class="jsdoc-summary-toggle"></span></h2><div class="jsdoc-summary-list"><ul><li class="functionIcon public inherited even"><a class="inline-link" href="#onSetStore">onSetStore</a><span class="parameters">(store)</span></li></ul></div></div></div><div class="jsdoc-children"><div class="jsdoc-fields"><h2>Methods</h2><div class="jsdoc-field private inherited even"><div class="jsdoc-title"><a name="_clientFilterGetter"></a><span class="functionIcon">_clientFilterGetter</span></div><div class="jsdoc-inheritance">Defined by <a class="jsdoc-link" href="/api/1.7/dojox/grid/enhanced/plugins/Filter">dojox.grid.enhanced.plugins.Filter</a></div><div class="jsdoc-summary">Define the grid-specific way to get data from a row.
+	Argument &quot;cell&quot; is provided by FilterDefDialog when defining filter expressions.
+	Argument &quot;rowIndex&quot; is provided by FilterLayer when checking a row.
+	FilterLayer also provides a forth argument: &quot;store&quot;, which is grid.store,
+	but we don't need it here.</div><table class="jsdoc-parameters"><tr><th>Parameter</th><th>Type</th><th>Description</th></tr><tr><td class="jsdoc-param-name">datarow</td><td class="jsdoc-param-type">data</td><td class="jsdoc-param-description">item</td></tr><tr><td class="jsdoc-param-name">cell</td><td class="jsdoc-param-type">cell</td><td class="jsdoc-param-description"></td></tr><tr><td class="jsdoc-param-name">rowIndex</td><td class="jsdoc-param-type">int</td><td class="jsdoc-param-description"></td></tr></table></div><div class="jsdoc-field private inherited odd"><div class="jsdoc-title"><a name="_wrapStore"></a><span class="functionIcon">_wrapStore</span></div><div class="jsdoc-inheritance">Defined by <a class="jsdoc-link" href="/api/1.7/dojox/grid/enhanced/plugins/Filter">dojox.grid.enhanced.plugins.Filter</a></div></div><div class="jsdoc-field public  even"><div class="jsdoc-title"><a name="constructor"></a><span class="functionIcon">constructor</span></div><div class="jsdoc-inheritance">Overrides <a class="jsdoc-link" href="/api/1.7/Object">Object</a></div><div class="jsdoc-return-type">Returns <strong>dojox.grid.enhanced.plugins.Filter</strong></div><div class="jsdoc-summary">See constructor of dojox.grid.enhanced._Plugin.</div><table class="jsdoc-parameters"><tr><th>Parameter</th><th>Type</th><th>Description</th></tr><tr><td class="jsdoc-param-name">grid</td><td class="jsdoc-param-type"></td><td class="jsdoc-param-description"></td></tr><tr><td class="jsdoc-param-name">args</td><td class="jsdoc-param-type"></td><td class="jsdoc-param-description"></td></tr></table></div><div class="jsdoc-field public inherited odd"><div class="jsdoc-title"><a name="destroy"></a><span class="functionIcon">destroy</span></div><div class="jsdoc-inheritance">Defined by <a class="jsdoc-link" href="/api/1.7/dojox/grid/enhanced/plugins/Filter">dojox.grid.enhanced.plugins.Filter</a></div></div><h2>Events</h2><div class="jsdoc-field public inherited even"><div class="jsdoc-title"><a name="onSetStore"></a><span class="functionIcon">onSetStore</span></div><div class="jsdoc-inheritance">Defined by <a class="jsdoc-link" href="/api/1.7/dojox/grid/enhanced/plugins/Filter">dojox.grid.enhanced.plugins.Filter</a></div><table class="jsdoc-parameters"><tr><th>Parameter</th><th>Type</th><th>Description</th></tr><tr><td class="jsdoc-param-name">store</td><td class="jsdoc-param-type"></td><td class="jsdoc-param-description"></td></tr></table></div></div></div>

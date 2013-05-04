@@ -1,0 +1,65 @@
+<div class="jsdoc-permalink" style="display:none;">/api/1.7/dojox/analytics/Urchin</div><h1 class="jsdoc-title constructorIcon36">dojox.analytics.Urchin <span style="font-size:11px;color:#999;">(version 1.7)</span></h1><div class="jsdoc-prototype">Object &raquo; dojox.analytics.Urchin</div><div class="jsdoc-require">dojo.require("dojox.analytics.Urchin");</div><div class="jsdoc-prototype">Defined in dojox/analytics/Urchin.js</div><div class="jsdoc-function-information"><h3>Usage:</h3><div class="function-signature"><span class="keyword">var</span> foo = new dojox.analytics.Urchin(<span class="jsdoc-comment-type">/*  */</span> args);</div></div><div class="jsdoc-full-summary"><p>A small class object will allows for lazy-loading the Google Analytics API
+at any point during a page lifecycle. Most commonly, Google-Analytics is loaded
+via a synchronous script tag in the body, which causes <code>dojo.addOnLoad</code> to
+stall until the external API has been completely loaded. The Urchin helper
+will load the API on the fly, and provide a convenient API to use, wrapping
+Analytics for Ajaxy or single page applications.</p>
+
+<p>The class can be instantiated two ways: Programatically, by passing an
+<code>acct:</code> parameter, or via Markup / dojoType and defining a djConfig
+parameter <code>urchin:</code></p>
+
+<p>IMPORTANT:
+This module will not work simultaneously with the core dojox.analytics
+package. If you need the ability to run Google Analytics AND your own local
+analytics system, you MUST include dojox.analytics._base BEFORE dojox.analytics.Urchin</p>
+</div><div class="jsdoc-examples"><h2>Examples:</h2><div class="jsdoc-example"><h3>Example 1</h3>
+<pre class="brush: js;" lang="javascript">
+	// create the tracker programatically:
+	var tracker = new dojox.analytics.Urchin({ acct:&quot;UA-123456-7&quot; });
+</pre></div><div class="jsdoc-example"><h3>Example 2</h3>
+<pre class="brush: js;" lang="javascript">
+	// define the urchin djConfig option:
+	var djConfig = { urchin: &quot;UA-123456-7&quot; };
+</pre>
+<pre class="brush: js;" lang="javascript">
+	// and in markup:
+	&lt;div dojoType=&quot;dojox.analytics.Urchin&quot;&gt;&lt;/div&gt;
+	// or code:
+	new dojox.analytics.Urchin();
+</pre></div><div class="jsdoc-example"><h3>Example 3</h3>
+<pre class="brush: js;" lang="javascript">
+	// create and define all analytics with one tag.
+	&lt;div dojoType=&quot;dojox.analytics.Urchin&quot; acct=&quot;UA-12345-67&quot;&gt;&lt;/div&gt;
+</pre></div></div><div class="jsdoc-children"><div class="jsdoc-field-list"><h2 class="jsdoc-summary-heading">Method Summary <span class="jsdoc-summary-toggle"></span></h2><div class="jsdoc-summary-list"><ul><li class="functionIcon public inherited even"><a class="inline-link" href="#GAonLoad">GAonLoad</a><span class="parameters">()</span> <span>Stub function to fire when urchin is complete</span></li><li class="functionIcon private inherited odd"><a class="inline-link" href="#_gotGA">_gotGA</a><span class="parameters">()</span> <span>initialize the tracker</span></li><li class="functionIcon public  even"><a class="inline-link" href="#constructor">constructor</a><span class="parameters">(args)</span><span class="jsdoc-returns"> returns dojox.analytics.Urchin</span> <span>Initialize this Urchin instance. Immediately starts the load
+	sequence, so defer construction until (ideally) after onLoad and
+	potentially widget parsing.</span></li><li class="functionIcon public inherited odd"><a class="inline-link" href="#trackPageView">trackPageView</a><span class="parameters">(url)</span> <span>A public API attached to this widget instance, allowing you
+	Ajax-like notification of updates.</span></li></ul></div></div></div><div class="jsdoc-children"><div class="jsdoc-fields"><h2>Methods</h2><div class="jsdoc-field public inherited even"><div class="jsdoc-title"><a name="GAonLoad"></a><span class="functionIcon">GAonLoad</span></div><div class="jsdoc-inheritance">Defined by <a class="jsdoc-link" href="/api/1.7/dojox/analytics/Urchin">dojox.analytics.Urchin</a></div><div class="jsdoc-summary"><p>This function is executed when the tracker variable is
+complete and initialized. The initial trackPageView (with
+no arguments) is called here as well, so remeber to call
+manually if overloading this method.</p>
+</div><div class="jsdoc-examples"><div class="jsdoc-example"><div><strong>Example 1</strong></div>
+Create an Urchin tracker that will track a specific page on init
+after page load (or parsing, if parseOnLoad is true)
+<pre class="brush: js;" lang="javascript">
+	dojo.addOnLoad(function(){
+		new dojox.ananlytics.Urchin({
+			acct:&quot;UA-12345-67&quot;,
+			GAonLoad: function(){
+				this.trackPageView(&quot;/custom-page&quot;);
+			}
+		});
+	});
+</pre></div></div></div><div class="jsdoc-field private inherited odd"><div class="jsdoc-title"><a name="_gotGA"></a><span class="functionIcon">_gotGA</span></div><div class="jsdoc-inheritance">Defined by <a class="jsdoc-link" href="/api/1.7/dojox/analytics/Urchin">dojox.analytics.Urchin</a></div><div class="jsdoc-summary">initialize the tracker</div></div><div class="jsdoc-field public  even"><div class="jsdoc-title"><a name="constructor"></a><span class="functionIcon">constructor</span></div><div class="jsdoc-inheritance">Overrides <a class="jsdoc-link" href="/api/1.7/Object">Object</a></div><div class="jsdoc-return-type">Returns <strong>dojox.analytics.Urchin</strong></div><div class="jsdoc-summary">Initialize this Urchin instance. Immediately starts the load
+	sequence, so defer construction until (ideally) after onLoad and
+	potentially widget parsing.</div><table class="jsdoc-parameters"><tr><th>Parameter</th><th>Type</th><th>Description</th></tr><tr><td class="jsdoc-param-name">args</td><td class="jsdoc-param-type"></td><td class="jsdoc-param-description"></td></tr></table></div><div class="jsdoc-field public inherited odd"><div class="jsdoc-title"><a name="trackPageView"></a><span class="functionIcon">trackPageView</span></div><div class="jsdoc-inheritance">Defined by <a class="jsdoc-link" href="/api/1.7/dojox/analytics/Urchin">dojox.analytics.Urchin</a></div><div class="jsdoc-summary">A public API attached to this widget instance, allowing you
+	Ajax-like notification of updates.</div><table class="jsdoc-parameters"><tr><th>Parameter</th><th>Type</th><th>Description</th></tr><tr><td class="jsdoc-param-name">url</td><td class="jsdoc-param-type">string</td><td class="jsdoc-param-description">String A location to tell the tracker to track, eg: &quot;/my-ajaxy-endpoint&quot;</td></tr></table><div class="jsdoc-examples"><div class="jsdoc-example"><div><strong>Example 1</strong></div>
+Track clicks from a container of anchors and populate a `ContentPane`
+<pre class="brush: js;" lang="javascript">
+	// 'tracker' is our `Urchin` instance, pane is the `ContentPane` ref.
+	dojo.connect(container, &quot;onclick&quot;, function(e){
+		var ref = dojo.attr(e.target, &quot;href&quot;);
+		tracker.trackPageView(ref);
+		pane.attr(&quot;href&quot;, ref);
+	});
+</pre></div></div></div></div></div>

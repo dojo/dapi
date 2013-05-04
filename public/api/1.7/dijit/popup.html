@@ -1,0 +1,39 @@
+<div class="jsdoc-permalink" style="display:none;">/api/1.7/dijit/popup</div><h1 class="jsdoc-title objectIcon36">dijit.popup <span style="font-size:11px;color:#999;">(version 1.7)</span></h1><div class="jsdoc-prototype">Object &raquo; dijit.popup</div><div class="jsdoc-require">dojo.require("dijit.popup");</div><div class="jsdoc-prototype">Defined in dijit/popup.js</div><div class="jsdoc-full-summary"><p>Used to show drop downs (ex: the select list of a ComboBox)
+or popups (ex: right-click context menus).</p>
+
+<p>Access via require([&quot;dijit/popup&quot;], function(popup){ ... }).</p>
+</div><div class="jsdoc-children"><div class="jsdoc-field-list"><h2 class="jsdoc-summary-heading">Method Summary <span class="jsdoc-summary-toggle"></span></h2><div class="jsdoc-summary-list"><ul><li class="functionIcon private inherited even"><a class="inline-link" href="#dijit.popup.__OpenArgs">dijit.popup.__OpenArgs</a><span class="parameters">()</span></li><li class="functionIcon public inherited odd"><a class="inline-link" href="#dijit.popup.close">dijit.popup.close</a><span class="parameters">(popup)</span> <span>Close specified popup and any popups that it parented.
+	If no popup is specified, closes all popups.
+	widget: dijit._WidgetBase?
+	The widget, optional</span></li><li class="functionIcon public inherited even"><a class="inline-link" href="#dijit.popup.hide">dijit.popup.hide</a><span class="parameters">(widget)</span> <span>Hide this popup widget (until it is ready to be shown).
+	Initialization for widgets that will be used as popups
+	
+	Also puts widget inside a wrapper DIV (if not already in one)
+	
+	If popup widget needs to layout it should
+	do so when it is made visible, and popup._onShow() is called.</span></li><li class="functionIcon public inherited odd"><a class="inline-link" href="#dijit.popup.moveOffScreen">dijit.popup.moveOffScreen</a><span class="parameters">(widget)</span> <span>Moves the popup widget off-screen.
+	Do not use this method to hide popups when not in use, because
+	that will create an accessibility issue: the offscreen popup is
+	still in the tabbing order.</span></li><li class="functionIcon public inherited even"><a class="inline-link" href="#dijit.popup.open">dijit.popup.open</a><span class="parameters">(args)</span><span class="jsdoc-returns"> returns Object specifying which position was chosen</span> <span>Popup the widget at the specified position</span></li></ul></div></div></div><div class="jsdoc-children"><div class="jsdoc-fields"><h2>Methods</h2><div class="jsdoc-field private inherited even"><div class="jsdoc-title"><a name="dijit.popup.__OpenArgs"></a><span class="functionIcon">dijit.popup.__OpenArgs</span></div><div class="jsdoc-inheritance">Defined by <a class="jsdoc-link" href="/api/1.7/dijit/popup">dijit.popup</a></div></div><div class="jsdoc-field public inherited odd"><div class="jsdoc-title"><a name="dijit.popup.close"></a><span class="functionIcon">dijit.popup.close</span></div><div class="jsdoc-inheritance">Defined by <a class="jsdoc-link" href="/api/1.7/dijit/popup">dijit.popup</a></div><div class="jsdoc-summary">Close specified popup and any popups that it parented.
+	If no popup is specified, closes all popups.
+	widget: dijit._WidgetBase?
+	The widget, optional</div><table class="jsdoc-parameters"><tr><th>Parameter</th><th>Type</th><th>Description</th></tr><tr><td class="jsdoc-param-name">popup</td><td class="jsdoc-param-type"></td><td class="jsdoc-param-description"></td></tr></table></div><div class="jsdoc-field public inherited even"><div class="jsdoc-title"><a name="dijit.popup.hide"></a><span class="functionIcon">dijit.popup.hide</span></div><div class="jsdoc-inheritance">Defined by <a class="jsdoc-link" href="/api/1.7/dijit/popup">dijit.popup</a></div><div class="jsdoc-summary">Hide this popup widget (until it is ready to be shown).
+	Initialization for widgets that will be used as popups
+	
+	Also puts widget inside a wrapper DIV (if not already in one)
+	
+	If popup widget needs to layout it should
+	do so when it is made visible, and popup._onShow() is called.</div><table class="jsdoc-parameters"><tr><th>Parameter</th><th>Type</th><th>Description</th></tr><tr><td class="jsdoc-param-name">widget</td><td class="jsdoc-param-type">dijit._WidgetBase</td><td class="jsdoc-param-description">The widget</td></tr></table></div><div class="jsdoc-field public inherited odd"><div class="jsdoc-title"><a name="dijit.popup.moveOffScreen"></a><span class="functionIcon">dijit.popup.moveOffScreen</span></div><div class="jsdoc-inheritance">Defined by <a class="jsdoc-link" href="/api/1.7/dijit/popup">dijit.popup</a></div><div class="jsdoc-summary">Moves the popup widget off-screen.
+	Do not use this method to hide popups when not in use, because
+	that will create an accessibility issue: the offscreen popup is
+	still in the tabbing order.</div><table class="jsdoc-parameters"><tr><th>Parameter</th><th>Type</th><th>Description</th></tr><tr><td class="jsdoc-param-name">widget</td><td class="jsdoc-param-type">dijit._WidgetBase</td><td class="jsdoc-param-description">The widget</td></tr></table></div><div class="jsdoc-field public inherited even"><div class="jsdoc-title"><a name="dijit.popup.open"></a><span class="functionIcon">dijit.popup.open</span></div><div class="jsdoc-inheritance">Defined by <a class="jsdoc-link" href="/api/1.7/dijit/popup">dijit.popup</a></div><div class="jsdoc-return-type">Returns <strong>Object specifying which position was chosen</strong></div><div class="jsdoc-summary">Popup the widget at the specified position</div><table class="jsdoc-parameters"><tr><th>Parameter</th><th>Type</th><th>Description</th></tr><tr><td class="jsdoc-param-name">args</td><td class="jsdoc-param-type">Object</td><td class="jsdoc-param-description">Parameters<table class="jsdoc-parameters" style="margin-left:0;margin-right:0;margin-bottom:0;"><tr><th>Parameter</th><th>Type</th><th>Description</th></tr></table></td></tr></table><div class="jsdoc-examples"><div class="jsdoc-example"><div><strong>Example 1</strong></div>
+opening at the mouse position
+<pre class="brush: js;" lang="javascript">
+		popup.open({popup: menuWidget, x: evt.pageX, y: evt.pageY});
+</pre></div><div class="jsdoc-example"><div><strong>Example 2</strong></div>
+opening the widget as a dropdown
+<pre class="brush: js;" lang="javascript">
+		popup.open({parent: this, popup: menuWidget, around: this.domNode, onClose: function(){...}});
+</pre>
+Note that whatever widget called dijit.popup.open() should also listen to its own _onBlur callback
+(fired from _base/focus.js) to know that focus has moved somewhere else and thus the popup should be closed.</div></div></div></div></div>

@@ -1,0 +1,45 @@
+<div class="jsdoc-permalink" style="display:none;">/api/1.7/dojox/json/ref</div><h1 class="jsdoc-title objectIcon36">dojox.json.ref <span style="font-size:11px;color:#999;">(version 1.7)</span></h1><div class="jsdoc-prototype">Object &raquo; dojox.json.ref</div><div class="jsdoc-require">dojo.require("dojox.json.ref");</div><div class="jsdoc-prototype">Defined in dojox/json/ref.js</div><div class="jsdoc-full-summary"><p>Adds advanced JSON {de}serialization capabilities to the base json library.
+This enhances the capabilities of dojo.toJson and dojo.fromJson,
+adding referencing support, date handling, and other extra format handling.
+On parsing, references are resolved. When references are made to
+ids/objects that have been loaded yet, the loader function will be set to
+_loadObject to denote a lazy loading (not loaded yet) object.</p>
+</div><div class="jsdoc-children"><div class="jsdoc-field-list"><h2 class="jsdoc-summary-heading">Method Summary <span class="jsdoc-summary-toggle"></span></h2><div class="jsdoc-summary-list"><ul><li class="functionIcon private inherited even"><a class="inline-link" href="#dojox.json.ref._addProp">dojox.json.ref._addProp</a><span class="parameters">(id, prop)</span></li><li class="functionIcon public inherited odd"><a class="inline-link" href="#dojox.json.ref.fromJson">dojox.json.ref.fromJson</a><span class="parameters">(str, args)</span> <span>evaluates the passed string-form of a JSON object.</span></li><li class="functionIcon public inherited even"><a class="inline-link" href="#dojox.json.ref.resolveJson">dojox.json.ref.resolveJson</a><span class="parameters">(root, args)</span> <span>Indexes and resolves references in the JSON object.</span></li><li class="functionIcon public inherited odd"><a class="inline-link" href="#dojox.json.ref.toJson">dojox.json.ref.toJson</a><span class="parameters">(it, prettyPrint, idPrefix, indexSubObjects)</span><span class="jsdoc-returns"> returns use the default serializer for primitives</span> <span>Create a JSON serialization of an object.
+	This has support for referencing, including circular references, duplicate references, and out-of-message references
+	id and path-based referencing is supported as well and is based on http://www.json.com/2007/10/19/json-referencing-proposal-and-library/.</span></li></ul></div><h2 class="jsdoc-summary-heading">Attached Objects <span class="jsdoc-summary-toggle"></span></h2><div class="jsdoc-summary-list"><div class="jsdoc-field"><div class="jsdoc-title"><span class="constructor"><a class="jsdoc-link" href="/api/1.7/dojox/json/ref/resolveJson">dojox.json.ref.resolveJson</a></span></div></div><div class="jsdoc-field"><div class="jsdoc-title"><span class="constructor"><a class="jsdoc-link" href="/api/1.7/dojox/json/ref/toJson">dojox.json.ref.toJson</a></span></div></div></div></div></div><div class="jsdoc-children"><div class="jsdoc-fields"><h2>Methods</h2><div class="jsdoc-field private inherited even"><div class="jsdoc-title"><a name="dojox.json.ref._addProp"></a><span class="functionIcon">dojox.json.ref._addProp</span></div><div class="jsdoc-inheritance">Defined by <a class="jsdoc-link" href="/api/1.7/dojox/json/ref">dojox.json.ref</a></div><table class="jsdoc-parameters"><tr><th>Parameter</th><th>Type</th><th>Description</th></tr><tr><td class="jsdoc-param-name">id</td><td class="jsdoc-param-type"></td><td class="jsdoc-param-description"></td></tr><tr><td class="jsdoc-param-name">prop</td><td class="jsdoc-param-type"></td><td class="jsdoc-param-description"></td></tr></table></div><div class="jsdoc-field public inherited odd"><div class="jsdoc-title"><a name="dojox.json.ref.fromJson"></a><span class="functionIcon">dojox.json.ref.fromJson</span></div><div class="jsdoc-inheritance">Defined by <a class="jsdoc-link" href="/api/1.7/dojox/json/ref">dojox.json.ref</a></div><div class="jsdoc-summary">evaluates the passed string-form of a JSON object.</div><table class="jsdoc-parameters"><tr><th>Parameter</th><th>Type</th><th>Description</th></tr><tr><td class="jsdoc-param-name">str</td><td class="jsdoc-param-type">String</td><td class="jsdoc-param-description">a string literal of a JSON item, for instance:
+	'{ &quot;foo&quot;: [ &quot;bar&quot;, 1, { &quot;baz&quot;: &quot;thud&quot; } ] }'</td></tr><tr><td class="jsdoc-param-name">args</td><td class="jsdoc-param-type">Object</td><td class="jsdoc-param-description"><div><em>Optional.</em></div>See resolveJson
+	
+	return:
+	An object, the result of the evaluation</td></tr></table></div><div class="jsdoc-field public inherited even"><div class="jsdoc-title"><a name="dojox.json.ref.resolveJson"></a><span class="functionIcon">dojox.json.ref.resolveJson</span></div><div class="jsdoc-inheritance">Defined by <a class="jsdoc-link" href="/api/1.7/dojox/json/ref">dojox.json.ref</a></div><div class="jsdoc-summary"><p>A JSON Schema object that can be used to advise the handling of the JSON (defining ids, date properties, urls, etc)</p>
+</div><table class="jsdoc-parameters"><tr><th>Parameter</th><th>Type</th><th>Description</th></tr><tr><td class="jsdoc-param-name">root</td><td class="jsdoc-param-type">Object</td><td class="jsdoc-param-description">The root object of the object graph to be processed</td></tr><tr><td class="jsdoc-param-name">args</td><td class="jsdoc-param-type">Object</td><td class="jsdoc-param-description"><div><em>Optional.</em></div>with additional arguments:
+	
+	The *index* parameter.
+	This is the index object (map) to use to store an index of all the objects.
+	If you are using inter-message referencing, you must provide the same object for each call.
+	The *defaultId* parameter.
+	This is the default id to use for the root object (if it doesn't define it's own id)
+	The *idPrefix* parameter.
+	This the prefix to use for the ids as they enter the index. This allows multiple tables
+	to use ids (that might otherwise collide) that enter the same global index.
+	idPrefix should be in the form &quot;/Service/&quot;.  For example,
+	if the idPrefix is &quot;/Table/&quot;, and object is encountered {id:&quot;4&quot;,...}, this would go in the
+	index as &quot;/Table/4&quot;.
+	The *idAttribute* parameter.
+	This indicates what property is the identity property. This defaults to &quot;id&quot;
+	The *assignAbsoluteIds* parameter.
+	This indicates that the resolveJson should assign absolute ids (__id) as the objects are being parsed.
+	
+	The *schemas* parameter
+	This provides a map of schemas, from which prototypes can be retrieved
+	The *loader* parameter
+	This is a function that is called added to the reference objects that can't be resolved (lazy objects)
+	return:
+	An object, the result of the processing</td></tr></table></div><div class="jsdoc-field public inherited odd"><div class="jsdoc-title"><a name="dojox.json.ref.toJson"></a><span class="functionIcon">dojox.json.ref.toJson</span></div><div class="jsdoc-inheritance">Defined by <a class="jsdoc-link" href="/api/1.7/dojox/json/ref">dojox.json.ref</a></div><div class="jsdoc-return-type">Returns <strong>use the default serializer for primitives</strong></div><div class="jsdoc-summary">Create a JSON serialization of an object.
+	This has support for referencing, including circular references, duplicate references, and out-of-message references
+	id and path-based referencing is supported as well and is based on http://www.json.com/2007/10/19/json-referencing-proposal-and-library/.</div><table class="jsdoc-parameters"><tr><th>Parameter</th><th>Type</th><th>Description</th></tr><tr><td class="jsdoc-param-name">it</td><td class="jsdoc-param-type">Object</td><td class="jsdoc-param-description">an object to be serialized.</td></tr><tr><td class="jsdoc-param-name">prettyPrint</td><td class="jsdoc-param-type">Boolean</td><td class="jsdoc-param-description"><div><em>Optional.</em></div>if true, we indent objects and arrays to make the output prettier.
+	The variable dojo.toJsonIndentStr is used as the indent string
+	-- to use something other than the default (tab),
+	change that variable before calling dojo.toJson().</td></tr><tr><td class="jsdoc-param-name">idPrefix</td><td class="jsdoc-param-type">Object</td><td class="jsdoc-param-description"><div><em>Optional.</em></div>The prefix that has been used for the absolute ids
+	
+	return:
+	a String representing the serialized version of the passed object.</td></tr><tr><td class="jsdoc-param-name">indexSubObjects</td><td class="jsdoc-param-type">Object</td><td class="jsdoc-param-description"><div><em>Optional.</em></div></td></tr></table></div></div></div>

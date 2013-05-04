@@ -1,0 +1,120 @@
+<div class="jsdoc-permalink" style="display:none;">/api/1.7/dojox/gesture/Base</div><h1 class="jsdoc-title constructorIcon36">dojox.gesture.Base <span style="font-size:11px;color:#999;">(version 1.7)</span></h1><div class="jsdoc-prototype">Object &raquo; dojox.gesture.Base</div><div class="jsdoc-require">dojo.require("dojox.gesture.Base");</div><div class="jsdoc-prototype">Defined in dojox/gesture/Base.js</div><div class="jsdoc-function-information"><h3>Usage:</h3><div class="function-signature"><span class="keyword">var</span> foo = new dojox.gesture.Base(<span class="jsdoc-comment-type">/*  */</span> args);</div></div><div class="jsdoc-full-summary"><p>An abstract parental class for various gesture implementations.</p>
+
+<p>It's mainly responsible for:</p>
+
+<ol>
+<li><p>Binding on() listening handlers for supported gesture events.</p></li>
+<li><p>Monitoring underneath events and process different phases - 'press'|'move'|'release'|'cancel'.</p></li>
+<li><p>Firing and bubbling gesture events with on() API.</p></li>
+</ol>
+
+<p>A gesture implementation only needs to extend this class and overwrite appropriate phase handlers:</p>
+
+<ul>
+<li>press()|move()|release()|cancel for recognizing and firing gestures</li>
+</ul>
+</div><div class="jsdoc-examples"><h2>Examples:</h2><div class="jsdoc-example"><h3>Example 1</h3>
+1. A typical gesture implementation.
+
+Suppose we have dojox/gesture/a which provides 3 gesture events:&quot;a&quot;, &quot;a.x&quot;, &quot;a.y&quot; to be used as:
+<pre class="brush: js;" lang="javascript">
+	dojo.connect(node, dojox.gesture.a, function(e){});
+	dojo.connect(node, dojox.gesture.a.x, function(e){});
+	dojo.connect(node, dojox.gesture.a.y, function(e){});
+</pre>
+The definition of the gesture &quot;a&quot; may look like:
+<pre class="brush: js;" lang="javascript">
+	define([..., &quot;./Base&quot;], function(..., Base){
+		var clz = declare(Base, {
+			defaultEvent: &quot;a&quot;,
+</pre>
+<pre class="brush: js;" lang="javascript">
+			subEvents: [&quot;x&quot;, &quot;y&quot;],
+</pre>
+<pre class="brush: js;" lang="javascript">
+			press: function(data, e){
+				this.fire(node, {type: &quot;a.x&quot;, ...});
+			},
+			move: function(data, e){
+				this.fire(node, {type: &quot;a.y&quot;, ...});
+			},
+			release: function(data, e){
+				this.fire(node, {type: &quot;a&quot;, ...});
+			},
+			cancel: function(data, e){
+				// clean up
+			}
+		});
+</pre>
+<pre class="brush: js;" lang="javascript">
+		// in order to have a default instance for handy use
+		dojox.gesture.a = new clz();
+</pre>
+<pre class="brush: js;" lang="javascript">
+		// so that we can create new instances like
+		// var mine = new dojox.gesture.a.A({...})
+		dojox.gesture.a.A = clz;
+</pre>
+<pre class="brush: js;" lang="javascript">
+		return dojox.gesture.a;
+	});
+</pre>
+2. A gesture can be used in the following ways(taking dojox.gestre.tap for example):
+
+A. Used with dojo.connect()
+<pre class="brush: js;" lang="javascript">
+	dojo.connect(node, dojox.gesture.tap, function(e){});
+	dojo.connect(node, dojox.gesture.tap.hold, function(e){});
+	dojo.connect(node, dojox.gesture.tap.doubletap, function(e){});
+</pre>
+B. Used with dojo.on
+<pre class="brush: js;" lang="javascript">
+	define([&quot;dojo/on&quot;, &quot;dojox/gesture/tap&quot;], function(on, tap){
+		on(node, tap, function(e){});
+		on(node, tap.hold, function(e){});
+		on(node, tap.doubletap, function(e){});
+</pre>
+C. Used with dojox.gesture.tap directly
+<pre class="brush: js;" lang="javascript">
+	dojox.gesture.tap(node, function(e){});
+	dojox.gesture.tap.hold(node, function(e){});
+	dojox.gesture.tap.doubletap(node, function(e){});
+</pre>
+Though there is always a default gesture instance after being required, e.g
+<pre class="brush: js;" lang="javascript">
+	require([&quot;dojox/gesture/tap&quot;], function(){...});
+</pre>
+It's possible to create a new one with different parameter setting:
+<pre class="brush: js;" lang="javascript">
+	var myTap = new dojox.gesture.tap.Tap({holdThreshold: 300});
+	dojo.connect(node, myTap, function(e){});
+	dojo.connect(node, myTap.hold, function(e){});
+	dojo.connect(node, myTap.doubletap, function(e){});
+</pre>
+Please refer to dojox/gesture/ for more gesture usages</div></div><div class="jsdoc-children"><div class="jsdoc-field-list"><h2 class="jsdoc-summary-heading">Method Summary <span class="jsdoc-summary-toggle"></span></h2><div class="jsdoc-summary-list"><ul><li class="functionIcon private inherited even"><a class="inline-link" href="#_add">_add</a><span class="parameters">(node, type, listener)</span><span class="jsdoc-returns"> returns handle</span> <span>Bind dojo/on handlers for both gesture event(e.g 'tab.hold')
+	and underneath 'press'|'move'|'release' events</span></li><li class="functionIcon private inherited odd"><a class="inline-link" href="#_cleanHandles">_cleanHandles</a><span class="parameters">(handles)</span> <span>Clean up on handles</span></li><li class="functionIcon private inherited even"><a class="inline-link" href="#_getGestureElement">_getGestureElement</a><span class="parameters">(node)</span> <span>Obtain a gesture element for the give node</span></li><li class="functionIcon private inherited odd"><a class="inline-link" href="#_handle">_handle</a><span class="parameters">(eventType)</span> <span>Bind listen handler for the given gesture event(e.g. 'tap', 'tap.hold' etc.)
+	the returned handle will be used internally by dojo/on</span></li><li class="functionIcon private inherited even"><a class="inline-link" href="#_process">_process</a><span class="parameters">(element, phase, e)</span> <span>Process and dispatch to appropriate phase handlers.
+	Also provides the machinery for managing gesture bubbling.</span></li><li class="functionIcon private inherited odd"><a class="inline-link" href="#_remove">_remove</a><span class="parameters">(node, type)</span> <span>Check and remove underneath handlers if node
+	is not being listened for 'this' gesture anymore,
+	this happens when user removed all previous on() handlers.</span></li><li class="functionIcon public inherited even"><a class="inline-link" href="#cancel">cancel</a><span class="parameters">(data, e)</span> <span>Process the 'cancel' phase of a gesture</span></li><li class="functionIcon public  odd"><a class="inline-link" href="#constructor">constructor</a><span class="parameters">(args)</span><span class="jsdoc-returns"> returns dojox.gesture.Base</span> <span>A reference to the constructor function for this object.</span></li><li class="functionIcon public inherited even"><a class="inline-link" href="#destroy">destroy</a><span class="parameters">()</span> <span>Release all handlers and resources</span></li><li class="functionIcon public inherited odd"><a class="inline-link" href="#fire">fire</a><span class="parameters">(node, event)</span> <span>Fire a gesture event and invoke registered listeners
+	a simulated GestureEvent will also be sent along</span></li><li class="functionIcon public inherited even"><a class="inline-link" href="#init">init</a><span class="parameters">()</span> <span>Initialization works</span></li><li class="functionIcon public inherited odd"><a class="inline-link" href="#isLocked">isLocked</a><span class="parameters">(node)</span> <span>Check if the node is locked, isLocked(node) means
+	whether it's a descendant of the currently locked node.</span></li><li class="functionIcon public inherited even"><a class="inline-link" href="#lock">lock</a><span class="parameters">(node)</span> <span>Lock all descendants of the node.</span></li><li class="functionIcon public inherited odd"><a class="inline-link" href="#move">move</a><span class="parameters">(data, e)</span> <span>Process the 'move' phase of a gesture</span></li><li class="functionIcon public inherited even"><a class="inline-link" href="#press">press</a><span class="parameters">(data, e)</span> <span>Process the 'press' phase of a gesture</span></li><li class="functionIcon public inherited odd"><a class="inline-link" href="#release">release</a><span class="parameters">(data, e)</span> <span>Process the 'release' phase of a gesture</span></li><li class="functionIcon public inherited even"><a class="inline-link" href="#unLock">unLock</a><span class="parameters">()</span> <span>Release the lock</span></li></ul></div></div></div><div class="jsdoc-children"><div class="jsdoc-fields"><h2>Methods</h2><div class="jsdoc-field private inherited even"><div class="jsdoc-title"><a name="_add"></a><span class="functionIcon">_add</span></div><div class="jsdoc-inheritance">Defined by <a class="jsdoc-link" href="/api/1.7/dojox/gesture/Base">dojox.gesture.Base</a></div><div class="jsdoc-return-type">Returns <strong>handle</strong></div><div class="jsdoc-summary">Bind dojo/on handlers for both gesture event(e.g 'tab.hold')
+	and underneath 'press'|'move'|'release' events</div><table class="jsdoc-parameters"><tr><th>Parameter</th><th>Type</th><th>Description</th></tr><tr><td class="jsdoc-param-name">node</td><td class="jsdoc-param-type">Dom</td><td class="jsdoc-param-description"></td></tr><tr><td class="jsdoc-param-name">type</td><td class="jsdoc-param-type">String</td><td class="jsdoc-param-description"></td></tr><tr><td class="jsdoc-param-name">listener</td><td class="jsdoc-param-type">function</td><td class="jsdoc-param-description"></td></tr></table></div><div class="jsdoc-field private inherited odd"><div class="jsdoc-title"><a name="_cleanHandles"></a><span class="functionIcon">_cleanHandles</span></div><div class="jsdoc-inheritance">Defined by <a class="jsdoc-link" href="/api/1.7/dojox/gesture/Base">dojox.gesture.Base</a></div><div class="jsdoc-summary">Clean up on handles</div><table class="jsdoc-parameters"><tr><th>Parameter</th><th>Type</th><th>Description</th></tr><tr><td class="jsdoc-param-name">handles</td><td class="jsdoc-param-type">Object</td><td class="jsdoc-param-description"></td></tr></table></div><div class="jsdoc-field private inherited even"><div class="jsdoc-title"><a name="_getGestureElement"></a><span class="functionIcon">_getGestureElement</span></div><div class="jsdoc-inheritance">Defined by <a class="jsdoc-link" href="/api/1.7/dojox/gesture/Base">dojox.gesture.Base</a></div><div class="jsdoc-summary">Obtain a gesture element for the give node</div><table class="jsdoc-parameters"><tr><th>Parameter</th><th>Type</th><th>Description</th></tr><tr><td class="jsdoc-param-name">node</td><td class="jsdoc-param-type">Dom</td><td class="jsdoc-param-description"></td></tr></table></div><div class="jsdoc-field private inherited odd"><div class="jsdoc-title"><a name="_handle"></a><span class="functionIcon">_handle</span></div><div class="jsdoc-inheritance">Defined by <a class="jsdoc-link" href="/api/1.7/dojox/gesture/Base">dojox.gesture.Base</a></div><div class="jsdoc-summary">Bind listen handler for the given gesture event(e.g. 'tap', 'tap.hold' etc.)
+	the returned handle will be used internally by dojo/on</div><table class="jsdoc-parameters"><tr><th>Parameter</th><th>Type</th><th>Description</th></tr><tr><td class="jsdoc-param-name">eventType</td><td class="jsdoc-param-type">String</td><td class="jsdoc-param-description"></td></tr></table></div><div class="jsdoc-field private inherited even"><div class="jsdoc-title"><a name="_process"></a><span class="functionIcon">_process</span></div><div class="jsdoc-inheritance">Defined by <a class="jsdoc-link" href="/api/1.7/dojox/gesture/Base">dojox.gesture.Base</a></div><div class="jsdoc-summary"><ol>
+<li><p>e._locking is used to make sure only the most inner node
+will be processed for the same gesture, suppose we have:
+on(inner, dojox.gesture.tap, func1);
+on(outer, dojox.gesture.tap, func2);
+only the inner node will be processed by tap gesture, once matched,
+the 'tap' event will be bubbled up from inner to outer, dojo.StopEvent(e)
+can be used at any level to stop the 'tap' event.</p></li>
+<li><p>Once a node starts being processed, all it's descendant nodes will be locked.
+The same gesture won't be processed on its descendant nodes until the lock is released.</p></li>
+</ol>
+</div><table class="jsdoc-parameters"><tr><th>Parameter</th><th>Type</th><th>Description</th></tr><tr><td class="jsdoc-param-name">element</td><td class="jsdoc-param-type">Object</td><td class="jsdoc-param-description">Gesture element</td></tr><tr><td class="jsdoc-param-name">phase</td><td class="jsdoc-param-type">String</td><td class="jsdoc-param-description">Phase of a gesture to be processed, might be 'press'|'move'|'release'|'cancel'</td></tr><tr><td class="jsdoc-param-name">e</td><td class="jsdoc-param-type">Event</td><td class="jsdoc-param-description">Native event</td></tr></table></div><div class="jsdoc-field private inherited odd"><div class="jsdoc-title"><a name="_remove"></a><span class="functionIcon">_remove</span></div><div class="jsdoc-inheritance">Defined by <a class="jsdoc-link" href="/api/1.7/dojox/gesture/Base">dojox.gesture.Base</a></div><div class="jsdoc-summary">Check and remove underneath handlers if node
+	is not being listened for 'this' gesture anymore,
+	this happens when user removed all previous on() handlers.</div><table class="jsdoc-parameters"><tr><th>Parameter</th><th>Type</th><th>Description</th></tr><tr><td class="jsdoc-param-name">node</td><td class="jsdoc-param-type">Dom</td><td class="jsdoc-param-description"></td></tr><tr><td class="jsdoc-param-name">type</td><td class="jsdoc-param-type">String</td><td class="jsdoc-param-description"></td></tr></table></div><div class="jsdoc-field public inherited even"><div class="jsdoc-title"><a name="cancel"></a><span class="functionIcon">cancel</span></div><div class="jsdoc-inheritance">Defined by <a class="jsdoc-link" href="/api/1.7/dojox/gesture/Base">dojox.gesture.Base</a></div><div class="jsdoc-summary">Process the 'cancel' phase of a gesture</div><table class="jsdoc-parameters"><tr><th>Parameter</th><th>Type</th><th>Description</th></tr><tr><td class="jsdoc-param-name">data</td><td class="jsdoc-param-type"></td><td class="jsdoc-param-description"></td></tr><tr><td class="jsdoc-param-name">e</td><td class="jsdoc-param-type"></td><td class="jsdoc-param-description"></td></tr></table></div><div class="jsdoc-field public  odd"><div class="jsdoc-title"><a name="constructor"></a><span class="functionIcon">constructor</span></div><div class="jsdoc-inheritance">Overrides <a class="jsdoc-link" href="/api/1.7/Object">Object</a></div><div class="jsdoc-return-type">Returns <strong>dojox.gesture.Base</strong></div><div class="jsdoc-summary">A reference to the constructor function for this object.</div><table class="jsdoc-parameters"><tr><th>Parameter</th><th>Type</th><th>Description</th></tr><tr><td class="jsdoc-param-name">args</td><td class="jsdoc-param-type"></td><td class="jsdoc-param-description"></td></tr></table></div><div class="jsdoc-field public inherited even"><div class="jsdoc-title"><a name="destroy"></a><span class="functionIcon">destroy</span></div><div class="jsdoc-inheritance">Defined by <a class="jsdoc-link" href="/api/1.7/dojox/gesture/Base">dojox.gesture.Base</a></div><div class="jsdoc-summary">Release all handlers and resources</div></div><div class="jsdoc-field public inherited odd"><div class="jsdoc-title"><a name="fire"></a><span class="functionIcon">fire</span></div><div class="jsdoc-inheritance">Defined by <a class="jsdoc-link" href="/api/1.7/dojox/gesture/Base">dojox.gesture.Base</a></div><div class="jsdoc-summary">Fire a gesture event and invoke registered listeners
+	a simulated GestureEvent will also be sent along</div><table class="jsdoc-parameters"><tr><th>Parameter</th><th>Type</th><th>Description</th></tr><tr><td class="jsdoc-param-name">node</td><td class="jsdoc-param-type">DomNode</td><td class="jsdoc-param-description">Target node to fire the gesture</td></tr><tr><td class="jsdoc-param-name">event</td><td class="jsdoc-param-type">Object</td><td class="jsdoc-param-description">An object containing specific gesture info e.g {type: 'tap.hold'|'swipe.left'), ...}
+	all these properties will be put into a simulated GestureEvent when fired.
+	Note - Default properties in a native Event won't be overwritten, see on.emit() for more details.</td></tr></table></div><div class="jsdoc-field public inherited even"><div class="jsdoc-title"><a name="init"></a><span class="functionIcon">init</span></div><div class="jsdoc-inheritance">Defined by <a class="jsdoc-link" href="/api/1.7/dojox/gesture/Base">dojox.gesture.Base</a></div><div class="jsdoc-summary">Initialization works</div></div><div class="jsdoc-field public inherited odd"><div class="jsdoc-title"><a name="isLocked"></a><span class="functionIcon">isLocked</span></div><div class="jsdoc-inheritance">Defined by <a class="jsdoc-link" href="/api/1.7/dojox/gesture/Base">dojox.gesture.Base</a></div><div class="jsdoc-summary">Check if the node is locked, isLocked(node) means
+	whether it's a descendant of the currently locked node.</div><table class="jsdoc-parameters"><tr><th>Parameter</th><th>Type</th><th>Description</th></tr><tr><td class="jsdoc-param-name">node</td><td class="jsdoc-param-type"></td><td class="jsdoc-param-description"></td></tr></table></div><div class="jsdoc-field public inherited even"><div class="jsdoc-title"><a name="lock"></a><span class="functionIcon">lock</span></div><div class="jsdoc-inheritance">Defined by <a class="jsdoc-link" href="/api/1.7/dojox/gesture/Base">dojox.gesture.Base</a></div><div class="jsdoc-summary">Lock all descendants of the node.</div><table class="jsdoc-parameters"><tr><th>Parameter</th><th>Type</th><th>Description</th></tr><tr><td class="jsdoc-param-name">node</td><td class="jsdoc-param-type">Dom</td><td class="jsdoc-param-description"></td></tr></table></div><div class="jsdoc-field public inherited odd"><div class="jsdoc-title"><a name="move"></a><span class="functionIcon">move</span></div><div class="jsdoc-inheritance">Defined by <a class="jsdoc-link" href="/api/1.7/dojox/gesture/Base">dojox.gesture.Base</a></div><div class="jsdoc-summary">Process the 'move' phase of a gesture</div><table class="jsdoc-parameters"><tr><th>Parameter</th><th>Type</th><th>Description</th></tr><tr><td class="jsdoc-param-name">data</td><td class="jsdoc-param-type"></td><td class="jsdoc-param-description"></td></tr><tr><td class="jsdoc-param-name">e</td><td class="jsdoc-param-type"></td><td class="jsdoc-param-description"></td></tr></table></div><div class="jsdoc-field public inherited even"><div class="jsdoc-title"><a name="press"></a><span class="functionIcon">press</span></div><div class="jsdoc-inheritance">Defined by <a class="jsdoc-link" href="/api/1.7/dojox/gesture/Base">dojox.gesture.Base</a></div><div class="jsdoc-summary">Process the 'press' phase of a gesture</div><table class="jsdoc-parameters"><tr><th>Parameter</th><th>Type</th><th>Description</th></tr><tr><td class="jsdoc-param-name">data</td><td class="jsdoc-param-type"></td><td class="jsdoc-param-description"></td></tr><tr><td class="jsdoc-param-name">e</td><td class="jsdoc-param-type"></td><td class="jsdoc-param-description"></td></tr></table></div><div class="jsdoc-field public inherited odd"><div class="jsdoc-title"><a name="release"></a><span class="functionIcon">release</span></div><div class="jsdoc-inheritance">Defined by <a class="jsdoc-link" href="/api/1.7/dojox/gesture/Base">dojox.gesture.Base</a></div><div class="jsdoc-summary">Process the 'release' phase of a gesture</div><table class="jsdoc-parameters"><tr><th>Parameter</th><th>Type</th><th>Description</th></tr><tr><td class="jsdoc-param-name">data</td><td class="jsdoc-param-type"></td><td class="jsdoc-param-description"></td></tr><tr><td class="jsdoc-param-name">e</td><td class="jsdoc-param-type"></td><td class="jsdoc-param-description"></td></tr></table></div><div class="jsdoc-field public inherited even"><div class="jsdoc-title"><a name="unLock"></a><span class="functionIcon">unLock</span></div><div class="jsdoc-inheritance">Defined by <a class="jsdoc-link" href="/api/1.7/dojox/gesture/Base">dojox.gesture.Base</a></div><div class="jsdoc-summary">Release the lock</div></div></div></div>

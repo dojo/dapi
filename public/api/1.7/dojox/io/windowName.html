@@ -1,0 +1,44 @@
+<div class="jsdoc-permalink" style="display:none;">/api/1.7/dojox/io/windowName</div><h1 class="jsdoc-title objectIcon36">dojox.io.windowName <span style="font-size:11px;color:#999;">(version 1.7)</span></h1><div class="jsdoc-prototype">Object &raquo; dojox.io.windowName</div><div class="jsdoc-require">dojo.require("dojox.io.windowName");</div><div class="jsdoc-prototype">Defined in dojox/io/windowName.js</div><div class="jsdoc-children"><div class="jsdoc-field-list"><h2 class="jsdoc-summary-heading">Method Summary <span class="jsdoc-summary-toggle"></span></h2><div class="jsdoc-summary-list"><ul><li class="functionIcon private inherited even"><a class="inline-link" href="#dojox.io.windowName._send">dojox.io.windowName._send</a><span class="parameters">(dfd, method, authTarget, onAuthLoad)</span></li><li class="functionIcon public inherited odd"><a class="inline-link" href="#dojox.io.windowName.send">dojox.io.windowName.send</a><span class="parameters">(method, args)</span> <span>Provides secure cross-domain request capability.
+	Sends a request using an iframe (POST or GET) and reads the response through the
+	frame's window.name.</span></li></ul></div></div></div><div class="jsdoc-children"><div class="jsdoc-fields"><h2>Methods</h2><div class="jsdoc-field private inherited even"><div class="jsdoc-title"><a name="dojox.io.windowName._send"></a><span class="functionIcon">dojox.io.windowName._send</span></div><div class="jsdoc-inheritance">Defined by <a class="jsdoc-link" href="/api/1.7/dojox/io/windowName">dojox.io.windowName</a></div><table class="jsdoc-parameters"><tr><th>Parameter</th><th>Type</th><th>Description</th></tr><tr><td class="jsdoc-param-name">dfd</td><td class="jsdoc-param-type"></td><td class="jsdoc-param-description"></td></tr><tr><td class="jsdoc-param-name">method</td><td class="jsdoc-param-type"></td><td class="jsdoc-param-description"></td></tr><tr><td class="jsdoc-param-name">authTarget</td><td class="jsdoc-param-type"></td><td class="jsdoc-param-description"></td></tr><tr><td class="jsdoc-param-name">onAuthLoad</td><td class="jsdoc-param-type"></td><td class="jsdoc-param-description"></td></tr></table></div><div class="jsdoc-field public inherited odd"><div class="jsdoc-title"><a name="dojox.io.windowName.send"></a><span class="functionIcon">dojox.io.windowName.send</span></div><div class="jsdoc-inheritance">Defined by <a class="jsdoc-link" href="/api/1.7/dojox/io/windowName">dojox.io.windowName</a></div><div class="jsdoc-summary"><p>In order to provide a windowname transport accessible resources/web services, a server
+should check for the presence of a parameter window.name=true and if a request includes
+such a parameter, it should respond to the request with an HTML
+document that sets it's window.name to the string that is to be
+delivered to the client. For example, if a client makes a window.name request like:
+    http://othersite.com/greeting?windowname=true
+And server wants to respond to the client with "Hello", it should return an html page:
+    <html><script type="text/javascript">
+    window.name="Hello";
+    </script></html>
+One can provide XML or JSON data by simply quoting the data as a string, and parsing the data
+on the client.
+If you use the authorization window.name protocol, the requester should include an
+authElement element in the args, and a request will be created like:
+    http://othersite.com/greeting?windowname=auth
+And the server can respond like this:
+    <html><script type="text/javascript">
+    var loc = window.name;
+    authorizationButton.onclick = function(){
+        window.name="Hello";
+        location = loc;
+    };
+    </script></html>
+When using windowName from a XD Dojo build, make sure to set the
+dojo.dojoBlankHtmlUrl property to a local URL.</p>
+</div><table class="jsdoc-parameters"><tr><th>Parameter</th><th>Type</th><th>Description</th></tr><tr><td class="jsdoc-param-name">method</td><td class="jsdoc-param-type">String</td><td class="jsdoc-param-description">The method to use to send the request, GET or POST</td></tr><tr><td class="jsdoc-param-name">args</td><td class="jsdoc-param-type">Object</td><td class="jsdoc-param-description">See dojo.xhr
+	
+	args.authElement: DOMNode?
+	By providing an authElement, this indicates that windowName should use the
+	authorized window.name protocol, relying on
+	the loaded XD resource to return to the provided return URL on completion
+	of authorization/authentication. The provided authElement will be used to place
+	the iframe in, so the user can interact with the server resource for authentication
+	and/or authorization to access the resource.
+	
+	args.onAuthLoad: Function?
+	When using authorized access to resources, this function will be called when the
+	authorization page has been loaded. (When authorization is actually completed,
+	the deferred callback function is called with the result). The primary use for this
+	is to make the authElement visible to the user once the resource has loaded
+	(this can be preferable to showing the iframe while the resource is loading
+	since it may not require authorization, it may simply return the resource).<table class="jsdoc-parameters" style="margin-left:0;margin-right:0;margin-bottom:0;"><tr><th>Parameter</th><th>Type</th><th>Description</th></tr></table></td></tr></table></div></div></div>

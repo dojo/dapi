@@ -1,0 +1,40 @@
+<div class="jsdoc-permalink" style="display:none;">/api/1.7/dijit/_CssStateMixin</div><h1 class="jsdoc-title constructorIcon36">dijit._CssStateMixin <span style="font-size:11px;color:#999;">(version 1.7)</span></h1><div class="jsdoc-prototype">Object &raquo; dijit._CssStateMixin</div><div class="jsdoc-function-information"><h3>Usage:</h3><div class="function-signature"><span class="keyword">var</span> foo = new dijit._CssStateMixin();</div></div><div class="jsdoc-full-summary"><p>By mixing this class into your widget, and setting the this.baseClass attribute, it will automatically
+maintain CSS classes on the widget root node (this.domNode) depending on hover,
+active, focus, etc. state.   Ex: with a baseClass of dijitButton, it will apply the classes
+dijitButtonHovered and dijitButtonActive, as the user moves the mouse over the widget and clicks it.</p>
+
+<p>It also sets CSS like dijitButtonDisabled based on widget semantic state.</p>
+
+<p>By setting the cssStateNodes attribute, a widget can also track events on subnodes (like buttons
+within the widget).</p>
+</div><div class="jsdoc-children"><div class="jsdoc-field-list"><h2 class="jsdoc-summary-heading">Property Summary <span class="jsdoc-summary-toggle"></span></h2><div class="jsdoc-summary-list"><ul><li class="objectIcon public inherited even"><a class="inline-link" href="#stateNode">stateNode</a></li></ul></div><h2 class="jsdoc-summary-heading">Method Summary <span class="jsdoc-summary-toggle"></span></h2><div class="jsdoc-summary-list"><ul><li class="functionIcon private inherited odd"><a class="inline-link" href="#_applyAttributes">_applyAttributes</a><span class="parameters">()</span></li><li class="functionIcon private inherited even"><a class="inline-link" href="#_cssMouseEvent">_cssMouseEvent</a><span class="parameters">(event)</span> <span>Sets hovering and active properties depending on mouse state,
+	which triggers _setStateClass() to set appropriate CSS classes for this.domNode.</span></li><li class="functionIcon private inherited odd"><a class="inline-link" href="#_setStateClass">_setStateClass</a><span class="parameters">()</span> <span>Update the visual state of the widget by setting the css classes on this.domNode
+	(or this.stateNode if defined) by combining this.baseClass with
+	various suffixes that represent the current widget state(s).</span></li><li class="functionIcon private inherited even"><a class="inline-link" href="#_trackMouseState">_trackMouseState</a><span class="parameters">(node, clazz)</span> <span>Track mouse/focus events on specified node and set CSS class on that node to indicate
+	current state.   Usually not called directly, but via cssStateNodes attribute.</span></li><li class="functionIcon public  odd"><a class="inline-link" href="#constructor">constructor</a><span class="parameters">()</span><span class="jsdoc-returns"> returns dijit._CssStateMixin</span> <span>A reference to the constructor function for this object.</span></li></ul></div></div></div><div class="jsdoc-children"><div class="jsdoc-fields"><h2>Properties</h2><div class="jsdoc-field public inherited even"><div class="jsdoc-title"><a name="stateNode"></a><span class="objectIcon">stateNode</span></div><div class="jsdoc-inheritance">Defined by <a class="jsdoc-link" href="/api/1.7/dijit/_CssStateMixin">dijit._CssStateMixin</a></div></div><h2>Methods</h2><div class="jsdoc-field private inherited odd"><div class="jsdoc-title"><a name="_applyAttributes"></a><span class="functionIcon">_applyAttributes</span></div><div class="jsdoc-inheritance">Defined by <a class="jsdoc-link" href="/api/1.7/dijit/_CssStateMixin">dijit._CssStateMixin</a></div></div><div class="jsdoc-field private inherited even"><div class="jsdoc-title"><a name="_cssMouseEvent"></a><span class="functionIcon">_cssMouseEvent</span></div><div class="jsdoc-inheritance">Defined by <a class="jsdoc-link" href="/api/1.7/dijit/_CssStateMixin">dijit._CssStateMixin</a></div><div class="jsdoc-summary">Sets hovering and active properties depending on mouse state,
+	which triggers _setStateClass() to set appropriate CSS classes for this.domNode.</div><table class="jsdoc-parameters"><tr><th>Parameter</th><th>Type</th><th>Description</th></tr><tr><td class="jsdoc-param-name">event</td><td class="jsdoc-param-type">Event</td><td class="jsdoc-param-description"></td></tr></table></div><div class="jsdoc-field private inherited odd"><div class="jsdoc-title"><a name="_setStateClass"></a><span class="functionIcon">_setStateClass</span></div><div class="jsdoc-inheritance">Defined by <a class="jsdoc-link" href="/api/1.7/dijit/_CssStateMixin">dijit._CssStateMixin</a></div><div class="jsdoc-summary"><p>In the case where a widget has multiple
+states, it sets the class based on all possible
+combinations.  For example, an invalid form widget that is being hovered
+will be "dijitInput dijitInputInvalid dijitInputHover dijitInputInvalidHover".</p>
+
+<p>The widget may have one or more of the following states, determined
+by this.state, this.checked, this.valid, and this.selected:
+- Error - ValidationTextBox sets this.state to "Error" if the current input value is invalid
+- Incomplete - ValidationTextBox sets this.state to "Incomplete" if the current input value is not finished yet
+- Checked - ex: a checkmark or a ToggleButton in a checked state, will have this.checked==true
+- Selected - ex: currently selected tab will have this.selected==true</p>
+
+<p>In addition, it may have one or more of the following states,
+based on this.disabled and flags set in _onMouse (this.active, this.hovering) and from focus manager (this.focused):
+- Disabled  - if the widget is disabled
+- Active        - if the mouse (or space/enter key?) is being pressed down
+- Focused       - if the widget has focus
+- Hover     - if the mouse is over the widget</p>
+</div></div><div class="jsdoc-field private inherited even"><div class="jsdoc-title"><a name="_trackMouseState"></a><span class="functionIcon">_trackMouseState</span></div><div class="jsdoc-inheritance">Defined by <a class="jsdoc-link" href="/api/1.7/dijit/_CssStateMixin">dijit._CssStateMixin</a></div><div class="jsdoc-summary"><p>Given class=foo, will set the following CSS class on the node
+- fooActive: if the user is currently pressing down the mouse button while over the node
+- fooHover: if the user is hovering the mouse over the node, but not pressing down a button
+- fooFocus: if the node is focused</p>
+
+<p>Note that it won't set any classes if the widget is disabled.</p>
+</div><table class="jsdoc-parameters"><tr><th>Parameter</th><th>Type</th><th>Description</th></tr><tr><td class="jsdoc-param-name">node</td><td class="jsdoc-param-type">DomNode</td><td class="jsdoc-param-description">Should be a sub-node of the widget, not the top node (this.domNode), since the top node
+	is handled specially and automatically just by mixing in this class.</td></tr><tr><td class="jsdoc-param-name">clazz</td><td class="jsdoc-param-type">String</td><td class="jsdoc-param-description">CSS class name (ex: dijitSliderUpArrow).</td></tr></table></div><div class="jsdoc-field public  odd"><div class="jsdoc-title"><a name="constructor"></a><span class="functionIcon">constructor</span></div><div class="jsdoc-inheritance">Overrides <a class="jsdoc-link" href="/api/1.7/Object">Object</a></div><div class="jsdoc-return-type">Returns <strong>dijit._CssStateMixin</strong></div><div class="jsdoc-summary">A reference to the constructor function for this object.</div></div></div></div>

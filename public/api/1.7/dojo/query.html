@@ -1,0 +1,60 @@
+<div class="jsdoc-permalink" style="display:none;">/api/1.7/dojo/query</div><h1 class="jsdoc-title functionIcon36">dojo.query <span style="font-size:11px;color:#999;">(version 1.7)</span></h1><div class="jsdoc-prototype">Object &raquo; dojo.query</div><div class="jsdoc-full-summary"><p>dojo/query is responsible for loading the appropriate query engine and wrapping
+its results with a <code>dojo.NodeList</code>. You can use dojo/query with a specific selector engine
+by using it as a plugin. For example, if you installed the sizzle package, you could
+use it as the selector engine with:
+        define("dojo/query!sizzle", function(query){
+                query("div")...</p>
+
+<p>The id after the ! can be a module id of the selector engine or one of the following values:
+        + acme: This is the default engine used by Dojo base, and will ensure that the full
+        Acme engine is always loaded.</p>
+
+<pre><code>    + css2: If the browser has a native selector engine, this will be used, otherwise a
+    very minimal lightweight selector engine will be loaded that can do simple CSS2 selectors
+    (by #id, .class, tag, and [name=value] attributes, with standard child or descendant (&gt;)
+    operators) and nothing more.
+
+    + css2.1: If the browser has a native selector engine, this will be used, otherwise the
+    full Acme engine will be loaded.
+
+    + css3: If the browser has a native selector engine with support for CSS3 pseudo
+    selectors (most modern browsers except IE8), this will be used, otherwise the
+    full Acme engine will be loaded.
+
+    + Or the module id of a selector engine can be used to explicitly choose the selector engine
+</code></pre>
+
+<p>For example, if you are using CSS3 pseudo selectors in module, you can specify that
+you will need support them with:
+        define("dojo/query!css3", function(query){
+                query('#t > h3:nth-child(odd)')...</p>
+
+<p>You can also choose the selector engine/load configuration by setting the <FIXME:what is the configuration setting?>.
+For example:
+        <script data-dojo-config="query-selector:'css3'" src="dojo.js"></script></p>
+</div><div class="jsdoc-examples"><h2>Examples:</h2><div class="jsdoc-example"><h3>Example 1</h3>
+add an onclick handler to every submit button in the document
+which causes the form to be sent via Ajax instead:
+<pre class="brush: js;" lang="javascript">
+		define([&quot;dojo/query&quot;], function(query){
+		query(&quot;input[type='submit']&quot;).on(&quot;click&quot;, function(e){
+				dojo.stopEvent(e); // prevent sending the form
+				var btn = e.target;
+				dojo.xhrPost({
+						form: btn.form,
+						load: function(data){
+								// replace the form with the response
+								var div = dojo.doc.createElement(&quot;div&quot;);
+								dojo.place(div, btn.form, &quot;after&quot;);
+								div.innerHTML = data;
+								dojo.style(btn.form, &quot;display&quot;, &quot;none&quot;);
+						}
+				});
+		});
+</pre></div></div><div class="jsdoc-children"><div class="jsdoc-field-list"><h2 class="jsdoc-summary-heading">Property Summary <span class="jsdoc-summary-toggle"></span></h2><div class="jsdoc-summary-list"><ul><li class="objectIcon public inherited even"><a class="inline-link" href="#dojo.query.pseudos">dojo.query.pseudos</a></li></ul></div><h2 class="jsdoc-summary-heading">Method Summary <span class="jsdoc-summary-toggle"></span></h2><div class="jsdoc-summary-list"><ul><li class="functionIcon public inherited odd"><a class="inline-link" href="#dojo.query.load">dojo.query.load</a><span class="parameters">(id, parentRequire, loaded, config)</span> <span>can be used as AMD plugin to conditionally load new query engine</span></li></ul></div><h2 class="jsdoc-summary-heading">Attached Objects <span class="jsdoc-summary-toggle"></span></h2><div class="jsdoc-summary-list"><div class="jsdoc-field"><div class="jsdoc-title"><span class="object"><a class="jsdoc-link" href="/api/1.7/dojo/query/pseudos">dojo.query.pseudos</a></span></div></div></div></div></div><div class="jsdoc-children"><div class="jsdoc-fields"><h2>Properties</h2><div class="jsdoc-field public inherited even"><div class="jsdoc-title"><a name="dojo.query.pseudos"></a><span class="objectIcon">dojo.query.pseudos</span></div><div class="jsdoc-inheritance">Defined by <a class="jsdoc-link" href="/api/1.7/dojo/query">dojo.query</a></div></div><h2>Methods</h2><div class="jsdoc-field public inherited odd"><div class="jsdoc-title"><a name="dojo.query.load"></a><span class="functionIcon">dojo.query.load</span></div><div class="jsdoc-inheritance">Defined by <a class="jsdoc-link" href="/api/1.7/dojo/query">dojo.query</a></div><div class="jsdoc-summary">can be used as AMD plugin to conditionally load new query engine</div><table class="jsdoc-parameters"><tr><th>Parameter</th><th>Type</th><th>Description</th></tr><tr><td class="jsdoc-param-name">id</td><td class="jsdoc-param-type"></td><td class="jsdoc-param-description"></td></tr><tr><td class="jsdoc-param-name">parentRequire</td><td class="jsdoc-param-type"></td><td class="jsdoc-param-description"></td></tr><tr><td class="jsdoc-param-name">loaded</td><td class="jsdoc-param-type"></td><td class="jsdoc-param-description"></td></tr><tr><td class="jsdoc-param-name">config</td><td class="jsdoc-param-type"></td><td class="jsdoc-param-description"></td></tr></table><div class="jsdoc-examples"><div class="jsdoc-example"><div><strong>Example 1</strong></div>
+    define(["dojo/query!custom"], function(qsa){
+<pre class="brush: js;" lang="javascript">
+				// loaded selector/custom.js as engine
+				qsa(&quot;#foobar&quot;).forEach(...);
+		});
+</pre></div></div></div></div></div>

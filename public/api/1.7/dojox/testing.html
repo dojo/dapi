@@ -1,0 +1,41 @@
+<div class="jsdoc-permalink" style="display:none;">/api/1.7/dojox/testing</div><h1 class="jsdoc-title objectIcon36">dojox.testing <span style="font-size:11px;color:#999;">(version 1.7)</span></h1><div class="jsdoc-prototype">Object &raquo; dojox.testing</div><div class="jsdoc-require">dojo.require("dojox.testing.DocTest");</div><div class="jsdoc-full-summary"><p>TODOC</p>
+</div><div class="jsdoc-children"><div class="jsdoc-field-list"><h2 class="jsdoc-summary-heading">Method Summary <span class="jsdoc-summary-toggle"></span></h2><div class="jsdoc-summary-list"><ul><li class="functionIcon public inherited even"><a class="inline-link" href="#dojox.testing.DocTest">dojox.testing.DocTest</a><span class="parameters">()</span> <span>This class executes doctests.</span></li></ul></div><h2 class="jsdoc-summary-heading">Attached Objects <span class="jsdoc-summary-toggle"></span></h2><div class="jsdoc-summary-list"><div class="jsdoc-field"><div class="jsdoc-title"><span class="constructor"><a class="jsdoc-link" href="/api/1.7/dojox/testing/DocTest">dojox.testing.DocTest</a></span></div></div></div></div></div><div class="jsdoc-children"><div class="jsdoc-fields"><h2>Methods</h2><div class="jsdoc-field public inherited even"><div class="jsdoc-title"><a name="dojox.testing.DocTest"></a><span class="functionIcon">dojox.testing.DocTest</span></div><div class="jsdoc-inheritance">Defined by <a class="jsdoc-link" href="/api/1.7/dojox/testing">dojox.testing</a></div><div class="jsdoc-summary"><p>DocTests are tests that are defined inside the comment.
+A doctest looks as if it was copied from the shell (which it mostly is).
+A doctest is executed when the following conditions match:
+1) all lines are comments
+2) the line always starts with spaces/tabs followed by "//"
+and at least one space
+3) the line(s) of the test to execute starts with ">>>"
+preceeded by what is described in 2)
+4) the first line after 3) starting without ">>>" is the exptected result.
+preceeded by what is described in 2)
+5) the test sequence is terminated by an empty line, or the next
+test in the following line, or a new line that does not start as described in 2)
+(simple said: is not a comment)
+preceeded by what is described in 2)</p>
+
+<p>I.e. the following is a simple doctest, that will actually also be run
+if you run this class against this file here:</p>
+
+<blockquote>
+  <blockquote>
+    <blockquote>
+      <p>1+1 // A simple test case. Terminated by an empty line
+      2</p>
+      
+      <p>1==2
+      false
+      "a"+"b" // Also without the empty line before, this is a new test.
+      "ab"</p>
+      
+      <p>var anything = "anything" // Multiple commands for one test.
+      "something"==anything
+      false</p>
+    </blockquote>
+  </blockquote>
+</blockquote>
+
+<p>DocTests are great for inline documenting a class or method, they also
+are very helpful in understanding what the class/method actually does.
+They don't make sense everywhere, but sometimes they are really handy.</p>
+</div></div></div></div>

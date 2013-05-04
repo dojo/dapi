@@ -1,0 +1,126 @@
+<div class="jsdoc-permalink" style="display:none;">/api/1.7/dojox/flash</div><h1 class="jsdoc-title functionIcon36">dojox.flash <span style="font-size:11px;color:#999;">(version 1.7)</span></h1><div class="jsdoc-prototype">Object &raquo; dojox.flash</div><div class="jsdoc-full-summary"><p>The goal of dojox.flash is to make it easy to extend Flash's capabilities
+into an Ajax/DHTML environment.</p>
+
+<p>dojox.flash provides an easy object for interacting with the Flash plugin.
+This object provides methods to determine the current version of the Flash
+plugin (dojox.flash.info); write out the necessary markup to
+dynamically insert a Flash object into the page (dojox.flash.Embed; and
+do dynamic installation and upgrading of the current Flash plugin in
+use (dojox.flash.Install). If you want to call methods on the Flash object
+embedded into the page it is your responsibility to use Flash's ExternalInterface
+API and get a reference to the Flash object yourself.</p>
+
+<p>To use dojox.flash, you must first wait until Flash is finished loading
+and initializing before you attempt communication or interaction.
+To know when Flash is finished use dojo.connect:</p>
+
+<pre><code>dojo.connect(dojox.flash, "loaded", myInstance, "myCallback");
+</code></pre>
+
+<p>Then, while the page is still loading provide the file name:</p>
+
+<pre><code>dojox.flash.setSwf(dojo.moduleUrl("dojox", "_storage/storage.swf"));
+</code></pre>
+
+<p>If no SWF files are specified, then Flash is not initialized.</p>
+
+<p>Your Flash must use Flash's ExternalInterface to expose Flash methods and
+to call JavaScript.</p>
+
+<p>setSwf can take an optional 'visible' attribute to control whether
+the Flash object is visible or not on the page; the default is visible:</p>
+
+<pre><code>dojox.flash.setSwf(dojo.moduleUrl("dojox", "_storage/storage.swf"),
+</code></pre>
+
+<p>false);</p>
+
+<p>Once finished, you can query Flash version information:</p>
+
+<pre><code>dojox.flash.info.version
+</code></pre>
+
+<p>Or can communicate with Flash methods that were exposed:</p>
+
+<pre><code>var f = dojox.flash.get();
+var results = f.sayHello("Some Message");
+</code></pre>
+
+<p>Your Flash files should use DojoExternalInterface.as to register methods;
+this file wraps Flash's normal ExternalInterface but correct various
+serialization bugs that ExternalInterface has.</p>
+
+<p>Note that dojox.flash is not meant to be a generic Flash embedding
+mechanism; it is as generic as necessary to make Dojo Storage's
+Flash Storage Provider as clean and modular as possible. If you want
+a generic Flash embed mechanism see <a href="http://blog.deconcept.com/swfobject/">SWFObject</a>.</p>
+
+<p>Notes:
+Note that dojox.flash can currently only work with one Flash object
+on the page; it does not yet support multiple Flash objects on
+the same page.</p>
+
+<p>Your code can detect whether the Flash player is installing or having
+its version revved in two ways. First, if dojox.flash detects that
+Flash installation needs to occur, it sets dojox.flash.info.installing
+to true. Second, you can detect if installation is necessary with the
+following callback:</p>
+
+<pre><code>dojo.connect(dojox.flash, "installing", myInstance, "myCallback");
+</code></pre>
+
+<p>You can use this callback to delay further actions that might need Flash;
+when installation is finished the full page will be refreshed and the
+user will be placed back on your page with Flash installed.</p>
+
+<hr />
+
+<h2>Todo/Known Issues</h2>
+
+<ul>
+<li><p>On Internet Explorer, after doing a basic install, the page is
+not refreshed or does not detect that Flash is now available. The way
+to fix this is to create a custom small Flash file that is pointed to
+during installation; when it is finished loading, it does a callback
+that says that Flash installation is complete on IE, and we can proceed
+to initialize the dojox.flash subsystem.</p></li>
+<li><p>Things aren't super tested for sending complex objects to Flash
+methods, since Dojo Storage only needs strings</p></li>
+</ul>
+
+<p>Author- Brad Neuberg, http://codinginparadise.org</p>
+</div><div class="jsdoc-children"><div class="jsdoc-field-list"><h2 class="jsdoc-summary-heading">Method Summary <span class="jsdoc-summary-toggle"></span></h2><div class="jsdoc-summary-list"><ul><li class="functionIcon public inherited even"><a class="inline-link" href="#dojox.flash.Communicator">dojox.flash.Communicator</a><span class="parameters">()</span> <span>A class that is used to communicate between Flash and JavaScript.</span></li><li class="functionIcon public inherited odd"><a class="inline-link" href="#dojox.flash.Embed">dojox.flash.Embed</a><span class="parameters">(visible)</span> <span>A class that is used to write out the Flash object into the page.</span></li><li class="functionIcon public inherited even"><a class="inline-link" href="#dojox.flash.Info">dojox.flash.Info</a><span class="parameters">()</span> <span>A class that helps us determine whether Flash is available.</span></li><li class="functionIcon public inherited odd"><a class="inline-link" href="#dojox.flash.Install">dojox.flash.Install</a><span class="parameters">()</span> <span>Helps install Flash plugin if needed.</span></li><li class="functionIcon private inherited even"><a class="inline-link" href="#dojox.flash._initialize">dojox.flash._initialize</a><span class="parameters">()</span></li><li class="functionIcon public inherited odd"><a class="inline-link" href="#dojox.flash.addInstallingListener">dojox.flash.addInstallingListener</a><span class="parameters">(listener)</span> <span>Adds a listener to know if Flash is being installed.
+	Useful if you don't want a dependency on dojo.event.</span></li><li class="functionIcon public inherited even"><a class="inline-link" href="#dojox.flash.addLoadedListener">dojox.flash.addLoadedListener</a><span class="parameters">(listener)</span> <span>Adds a listener to know when Flash is finished loading.
+	Useful if you don't want a dependency on dojo.event.</span></li><li class="functionIcon public inherited odd"><a class="inline-link" href="#dojox.flash.installing">dojox.flash.installing</a><span class="parameters">()</span> <span>Called if Flash is being installed.</span></li><li class="functionIcon public inherited even"><a class="inline-link" href="#dojox.flash.loaded">dojox.flash.loaded</a><span class="parameters">()</span> <span>Called back when the Flash subsystem is finished loading.</span></li><li class="functionIcon public inherited odd"><a class="inline-link" href="#dojox.flash.setSwf">dojox.flash.setSwf</a><span class="parameters">(url, visible)</span> <span>Sets the SWF files and versions we are using.</span></li></ul></div><h2 class="jsdoc-summary-heading">Attached Objects <span class="jsdoc-summary-toggle"></span></h2><div class="jsdoc-summary-list"><div class="jsdoc-field"><div class="jsdoc-title"><span class="constructor"><a class="jsdoc-link" href="/api/1.7/dojox/flash/setSwf">dojox.flash.setSwf</a></span></div></div><div class="jsdoc-field"><div class="jsdoc-title"><span class="constructor"><a class="jsdoc-link" href="/api/1.7/dojox/flash/Info">dojox.flash.Info</a></span></div></div><div class="jsdoc-field"><div class="jsdoc-title"><span class="constructor"><a class="jsdoc-link" href="/api/1.7/dojox/flash/Info/_detectVersion">dojox.flash.Info._detectVersion</a></span></div></div><div class="jsdoc-field"><div class="jsdoc-title"><span class="constructor"><a class="jsdoc-link" href="/api/1.7/dojox/flash/Embed">dojox.flash.Embed</a></span></div></div><div class="jsdoc-field"><div class="jsdoc-title"><span class="constructor"><a class="jsdoc-link" href="/api/1.7/dojox/flash/Embed/center">dojox.flash.Embed.center</a></span></div></div><div class="jsdoc-field"><div class="jsdoc-title"><span class="constructor"><a class="jsdoc-link" href="/api/1.7/dojox/flash/Communicator">dojox.flash.Communicator</a></span></div></div><div class="jsdoc-field"><div class="jsdoc-title"><span class="constructor"><a class="jsdoc-link" href="/api/1.7/dojox/flash/Install">dojox.flash.Install</a></span></div></div></div></div></div><div class="jsdoc-children"><div class="jsdoc-fields"><h2>Methods</h2><div class="jsdoc-field public inherited even"><div class="jsdoc-title"><a name="dojox.flash.Communicator"></a><span class="functionIcon">dojox.flash.Communicator</span></div><div class="jsdoc-inheritance">Defined by <a class="jsdoc-link" href="/api/1.7/dojox/flash">dojox.flash</a></div><div class="jsdoc-summary"><p>This class helps mediate Flash and JavaScript communication. Internally
+it uses Flash 8's ExternalInterface API, but adds functionality to fix
+various encoding bugs that ExternalInterface has.</p>
+</div></div><div class="jsdoc-field public inherited odd"><div class="jsdoc-title"><a name="dojox.flash.Embed"></a><span class="functionIcon">dojox.flash.Embed</span></div><div class="jsdoc-inheritance">Defined by <a class="jsdoc-link" href="/api/1.7/dojox/flash">dojox.flash</a></div><div class="jsdoc-summary"><p>Writes out the necessary tags to embed a Flash file into the page. Note that
+these tags are written out as the page is loaded using document.write, so
+you must call this class before the page has finished loading.</p>
+</div><table class="jsdoc-parameters"><tr><th>Parameter</th><th>Type</th><th>Description</th></tr><tr><td class="jsdoc-param-name">visible</td><td class="jsdoc-param-type"></td><td class="jsdoc-param-description"></td></tr></table></div><div class="jsdoc-field public inherited even"><div class="jsdoc-title"><a name="dojox.flash.Info"></a><span class="functionIcon">dojox.flash.Info</span></div><div class="jsdoc-inheritance">Defined by <a class="jsdoc-link" href="/api/1.7/dojox/flash">dojox.flash</a></div><div class="jsdoc-summary"><p>A class that helps us determine whether Flash is available,
+it's major and minor versions, and what Flash version features should
+be used for Flash/JavaScript communication. Parts of this code
+are adapted from the automatic Flash plugin detection code autogenerated
+by the Macromedia Flash 8 authoring environment.</p>
+
+<p>An instance of this class can be accessed on dojox.flash.info after
+the page is finished loading.</p>
+</div></div><div class="jsdoc-field public inherited odd"><div class="jsdoc-title"><a name="dojox.flash.Install"></a><span class="functionIcon">dojox.flash.Install</span></div><div class="jsdoc-inheritance">Defined by <a class="jsdoc-link" href="/api/1.7/dojox/flash">dojox.flash</a></div><div class="jsdoc-summary"><p>Figures out the best way to automatically install the Flash plugin
+for this browser and platform. Also determines if installation or
+revving of the current plugin is needed on this platform.</p>
+</div></div><div class="jsdoc-field private inherited even"><div class="jsdoc-title"><a name="dojox.flash._initialize"></a><span class="functionIcon">dojox.flash._initialize</span></div><div class="jsdoc-inheritance">Defined by <a class="jsdoc-link" href="/api/1.7/dojox/flash">dojox.flash</a></div></div><div class="jsdoc-field public inherited odd"><div class="jsdoc-title"><a name="dojox.flash.addInstallingListener"></a><span class="functionIcon">dojox.flash.addInstallingListener</span></div><div class="jsdoc-inheritance">Defined by <a class="jsdoc-link" href="/api/1.7/dojox/flash">dojox.flash</a></div><div class="jsdoc-summary">Adds a listener to know if Flash is being installed.
+	Useful if you don't want a dependency on dojo.event.</div><table class="jsdoc-parameters"><tr><th>Parameter</th><th>Type</th><th>Description</th></tr><tr><td class="jsdoc-param-name">listener</td><td class="jsdoc-param-type">Function</td><td class="jsdoc-param-description">A function that will be called if Flash is being
+	installed</td></tr></table></div><div class="jsdoc-field public inherited even"><div class="jsdoc-title"><a name="dojox.flash.addLoadedListener"></a><span class="functionIcon">dojox.flash.addLoadedListener</span></div><div class="jsdoc-inheritance">Defined by <a class="jsdoc-link" href="/api/1.7/dojox/flash">dojox.flash</a></div><div class="jsdoc-summary">Adds a listener to know when Flash is finished loading.
+	Useful if you don't want a dependency on dojo.event.</div><table class="jsdoc-parameters"><tr><th>Parameter</th><th>Type</th><th>Description</th></tr><tr><td class="jsdoc-param-name">listener</td><td class="jsdoc-param-type">Function</td><td class="jsdoc-param-description">A function that will be called when Flash is done loading.</td></tr></table></div><div class="jsdoc-field public inherited odd"><div class="jsdoc-title"><a name="dojox.flash.installing"></a><span class="functionIcon">dojox.flash.installing</span></div><div class="jsdoc-inheritance">Defined by <a class="jsdoc-link" href="/api/1.7/dojox/flash">dojox.flash</a></div><div class="jsdoc-summary"><p>A callback to know if Flash is currently being installed or
+having its version revved. To be notified if Flash is installing, connect
+your callback to this method using the following:</p>
+
+<p>dojo.event.connect(dojox.flash, "installing", myInstance, "myCallback");</p>
+</div></div><div class="jsdoc-field public inherited even"><div class="jsdoc-title"><a name="dojox.flash.loaded"></a><span class="functionIcon">dojox.flash.loaded</span></div><div class="jsdoc-inheritance">Defined by <a class="jsdoc-link" href="/api/1.7/dojox/flash">dojox.flash</a></div><div class="jsdoc-summary"><p>A callback when the Flash subsystem is finished loading and can be
+worked with. To be notified when Flash is finished loading, add a
+loaded listener:</p>
+
+<p>dojox.flash.addLoadedListener(loadedListener);</p>
+</div></div><div class="jsdoc-field public inherited odd"><div class="jsdoc-title"><a name="dojox.flash.setSwf"></a><span class="functionIcon">dojox.flash.setSwf</span></div><div class="jsdoc-inheritance">Defined by <a class="jsdoc-link" href="/api/1.7/dojox/flash">dojox.flash</a></div><div class="jsdoc-summary">Sets the SWF files and versions we are using.</div><table class="jsdoc-parameters"><tr><th>Parameter</th><th>Type</th><th>Description</th></tr><tr><td class="jsdoc-param-name">url</td><td class="jsdoc-param-type">String</td><td class="jsdoc-param-description">The URL to this Flash file.</td></tr><tr><td class="jsdoc-param-name">visible</td><td class="jsdoc-param-type">boolean</td><td class="jsdoc-param-description"><div><em>Optional.</em></div>Whether the Flash file is visible or not. If it is not visible we hide
+	it off the screen. This defaults to true (i.e. the Flash file is
+	visible).</td></tr></table></div></div></div>

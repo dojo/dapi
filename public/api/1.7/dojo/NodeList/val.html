@@ -1,0 +1,20 @@
+<div class="jsdoc-permalink" style="display:none;">/api/1.7/dojo/NodeList/val</div><h1 class="jsdoc-title constructorIcon36">dojo.NodeList.val <span style="font-size:11px;color:#999;">(version 1.7)</span></h1><div class="jsdoc-prototype">Object &raquo; dojo.NodeList.val</div><div class="jsdoc-require">dojo.require("dojo.NodeList-manipulate");</div><div class="jsdoc-prototype">Defined in dojo/NodeList-manipulate.js</div><div class="jsdoc-function-information"><h3>Usage:</h3><div class="function-signature"><span class="keyword">var</span> foo = new dojo.NodeList.val(<span class="jsdoc-comment-type">/* String||Array */</span> value);</div></div><div class="jsdoc-full-summary"><p>If a value is passed, allows seting the value property of form elements in this
+NodeList, or properly selecting/checking the right value for radio/checkbox/select
+elements. If no value is passed, the value of the first node in this NodeList
+is returned.</p>
+</div><div class="jsdoc-examples"><h2>Examples:</h2><div class="jsdoc-example"><h3>Example 1</h3>
+assume a DOM created by this markup:
+<pre class="brush: js;" lang="javascript">
+	&lt;input type=&quot;text&quot; value=&quot;foo&quot;&gt;
+	&lt;select multiple&gt;
+		&lt;option value=&quot;red&quot; selected&gt;Red&lt;/option&gt;
+		&lt;option value=&quot;blue&quot;&gt;Blue&lt;/option&gt;
+		&lt;option value=&quot;yellow&quot; selected&gt;Yellow&lt;/option&gt;
+	&lt;/select&gt;
+This code gets and sets the values for the form fields above:</pre>
+<pre class="brush: js;" lang="javascript">
+	dojo.query('[type=&quot;text&quot;]').val(); //gets value foo
+	dojo.query('[type=&quot;text&quot;]').val(&quot;bar&quot;); //sets the input's value to &quot;bar&quot;
+	dojo.query(&quot;select&quot;).val() //gets array value [&quot;red&quot;, &quot;yellow&quot;]
+	dojo.query(&quot;select&quot;).val([&quot;blue&quot;, &quot;yellow&quot;]) //Sets the blue and yellow options to selected.
+</pre></div></div><div class="jsdoc-children"><div class="jsdoc-field-list"><h2 class="jsdoc-summary-heading">Property Summary <span class="jsdoc-summary-toggle"></span></h2><div class="jsdoc-summary-list"><ul><li class="objectIcon public inherited even"><a class="inline-link" href="#0">0</a></li></ul></div><h2 class="jsdoc-summary-heading">Method Summary <span class="jsdoc-summary-toggle"></span></h2><div class="jsdoc-summary-list"><ul><li class="functionIcon public  odd"><a class="inline-link" href="#constructor">constructor</a><span class="parameters">(value)</span><span class="jsdoc-returns"> returns dojo.NodeList.val</span> <span>A reference to the constructor function for this object.</span></li></ul></div></div></div><div class="jsdoc-children"><div class="jsdoc-fields"><h2>Properties</h2><div class="jsdoc-field public inherited even"><div class="jsdoc-title"><a name="0"></a><span class="objectIcon">0</span></div><div class="jsdoc-inheritance">Defined by <a class="jsdoc-link" href="/api/1.7/dojo/NodeList/val">dojo.NodeList.val</a></div></div><h2>Methods</h2><div class="jsdoc-field public  odd"><div class="jsdoc-title"><a name="constructor"></a><span class="functionIcon">constructor</span></div><div class="jsdoc-inheritance">Overrides <a class="jsdoc-link" href="/api/1.7/Object">Object</a></div><div class="jsdoc-return-type">Returns <strong>dojo.NodeList.val</strong></div><div class="jsdoc-summary">A reference to the constructor function for this object.</div><table class="jsdoc-parameters"><tr><th>Parameter</th><th>Type</th><th>Description</th></tr><tr><td class="jsdoc-param-name">value</td><td class="jsdoc-param-type">String||Array</td><td class="jsdoc-param-description"></td></tr></table></div></div></div>

@@ -1,0 +1,75 @@
+<div class="jsdoc-permalink" style="display:none;">/api/1.7/dojox/grid/enhanced/plugins/GridSource</div><h1 class="jsdoc-title constructorIcon36">dojox.grid.enhanced.plugins.GridSource <span style="font-size:11px;color:#999;">(version 1.7)</span></h1><div class="jsdoc-prototype">Object &raquo; <a class="jsdoc-link" href="/api/1.7/Source">Source</a> &raquo; dojox.grid.enhanced.plugins.GridSource</div><div class="jsdoc-require">dojo.require("dojox.grid.enhanced.plugins.GridSource");</div><div class="jsdoc-prototype">Defined in dojox/grid/enhanced/plugins/GridSource.js</div><div class="jsdoc-function-information"><h3>Usage:</h3><div class="function-signature"><span class="keyword">var</span> foo = new dojox.grid.enhanced.plugins.GridSource();</div></div><div class="jsdoc-full-summary"><p>A special source that can accept grid contents.
+Only for non-grid widgets or domNodes.</p>
+</div><div class="jsdoc-children"><div class="jsdoc-field-list"><h2 class="jsdoc-summary-heading">Property Summary <span class="jsdoc-summary-toggle"></span></h2><div class="jsdoc-summary-list"><ul><li class="objectIcon public inherited even"><a class="inline-link" href="#sourcePlugin">sourcePlugin</a></li></ul></div><h2 class="jsdoc-summary-heading">Method Summary <span class="jsdoc-summary-toggle"></span></h2><div class="jsdoc-summary-list"><ul><li class="functionIcon public inherited odd"><a class="inline-link" href="#checkAcceptance">checkAcceptance</a><span class="parameters">(source, nodes)</span></li><li class="functionIcon public  even"><a class="inline-link" href="#constructor">constructor</a><span class="parameters">()</span><span class="jsdoc-returns"> returns dojox.grid.enhanced.plugins.GridSource</span> <span>A reference to the constructor function for this object.</span></li><li class="functionIcon public inherited odd"><a class="inline-link" href="#getCellContent">getCellContent</a><span class="parameters">(grid, leftTopCell, rightBottomCell)</span> <span>Fill node innerHTML for dnd grid cells.
+	sample code:
+	var cells = grid.layout.cells;
+	var store = grid.store;
+	var cache = grid._by_idx;
+	var res = &quot;Grid Cells from &quot; + grid.id + &quot;:&lt;br/&gt;&quot;;
+	for(var r = leftTopCell.row; r &lt;= rightBottomCell.row; ++r){
+	for(var c = leftTopCell.col; c &lt;= rightBottomCell.col; ++c){
+	res += store.getValue(cache[r].item, cells[c].field) + &quot;, &quot;;
+	}
+	res = res.substring(0, res.length - 2) + &quot;;&lt;br/&gt;&quot;;
+	}
+	return res;</span></li><li class="functionIcon public inherited even"><a class="inline-link" href="#getColumnContent">getColumnContent</a><span class="parameters">(grid, colIndexes)</span> <span>Fill node innerHTML for dnd grid columns.
+	sample code:
+	var cells = grid.layout.cells;
+	var res = &quot;Grid Columns from &quot; + grid.id + &quot;:&quot;;
+	for(var i = 0; i &lt; colIndexes.length; ++i){
+	var c = colIndexes[i];
+	res += (cells[c].name || cells[c].field) + &quot;, &quot;;
+	}
+	return res.substring(0, res.length - 2);</span></li><li class="functionIcon public inherited odd"><a class="inline-link" href="#getRowContent">getRowContent</a><span class="parameters">(grid, rowIndexes)</span> <span>Fill node innerHTML for dnd grid rows.
+	sample code:
+	var cells = grid.layout.cells;
+	var store = grid.store;
+	var cache = grid._by_idx;
+	var res = &quot;Grid Rows from &quot; + grid.id + &quot;:&lt;br/&gt;&quot;;
+	for(var i = 0; i &lt; rowIndexes.length; ++i){
+	var r = rowIndexes[i];
+	res += &quot;Row &quot; + r + &quot;: &quot;;
+	for(var j = 0; j &lt; cells.length; ++j){
+	if(!cells[j].hidden){
+	res += store.getValue(cache[r].item, cells[j].field) + &quot;, &quot;;
+	}
+	}
+	res = res.substring(0, res.length - 2) + &quot;;&lt;br/&gt;&quot;;
+	}
+	return res;</span></li><li class="functionIcon public inherited even"><a class="inline-link" href="#markupFactory">markupFactory</a><span class="parameters">(params, node)</span></li></ul></div><h2 class="jsdoc-summary-heading">Event Summary <span class="jsdoc-summary-toggle"></span></h2><div class="jsdoc-summary-list"><ul><li class="functionIcon public inherited odd"><a class="inline-link" href="#onDraggingOut">onDraggingOut</a><span class="parameters">()</span></li><li class="functionIcon public inherited even"><a class="inline-link" href="#onDraggingOver">onDraggingOver</a><span class="parameters">()</span></li><li class="functionIcon public inherited odd"><a class="inline-link" href="#onDropExternal">onDropExternal</a><span class="parameters">(source, nodes, copy)</span></li><li class="functionIcon public inherited even"><a class="inline-link" href="#onDropGridCells">onDropGridCells</a><span class="parameters">(grid, leftTopCell, rightBottomCell)</span></li><li class="functionIcon public inherited odd"><a class="inline-link" href="#onDropGridColumns">onDropGridColumns</a><span class="parameters">(grid, colIndexes)</span></li><li class="functionIcon public inherited even"><a class="inline-link" href="#onDropGridRows">onDropGridRows</a><span class="parameters">(grid, rowIndexes)</span></li></ul></div><h2 class="jsdoc-summary-heading">Attached Objects <span class="jsdoc-summary-toggle"></span></h2><div class="jsdoc-summary-list"><div class="jsdoc-field"><div class="jsdoc-title"><span class="object"><a class="jsdoc-link" href="/api/1.7/dojox/grid/enhanced/plugins/GridSource/sourcePlugin">dojox.grid.enhanced.plugins.GridSource.sourcePlugin</a></span></div></div></div></div></div><div class="jsdoc-children"><div class="jsdoc-fields"><h2>Properties</h2><div class="jsdoc-field public inherited even"><div class="jsdoc-title"><a name="sourcePlugin"></a><span class="objectIcon">sourcePlugin</span></div><div class="jsdoc-inheritance">Defined by <a class="jsdoc-link" href="/api/1.7/dojox/grid/enhanced/plugins/GridSource">dojox.grid.enhanced.plugins.GridSource</a></div></div><h2>Methods</h2><div class="jsdoc-field public inherited odd"><div class="jsdoc-title"><a name="checkAcceptance"></a><span class="functionIcon">checkAcceptance</span></div><div class="jsdoc-inheritance">Defined by <a class="jsdoc-link" href="/api/1.7/dojox/grid/enhanced/plugins/GridSource">dojox.grid.enhanced.plugins.GridSource</a></div><table class="jsdoc-parameters"><tr><th>Parameter</th><th>Type</th><th>Description</th></tr><tr><td class="jsdoc-param-name">source</td><td class="jsdoc-param-type"></td><td class="jsdoc-param-description"></td></tr><tr><td class="jsdoc-param-name">nodes</td><td class="jsdoc-param-type"></td><td class="jsdoc-param-description"></td></tr></table></div><div class="jsdoc-field public  even"><div class="jsdoc-title"><a name="constructor"></a><span class="functionIcon">constructor</span></div><div class="jsdoc-inheritance">Overrides <a class="jsdoc-link" href="/api/1.7/Object">Object</a></div><div class="jsdoc-return-type">Returns <strong>dojox.grid.enhanced.plugins.GridSource</strong></div><div class="jsdoc-summary">A reference to the constructor function for this object.</div></div><div class="jsdoc-field public inherited odd"><div class="jsdoc-title"><a name="getCellContent"></a><span class="functionIcon">getCellContent</span></div><div class="jsdoc-inheritance">Defined by <a class="jsdoc-link" href="/api/1.7/dojox/grid/enhanced/plugins/GridSource">dojox.grid.enhanced.plugins.GridSource</a></div><div class="jsdoc-summary">Fill node innerHTML for dnd grid cells.
+	sample code:
+	var cells = grid.layout.cells;
+	var store = grid.store;
+	var cache = grid._by_idx;
+	var res = &quot;Grid Cells from &quot; + grid.id + &quot;:&lt;br/&gt;&quot;;
+	for(var r = leftTopCell.row; r &lt;= rightBottomCell.row; ++r){
+	for(var c = leftTopCell.col; c &lt;= rightBottomCell.col; ++c){
+	res += store.getValue(cache[r].item, cells[c].field) + &quot;, &quot;;
+	}
+	res = res.substring(0, res.length - 2) + &quot;;&lt;br/&gt;&quot;;
+	}
+	return res;</div><table class="jsdoc-parameters"><tr><th>Parameter</th><th>Type</th><th>Description</th></tr><tr><td class="jsdoc-param-name">grid</td><td class="jsdoc-param-type"></td><td class="jsdoc-param-description"></td></tr><tr><td class="jsdoc-param-name">leftTopCell</td><td class="jsdoc-param-type"></td><td class="jsdoc-param-description"></td></tr><tr><td class="jsdoc-param-name">rightBottomCell</td><td class="jsdoc-param-type"></td><td class="jsdoc-param-description"></td></tr></table></div><div class="jsdoc-field public inherited even"><div class="jsdoc-title"><a name="getColumnContent"></a><span class="functionIcon">getColumnContent</span></div><div class="jsdoc-inheritance">Defined by <a class="jsdoc-link" href="/api/1.7/dojox/grid/enhanced/plugins/GridSource">dojox.grid.enhanced.plugins.GridSource</a></div><div class="jsdoc-summary">Fill node innerHTML for dnd grid columns.
+	sample code:
+	var cells = grid.layout.cells;
+	var res = &quot;Grid Columns from &quot; + grid.id + &quot;:&quot;;
+	for(var i = 0; i &lt; colIndexes.length; ++i){
+	var c = colIndexes[i];
+	res += (cells[c].name || cells[c].field) + &quot;, &quot;;
+	}
+	return res.substring(0, res.length - 2);</div><table class="jsdoc-parameters"><tr><th>Parameter</th><th>Type</th><th>Description</th></tr><tr><td class="jsdoc-param-name">grid</td><td class="jsdoc-param-type"></td><td class="jsdoc-param-description"></td></tr><tr><td class="jsdoc-param-name">colIndexes</td><td class="jsdoc-param-type"></td><td class="jsdoc-param-description"></td></tr></table></div><div class="jsdoc-field public inherited odd"><div class="jsdoc-title"><a name="getRowContent"></a><span class="functionIcon">getRowContent</span></div><div class="jsdoc-inheritance">Defined by <a class="jsdoc-link" href="/api/1.7/dojox/grid/enhanced/plugins/GridSource">dojox.grid.enhanced.plugins.GridSource</a></div><div class="jsdoc-summary">Fill node innerHTML for dnd grid rows.
+	sample code:
+	var cells = grid.layout.cells;
+	var store = grid.store;
+	var cache = grid._by_idx;
+	var res = &quot;Grid Rows from &quot; + grid.id + &quot;:&lt;br/&gt;&quot;;
+	for(var i = 0; i &lt; rowIndexes.length; ++i){
+	var r = rowIndexes[i];
+	res += &quot;Row &quot; + r + &quot;: &quot;;
+	for(var j = 0; j &lt; cells.length; ++j){
+	if(!cells[j].hidden){
+	res += store.getValue(cache[r].item, cells[j].field) + &quot;, &quot;;
+	}
+	}
+	res = res.substring(0, res.length - 2) + &quot;;&lt;br/&gt;&quot;;
+	}
+	return res;</div><table class="jsdoc-parameters"><tr><th>Parameter</th><th>Type</th><th>Description</th></tr><tr><td class="jsdoc-param-name">grid</td><td class="jsdoc-param-type"></td><td class="jsdoc-param-description"></td></tr><tr><td class="jsdoc-param-name">rowIndexes</td><td class="jsdoc-param-type"></td><td class="jsdoc-param-description"></td></tr></table></div><div class="jsdoc-field public inherited even"><div class="jsdoc-title"><a name="markupFactory"></a><span class="functionIcon">markupFactory</span></div><div class="jsdoc-inheritance">Defined by <a class="jsdoc-link" href="/api/1.7/dojox/grid/enhanced/plugins/GridSource">dojox.grid.enhanced.plugins.GridSource</a></div><table class="jsdoc-parameters"><tr><th>Parameter</th><th>Type</th><th>Description</th></tr><tr><td class="jsdoc-param-name">params</td><td class="jsdoc-param-type"></td><td class="jsdoc-param-description"></td></tr><tr><td class="jsdoc-param-name">node</td><td class="jsdoc-param-type"></td><td class="jsdoc-param-description"></td></tr></table></div><h2>Events</h2><div class="jsdoc-field public inherited odd"><div class="jsdoc-title"><a name="onDraggingOut"></a><span class="functionIcon">onDraggingOut</span></div><div class="jsdoc-inheritance">Defined by <a class="jsdoc-link" href="/api/1.7/dojox/grid/enhanced/plugins/GridSource">dojox.grid.enhanced.plugins.GridSource</a></div></div><div class="jsdoc-field public inherited even"><div class="jsdoc-title"><a name="onDraggingOver"></a><span class="functionIcon">onDraggingOver</span></div><div class="jsdoc-inheritance">Defined by <a class="jsdoc-link" href="/api/1.7/dojox/grid/enhanced/plugins/GridSource">dojox.grid.enhanced.plugins.GridSource</a></div></div><div class="jsdoc-field public inherited odd"><div class="jsdoc-title"><a name="onDropExternal"></a><span class="functionIcon">onDropExternal</span></div><div class="jsdoc-inheritance">Defined by <a class="jsdoc-link" href="/api/1.7/dojox/grid/enhanced/plugins/GridSource">dojox.grid.enhanced.plugins.GridSource</a></div><table class="jsdoc-parameters"><tr><th>Parameter</th><th>Type</th><th>Description</th></tr><tr><td class="jsdoc-param-name">source</td><td class="jsdoc-param-type"></td><td class="jsdoc-param-description"></td></tr><tr><td class="jsdoc-param-name">nodes</td><td class="jsdoc-param-type"></td><td class="jsdoc-param-description"></td></tr><tr><td class="jsdoc-param-name">copy</td><td class="jsdoc-param-type"></td><td class="jsdoc-param-description"></td></tr></table></div><div class="jsdoc-field public inherited even"><div class="jsdoc-title"><a name="onDropGridCells"></a><span class="functionIcon">onDropGridCells</span></div><div class="jsdoc-inheritance">Defined by <a class="jsdoc-link" href="/api/1.7/dojox/grid/enhanced/plugins/GridSource">dojox.grid.enhanced.plugins.GridSource</a></div><table class="jsdoc-parameters"><tr><th>Parameter</th><th>Type</th><th>Description</th></tr><tr><td class="jsdoc-param-name">grid</td><td class="jsdoc-param-type"></td><td class="jsdoc-param-description"></td></tr><tr><td class="jsdoc-param-name">leftTopCell</td><td class="jsdoc-param-type"></td><td class="jsdoc-param-description"></td></tr><tr><td class="jsdoc-param-name">rightBottomCell</td><td class="jsdoc-param-type"></td><td class="jsdoc-param-description"></td></tr></table></div><div class="jsdoc-field public inherited odd"><div class="jsdoc-title"><a name="onDropGridColumns"></a><span class="functionIcon">onDropGridColumns</span></div><div class="jsdoc-inheritance">Defined by <a class="jsdoc-link" href="/api/1.7/dojox/grid/enhanced/plugins/GridSource">dojox.grid.enhanced.plugins.GridSource</a></div><table class="jsdoc-parameters"><tr><th>Parameter</th><th>Type</th><th>Description</th></tr><tr><td class="jsdoc-param-name">grid</td><td class="jsdoc-param-type"></td><td class="jsdoc-param-description"></td></tr><tr><td class="jsdoc-param-name">colIndexes</td><td class="jsdoc-param-type"></td><td class="jsdoc-param-description"></td></tr></table></div><div class="jsdoc-field public inherited even"><div class="jsdoc-title"><a name="onDropGridRows"></a><span class="functionIcon">onDropGridRows</span></div><div class="jsdoc-inheritance">Defined by <a class="jsdoc-link" href="/api/1.7/dojox/grid/enhanced/plugins/GridSource">dojox.grid.enhanced.plugins.GridSource</a></div><table class="jsdoc-parameters"><tr><th>Parameter</th><th>Type</th><th>Description</th></tr><tr><td class="jsdoc-param-name">grid</td><td class="jsdoc-param-type"></td><td class="jsdoc-param-description"></td></tr><tr><td class="jsdoc-param-name">rowIndexes</td><td class="jsdoc-param-type"></td><td class="jsdoc-param-description"></td></tr></table></div></div></div>

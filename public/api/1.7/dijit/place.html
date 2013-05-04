@@ -1,0 +1,45 @@
+<div class="jsdoc-permalink" style="display:none;">/api/1.7/dijit/place</div><h1 class="jsdoc-title objectIcon36">dijit.place <span style="font-size:11px;color:#999;">(version 1.7)</span></h1><div class="jsdoc-prototype">Object &raquo; dijit.place</div><div class="jsdoc-require">dojo.require("dijit.place");</div><div class="jsdoc-prototype">Defined in dijit/place.js</div><div class="jsdoc-full-summary"><p>Code to place a DOMNode relative to another DOMNode.
+Load using require([&quot;dijit/place&quot;], function(place){ ... }).</p>
+</div><div class="jsdoc-children"><div class="jsdoc-field-list"><h2 class="jsdoc-summary-heading">Method Summary <span class="jsdoc-summary-toggle"></span></h2><div class="jsdoc-summary-list"><ul><li class="functionIcon private inherited even"><a class="inline-link" href="#dijit.place.__Position">dijit.place.__Position</a><span class="parameters">()</span></li><li class="functionIcon private inherited odd"><a class="inline-link" href="#dijit.place.__Rectangle">dijit.place.__Rectangle</a><span class="parameters">()</span></li><li class="functionIcon public inherited even"><a class="inline-link" href="#dijit.place.around">dijit.place.around</a><span class="parameters">(node, anchor, positions, leftToRight, layoutNode)</span> <span>Position node adjacent or kitty-corner to anchor
+	such that it's fully visible in viewport.</span></li><li class="functionIcon public inherited odd"><a class="inline-link" href="#dijit.place.at">dijit.place.at</a><span class="parameters">(node, pos, corners, padding)</span> <span>Positions one of the node's corners at specified position
+	such that node is fully visible in viewport.</span></li></ul></div></div></div><div class="jsdoc-children"><div class="jsdoc-fields"><h2>Methods</h2><div class="jsdoc-field private inherited even"><div class="jsdoc-title"><a name="dijit.place.__Position"></a><span class="functionIcon">dijit.place.__Position</span></div><div class="jsdoc-inheritance">Defined by <a class="jsdoc-link" href="/api/1.7/dijit/place">dijit.place</a></div></div><div class="jsdoc-field private inherited odd"><div class="jsdoc-title"><a name="dijit.place.__Rectangle"></a><span class="functionIcon">dijit.place.__Rectangle</span></div><div class="jsdoc-inheritance">Defined by <a class="jsdoc-link" href="/api/1.7/dijit/place">dijit.place</a></div></div><div class="jsdoc-field public inherited even"><div class="jsdoc-title"><a name="dijit.place.around"></a><span class="functionIcon">dijit.place.around</span></div><div class="jsdoc-inheritance">Defined by <a class="jsdoc-link" href="/api/1.7/dijit/place">dijit.place</a></div><div class="jsdoc-summary"><p>Place node such that corner of node touches a corner of
+aroundNode, and that node is fully visible.</p>
+</div><table class="jsdoc-parameters"><tr><th>Parameter</th><th>Type</th><th>Description</th></tr><tr><td class="jsdoc-param-name">node</td><td class="jsdoc-param-type">DomNode</td><td class="jsdoc-param-description"></td></tr><tr><td class="jsdoc-param-name">anchor</td><td class="jsdoc-param-type">DomNode</td><td class="jsdoc-param-description">Either a DOMNode or a __Rectangle (object with x, y, width, height).</td></tr><tr><td class="jsdoc-param-name">positions</td><td class="jsdoc-param-type">String[]</td><td class="jsdoc-param-description">Ordered list of positions to try matching up.
+	* before: places drop down to the left of the anchor node/widget, or to the right in the case
+	of RTL scripts like Hebrew and Arabic; aligns either the top of the drop down
+	with the top of the anchor, or the bottom of the drop down with bottom of the anchor.
+	* after: places drop down to the right of the anchor node/widget, or to the left in the case
+	of RTL scripts like Hebrew and Arabic; aligns either the top of the drop down
+	with the top of the anchor, or the bottom of the drop down with bottom of the anchor.
+	* before-centered: centers drop down to the left of the anchor node/widget, or to the right
+	in the case of RTL scripts like Hebrew and Arabic
+	* after-centered: centers drop down to the right of the anchor node/widget, or to the left
+	in the case of RTL scripts like Hebrew and Arabic
+	* above-centered: drop down is centered above anchor node
+	* above: drop down goes above anchor node, left sides aligned
+	* above-alt: drop down goes above anchor node, right sides aligned
+	* below-centered: drop down is centered above anchor node
+	* below: drop down goes below anchor node
+	* below-alt: drop down goes below anchor node, right sides aligned</td></tr><tr><td class="jsdoc-param-name">leftToRight</td><td class="jsdoc-param-type">Boolean</td><td class="jsdoc-param-description">True if widget is LTR, false if widget is RTL.   Affects the behavior of &quot;above&quot; and &quot;below&quot;
+	positions slightly.</td></tr><tr><td class="jsdoc-param-name">layoutNode</td><td class="jsdoc-param-type">Function</td><td class="jsdoc-param-description"><div><em>Optional.</em></div>Function(node, aroundNodeCorner, nodeCorner)
+	For things like tooltip, they are displayed differently (and have different dimensions)
+	based on their orientation relative to the parent.	 This adjusts the popup based on orientation.</td></tr></table><div class="jsdoc-examples"><div class="jsdoc-example"><div><strong>Example 1</strong></div>
+<pre class="brush: js;" lang="javascript">
+	placeAroundNode(node, aroundNode, {'BL':'TL', 'TR':'BR'});
+This will try to position node such that node's top-left corner is at the same position</pre>
+as the bottom left corner of the aroundNode (ie, put node below
+aroundNode, with left edges aligned).	If that fails it will try to put
+the bottom-right corner of node where the top right corner of aroundNode is
+(ie, put node above aroundNode, with right edges aligned)</div></div></div><div class="jsdoc-field public inherited odd"><div class="jsdoc-title"><a name="dijit.place.at"></a><span class="functionIcon">dijit.place.at</span></div><div class="jsdoc-inheritance">Defined by <a class="jsdoc-link" href="/api/1.7/dijit/place">dijit.place</a></div><div class="jsdoc-summary"><p>NOTE: node is assumed to be absolutely or relatively positioned.</p>
+</div><table class="jsdoc-parameters"><tr><th>Parameter</th><th>Type</th><th>Description</th></tr><tr><td class="jsdoc-param-name">node</td><td class="jsdoc-param-type">DOMNode</td><td class="jsdoc-param-description">The node to position</td></tr><tr><td class="jsdoc-param-name">pos</td><td class="jsdoc-param-type">Object</td><td class="jsdoc-param-description">Object like {x: 10, y: 20}<table class="jsdoc-parameters" style="margin-left:0;margin-right:0;margin-bottom:0;"><tr><th>Parameter</th><th>Type</th><th>Description</th></tr></table></td></tr><tr><td class="jsdoc-param-name">corners</td><td class="jsdoc-param-type">String[]</td><td class="jsdoc-param-description">Array of Strings representing order to try corners in, like [&quot;TR&quot;, &quot;BL&quot;].
+	Possible values are:
+	* &quot;BL&quot; - bottom left
+	* &quot;BR&quot; - bottom right
+	* &quot;TL&quot; - top left
+	* &quot;TR&quot; - top right</td></tr><tr><td class="jsdoc-param-name">padding</td><td class="jsdoc-param-type">Object</td><td class="jsdoc-param-description"><div><em>Optional.</em></div>optional param to set padding, to put some buffer around the element you want to position.<table class="jsdoc-parameters" style="margin-left:0;margin-right:0;margin-bottom:0;"><tr><th>Parameter</th><th>Type</th><th>Description</th></tr></table></td></tr></table><div class="jsdoc-examples"><div class="jsdoc-example"><div><strong>Example 1</strong></div>
+Try to place node's top right corner at (10,20).
+If that makes node go (partially) off screen, then try placing
+bottom left corner at (10,20).
+<pre class="brush: js;" lang="javascript">
+	place(node, {x: 10, y: 20}, [&quot;TR&quot;, &quot;BL&quot;])
+</pre></div></div></div></div></div>

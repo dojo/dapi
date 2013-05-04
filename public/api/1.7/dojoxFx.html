@@ -1,0 +1,43 @@
+<div class="jsdoc-permalink" style="display:none;">/api/1.7/dojoxFx</div><h1 class="jsdoc-title objectIcon36">dojoxFx <span style="font-size:11px;color:#999;">(version 1.7)</span></h1><div class="jsdoc-prototype">Object &raquo; dojoxFx</div><div class="jsdoc-require">dojo.require("dojox.fx.style");</div><div class="jsdoc-prototype">Defined in dojox/fx/style.js</div><div class="jsdoc-children"><div class="jsdoc-field-list"><h2 class="jsdoc-summary-heading">Method Summary <span class="jsdoc-summary-toggle"></span></h2><div class="jsdoc-summary-list"><ul><li class="functionIcon public inherited even"><a class="inline-link" href="#dojoxFx.animateTimeline">dojoxFx.animateTimeline</a><span class="parameters">(options, node)</span><span class="jsdoc-returns"> returns dojo.Animation</span> <span>An add-on to dojo.fx that provides the ability to create
+	a complex property animation based on an array of &quot;keyframes&quot;.</span></li></ul></div></div></div><div class="jsdoc-children"><div class="jsdoc-fields"><h2>Methods</h2><div class="jsdoc-field public inherited even"><div class="jsdoc-title"><a name="dojoxFx.animateTimeline"></a><span class="functionIcon">dojoxFx.animateTimeline</span></div><div class="jsdoc-inheritance">Defined by <a class="jsdoc-link" href="/api/1.7/dojoxFx">dojoxFx</a></div><div class="jsdoc-return-type">Returns <strong>dojo.Animation</strong></div><div class="jsdoc-summary"><p>The Timeline is a replacement for the default dojo._Line.
+Instead of _Line.getValue returning a float between 0-1,
+_Timeline.getValue returns an object with all properties and
+their current values.
+A property does not have to appear in every keyframe.
+As in the example below, "height" is transitioned from the first
+keyframe to the third. "width" is transitioned from the first
+to the second to the third.
+Each keyframe can accept the following custom properties:
+step: String
+The start, finish or percentage that this keyframe represents.
+Allowed parameters are:
+0%-100%
+from (same as 0%, used to conform with the Webkit animation spec)
+to (same as 100%, used to conform with the Webkit animation spec)
+ease: String
+The string name of a dojo.fx.easing ease. Defaults to "linear". Use
+the suffix name of the ease, like: "quadIn", not: "dojo.fx.quadIn".</p>
+</div><table class="jsdoc-parameters"><tr><th>Parameter</th><th>Type</th><th>Description</th></tr><tr><td class="jsdoc-param-name">options</td><td class="jsdoc-param-type">Object</td><td class="jsdoc-param-description">The paramters passed to the timeline animation. Includes:
+	keys: Array
+	An array of objects, with style properties and values.
+	duration:
+	Duration of the animation in milliseconds.
+	Defaults to 1000.</td></tr><tr><td class="jsdoc-param-name">node</td><td class="jsdoc-param-type">DomNode|String</td><td class="jsdoc-param-description">DomNode The DomNode or id to be animated.</td></tr></table><div class="jsdoc-examples"><div class="jsdoc-example"><div><strong>Example 1</strong></div>
+<pre class="brush: js;" lang="javascript">
+	var keys = [
+	{
+		step:&quot;0px&quot;,
+		ease:&quot;quadInOut&quot;,
+		width:&quot;50px&quot;,
+		height:&quot;50px&quot;,
+	},{
+		step:&quot;25%&quot;,
+		width:&quot;190px&quot;
+	},{
+		step:&quot;100%&quot;,
+		width:&quot;10px&quot;,
+		height:&quot;200px&quot;,
+	}
+	];
+	ani = dojox.fx.animateTimeline({keys:keys, duration:2000}, &quot;myDiv&quot;).play();
+</pre></div></div></div></div></div>

@@ -1,0 +1,146 @@
+<div class="jsdoc-permalink" style="display:none;">/api/1.7/dijit/_editor/plugins</div><h1 class="jsdoc-title objectIcon36">dijit._editor.plugins <span style="font-size:11px;color:#999;">(version 1.7)</span></h1><div class="jsdoc-prototype">Object &raquo; dijit._editor.plugins</div><div class="jsdoc-children"><div class="jsdoc-field-list"><h2 class="jsdoc-summary-heading">Method Summary <span class="jsdoc-summary-toggle"></span></h2><div class="jsdoc-summary-list"><ul><li class="functionIcon public inherited even"><a class="inline-link" href="#dijit._editor.plugins.AlwaysShowToolbar">dijit._editor.plugins.AlwaysShowToolbar</a><span class="parameters">()</span> <span>This plugin is required for Editors in auto-expand mode.
+	It handles the auto-expansion as the user adds/deletes text,
+	and keeps the editor's toolbar visible even when the top of the editor
+	has scrolled off the top of the viewport (usually when editing a long
+	document).</span></li><li class="functionIcon public inherited odd"><a class="inline-link" href="#dijit._editor.plugins.EnterKeyHandling">dijit._editor.plugins.EnterKeyHandling</a><span class="parameters">(args)</span> <span>This plugin tries to make all browsers behave consistently with regard to
+	how ENTER behaves in the editor window.  It traps the ENTER key and alters
+	the way DOM is constructed in certain cases to try to commonize the generated
+	DOM and behaviors across browsers.</span></li><li class="functionIcon public inherited even"><a class="inline-link" href="#dijit._editor.plugins.FontChoice">dijit._editor.plugins.FontChoice</a><span class="parameters">()</span> <span>This plugin provides three drop downs for setting style in the editor
+	(font, font size, and format block), as controlled by command.</span></li><li class="functionIcon public inherited odd"><a class="inline-link" href="#dijit._editor.plugins.FullScreen">dijit._editor.plugins.FullScreen</a><span class="parameters">()</span> <span>This plugin provides FullScreen capability to the editor.  When
+	toggled on, it will render the editor into the full window and
+	overlay everything.  It also binds to the hotkey: CTRL-SHIFT-F11
+	for toggling fullscreen mode.</span></li><li class="functionIcon public inherited even"><a class="inline-link" href="#dijit._editor.plugins.ImgLinkDialog">dijit._editor.plugins.ImgLinkDialog</a><span class="parameters">()</span> <span>This plugin extends LinkDialog and adds in a plugin for handling image links.
+	provides the image link dialog.</span></li><li class="functionIcon public inherited odd"><a class="inline-link" href="#dijit._editor.plugins.LinkDialog">dijit._editor.plugins.LinkDialog</a><span class="parameters">()</span> <span>This plugin provides the basis for an 'anchor' (link) dialog and an extension of it
+	provides the image link dialog.</span></li><li class="functionIcon public inherited even"><a class="inline-link" href="#dijit._editor.plugins.NewPage">dijit._editor.plugins.NewPage</a><span class="parameters">()</span> <span>This plugin provides a simple 'new page' capability.  In other
+	words, set content to some default user defined string.</span></li><li class="functionIcon public inherited odd"><a class="inline-link" href="#dijit._editor.plugins.Print">dijit._editor.plugins.Print</a><span class="parameters">()</span> <span>This plugin provides Print capability to the editor.  When
+	clicked, the document in the editor frame will be printed.</span></li><li class="functionIcon public inherited even"><a class="inline-link" href="#dijit._editor.plugins.TabIndent">dijit._editor.plugins.TabIndent</a><span class="parameters">()</span> <span>This plugin is used to allow the use of the tab and shift-tab keys
+	to indent/outdent list items.  This overrides the default behavior
+	of moving focus from/to the toolbar</span></li><li class="functionIcon public inherited odd"><a class="inline-link" href="#dijit._editor.plugins.TextColor">dijit._editor.plugins.TextColor</a><span class="parameters">()</span> <span>This plugin provides dropdown color pickers for setting text color and background color</span></li><li class="functionIcon public inherited even"><a class="inline-link" href="#dijit._editor.plugins.ToggleDir">dijit._editor.plugins.ToggleDir</a><span class="parameters">()</span> <span>This plugin is used to toggle direction of the edited document,
+	independent of what direction the whole page is.</span></li><li class="functionIcon public inherited odd"><a class="inline-link" href="#dijit._editor.plugins.ViewSource">dijit._editor.plugins.ViewSource</a><span class="parameters">()</span> <span>This plugin provides a simple view source capability.  When view
+	source mode is enabled, it disables all other buttons/plugins on the RTE.
+	It also binds to the hotkey: CTRL-SHIFT-F11 for toggling ViewSource mode.</span></li><li class="functionIcon private inherited even"><a class="inline-link" href="#dijit._editor.plugins._FontDropDown">dijit._editor.plugins._FontDropDown</a><span class="parameters">()</span> <span>Base class for widgets that contains a label (like &quot;Font:&quot;)
+	and a FilteringSelect drop down to pick a value.
+	Used as Toolbar entry.</span></li><li class="functionIcon private inherited odd"><a class="inline-link" href="#dijit._editor.plugins._FontNameDropDown">dijit._editor.plugins._FontNameDropDown</a><span class="parameters">()</span> <span>Dropdown to select a font; goes in editor toolbar.</span></li><li class="functionIcon private inherited even"><a class="inline-link" href="#dijit._editor.plugins._FontSizeDropDown">dijit._editor.plugins._FontSizeDropDown</a><span class="parameters">()</span> <span>Dropdown to select a font size; goes in editor toolbar.</span></li><li class="functionIcon private inherited odd"><a class="inline-link" href="#dijit._editor.plugins._FormatBlockDropDown">dijit._editor.plugins._FormatBlockDropDown</a><span class="parameters">()</span> <span>Dropdown to select a format (like paragraph or heading); goes in editor toolbar.</span></li></ul></div><h2 class="jsdoc-summary-heading">Attached Objects <span class="jsdoc-summary-toggle"></span></h2><div class="jsdoc-summary-list"><div class="jsdoc-field"><div class="jsdoc-title"><span class="constructor"><a class="jsdoc-link" href="/api/1.7/dijit/_editor/plugins/AlwaysShowToolbar">dijit._editor.plugins.AlwaysShowToolbar</a></span></div></div><div class="jsdoc-field"><div class="jsdoc-title"><span class="object"><a class="jsdoc-link" href="/api/1.7/dijit/_editor/plugins/AlwaysShowToolbar/editor">dijit._editor.plugins.AlwaysShowToolbar.editor</a></span></div></div><div class="jsdoc-field"><div class="jsdoc-title"><span class="object"><a class="jsdoc-link" href="/api/1.7/dijit/_editor/plugins/AlwaysShowToolbar/editor/header">dijit._editor.plugins.AlwaysShowToolbar.editor.header</a></span></div></div><div class="jsdoc-field"><div class="jsdoc-title"><span class="constructor"><a class="jsdoc-link" href="/api/1.7/dijit/_editor/plugins/EnterKeyHandling">dijit._editor.plugins.EnterKeyHandling</a></span></div></div><div class="jsdoc-field"><div class="jsdoc-title"><span class="object"><a class="jsdoc-link" href="/api/1.7/dijit/_editor/plugins/EnterKeyHandling/editor">dijit._editor.plugins.EnterKeyHandling.editor</a></span></div></div><div class="jsdoc-field"><div class="jsdoc-title"><span class="constructor"><a class="jsdoc-link" href="/api/1.7/dijit/_editor/plugins/_FontDropDown">dijit._editor.plugins._FontDropDown</a></span></div></div><div class="jsdoc-field"><div class="jsdoc-title"><span class="object"><a class="jsdoc-link" href="/api/1.7/dijit/_editor/plugins/_FontDropDown/select">dijit._editor.plugins._FontDropDown.select</a></span></div></div><div class="jsdoc-field"><div class="jsdoc-title"><span class="constructor"><a class="jsdoc-link" href="/api/1.7/dijit/_editor/plugins/_FontNameDropDown">dijit._editor.plugins._FontNameDropDown</a></span></div></div><div class="jsdoc-field"><div class="jsdoc-title"><span class="constructor"><a class="jsdoc-link" href="/api/1.7/dijit/_editor/plugins/_FontSizeDropDown">dijit._editor.plugins._FontSizeDropDown</a></span></div></div><div class="jsdoc-field"><div class="jsdoc-title"><span class="constructor"><a class="jsdoc-link" href="/api/1.7/dijit/_editor/plugins/_FormatBlockDropDown">dijit._editor.plugins._FormatBlockDropDown</a></span></div></div><div class="jsdoc-field"><div class="jsdoc-title"><span class="constructor"><a class="jsdoc-link" href="/api/1.7/dijit/_editor/plugins/FontChoice">dijit._editor.plugins.FontChoice</a></span></div></div><div class="jsdoc-field"><div class="jsdoc-title"><span class="object"><a class="jsdoc-link" href="/api/1.7/dijit/_editor/plugins/FontChoice/params">dijit._editor.plugins.FontChoice.params</a></span></div></div><div class="jsdoc-field"><div class="jsdoc-title"><span class="constructor"><a class="jsdoc-link" href="/api/1.7/dijit/_editor/plugins/FullScreen">dijit._editor.plugins.FullScreen</a></span></div></div><div class="jsdoc-field"><div class="jsdoc-title"><span class="object"><a class="jsdoc-link" href="/api/1.7/dijit/_editor/plugins/FullScreen/editor">dijit._editor.plugins.FullScreen.editor</a></span></div></div><div class="jsdoc-field"><div class="jsdoc-title"><span class="object"><a class="jsdoc-link" href="/api/1.7/dijit/_editor/plugins/FullScreen/editor/toolbar">dijit._editor.plugins.FullScreen.editor.toolbar</a></span></div></div><div class="jsdoc-field"><div class="jsdoc-title"><span class="constructor"><a class="jsdoc-link" href="/api/1.7/dijit/_editor/plugins/LinkDialog">dijit._editor.plugins.LinkDialog</a></span></div></div><div class="jsdoc-field"><div class="jsdoc-title"><span class="object"><a class="jsdoc-link" href="/api/1.7/dijit/_editor/plugins/LinkDialog/button">dijit._editor.plugins.LinkDialog.button</a></span></div></div><div class="jsdoc-field"><div class="jsdoc-title"><span class="constructor"><a class="jsdoc-link" href="/api/1.7/dijit/_editor/plugins/ImgLinkDialog">dijit._editor.plugins.ImgLinkDialog</a></span></div></div><div class="jsdoc-field"><div class="jsdoc-title"><span class="constructor"><a class="jsdoc-link" href="/api/1.7/dijit/_editor/plugins/NewPage">dijit._editor.plugins.NewPage</a></span></div></div><div class="jsdoc-field"><div class="jsdoc-title"><span class="constructor"><a class="jsdoc-link" href="/api/1.7/dijit/_editor/plugins/Print">dijit._editor.plugins.Print</a></span></div></div><div class="jsdoc-field"><div class="jsdoc-title"><span class="object"><a class="jsdoc-link" href="/api/1.7/dijit/_editor/plugins/Print/editor">dijit._editor.plugins.Print.editor</a></span></div></div><div class="jsdoc-field"><div class="jsdoc-title"><span class="constructor"><a class="jsdoc-link" href="/api/1.7/dijit/_editor/plugins/TabIndent">dijit._editor.plugins.TabIndent</a></span></div></div><div class="jsdoc-field"><div class="jsdoc-title"><span class="constructor"><a class="jsdoc-link" href="/api/1.7/dijit/_editor/plugins/TextColor">dijit._editor.plugins.TextColor</a></span></div></div><div class="jsdoc-field"><div class="jsdoc-title"><span class="object"><a class="jsdoc-link" href="/api/1.7/dijit/_editor/plugins/TextColor/button">dijit._editor.plugins.TextColor.button</a></span></div></div><div class="jsdoc-field"><div class="jsdoc-title"><span class="constructor"><a class="jsdoc-link" href="/api/1.7/dijit/_editor/plugins/ToggleDir">dijit._editor.plugins.ToggleDir</a></span></div></div><div class="jsdoc-field"><div class="jsdoc-title"><span class="constructor"><a class="jsdoc-link" href="/api/1.7/dijit/_editor/plugins/ViewSource">dijit._editor.plugins.ViewSource</a></span></div></div><div class="jsdoc-field"><div class="jsdoc-title"><span class="object"><a class="jsdoc-link" href="/api/1.7/dijit/_editor/plugins/ViewSource/editor">dijit._editor.plugins.ViewSource.editor</a></span></div></div><div class="jsdoc-field"><div class="jsdoc-title"><span class="object"><a class="jsdoc-link" href="/api/1.7/dijit/_editor/plugins/ViewSource/_fsPlugin">dijit._editor.plugins.ViewSource._fsPlugin</a></span></div></div><div class="jsdoc-field"><div class="jsdoc-title"><span class="object"><a class="jsdoc-link" href="/api/1.7/dijit/_editor/plugins/ViewSource/sourceArea">dijit._editor.plugins.ViewSource.sourceArea</a></span></div></div></div></div></div><div class="jsdoc-children"><div class="jsdoc-fields"><h2>Methods</h2><div class="jsdoc-field public inherited even"><div class="jsdoc-title"><a name="dijit._editor.plugins.AlwaysShowToolbar"></a><span class="functionIcon">dijit._editor.plugins.AlwaysShowToolbar</span></div><div class="jsdoc-inheritance">Defined by <a class="jsdoc-link" href="/api/1.7/dijit/_editor/plugins">dijit._editor.plugins</a></div><div class="jsdoc-summary"><p>Specify this in extraPlugins (or plugins) parameter and also set
+height to "".</p>
+</div><div class="jsdoc-examples"><div class="jsdoc-example"><div><strong>Example 1</strong></div>
+<pre class="brush: js;" lang="javascript">
+	&lt;div data-dojo-type=&quot;dijit.Editor&quot; height=&quot;&quot;
+	data-dojo-props=&quot;extraPlugins: [dijit._editor.plugins.AlwaysShowToolbar]&quot;&gt;
+</pre></div></div></div><div class="jsdoc-field public inherited odd"><div class="jsdoc-title"><a name="dijit._editor.plugins.EnterKeyHandling"></a><span class="functionIcon">dijit._editor.plugins.EnterKeyHandling</span></div><div class="jsdoc-inheritance">Defined by <a class="jsdoc-link" href="/api/1.7/dijit/_editor/plugins">dijit._editor.plugins</a></div><div class="jsdoc-summary"><p>This plugin has three modes:</p>
+
+<ul>
+<li>blockNodeForEnter=BR</li>
+<li>blockNodeForEnter=DIV</li>
+<li>blockNodeForEnter=P</li>
+</ul>
+
+<p>In blockNodeForEnter=P, the ENTER key starts a new
+paragraph, and shift-ENTER starts a new line in the current paragraph.
+For example, the input:</p>
+
+<pre><code>first paragraph &lt;shift-ENTER&gt;
+second line of first paragraph &lt;ENTER&gt;
+second paragraph
+</code></pre>
+
+<p>will generate:</p>
+
+<pre><code>&lt;p&gt;
+    first paragraph
+    &lt;br/&gt;
+    second line of first paragraph
+&lt;/p&gt;
+&lt;p&gt;
+    second paragraph
+&lt;/p&gt;
+</code></pre>
+
+<p>In BR and DIV mode, the ENTER key conceptually goes to a new line in the
+current paragraph, and users conceptually create a new paragraph by pressing ENTER twice.
+For example, if the user enters text into an editor like this:</p>
+
+<pre><code>    one &lt;ENTER&gt;
+    two &lt;ENTER&gt;
+    three &lt;ENTER&gt;
+    &lt;ENTER&gt;
+    four &lt;ENTER&gt;
+    five &lt;ENTER&gt;
+    six &lt;ENTER&gt;
+</code></pre>
+
+<p>It will appear on the screen as two 'paragraphs' of three lines each.  Markupwise, this generates:</p>
+
+<p>BR:
+        one&lt;br/>
+        two&lt;br/>
+        three&lt;br/>
+        &lt;br/>
+        four&lt;br/>
+        five&lt;br/>
+        six&lt;br/></p>
+
+<p>DIV:
+        <div>one</div>
+        <div>two</div>
+        <div>three</div>
+        <div>&nbsp;</div>
+        <div>four</div>
+        <div>five</div>
+        <div>six</div></p>
+</div><table class="jsdoc-parameters"><tr><th>Parameter</th><th>Type</th><th>Description</th></tr><tr><td class="jsdoc-param-name">args</td><td class="jsdoc-param-type"></td><td class="jsdoc-param-description"></td></tr></table></div><div class="jsdoc-field public inherited even"><div class="jsdoc-title"><a name="dijit._editor.plugins.FontChoice"></a><span class="functionIcon">dijit._editor.plugins.FontChoice</span></div><div class="jsdoc-inheritance">Defined by <a class="jsdoc-link" href="/api/1.7/dijit/_editor/plugins">dijit._editor.plugins</a></div><div class="jsdoc-summary"><p>The commands provided by this plugin are:</p>
+
+<ul>
+<li><p>fontName
+    Provides a drop down to select from a list of font names</p></li>
+<li><p>fontSize
+    Provides a drop down to select from a list of font sizes</p></li>
+<li><p>formatBlock
+    Provides a drop down to select from a list of block styles</p></li>
+</ul>
+
+<p>which can easily be added to an editor by including one or more of the above commands
+in the <code>plugins</code> attribute as follows:</p>
+
+<pre><code>plugins="['fontName','fontSize',...]"
+</code></pre>
+
+<p>It is possible to override the default dropdown list by providing an Array for the <code>custom</code> property when
+instantiating this plugin, e.g.</p>
+
+<pre><code>plugins="[{name:'dijit._editor.plugins.FontChoice', command:'fontName', custom:['Verdana','Myriad','Garamond']},...]"
+</code></pre>
+
+<p>Alternatively, for <code>fontName</code> only, <code>generic:true</code> may be specified to provide a dropdown with
+<a href="http://www.w3.org/TR/REC-CSS2/fonts.html#generic-font-families">CSS generic font families</a></p>
+
+<p>Note that the editor is often unable to properly handle font styling information defined outside
+the context of the current editor instance, such as pre-populated HTML.</p>
+</div></div><div class="jsdoc-field public inherited odd"><div class="jsdoc-title"><a name="dijit._editor.plugins.FullScreen"></a><span class="functionIcon">dijit._editor.plugins.FullScreen</span></div><div class="jsdoc-inheritance">Defined by <a class="jsdoc-link" href="/api/1.7/dijit/_editor/plugins">dijit._editor.plugins</a></div><div class="jsdoc-summary">This plugin provides FullScreen capability to the editor.  When
+	toggled on, it will render the editor into the full window and
+	overlay everything.  It also binds to the hotkey: CTRL-SHIFT-F11
+	for toggling fullscreen mode.</div></div><div class="jsdoc-field public inherited even"><div class="jsdoc-title"><a name="dijit._editor.plugins.ImgLinkDialog"></a><span class="functionIcon">dijit._editor.plugins.ImgLinkDialog</span></div><div class="jsdoc-inheritance">Defined by <a class="jsdoc-link" href="/api/1.7/dijit/_editor/plugins">dijit._editor.plugins</a></div><div class="jsdoc-summary"><p>The command provided by this plugin is:</p>
+
+<ul>
+<li>insertImage</li>
+</ul>
+</div></div><div class="jsdoc-field public inherited odd"><div class="jsdoc-title"><a name="dijit._editor.plugins.LinkDialog"></a><span class="functionIcon">dijit._editor.plugins.LinkDialog</span></div><div class="jsdoc-inheritance">Defined by <a class="jsdoc-link" href="/api/1.7/dijit/_editor/plugins">dijit._editor.plugins</a></div><div class="jsdoc-summary"><p>The command provided by this plugin is:</p>
+
+<ul>
+<li>createLink</li>
+</ul>
+</div></div><div class="jsdoc-field public inherited even"><div class="jsdoc-title"><a name="dijit._editor.plugins.NewPage"></a><span class="functionIcon">dijit._editor.plugins.NewPage</span></div><div class="jsdoc-inheritance">Defined by <a class="jsdoc-link" href="/api/1.7/dijit/_editor/plugins">dijit._editor.plugins</a></div><div class="jsdoc-summary">This plugin provides a simple 'new page' capability.  In other
+	words, set content to some default user defined string.</div></div><div class="jsdoc-field public inherited odd"><div class="jsdoc-title"><a name="dijit._editor.plugins.Print"></a><span class="functionIcon">dijit._editor.plugins.Print</span></div><div class="jsdoc-inheritance">Defined by <a class="jsdoc-link" href="/api/1.7/dijit/_editor/plugins">dijit._editor.plugins</a></div><div class="jsdoc-summary">This plugin provides Print capability to the editor.  When
+	clicked, the document in the editor frame will be printed.</div></div><div class="jsdoc-field public inherited even"><div class="jsdoc-title"><a name="dijit._editor.plugins.TabIndent"></a><span class="functionIcon">dijit._editor.plugins.TabIndent</span></div><div class="jsdoc-inheritance">Defined by <a class="jsdoc-link" href="/api/1.7/dijit/_editor/plugins">dijit._editor.plugins</a></div><div class="jsdoc-summary">This plugin is used to allow the use of the tab and shift-tab keys
+	to indent/outdent list items.  This overrides the default behavior
+	of moving focus from/to the toolbar</div></div><div class="jsdoc-field public inherited odd"><div class="jsdoc-title"><a name="dijit._editor.plugins.TextColor"></a><span class="functionIcon">dijit._editor.plugins.TextColor</span></div><div class="jsdoc-inheritance">Defined by <a class="jsdoc-link" href="/api/1.7/dijit/_editor/plugins">dijit._editor.plugins</a></div><div class="jsdoc-summary"><p>The commands provided by this plugin are:</p>
+
+<ul>
+<li>foreColor - sets the text color</li>
+<li>hiliteColor - sets the background color</li>
+</ul>
+</div></div><div class="jsdoc-field public inherited even"><div class="jsdoc-title"><a name="dijit._editor.plugins.ToggleDir"></a><span class="functionIcon">dijit._editor.plugins.ToggleDir</span></div><div class="jsdoc-inheritance">Defined by <a class="jsdoc-link" href="/api/1.7/dijit/_editor/plugins">dijit._editor.plugins</a></div><div class="jsdoc-summary">This plugin is used to toggle direction of the edited document,
+	independent of what direction the whole page is.</div></div><div class="jsdoc-field public inherited odd"><div class="jsdoc-title"><a name="dijit._editor.plugins.ViewSource"></a><span class="functionIcon">dijit._editor.plugins.ViewSource</span></div><div class="jsdoc-inheritance">Defined by <a class="jsdoc-link" href="/api/1.7/dijit/_editor/plugins">dijit._editor.plugins</a></div><div class="jsdoc-summary">This plugin provides a simple view source capability.  When view
+	source mode is enabled, it disables all other buttons/plugins on the RTE.
+	It also binds to the hotkey: CTRL-SHIFT-F11 for toggling ViewSource mode.</div></div><div class="jsdoc-field private inherited even"><div class="jsdoc-title"><a name="dijit._editor.plugins._FontDropDown"></a><span class="functionIcon">dijit._editor.plugins._FontDropDown</span></div><div class="jsdoc-inheritance">Defined by <a class="jsdoc-link" href="/api/1.7/dijit/_editor/plugins">dijit._editor.plugins</a></div><div class="jsdoc-summary">Base class for widgets that contains a label (like &quot;Font:&quot;)
+	and a FilteringSelect drop down to pick a value.
+	Used as Toolbar entry.</div></div><div class="jsdoc-field private inherited odd"><div class="jsdoc-title"><a name="dijit._editor.plugins._FontNameDropDown"></a><span class="functionIcon">dijit._editor.plugins._FontNameDropDown</span></div><div class="jsdoc-inheritance">Defined by <a class="jsdoc-link" href="/api/1.7/dijit/_editor/plugins">dijit._editor.plugins</a></div><div class="jsdoc-summary">Dropdown to select a font; goes in editor toolbar.</div></div><div class="jsdoc-field private inherited even"><div class="jsdoc-title"><a name="dijit._editor.plugins._FontSizeDropDown"></a><span class="functionIcon">dijit._editor.plugins._FontSizeDropDown</span></div><div class="jsdoc-inheritance">Defined by <a class="jsdoc-link" href="/api/1.7/dijit/_editor/plugins">dijit._editor.plugins</a></div><div class="jsdoc-summary">Dropdown to select a font size; goes in editor toolbar.</div></div><div class="jsdoc-field private inherited odd"><div class="jsdoc-title"><a name="dijit._editor.plugins._FormatBlockDropDown"></a><span class="functionIcon">dijit._editor.plugins._FormatBlockDropDown</span></div><div class="jsdoc-inheritance">Defined by <a class="jsdoc-link" href="/api/1.7/dijit/_editor/plugins">dijit._editor.plugins</a></div><div class="jsdoc-summary">Dropdown to select a format (like paragraph or heading); goes in editor toolbar.</div></div></div></div>

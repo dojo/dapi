@@ -1,0 +1,36 @@
+<div class="jsdoc-permalink" style="display:none;">/api/1.7/dojox/analytics</div><h1 class="jsdoc-title objectIcon36">dojox.analytics <span style="font-size:11px;color:#999;">(version 1.7)</span></h1><div class="jsdoc-prototype">Object &raquo; dojox.analytics</div><div class="jsdoc-full-summary"><p>Website analytics and client monitoring system</p>
+</div><div class="jsdoc-children"><div class="jsdoc-field-list"><h2 class="jsdoc-summary-heading">Property Summary <span class="jsdoc-summary-toggle"></span></h2><div class="jsdoc-summary-list"><ul><li class="objectIcon public inherited even"><a class="inline-link" href="#dojox.analytics.plugins">dojox.analytics.plugins</a></li></ul></div><h2 class="jsdoc-summary-heading">Method Summary <span class="jsdoc-summary-toggle"></span></h2><div class="jsdoc-summary-list"><ul><li class="functionIcon public inherited odd"><a class="inline-link" href="#dojox.analytics.Urchin">dojox.analytics.Urchin</a><span class="parameters">(args)</span> <span>A Google-analytics helper, for post-onLoad inclusion of the tracker, and
+	dynamic tracking during long-lived page cycles.</span></li></ul></div><h2 class="jsdoc-summary-heading">Attached Objects <span class="jsdoc-summary-toggle"></span></h2><div class="jsdoc-summary-list"><div class="jsdoc-field"><div class="jsdoc-title"><span class="constructor"><a class="jsdoc-link" href="/api/1.7/dojox/analytics/Urchin">dojox.analytics.Urchin</a></span></div></div><div class="jsdoc-field"><div class="jsdoc-title"><span class="object"><a class="jsdoc-link" href="/api/1.7/dojox/analytics/plugins">dojox.analytics.plugins</a></span></div></div></div></div></div><div class="jsdoc-children"><div class="jsdoc-fields"><h2>Properties</h2><div class="jsdoc-field public inherited even"><div class="jsdoc-title"><a name="dojox.analytics.plugins"></a><span class="objectIcon">dojox.analytics.plugins</span></div><div class="jsdoc-inheritance">Defined by <a class="jsdoc-link" href="/api/1.7/dojox/analytics">dojox.analytics</a></div></div><h2>Methods</h2><div class="jsdoc-field public inherited odd"><div class="jsdoc-title"><a name="dojox.analytics.Urchin"></a><span class="functionIcon">dojox.analytics.Urchin</span></div><div class="jsdoc-inheritance">Defined by <a class="jsdoc-link" href="/api/1.7/dojox/analytics">dojox.analytics</a></div><div class="jsdoc-summary"><p>A small class object will allows for lazy-loading the Google Analytics API
+at any point during a page lifecycle. Most commonly, Google-Analytics is loaded
+via a synchronous script tag in the body, which causes <code>dojo.addOnLoad</code> to
+stall until the external API has been completely loaded. The Urchin helper
+will load the API on the fly, and provide a convenient API to use, wrapping
+Analytics for Ajaxy or single page applications.</p>
+
+<p>The class can be instantiated two ways: Programatically, by passing an
+<code>acct:</code> parameter, or via Markup / dojoType and defining a djConfig
+parameter <code>urchin:</code></p>
+
+<p>IMPORTANT:
+This module will not work simultaneously with the core dojox.analytics
+package. If you need the ability to run Google Analytics AND your own local
+analytics system, you MUST include dojox.analytics._base BEFORE dojox.analytics.Urchin</p>
+</div><table class="jsdoc-parameters"><tr><th>Parameter</th><th>Type</th><th>Description</th></tr><tr><td class="jsdoc-param-name">args</td><td class="jsdoc-param-type"></td><td class="jsdoc-param-description"></td></tr></table><div class="jsdoc-examples"><div class="jsdoc-example"><div><strong>Example 1</strong></div>
+<pre class="brush: js;" lang="javascript">
+	// create the tracker programatically:
+	var tracker = new dojox.analytics.Urchin({ acct:&quot;UA-123456-7&quot; });
+</pre></div><div class="jsdoc-example"><div><strong>Example 2</strong></div>
+<pre class="brush: js;" lang="javascript">
+	// define the urchin djConfig option:
+	var djConfig = { urchin: &quot;UA-123456-7&quot; };
+</pre>
+<pre class="brush: js;" lang="javascript">
+	// and in markup:
+	&lt;div dojoType=&quot;dojox.analytics.Urchin&quot;&gt;&lt;/div&gt;
+	// or code:
+	new dojox.analytics.Urchin();
+</pre></div><div class="jsdoc-example"><div><strong>Example 3</strong></div>
+<pre class="brush: js;" lang="javascript">
+	// create and define all analytics with one tag.
+	&lt;div dojoType=&quot;dojox.analytics.Urchin&quot; acct=&quot;UA-12345-67&quot;&gt;&lt;/div&gt;
+</pre></div></div></div></div></div>

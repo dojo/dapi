@@ -1,0 +1,53 @@
+<div class="jsdoc-permalink" style="display:none;">/api/1.7/dojox/widget/Rotator</div><h1 class="jsdoc-title constructorIcon36">dojox.widget.Rotator <span style="font-size:11px;color:#999;">(version 1.7)</span></h1><div class="jsdoc-prototype">Object &raquo; dojox.widget.Rotator</div><div class="jsdoc-require">dojo.require("dojox.widget.Rotator");</div><div class="jsdoc-prototype">Defined in dojox/widget/Rotator.js</div><div class="jsdoc-function-information"><h3>Usage:</h3><div class="function-signature"><span class="keyword">var</span> foo = new dojox.widget.Rotator(<span class="jsdoc-comment-type">/* Object */</span> params, <span class="jsdoc-comment-type">/* DomNode|string */</span> node);</div></div><div class="jsdoc-full-summary"><p>A small, fast, extensible, awesome rotator that cycles, with transitions,
+through panes (child nodes) displaying only one at a time and ties into
+controllers used to change state.</p>
+
+<p>The Rotator does not rely on dijit.  It is designed to be as lightweight
+as possible.  Controllers and transitions have been externalized
+so builds can be as optimized with only the components you want to use.</p>
+
+<p>For best results, each rotator pane should be the same height and width as
+the Rotator container node and consider setting overflow to hidden.
+While the Rotator will accept any DOM node for a rotator pane, a block
+element or element with display:block is recommended.</p>
+
+<p>Note: When the Rotator begins, it does not transition the first pane.</p>
+
+<p>subscribed topics:
+[id]/rotator/control - Controls the Rotator
+Parameters:</p>
+
+<p>/<em>string</em>/ action        - The name of a method of the Rotator to run
+/<em>anything?</em>/ args       - One or more arguments to pass to the action</p>
+
+<p>published topics:
+[id]/rotator/update - Notifies controllers that a pane or state has changed.
+Parameters:</p>
+
+<p>/<em>string</em>/ type          - the type of notification
+/<em>dojox.widget.Rotator</em>/ rotator
+- the rotator instance</p>
+
+<p>/<em>object?</em>/ params       - params</p>
+
+<p>declarative dojo/method events (per pane):
+onBeforeIn  - Fired before the transition in starts.
+onAfterIn   - Fired after the transition in ends.
+onBeforeOut - Fired before the transition out starts.
+onAfterOut  - Fired after the transition out ends.</p>
+</div><div class="jsdoc-examples"><h2>Examples:</h2><div class="jsdoc-example"><h3>Example 1</h3>
+<pre class="brush: js;" lang="javascript">
+	&lt;div dojoType=&quot;dojox.widget.Rotator&quot;&gt;
+		&lt;div&gt;Pane 1!&lt;/div&gt;
+		&lt;div&gt;Pane 2!&lt;/div&gt;
+	&lt;/div&gt;
+</pre></div><div class="jsdoc-example"><h3>Example 2</h3>
+<pre class="brush: js;" lang="javascript">
+	&lt;script type=&quot;text/javascript&quot;&gt;
+		dojo.require(&quot;dojox.widget.rotator.Fade&quot;);
+	&lt;/script&gt;
+	&lt;div dojoType=&quot;dojox.widget.Rotator&quot; transition=&quot;dojox.widget.rotator.crossFade&quot;&gt;
+		&lt;div&gt;Pane 1!&lt;/div&gt;
+		&lt;div&gt;Pane 2!&lt;/div&gt;
+	&lt;/div&gt;
+</pre></div></div><div class="jsdoc-children"><div class="jsdoc-field-list"><h2 class="jsdoc-summary-heading">Method Summary <span class="jsdoc-summary-toggle"></span></h2><div class="jsdoc-summary-list"><ul><li class="functionIcon private inherited even"><a class="inline-link" href="#_resetWaitForEvent">_resetWaitForEvent</a><span class="parameters">()</span> <span>If there is a waitForEvent pending, kill it.</span></li><li class="functionIcon public  odd"><a class="inline-link" href="#constructor">constructor</a><span class="parameters">(params, node)</span><span class="jsdoc-returns"> returns dojox.widget.Rotator</span> <span>Initializes the panes and events.</span></li><li class="functionIcon public inherited even"><a class="inline-link" href="#control">control</a><span class="parameters">(action)</span> <span>Dispatches an action, first to this engine, then to the Rotator.</span></li><li class="functionIcon public inherited odd"><a class="inline-link" href="#destroy">destroy</a><span class="parameters">()</span> <span>Destroys the Rotator and its DOM node.</span></li><li class="functionIcon public inherited even"><a class="inline-link" href="#go">go</a><span class="parameters">(p)</span> <span>Transitions the Rotator to the specified pane index.</span></li><li class="functionIcon public inherited odd"><a class="inline-link" href="#next">next</a><span class="parameters">()</span> <span>Transitions the Rotator to the next pane.</span></li><li class="functionIcon public inherited even"><a class="inline-link" href="#prev">prev</a><span class="parameters">()</span> <span>Transitions the Rotator to the previous pane.</span></li><li class="functionIcon public inherited odd"><a class="inline-link" href="#resize">resize</a><span class="parameters">(width, height)</span></li></ul></div><h2 class="jsdoc-summary-heading">Event Summary <span class="jsdoc-summary-toggle"></span></h2><div class="jsdoc-summary-list"><ul><li class="functionIcon public inherited even"><a class="inline-link" href="#onManualChange">onManualChange</a><span class="parameters">()</span> <span>Stub function that can be overriden or connected to.</span></li><li class="functionIcon public inherited odd"><a class="inline-link" href="#onUpdate">onUpdate</a><span class="parameters">(type, params)</span> <span>Send a notification to all controllers with the state of the rotator.</span></li></ul></div></div></div><div class="jsdoc-children"><div class="jsdoc-fields"><h2>Methods</h2><div class="jsdoc-field private inherited even"><div class="jsdoc-title"><a name="_resetWaitForEvent"></a><span class="functionIcon">_resetWaitForEvent</span></div><div class="jsdoc-inheritance">Defined by <a class="jsdoc-link" href="/api/1.7/dojox/widget/Rotator">dojox.widget.Rotator</a></div><div class="jsdoc-summary">If there is a waitForEvent pending, kill it.</div></div><div class="jsdoc-field public  odd"><div class="jsdoc-title"><a name="constructor"></a><span class="functionIcon">constructor</span></div><div class="jsdoc-inheritance">Overrides <a class="jsdoc-link" href="/api/1.7/Object">Object</a></div><div class="jsdoc-return-type">Returns <strong>dojox.widget.Rotator</strong></div><div class="jsdoc-summary">Initializes the panes and events.</div><table class="jsdoc-parameters"><tr><th>Parameter</th><th>Type</th><th>Description</th></tr><tr><td class="jsdoc-param-name">params</td><td class="jsdoc-param-type">Object</td><td class="jsdoc-param-description"></td></tr><tr><td class="jsdoc-param-name">node</td><td class="jsdoc-param-type">DomNode|string</td><td class="jsdoc-param-description"></td></tr></table></div><div class="jsdoc-field public inherited even"><div class="jsdoc-title"><a name="control"></a><span class="functionIcon">control</span></div><div class="jsdoc-inheritance">Defined by <a class="jsdoc-link" href="/api/1.7/dojox/widget/Rotator">dojox.widget.Rotator</a></div><div class="jsdoc-summary">Dispatches an action, first to this engine, then to the Rotator.</div><table class="jsdoc-parameters"><tr><th>Parameter</th><th>Type</th><th>Description</th></tr><tr><td class="jsdoc-param-name">action</td><td class="jsdoc-param-type">string</td><td class="jsdoc-param-description"></td></tr></table></div><div class="jsdoc-field public inherited odd"><div class="jsdoc-title"><a name="destroy"></a><span class="functionIcon">destroy</span></div><div class="jsdoc-inheritance">Defined by <a class="jsdoc-link" href="/api/1.7/dojox/widget/Rotator">dojox.widget.Rotator</a></div><div class="jsdoc-summary">Destroys the Rotator and its DOM node.</div></div><div class="jsdoc-field public inherited even"><div class="jsdoc-title"><a name="go"></a><span class="functionIcon">go</span></div><div class="jsdoc-inheritance">Defined by <a class="jsdoc-link" href="/api/1.7/dojox/widget/Rotator">dojox.widget.Rotator</a></div><div class="jsdoc-summary">Transitions the Rotator to the specified pane index.</div><table class="jsdoc-parameters"><tr><th>Parameter</th><th>Type</th><th>Description</th></tr><tr><td class="jsdoc-param-name">p</td><td class="jsdoc-param-type">int|string</td><td class="jsdoc-param-description"><div><em>Optional.</em></div></td></tr></table></div><div class="jsdoc-field public inherited odd"><div class="jsdoc-title"><a name="next"></a><span class="functionIcon">next</span></div><div class="jsdoc-inheritance">Defined by <a class="jsdoc-link" href="/api/1.7/dojox/widget/Rotator">dojox.widget.Rotator</a></div><div class="jsdoc-summary">Transitions the Rotator to the next pane.</div></div><div class="jsdoc-field public inherited even"><div class="jsdoc-title"><a name="prev"></a><span class="functionIcon">prev</span></div><div class="jsdoc-inheritance">Defined by <a class="jsdoc-link" href="/api/1.7/dojox/widget/Rotator">dojox.widget.Rotator</a></div><div class="jsdoc-summary">Transitions the Rotator to the previous pane.</div></div><div class="jsdoc-field public inherited odd"><div class="jsdoc-title"><a name="resize"></a><span class="functionIcon">resize</span></div><div class="jsdoc-inheritance">Defined by <a class="jsdoc-link" href="/api/1.7/dojox/widget/Rotator">dojox.widget.Rotator</a></div><table class="jsdoc-parameters"><tr><th>Parameter</th><th>Type</th><th>Description</th></tr><tr><td class="jsdoc-param-name">width</td><td class="jsdoc-param-type">int</td><td class="jsdoc-param-description"></td></tr><tr><td class="jsdoc-param-name">height</td><td class="jsdoc-param-type">int</td><td class="jsdoc-param-description"></td></tr></table></div><h2>Events</h2><div class="jsdoc-field public inherited even"><div class="jsdoc-title"><a name="onManualChange"></a><span class="functionIcon">onManualChange</span></div><div class="jsdoc-inheritance">Defined by <a class="jsdoc-link" href="/api/1.7/dojox/widget/Rotator">dojox.widget.Rotator</a></div><div class="jsdoc-summary">Stub function that can be overriden or connected to.</div></div><div class="jsdoc-field public inherited odd"><div class="jsdoc-title"><a name="onUpdate"></a><span class="functionIcon">onUpdate</span></div><div class="jsdoc-inheritance">Defined by <a class="jsdoc-link" href="/api/1.7/dojox/widget/Rotator">dojox.widget.Rotator</a></div><div class="jsdoc-summary">Send a notification to all controllers with the state of the rotator.</div><table class="jsdoc-parameters"><tr><th>Parameter</th><th>Type</th><th>Description</th></tr><tr><td class="jsdoc-param-name">type</td><td class="jsdoc-param-type">string</td><td class="jsdoc-param-description"></td></tr><tr><td class="jsdoc-param-name">params</td><td class="jsdoc-param-type">object</td><td class="jsdoc-param-description"><div><em>Optional.</em></div></td></tr></table></div></div></div>

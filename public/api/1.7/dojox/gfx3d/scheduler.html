@@ -1,0 +1,19 @@
+<div class="jsdoc-permalink" style="display:none;">/api/1.7/dojox/gfx3d/scheduler</div><h1 class="jsdoc-title objectIcon36">dojox.gfx3d.scheduler <span style="font-size:11px;color:#999;">(version 1.7)</span></h1><div class="jsdoc-prototype">Object &raquo; dojox.gfx3d.scheduler</div><div class="jsdoc-require">dojo.require("dojox.gfx3d.scheduler");</div><div class="jsdoc-prototype">Defined in dojox/gfx3d/scheduler.js</div><div class="jsdoc-children"><div class="jsdoc-field-list"><h2 class="jsdoc-summary-heading">Method Summary <span class="jsdoc-summary-toggle"></span></h2><div class="jsdoc-summary-list"><ul><li class="functionIcon public inherited even"><a class="inline-link" href="#dojox.gfx3d.scheduler.BinarySearchTree">dojox.gfx3d.scheduler.BinarySearchTree</a><span class="parameters">(obj, outline)</span> <span>build the binary search tree, using binary space partition algorithm.
+	The idea is for any polygon, for example, (a, b, c), the space is divided by
+	the plane into two space: plus and minus.
+	
+	for any arbitary vertex p, if(p - a) dotProduct n = 0, p is inside the plane,
+	&gt; 0, p is in the plus space, vice versa for minus space.
+	n is the normal vector that is perpendicular the plate, defined as:
+	n = ( b - a) crossProduct ( c - a )
+	
+	in this implementation, n is declared as normal, ,a is declared as orient.</span></li></ul></div><h2 class="jsdoc-summary-heading">Attached Objects <span class="jsdoc-summary-toggle"></span></h2><div class="jsdoc-summary-list"><div class="jsdoc-field"><div class="jsdoc-title"><span class="constructor"><a class="jsdoc-link" href="/api/1.7/dojox/gfx3d/scheduler/BinarySearchTree">dojox.gfx3d.scheduler.BinarySearchTree</a></span></div></div></div></div></div><div class="jsdoc-children"><div class="jsdoc-fields"><h2>Methods</h2><div class="jsdoc-field public inherited even"><div class="jsdoc-title"><a name="dojox.gfx3d.scheduler.BinarySearchTree"></a><span class="functionIcon">dojox.gfx3d.scheduler.BinarySearchTree</span></div><div class="jsdoc-inheritance">Defined by <a class="jsdoc-link" href="/api/1.7/dojox/gfx3d/scheduler">dojox.gfx3d.scheduler</a></div><div class="jsdoc-summary">build the binary search tree, using binary space partition algorithm.
+	The idea is for any polygon, for example, (a, b, c), the space is divided by
+	the plane into two space: plus and minus.
+	
+	for any arbitary vertex p, if(p - a) dotProduct n = 0, p is inside the plane,
+	&gt; 0, p is in the plus space, vice versa for minus space.
+	n is the normal vector that is perpendicular the plate, defined as:
+	n = ( b - a) crossProduct ( c - a )
+	
+	in this implementation, n is declared as normal, ,a is declared as orient.</div><table class="jsdoc-parameters"><tr><th>Parameter</th><th>Type</th><th>Description</th></tr><tr><td class="jsdoc-param-name">obj</td><td class="jsdoc-param-type">object:</td><td class="jsdoc-param-description">dojox.gfx3d.Object</td></tr><tr><td class="jsdoc-param-name">outline</td><td class="jsdoc-param-type"></td><td class="jsdoc-param-description"></td></tr></table></div></div></div>

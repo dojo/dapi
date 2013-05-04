@@ -1,0 +1,107 @@
+<div class="jsdoc-permalink" style="display:none;">/api/1.7/dojox/mvc/_DataBindingMixin</div><h1 class="jsdoc-title constructorIcon36">dojox.mvc._DataBindingMixin <span style="font-size:11px;color:#999;">(version 1.7)</span></h1><div class="jsdoc-prototype">Object &raquo; dojox.mvc._DataBindingMixin</div><div class="jsdoc-function-information"><h3>Usage:</h3><div class="function-signature"><span class="keyword">var</span> foo = new dojox.mvc._DataBindingMixin();</div></div><div class="jsdoc-full-summary"><p>Data binding awareness enables dijits or other view layer
+components to bind to locations within a client-side data model,
+which is commonly an instance of the dojox.mvc.StatefulModel class. A
+bind is a bi-directional update mechanism which is capable of
+synchronizing value changes between the bound dijit or other view
+component and the specified location within the data model, as well
+as changes to other properties such as "valid", "required",
+"readOnly" etc.</p>
+
+<p>The data binding is commonly specified declaratively via the "ref"
+property in the "data-dojo-props" attribute value.</p>
+
+<p>Consider the following simple example:</p>
+
+<pre><code>&lt;script&gt;
+    var model;
+    require(["dijit/StatefulModel", "dojo/parser"], function(StatefulModel, parser){
+        model = new StatefulModel({ data : {
+            hello : "Hello World"
+        }});
+        parser.parse();
+    });
+&lt;/script&gt;
+
+&lt;input id="hello1" data-dojo-type="dijit.form.TextBox"
+    data-dojo-props="ref: model.hello"&gt;&lt;/input&gt;
+
+&lt;input id="hello2" data-dojo-type="dijit.form.TextBox"
+    data-dojo-props="ref: model.hello"&gt;&lt;/input&gt;
+</code></pre>
+
+<p>In the above example, both dijit.form.TextBox instances (with IDs
+"hello1" and "hello2" respectively) are bound to the same reference
+location in the data model i.e. "hello" via the "ref" expression
+"model.hello". Both will have an initial value of "Hello World".
+Thereafter, a change in the value of either of the two textboxes
+will cause an update of the value in the data model at location
+"hello" which will in turn cause a matching update of the value in
+the other textbox.</p>
+</div><div class="jsdoc-children"><div class="jsdoc-field-list"><h2 class="jsdoc-summary-heading">Method Summary <span class="jsdoc-summary-toggle"></span></h2><div class="jsdoc-summary-list"><ul><li class="functionIcon private inherited even"><a class="inline-link" href="#_dbstartup">_dbstartup</a><span class="parameters">()</span> <span>Tie data binding initialization into the widget lifecycle, at
+	widget startup.</span></li><li class="functionIcon private inherited odd"><a class="inline-link" href="#_getParentBindingFromDOM">_getParentBindingFromDOM</a><span class="parameters">()</span> <span>Get the parent binding by traversing the DOM ancestors to find
+	the first enclosing data-bound widget.</span></li><li class="functionIcon private inherited even"><a class="inline-link" href="#_isEqual">_isEqual</a><span class="parameters">(one, other)</span></li><li class="functionIcon private inherited odd"><a class="inline-link" href="#_setupBinding">_setupBinding</a><span class="parameters">(parentBinding)</span><span class="jsdoc-returns"> returns nothing to do here</span> <span>Calculate and set the dojo.Stateful data binding for the
+	associated dijit or custom view component.</span></li><li class="functionIcon private inherited even"><a class="inline-link" href="#_unwatchArray">_unwatchArray</a><span class="parameters">(watchHandles)</span> <span>Given an array of watch handles, unwatch all.</span></li><li class="functionIcon private inherited odd"><a class="inline-link" href="#_updateBinding">_updateBinding</a><span class="parameters">(name, old, current)</span> <span>Set the data binding to the supplied value, which must be a
+	dojo.Stateful node of a data model.</span></li><li class="functionIcon private inherited even"><a class="inline-link" href="#_updateChildBindings">_updateChildBindings</a><span class="parameters">(parentBind)</span> <span>Update this widget's value based on the current binding and
+	set up the bindings of all contained widgets so as to refresh
+	any relative binding references.
+	findWidgets does not return children of widgets so need to also
+	update children of widgets which are not bound but may hold widgets which are.</span></li><li class="functionIcon private inherited odd"><a class="inline-link" href="#_updateProperty">_updateProperty</a><span class="parameters">(name, old, current, defaultValue, setPropName, setPropValue)</span> <span>Update a binding property of the bound widget.</span></li><li class="functionIcon public  even"><a class="inline-link" href="#constructor">constructor</a><span class="parameters">()</span><span class="jsdoc-returns"> returns dojox.mvc._DataBindingMixin</span> <span>A reference to the constructor function for this object.</span></li><li class="functionIcon public inherited odd"><a class="inline-link" href="#isValid">isValid</a><span class="parameters">()</span> <span>Returns the validity of the data binding.</span></li></ul></div></div></div><div class="jsdoc-children"><div class="jsdoc-fields"><h2>Methods</h2><div class="jsdoc-field private inherited even"><div class="jsdoc-title"><a name="_dbstartup"></a><span class="functionIcon">_dbstartup</span></div><div class="jsdoc-inheritance">Defined by <a class="jsdoc-link" href="/api/1.7/dojox/mvc/_DataBindingMixin">dojox.mvc._DataBindingMixin</a></div><div class="jsdoc-summary">Tie data binding initialization into the widget lifecycle, at
+	widget startup.</div></div><div class="jsdoc-field private inherited odd"><div class="jsdoc-title"><a name="_getParentBindingFromDOM"></a><span class="functionIcon">_getParentBindingFromDOM</span></div><div class="jsdoc-inheritance">Defined by <a class="jsdoc-link" href="/api/1.7/dojox/mvc/_DataBindingMixin">dojox.mvc._DataBindingMixin</a></div><div class="jsdoc-return-type"><div class="jsdoc-return-description">The parent binding, if one exists along the DOM parent axis.</div></div><div class="jsdoc-summary">Get the parent binding by traversing the DOM ancestors to find
+	the first enclosing data-bound widget.</div></div><div class="jsdoc-field private inherited even"><div class="jsdoc-title"><a name="_isEqual"></a><span class="functionIcon">_isEqual</span></div><div class="jsdoc-inheritance">Defined by <a class="jsdoc-link" href="/api/1.7/dojox/mvc/_DataBindingMixin">dojox.mvc._DataBindingMixin</a></div><table class="jsdoc-parameters"><tr><th>Parameter</th><th>Type</th><th>Description</th></tr><tr><td class="jsdoc-param-name">one</td><td class="jsdoc-param-type"></td><td class="jsdoc-param-description"></td></tr><tr><td class="jsdoc-param-name">other</td><td class="jsdoc-param-type"></td><td class="jsdoc-param-description"></td></tr></table></div><div class="jsdoc-field private inherited odd"><div class="jsdoc-title"><a name="_setupBinding"></a><span class="functionIcon">_setupBinding</span></div><div class="jsdoc-inheritance">Defined by <a class="jsdoc-link" href="/api/1.7/dojox/mvc/_DataBindingMixin">dojox.mvc._DataBindingMixin</a></div><div class="jsdoc-return-type">Returns <strong>nothing to do here</strong></div><div class="jsdoc-summary"><p>The declarative data binding reference may be specified in two
+ways via markup:
+- For older style documents (non validating), controls may use
+the "ref" attribute to specify the data binding reference
+(String).
+- For validating documents using the new Dojo parser, controls
+may specify the data binding reference (String) as the "ref"
+property specified in the data-dojo-props attribute.
+Once the ref value is obtained using either of the above means,
+the binding is set up for this control and its required, readOnly
+etc. properties are refreshed.
+The data binding may be specified as a direct reference to the
+dojo.Stateful model node or as a string relative to its DOM
+parent or another widget.
+There are three ways in which the data binding node reference is
+calculated when specified as a string:
+- If an explicit parent widget is specified, the binding is
+calculated relative to the parent widget's data binding.
+- For any dijits that specify a data binding reference,
+we walk up their DOM hierarchy to obtain the first container
+dijit that has a data binding set up and use the reference String
+as a property name relative to the parent's data binding context.
+- If no such parent is found i.e. for the outermost container
+dijits that specify a data binding reference, the binding is
+calculated by treating the reference String as an expression and
+evaluating it to obtain the dojo.Stateful node in the datamodel.
+This method throws an Error in these two conditions:
+- The ref is an expression i.e. outermost bound dijit, but the
+expression evaluation fails.
+- The calculated binding turns out to not be an instance of a
+dojo.Stateful node.</p>
+</div><table class="jsdoc-parameters"><tr><th>Parameter</th><th>Type</th><th>Description</th></tr><tr><td class="jsdoc-param-name">parentBinding</td><td class="jsdoc-param-type">The</td><td class="jsdoc-param-description">binding of this widget/view component's data-bound parent,
+	if available.</td></tr></table></div><div class="jsdoc-field private inherited even"><div class="jsdoc-title"><a name="_unwatchArray"></a><span class="functionIcon">_unwatchArray</span></div><div class="jsdoc-inheritance">Defined by <a class="jsdoc-link" href="/api/1.7/dojox/mvc/_DataBindingMixin">dojox.mvc._DataBindingMixin</a></div><div class="jsdoc-summary">Given an array of watch handles, unwatch all.</div><table class="jsdoc-parameters"><tr><th>Parameter</th><th>Type</th><th>Description</th></tr><tr><td class="jsdoc-param-name">watchHandles</td><td class="jsdoc-param-type">The</td><td class="jsdoc-param-description">array of watch handles.</td></tr></table></div><div class="jsdoc-field private inherited odd"><div class="jsdoc-title"><a name="_updateBinding"></a><span class="functionIcon">_updateBinding</span></div><div class="jsdoc-inheritance">Defined by <a class="jsdoc-link" href="/api/1.7/dojox/mvc/_DataBindingMixin">dojox.mvc._DataBindingMixin</a></div><div class="jsdoc-summary"><p>Applies the specified data binding to the attached widget.
+Loses any prior watch registrations on the previously active
+bind, registers the new one, updates data binds of any contained
+widgets and also refreshes all associated properties (valid,
+required etc.)</p>
+</div><table class="jsdoc-parameters"><tr><th>Parameter</th><th>Type</th><th>Description</th></tr><tr><td class="jsdoc-param-name">name</td><td class="jsdoc-param-type">The</td><td class="jsdoc-param-description">name of the binding property (always &quot;binding&quot;).</td></tr><tr><td class="jsdoc-param-name">old</td><td class="jsdoc-param-type">The</td><td class="jsdoc-param-description">old dojo.Stateful binding node of the data model.</td></tr><tr><td class="jsdoc-param-name">current</td><td class="jsdoc-param-type">The</td><td class="jsdoc-param-description">new dojo.Stateful binding node of the data model.</td></tr></table></div><div class="jsdoc-field private inherited even"><div class="jsdoc-title"><a name="_updateChildBindings"></a><span class="functionIcon">_updateChildBindings</span></div><div class="jsdoc-inheritance">Defined by <a class="jsdoc-link" href="/api/1.7/dojox/mvc/_DataBindingMixin">dojox.mvc._DataBindingMixin</a></div><div class="jsdoc-summary">Update this widget's value based on the current binding and
+	set up the bindings of all contained widgets so as to refresh
+	any relative binding references.
+	findWidgets does not return children of widgets so need to also
+	update children of widgets which are not bound but may hold widgets which are.</div><table class="jsdoc-parameters"><tr><th>Parameter</th><th>Type</th><th>Description</th></tr><tr><td class="jsdoc-param-name">parentBind</td><td class="jsdoc-param-type">The</td><td class="jsdoc-param-description">binding on the parent of a widget whose children may have bindings
+	which need to be updated.</td></tr></table></div><div class="jsdoc-field private inherited odd"><div class="jsdoc-title"><a name="_updateProperty"></a><span class="functionIcon">_updateProperty</span></div><div class="jsdoc-inheritance">Defined by <a class="jsdoc-link" href="/api/1.7/dojox/mvc/_DataBindingMixin">dojox.mvc._DataBindingMixin</a></div><div class="jsdoc-summary">Update a binding property of the bound widget.</div><table class="jsdoc-parameters"><tr><th>Parameter</th><th>Type</th><th>Description</th></tr><tr><td class="jsdoc-param-name">name</td><td class="jsdoc-param-type">The</td><td class="jsdoc-param-description">binding property name.</td></tr><tr><td class="jsdoc-param-name">old</td><td class="jsdoc-param-type">The</td><td class="jsdoc-param-description">old value of the binding property.</td></tr><tr><td class="jsdoc-param-name">current</td><td class="jsdoc-param-type">The</td><td class="jsdoc-param-description">new or current value of the binding property.</td></tr><tr><td class="jsdoc-param-name">defaultValue</td><td class="jsdoc-param-type">The</td><td class="jsdoc-param-description">optional value to be applied as the current value of the
+	binding property if the current value is null.</td></tr><tr><td class="jsdoc-param-name">setPropName</td><td class="jsdoc-param-type">The</td><td class="jsdoc-param-description">optional name of a stateful property to set on the bound
+	widget.</td></tr><tr><td class="jsdoc-param-name">setPropValue</td><td class="jsdoc-param-type">The</td><td class="jsdoc-param-description">value, if an optional name is provided, for the stateful
+	property of the bound widget.</td></tr></table></div><div class="jsdoc-field public  even"><div class="jsdoc-title"><a name="constructor"></a><span class="functionIcon">constructor</span></div><div class="jsdoc-inheritance">Overrides <a class="jsdoc-link" href="/api/1.7/Object">Object</a></div><div class="jsdoc-return-type">Returns <strong>dojox.mvc._DataBindingMixin</strong></div><div class="jsdoc-summary">A reference to the constructor function for this object.</div></div><div class="jsdoc-field public inherited odd"><div class="jsdoc-title"><a name="isValid"></a><span class="functionIcon">isValid</span></div><div class="jsdoc-inheritance">Defined by <a class="jsdoc-link" href="/api/1.7/dojox/mvc/_DataBindingMixin">dojox.mvc._DataBindingMixin</a></div><div class="jsdoc-return-type"><div class="jsdoc-return-description">Boolean
+	The validity associated with the data binding.</div></div><div class="jsdoc-summary"><p>This function is meant to provide an API bridge to the dijit API.
+Validity of data-bound dijits is a function of multiple concerns:
+- The validity of the value as ascertained by the data binding
+and constraints specified in the data model (usually semantic).
+- The validity of the value as ascertained by the widget itself
+based on widget constraints (usually syntactic).
+In order for dijits to function correctly in data-bound
+environments, it is imperative that their isValid() functions
+assess the model validity of the data binding via the
+this.inherited(arguments) hierarchy and declare any values
+failing the test as invalid.</p>
+</div></div></div></div>

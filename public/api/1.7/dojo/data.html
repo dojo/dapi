@@ -1,0 +1,92 @@
+<div class="jsdoc-permalink" style="display:none;">/api/1.7/dojo/data</div><h1 class="jsdoc-title objectIcon36">dojo.data <span style="font-size:11px;color:#999;">(version 1.7)</span></h1><div class="jsdoc-prototype">Object &raquo; dojo.data</div><div class="jsdoc-full-summary"><p>A uniform data access layer</p>
+</div><div class="jsdoc-children"><div class="jsdoc-field-list"><h2 class="jsdoc-summary-heading">Property Summary <span class="jsdoc-summary-toggle"></span></h2><div class="jsdoc-summary-list"><ul><li class="objectIcon public inherited even"><a class="inline-link" href="#dojo.data.api">dojo.data.api</a></li><li class="objectIcon public inherited odd"><a class="inline-link" href="#dojo.data.util">dojo.data.util</a></li></ul></div><h2 class="jsdoc-summary-heading">Method Summary <span class="jsdoc-summary-toggle"></span></h2><div class="jsdoc-summary-list"><ul><li class="functionIcon public inherited even"><a class="inline-link" href="#dojo.data.ItemFileReadStore">dojo.data.ItemFileReadStore</a><span class="parameters">(keywordParameters)</span> <span>The ItemFileReadStore implements the dojo.data.api.Read API and reads
+	data from JSON files that have contents in this format --
+	{ items: [
+	{ name:'Kermit', color:'green', age:12, friends:['Gonzo', {_reference:{name:'Fozzie Bear'}}]},
+	{ name:'Fozzie Bear', wears:['hat', 'tie']},
+	{ name:'Miss Piggy', pets:'Foo-Foo'}
+	]}
+	Note that it can also contain an 'identifer' property that specified which attribute on the items
+	in the array of items that acts as the unique identifier for that item.
+	
+	
+	
+	use &quot;&quot; rather than undefined for the benefit of the parser (#3539)</span></li><li class="functionIcon public inherited odd"><a class="inline-link" href="#dojo.data.ItemFileWriteStore">dojo.data.ItemFileWriteStore</a><span class="parameters">(keywordParameters)</span> <span>typeMap: object)
+	The structure of the typeMap object is as follows:
+	{
+	type0: function || object,
+	type1: function || object,
+	...
+	typeN: function || object
+	}
+	Where if it is a function, it is assumed to be an object constructor that takes the
+	value of _value as the initialization parameters.  It is serialized assuming object.toString()
+	serialization.  If it is an object, then it is assumed
+	to be an object of general form:
+	{
+	type: function, //constructor.
+	deserialize:	function(value) //The function that parses the value and constructs the object defined by type appropriately.
+	serialize:	function(object) //The function that converts the object back into the proper file format form.
+	}</span></li><li class="functionIcon public inherited even"><a class="inline-link" href="#dojo.data.ObjectStore">dojo.data.ObjectStore</a><span class="parameters">(options)</span> <span>A Dojo Data implementation that wraps Dojo object stores for backwards
+	compatibility.</span></li></ul></div><h2 class="jsdoc-summary-heading">Attached Objects <span class="jsdoc-summary-toggle"></span></h2><div class="jsdoc-summary-list"><div class="jsdoc-field"><div class="jsdoc-title"><span class="constructor"><a class="jsdoc-link" href="/api/1.7/dojo/data/ItemFileReadStore">dojo.data.ItemFileReadStore</a></span></div></div><div class="jsdoc-field"><div class="jsdoc-title"><span class="object"><a class="jsdoc-link" href="/api/1.7/dojo/data/ItemFileReadStore/_features/dojo/data/api">dojo.data.ItemFileReadStore._features.dojo.data.api</a></span></div></div><div class="jsdoc-field"><div class="jsdoc-title"><span class="object"><a class="jsdoc-link" href="/api/1.7/dojo/data/ItemFileReadStore/_datatypeMap">dojo.data.ItemFileReadStore._datatypeMap</a></span></div></div><div class="jsdoc-field"><div class="jsdoc-title"><span class="constructor"><a class="jsdoc-link" href="/api/1.7/dojo/data/ItemFileWriteStore">dojo.data.ItemFileWriteStore</a></span></div></div><div class="jsdoc-field"><div class="jsdoc-title"><span class="object"><a class="jsdoc-link" href="/api/1.7/dojo/data/ItemFileWriteStore/_features/dojo/data/api">dojo.data.ItemFileWriteStore._features.dojo.data.api</a></span></div></div><div class="jsdoc-field"><div class="jsdoc-title"><span class="object"><a class="jsdoc-link" href="/api/1.7/dojo/data/ItemFileWriteStore/_datatypeMap/Date">dojo.data.ItemFileWriteStore._datatypeMap.Date</a></span></div></div><div class="jsdoc-field"><div class="jsdoc-title"><span class="constructor"><a class="jsdoc-link" href="/api/1.7/dojo/data/ObjectStore">dojo.data.ObjectStore</a></span></div></div><div class="jsdoc-field"><div class="jsdoc-title"><span class="array"><a class="jsdoc-link" href="/api/1.7/dojo/data/ObjectStore/_dirtyObjects">dojo.data.ObjectStore._dirtyObjects</a></span></div></div><div class="jsdoc-field"><div class="jsdoc-title"><span class="object"><a class="jsdoc-link" href="/api/1.7/dojo/data/api">dojo.data.api</a></span></div></div><div class="jsdoc-field"><div class="jsdoc-title"><span class="constructor"><a class="jsdoc-link" href="/api/1.7/dojo/data/api/Identity">dojo.data.api.Identity</a></span></div></div><div class="jsdoc-field"><div class="jsdoc-title"><span class="constructor"><a class="jsdoc-link" href="/api/1.7/dojo/data/api/Notification">dojo.data.api.Notification</a></span></div></div><div class="jsdoc-field"><div class="jsdoc-title"><span class="constructor"><a class="jsdoc-link" href="/api/1.7/dojo/data/api/Read">dojo.data.api.Read</a></span></div></div><div class="jsdoc-field"><div class="jsdoc-title"><span class="constructor"><a class="jsdoc-link" href="/api/1.7/dojo/data/api/Request">dojo.data.api.Request</a></span></div></div><div class="jsdoc-field"><div class="jsdoc-title"><span class="constructor"><a class="jsdoc-link" href="/api/1.7/dojo/data/api/Write">dojo.data.api.Write</a></span></div></div><div class="jsdoc-field"><div class="jsdoc-title"><span class="object"><a class="jsdoc-link" href="/api/1.7/dojo/data/util">dojo.data.util</a></span></div></div></div></div></div><div class="jsdoc-children"><div class="jsdoc-fields"><h2>Properties</h2><div class="jsdoc-field public inherited even"><div class="jsdoc-title"><a name="dojo.data.api"></a><span class="objectIcon">dojo.data.api</span></div><div class="jsdoc-inheritance">Defined by <a class="jsdoc-link" href="/api/1.7/dojo/data">dojo.data</a></div></div><div class="jsdoc-field public inherited odd"><div class="jsdoc-title"><a name="dojo.data.util"></a><span class="objectIcon">dojo.data.util</span></div><div class="jsdoc-inheritance">Defined by <a class="jsdoc-link" href="/api/1.7/dojo/data">dojo.data</a></div></div><h2>Methods</h2><div class="jsdoc-field public inherited even"><div class="jsdoc-title"><a name="dojo.data.ItemFileReadStore"></a><span class="functionIcon">dojo.data.ItemFileReadStore</span></div><div class="jsdoc-inheritance">Defined by <a class="jsdoc-link" href="/api/1.7/dojo/data">dojo.data</a></div><div class="jsdoc-summary">The ItemFileReadStore implements the dojo.data.api.Read API and reads
+	data from JSON files that have contents in this format --
+	{ items: [
+	{ name:'Kermit', color:'green', age:12, friends:['Gonzo', {_reference:{name:'Fozzie Bear'}}]},
+	{ name:'Fozzie Bear', wears:['hat', 'tie']},
+	{ name:'Miss Piggy', pets:'Foo-Foo'}
+	]}
+	Note that it can also contain an 'identifer' property that specified which attribute on the items
+	in the array of items that acts as the unique identifier for that item.
+	
+	
+	
+	use &quot;&quot; rather than undefined for the benefit of the parser (#3539)</div><table class="jsdoc-parameters"><tr><th>Parameter</th><th>Type</th><th>Description</th></tr><tr><td class="jsdoc-param-name">keywordParameters</td><td class="jsdoc-param-type">Object</td><td class="jsdoc-param-description">typeMap: object)
+	The structure of the typeMap object is as follows:
+	{
+	type0: function || object,
+	type1: function || object,
+	...
+	typeN: function || object
+	}
+	Where if it is a function, it is assumed to be an object constructor that takes the
+	value of _value as the initialization parameters.  If it is an object, then it is assumed
+	to be an object of general form:
+	{
+	type: function, //constructor.
+	deserialize:	function(value) //The function that parses the value and constructs the object defined by type appropriately.
+	}</td></tr></table></div><div class="jsdoc-field public inherited odd"><div class="jsdoc-title"><a name="dojo.data.ItemFileWriteStore"></a><span class="functionIcon">dojo.data.ItemFileWriteStore</span></div><div class="jsdoc-inheritance">Defined by <a class="jsdoc-link" href="/api/1.7/dojo/data">dojo.data</a></div><div class="jsdoc-summary">typeMap: object)
+	The structure of the typeMap object is as follows:
+	{
+	type0: function || object,
+	type1: function || object,
+	...
+	typeN: function || object
+	}
+	Where if it is a function, it is assumed to be an object constructor that takes the
+	value of _value as the initialization parameters.  It is serialized assuming object.toString()
+	serialization.  If it is an object, then it is assumed
+	to be an object of general form:
+	{
+	type: function, //constructor.
+	deserialize:	function(value) //The function that parses the value and constructs the object defined by type appropriately.
+	serialize:	function(object) //The function that converts the object back into the proper file format form.
+	}</div><table class="jsdoc-parameters"><tr><th>Parameter</th><th>Type</th><th>Description</th></tr><tr><td class="jsdoc-param-name">keywordParameters</td><td class="jsdoc-param-type">object</td><td class="jsdoc-param-description">typeMap: object)
+	The structure of the typeMap object is as follows:
+	{
+	type0: function || object,
+	type1: function || object,
+	...
+	typeN: function || object
+	}
+	Where if it is a function, it is assumed to be an object constructor that takes the
+	value of _value as the initialization parameters.  It is serialized assuming object.toString()
+	serialization.  If it is an object, then it is assumed
+	to be an object of general form:
+	{
+	type: function, //constructor.
+	deserialize:	function(value) //The function that parses the value and constructs the object defined by type appropriately.
+	serialize:	function(object) //The function that converts the object back into the proper file format form.
+	}</td></tr></table></div><div class="jsdoc-field public inherited even"><div class="jsdoc-title"><a name="dojo.data.ObjectStore"></a><span class="functionIcon">dojo.data.ObjectStore</span></div><div class="jsdoc-inheritance">Defined by <a class="jsdoc-link" href="/api/1.7/dojo/data">dojo.data</a></div><div class="jsdoc-summary">A Dojo Data implementation that wraps Dojo object stores for backwards
+	compatibility.</div><table class="jsdoc-parameters"><tr><th>Parameter</th><th>Type</th><th>Description</th></tr><tr><td class="jsdoc-param-name">options</td><td class="jsdoc-param-type">The</td><td class="jsdoc-param-description">configuration information to pass into the data store.
+	options.objectStore:
+	The object store to use as the source provider for this data store</td></tr></table></div></div></div>

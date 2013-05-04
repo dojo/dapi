@@ -1,0 +1,113 @@
+<div class="jsdoc-permalink" style="display:none;">/api/1.7/dojox/string/BidiEngine</div><h1 class="jsdoc-title constructorIcon36">dojox.string.BidiEngine <span style="font-size:11px;color:#999;">(version 1.7)</span></h1><div class="jsdoc-prototype">Object &raquo; dojox.string.BidiEngine</div><div class="jsdoc-require">dojo.require("dojox.string.BidiEngine");</div><div class="jsdoc-prototype">Defined in dojox/string/BidiEngine.js</div><div class="jsdoc-function-information"><h3>Usage:</h3><div class="function-signature"><span class="keyword">var</span> foo = new dojox.string.BidiEngine();</div></div><div class="jsdoc-full-summary"><p>Bidi stands for support for languages with a bidirectional script.</p>
+
+<p>Usually Unicode Bidi Algorithm used by OS platform (and web browsers) is capable of properly transforming
+Bidi text and as a result it is adequately displayed on the screen. However, in some situations,
+Unicode Bidi Algorithm is not invoked or is not properly applied. This may occur in situation in which software
+responsible for rendering the text is not leveraging Unicode Bidi Algorithm implemented by OS (e.g. dojox.GFX renderers).</p>
+
+<p>Bidi engine provided in this class implements Unicode Bidi Algorithm as specified at:
+http://www.unicode.org/reports/tr9/.</p>
+
+<p>For more information on basic Bidi concepts please read following article:
+"Bidirectional script support - A primer" available from:
+http://www.ibm.com/developerworks/websphere/library/techarticles/bidi/bidigen.html</p>
+
+<p>As of February 2011, Bidi engine has following limitations:
+1. No support for following numeric shaping options:
+H - Hindi,
+C - Contextual,
+N - Nominal.
+2. No support for following shaping options:
+I - Initial shaping,
+M - Middle shaping,
+F - Final shaping,
+B - Isolated shaping.
+3. No support for source-to-target or/and target-to-source maps.
+4. No support for LRE/RLE/LRO/RLO/PDF (they are handled like neutrals).
+5. No support for Windows compatibility.
+6. No support for  insert/remove marks.
+7. No support for code pages (currently only UTF-8 is supported. Ideally we should convert from any code page to UTF-8).</p>
+</div><div class="jsdoc-children"><div class="jsdoc-field-list"><h2 class="jsdoc-summary-heading">Method Summary <span class="jsdoc-summary-toggle"></span></h2><div class="jsdoc-summary-list"><ul><li class="functionIcon public inherited even"><a class="inline-link" href="#bidiTransform">bidiTransform</a><span class="parameters">(text, formatIn, formatOut)</span> <span>Central public API for Bidi engine. Transforms the text according to formatIn, formatOut parameters.
+	If formatIn or formatOut parametrs are not valid throws an exception.
+	inputText:
+	Input text subject to application of Bidi transformation.</span></li><li class="functionIcon public inherited odd"><a class="inline-link" href="#checkContextual">checkContextual</a><span class="parameters">(text)</span> <span>Determine the base direction of a bidi text according
+	to its first strong directional character.</span></li><li class="functionIcon public  even"><a class="inline-link" href="#constructor">constructor</a><span class="parameters">()</span><span class="jsdoc-returns"> returns dojox.string.BidiEngine</span> <span>A reference to the constructor function for this object.</span></li><li class="functionIcon public inherited odd"><a class="inline-link" href="#hasBidiChar">hasBidiChar</a><span class="parameters">(text)</span> <span>Return true if text contains RTL directed character.</span></li></ul></div></div></div><div class="jsdoc-children"><div class="jsdoc-fields"><h2>Methods</h2><div class="jsdoc-field public inherited even"><div class="jsdoc-title"><a name="bidiTransform"></a><span class="functionIcon">bidiTransform</span></div><div class="jsdoc-inheritance">Defined by <a class="jsdoc-link" href="/api/1.7/dojox/string/BidiEngine">dojox.string.BidiEngine</a></div><div class="jsdoc-return-type"><div class="jsdoc-return-description">String*/ or throws an exception.
+	Original text transformed from input Bidi layout (second argument)
+	to output Bidi layout (last argument).
+	Throws an exception if the bidi layout strings are not valid.</div></div><div class="jsdoc-summary"><p>Both formatIn and formatOut parameters are 5 letters long strings.
+For example - "ILYNN". Each letter is associated with specific attribute of Bidi layout.
+Possible and default values for each one of the letters are provided below:</p>
+
+<p>First letter:
+Letter position/index:
+1
+Letter meaning:
+Ordering Schema.
+Possible values:
+I - Implicit (Logical).
+V - Visual.
+Default value:
+I</p>
+
+<p>Second letter:
+Letter position/index:
+2
+Letter meaning:
+Orientation.
+Possible values:
+L - Left To Right.
+R - Right To Left.
+C - Contextual Left to Right.
+D - Contextual Right to Left.
+Default value:
+L</p>
+
+<p>Third letter:
+Letter position/index:
+3
+Letter meaning:
+Symmetric Swapping.
+Possible values:
+Y - Symmetric swapping is on.
+N - Symmetric swapping is off.
+Default value:
+Y</p>
+
+<p>Fourth letter:
+Letter position/index:
+4
+Letter meaning:
+Shaping.
+Possible values:
+S - Text is shaped.
+N - Text is not shaped.
+Default value:
+N</p>
+
+<p>Fifth letter:
+Letter position/index:
+5
+Letter meaning:
+Numeric Shaping.
+Possible values:
+N - Nominal.
+Default value:
+N</p>
+
+<p>The output of this function is original text (passed via first argument) transformed from input Bidi layout (second argument)
+to output Bidi layout (last argument).</p>
+
+<p>Sample call:
+    mytext = bidiTransform("HELLO WORLD", "ILYNN", "VLYNN");
+In this case, "HELLO WORLD" text is transformed from Logical - LTR to Visual - LTR Bidi layout with
+default values for symmetric swapping (Yes), shaping (Not shaped) and numeric shaping (Nominal).</p>
+</div><table class="jsdoc-parameters"><tr><th>Parameter</th><th>Type</th><th>Description</th></tr><tr><td class="jsdoc-param-name">text</td><td class="jsdoc-param-type">String</td><td class="jsdoc-param-description"></td></tr><tr><td class="jsdoc-param-name">formatIn</td><td class="jsdoc-param-type">String</td><td class="jsdoc-param-description">Input Bidi layout in which inputText is passed to the function.</td></tr><tr><td class="jsdoc-param-name">formatOut</td><td class="jsdoc-param-type">String</td><td class="jsdoc-param-description">Output Bidi layout to which inputText should be transformed.</td></tr></table></div><div class="jsdoc-field public inherited odd"><div class="jsdoc-title"><a name="checkContextual"></a><span class="functionIcon">checkContextual</span></div><div class="jsdoc-inheritance">Defined by <a class="jsdoc-link" href="/api/1.7/dojox/string/BidiEngine">dojox.string.BidiEngine</a></div><div class="jsdoc-return-type"><div class="jsdoc-return-description">String
+	"ltr" or "rtl" according to the first strong character.
+	If there is no strong character, returns the value of the
+	document dir property.</div></div><div class="jsdoc-summary">Determine the base direction of a bidi text according
+	to its first strong directional character.</div><table class="jsdoc-parameters"><tr><th>Parameter</th><th>Type</th><th>Description</th></tr><tr><td class="jsdoc-param-name">text</td><td class="jsdoc-param-type">String</td><td class="jsdoc-param-description">The text to check.</td></tr></table></div><div class="jsdoc-field public  even"><div class="jsdoc-title"><a name="constructor"></a><span class="functionIcon">constructor</span></div><div class="jsdoc-inheritance">Overrides <a class="jsdoc-link" href="/api/1.7/Object">Object</a></div><div class="jsdoc-return-type">Returns <strong>dojox.string.BidiEngine</strong></div><div class="jsdoc-summary">A reference to the constructor function for this object.</div></div><div class="jsdoc-field public inherited odd"><div class="jsdoc-title"><a name="hasBidiChar"></a><span class="functionIcon">hasBidiChar</span></div><div class="jsdoc-inheritance">Defined by <a class="jsdoc-link" href="/api/1.7/dojox/string/BidiEngine">dojox.string.BidiEngine</a></div><div class="jsdoc-return-type"><div class="jsdoc-return-description">Boolean
+	true - if text has a RTL directed character.
+	false - otherwise.</div></div><div class="jsdoc-summary"><p>Iterates over the text string, letter by letter starting from its beginning,
+searching for RTL directed character.
+Return true if found else false. Needed for vml transformation.</p>
+</div><table class="jsdoc-parameters"><tr><th>Parameter</th><th>Type</th><th>Description</th></tr><tr><td class="jsdoc-param-name">text</td><td class="jsdoc-param-type">String</td><td class="jsdoc-param-description">The source string.</td></tr></table></div></div></div>

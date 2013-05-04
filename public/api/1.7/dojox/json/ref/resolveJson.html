@@ -1,0 +1,25 @@
+<div class="jsdoc-permalink" style="display:none;">/api/1.7/dojox/json/ref/resolveJson</div><h1 class="jsdoc-title constructorIcon36">dojox.json.ref.resolveJson <span style="font-size:11px;color:#999;">(version 1.7)</span></h1><div class="jsdoc-prototype">Object &raquo; dojox.json.ref.resolveJson</div><div class="jsdoc-require">dojo.require("dojox.json.ref");</div><div class="jsdoc-prototype">Defined in dojox/json/ref.js</div><div class="jsdoc-function-information"><h3>Usage:</h3><div class="function-signature"><span class="keyword">var</span> foo = new dojox.json.ref.resolveJson(<span class="jsdoc-comment-type">/* Object */</span> root, <span class="jsdoc-comment-type">/* Object? */</span> args);</div></div><div class="jsdoc-full-summary"><p>A JSON Schema object that can be used to advise the handling of the JSON (defining ids, date properties, urls, etc)</p>
+</div><div class="jsdoc-children"><div class="jsdoc-field-list"><h2 class="jsdoc-summary-heading">Method Summary <span class="jsdoc-summary-toggle"></span></h2><div class="jsdoc-summary-list"><ul><li class="functionIcon public  even"><a class="inline-link" href="#constructor">constructor</a><span class="parameters">(root, args)</span><span class="jsdoc-returns"> returns dojox.json.ref.resolveJson</span> <span>The root object of the object graph to be processed</span></li></ul></div></div></div><div class="jsdoc-children"><div class="jsdoc-fields"><h2>Methods</h2><div class="jsdoc-field public  even"><div class="jsdoc-title"><a name="constructor"></a><span class="functionIcon">constructor</span></div><div class="jsdoc-inheritance">Overrides <a class="jsdoc-link" href="/api/1.7/Object">Object</a></div><div class="jsdoc-return-type">Returns <strong>dojox.json.ref.resolveJson</strong></div><div class="jsdoc-summary">The root object of the object graph to be processed</div><table class="jsdoc-parameters"><tr><th>Parameter</th><th>Type</th><th>Description</th></tr><tr><td class="jsdoc-param-name">root</td><td class="jsdoc-param-type">Object</td><td class="jsdoc-param-description">The root object of the object graph to be processed</td></tr><tr><td class="jsdoc-param-name">args</td><td class="jsdoc-param-type">Object</td><td class="jsdoc-param-description"><div><em>Optional.</em></div>with additional arguments:
+	
+	The *index* parameter.
+	This is the index object (map) to use to store an index of all the objects.
+	If you are using inter-message referencing, you must provide the same object for each call.
+	The *defaultId* parameter.
+	This is the default id to use for the root object (if it doesn't define it's own id)
+	The *idPrefix* parameter.
+	This the prefix to use for the ids as they enter the index. This allows multiple tables
+	to use ids (that might otherwise collide) that enter the same global index.
+	idPrefix should be in the form &quot;/Service/&quot;.  For example,
+	if the idPrefix is &quot;/Table/&quot;, and object is encountered {id:&quot;4&quot;,...}, this would go in the
+	index as &quot;/Table/4&quot;.
+	The *idAttribute* parameter.
+	This indicates what property is the identity property. This defaults to &quot;id&quot;
+	The *assignAbsoluteIds* parameter.
+	This indicates that the resolveJson should assign absolute ids (__id) as the objects are being parsed.
+	
+	The *schemas* parameter
+	This provides a map of schemas, from which prototypes can be retrieved
+	The *loader* parameter
+	This is a function that is called added to the reference objects that can't be resolved (lazy objects)
+	return:
+	An object, the result of the processing</td></tr></table></div></div></div>

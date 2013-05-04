@@ -1,0 +1,714 @@
+<div class="jsdoc-permalink" style="display:none;">/api/1.7/dojox/data</div><h1 class="jsdoc-title objectIcon36">dojox.data <span style="font-size:11px;color:#999;">(version 1.7)</span></h1><div class="jsdoc-prototype">Object &raquo; dojox.data</div><div class="jsdoc-full-summary"><p>Additional dojo.data data stores and demos</p>
+</div><div class="jsdoc-children"><div class="jsdoc-field-list"><h2 class="jsdoc-summary-heading">Property Summary <span class="jsdoc-summary-toggle"></span></h2><div class="jsdoc-summary-list"><ul><li class="objectIcon public inherited even"><a class="inline-link" href="#dojox.data.util">dojox.data.util</a></li></ul></div><h2 class="jsdoc-summary-heading">Method Summary <span class="jsdoc-summary-toggle"></span></h2><div class="jsdoc-summary-list"><ul><li class="functionIcon public inherited odd"><a class="inline-link" href="#dojox.data.AndOrReadStore">dojox.data.AndOrReadStore</a><span class="parameters">(keywordParameters)</span> <span>AndOrReadStore uses ItemFileReadStore as a base, modifying only the query (_fetchItems) section.
+	Supports queries of the form: query:&quot;id:1* OR dept:'Sales Department' || (id:2* &amp;&amp; NOT dept:S*)&quot;
+	Includes legacy/widget support via:
+	query:{complexQuery:&quot;id:1* OR dept:'Sales Department' || (id:2* &amp;&amp; NOT dept:S*)&quot;}
+	The ItemFileReadStore implements the dojo.data.api.Read API and reads
+	data from JSON files that have contents in this format --
+	{ items: [
+	{ name:'Kermit', color:'green', age:12, friends:['Gonzo', {_reference:{name:'Fozzie Bear'}}]},
+	{ name:'Fozzie Bear', wears:['hat', 'tie']},
+	{ name:'Miss Piggy', pets:'Foo-Foo'}
+	]}
+	Note that it can also contain an 'identifer' property that specified which attribute on the items
+	in the array of items that acts as the unique identifier for that item.
+	
+	
+	
+	use &quot;&quot; rather than undefined for the benefit of the parser (#3539)</span></li><li class="functionIcon public inherited even"><a class="inline-link" href="#dojox.data.AndOrWriteStore">dojox.data.AndOrWriteStore</a><span class="parameters">(keywordParameters)</span> <span>typeMap: object)
+	The structure of the typeMap object is as follows:
+	{
+	type0: function || object,
+	type1: function || object,
+	...
+	typeN: function || object
+	}
+	Where if it is a function, it is assumed to be an object constructor that takes the
+	value of _value as the initialization parameters.  It is serialized assuming object.toString()
+	serialization.  If it is an object, then it is assumed
+	to be an object of general form:
+	{
+	type: function, //constructor.
+	deserialize:	function(value) //The function that parses the value and constructs the object defined by type appropriately.
+	serialize:	function(object) //The function that converts the object back into the proper file format form.
+	}</span></li><li class="functionIcon public inherited odd"><a class="inline-link" href="#dojox.data.AppStore">dojox.data.AppStore</a><span class="parameters">(args)</span> <span>The APP data store.</span></li><li class="functionIcon public inherited even"><a class="inline-link" href="#dojox.data.AtomReadStore">dojox.data.AtomReadStore</a><span class="parameters">(args)</span> <span>A read only data store for Atom XML based services or documents</span></li><li class="functionIcon public inherited odd"><a class="inline-link" href="#dojox.data.CdfStore">dojox.data.CdfStore</a><span class="parameters">(args)</span> <span>IMPORTANT: The CDF Store is designed to work with Tibco GI, and references Tibco's
+	JSX3 JavaScript library and will not work without it.
+	
+	The CDF Store implements dojo.data.Read, Write, and Identity api's.  It is a local
+	(in memory) store that handles XML documents formatted according to the
+	Common Data Format (CDF) spec:
+	http://www.tibco.com/devnet/resources/gi/3_1/tips_and_techniques/CommonDataFormatCDF.pdf
+	
+	The purpose of this store is to provide a glue between a jsx3 CDF file and a Dijit.
+	
+	While a CDF document is an XML file, other than the initial input, all data returned
+	from and written to this store should be in object format.</span></li><li class="functionIcon public inherited even"><a class="inline-link" href="#dojox.data.ClientFilter">dojox.data.ClientFilter</a><span class="parameters">()</span> <span>This is an abstract class that data stores can extend to add updateable result set functionality
+	as well as client side querying capabilities. This enables
+	widgets to be aware of how active results change in response to the modifications/notifications.</span></li><li class="functionIcon public inherited odd"><a class="inline-link" href="#dojox.data.CouchDBRestStore">dojox.data.CouchDBRestStore</a><span class="parameters">()</span></li><li class="functionIcon public inherited even"><a class="inline-link" href="#dojox.data.CssClassStore">dojox.data.CssClassStore</a><span class="parameters">()</span> <span>Basic store to display CSS information.</span></li><li class="functionIcon public inherited odd"><a class="inline-link" href="#dojox.data.CssRuleStore">dojox.data.CssRuleStore</a><span class="parameters">(keywordParameters)</span> <span>Basic store to display CSS information.</span></li><li class="functionIcon public inherited even"><a class="inline-link" href="#dojox.data.CsvStore">dojox.data.CsvStore</a><span class="parameters">(keywordParameters)</span> <span>The CsvStore implements the dojo.data.api.Read API and reads
+	data from files in CSV (Comma Separated Values) format.
+	All values are simple string values. References to other items
+	are not supported as attribute values in this datastore.
+	
+	Example data file:
+	name, color, age, tagline
+	Kermit, green, 12, &quot;Hi, I'm Kermit the Frog.&quot;
+	Fozzie Bear, orange, 10, &quot;Wakka Wakka Wakka!&quot;
+	Miss Piggy, pink, 11, &quot;Kermie!&quot;
+	
+	Note that values containing a comma must be enclosed with quotes (&quot;&quot;)
+	Also note that values containing quotes must be escaped with two consecutive quotes (&quot;&quot;quoted&quot;&quot;)
+	
+	examples:
+	var csvStore = new dojox.data.CsvStore({url:&quot;movies.csv&quot;);
+	var csvStore = new dojox.data.CsvStore({url:&quot;http://example.com/movies.csv&quot;);</span></li><li class="functionIcon public inherited odd"><a class="inline-link" href="#dojox.data.FileStore">dojox.data.FileStore</a><span class="parameters">(args)</span> <span>A simple store that provides a datastore interface to a filesystem.</span></li><li class="functionIcon public inherited even"><a class="inline-link" href="#dojox.data.FlickrRestStore">dojox.data.FlickrRestStore</a><span class="parameters">(args)</span> <span>Initializer for the FlickrRestStore store.</span></li><li class="functionIcon public inherited odd"><a class="inline-link" href="#dojox.data.FlickrStore">dojox.data.FlickrStore</a><span class="parameters">(args)</span> <span>Initializer for the FlickrStore store.</span></li><li class="functionIcon public inherited even"><a class="inline-link" href="#dojox.data.GoogleBlogSearchStore">dojox.data.GoogleBlogSearchStore</a><span class="parameters">()</span></li><li class="functionIcon public inherited odd"><a class="inline-link" href="#dojox.data.GoogleBookSearchStore">dojox.data.GoogleBookSearchStore</a><span class="parameters">()</span> <span>A data store for retrieving search results from Google.
+	The following attributes are supported on each item:
+	&lt;ul&gt;
+	&lt;li&gt;title - The book title in HTML format.&lt;/li&gt;
+	&lt;li&gt;titleNoFormatting - The book title in plain text&lt;/li&gt;
+	&lt;li&gt;authors - An array of authors&lt;/li&gt;
+	&lt;li&gt;url - The URL for the item&lt;/li&gt;
+	&lt;li&gt;unescapedUrl - The URL for the item, with URL escaping. This is often more readable&lt;/li&gt;
+	&lt;li&gt;bookId - An identifier for the book, usually an ISBN.&lt;/li&gt;
+	&lt;li&gt;pageCount - The number of pages in the book.&lt;/li&gt;
+	&lt;li&gt;publishedYear - The year of publication.&lt;/li&gt;
+	&lt;/ul&gt;
+	The query accepts one parameter: text - The string to search for</span></li><li class="functionIcon public inherited even"><a class="inline-link" href="#dojox.data.GoogleFeedStore">dojox.data.GoogleFeedStore</a><span class="parameters">()</span> <span>A data store for retrieving RSS and Atom feeds from Google. The
+	feeds can come from any source, which is specified in the &quot;url&quot;
+	parameter of the query passed to the &quot;fetch&quot; function.
+	The following attributes are supported on each item:
+	&lt;ul&gt;
+	&lt;li&gt;title - The feed entry title.&lt;/li&gt;
+	&lt;li&gt;link - The URL for the HTML version of the feed entry.&lt;/li&gt;
+	&lt;li&gt;content - The full content of the blog post, in HTML format&lt;/li&gt;
+	&lt;li&gt;summary - A snippet of information about the feed entry, in plain text&lt;/li&gt;
+	&lt;li&gt;published - The string date on which the entry was published.
+	You can parse the date with new Date(store.getValue(item, &quot;published&quot;)&lt;/li&gt;
+	&lt;li&gt;categories - An array of string tags for the entry&lt;/li&gt;
+	&lt;/ul&gt;
+	The query accepts one parameter: url - The URL of the feed to retrieve</span></li><li class="functionIcon public inherited odd"><a class="inline-link" href="#dojox.data.GoogleImageSearchStore">dojox.data.GoogleImageSearchStore</a><span class="parameters">()</span> <span>A data store for retrieving search results from Google.
+	The following attributes are supported on each item:
+	&lt;ul&gt;
+	&lt;li&gt;title - The image title in HTML format.&lt;/li&gt;
+	&lt;li&gt;titleNoFormatting - The image title in plain text&lt;/li&gt;
+	&lt;li&gt;url - The URL for the image&lt;/li&gt;
+	&lt;li&gt;unescapedUrl - The URL for the image, with URL escaping. This is often more readable&lt;/li&gt;
+	&lt;li&gt;tbUrl - The URL for the image thumbnail&lt;/li&gt;
+	&lt;li&gt;visibleUrl - A shortened version of the URL associated with the result, stripped of a protocol and path&lt;/li&gt;
+	&lt;li&gt;originalContextUrl - The URL of the page containing the image.&lt;/li&gt;
+	&lt;li&gt;width - The width of the image in pixels.&lt;/li&gt;
+	&lt;li&gt;height - The height of the image in pixels.&lt;/li&gt;
+	&lt;li&gt;tbWidth - The width of the image thumbnail in pixels.&lt;/li&gt;
+	&lt;li&gt;tbHeight - The height of the image thumbnail in pixels.&lt;/li&gt;
+	&lt;li&gt;content - A snippet of information about the image, in HTML format&lt;/li&gt;
+	&lt;li&gt;contentNoFormatting - A snippet of information about the image, in plain text&lt;/li&gt;
+	&lt;/ul&gt;
+	The query accepts one parameter: text - The string to search for</span></li><li class="functionIcon public inherited even"><a class="inline-link" href="#dojox.data.GoogleLocalSearchStore">dojox.data.GoogleLocalSearchStore</a><span class="parameters">()</span> <span>A data store for retrieving search results from Google.
+	The following attributes are supported on each item:
+	&lt;ul&gt;
+	&lt;li&gt;title - The blog post title in HTML format.&lt;/li&gt;
+	&lt;li&gt;titleNoFormatting - The  blog post title in plain text&lt;/li&gt;
+	&lt;li&gt;content - A snippet of information about the blog post&lt;/li&gt;
+	&lt;li&gt;url - The URL for the item&lt;/li&gt;
+	&lt;li&gt;lat - The latitude.&lt;/li&gt;
+	&lt;li&gt;lng - The longtitude.&lt;/li&gt;
+	&lt;li&gt;streetAddress - The street address&lt;/li&gt;
+	&lt;li&gt;city - The city&lt;/li&gt;
+	&lt;li&gt;region - The region&lt;/li&gt;
+	&lt;li&gt;country - The country&lt;/li&gt;
+	&lt;li&gt;phoneNumbers - Phone numbers associated with this address. Can be one or more.&lt;/li&gt;
+	&lt;li&gt;ddUrl - A URL that can be used to provide driving directions from the center of the search results to this search results&lt;/li&gt;
+	&lt;li&gt;ddUrlToHere - A URL that can be used to provide driving directions from this search result to a user specified location&lt;/li&gt;
+	&lt;li&gt;staticMapUrl - The published date, in RFC-822 format&lt;/li&gt;
+	&lt;li&gt;viewport - Recommended viewport for the query results (same for all results in a query)
+	&lt;ul&gt;
+	&lt;li&gt;center - contains lat, lng properties&lt;/li&gt;
+	&lt;li&gt;span - lat, lng properties for the viewport span&lt;/li&gt;
+	&lt;li&gt;ne, sw - lat, lng properties for the viewport corners&lt;li&gt;
+	&lt;/ul&gt;
+	&lt;/li&gt;
+	&lt;/ul&gt;
+	The query accepts the following parameters:
+	&lt;ul&gt;
+	&lt;li&gt;text - The string to search for&lt;/li&gt;
+	&lt;li&gt;centerLatLong - Comma-separated lat &amp; long for the center of the search (e.g. &quot;48.8565,2.3509&quot;)&lt;/li&gt;
+	&lt;li&gt;searchSpan - Comma-separated lat &amp; long degrees indicating the size of the desired search area (e.g. &quot;0.065165,0.194149&quot;)&lt;/li&gt;
+	&lt;/ul&gt;</span></li><li class="functionIcon public inherited odd"><a class="inline-link" href="#dojox.data.GoogleNewsSearchStore">dojox.data.GoogleNewsSearchStore</a><span class="parameters">()</span> <span>A data store for retrieving search results from Google.
+	The following attributes are supported on each item:
+	&lt;ul&gt;
+	&lt;li&gt;title - The news story title in HTML format.&lt;/li&gt;
+	&lt;li&gt;titleNoFormatting - The news story title in plain text&lt;/li&gt;
+	&lt;li&gt;content - A snippet of information about the news story&lt;/li&gt;
+	&lt;li&gt;url - The URL for the item&lt;/li&gt;
+	&lt;li&gt;unescapedUrl - The URL for the item, with URL escaping. This is often more readable&lt;/li&gt;
+	&lt;li&gt;publisher - The name of the publisher&lt;/li&gt;
+	&lt;li&gt;clusterUrl - A URL pointing to a page listing related storied.&lt;/li&gt;
+	&lt;li&gt;location - The location of the news story.&lt;/li&gt;
+	&lt;li&gt;publishedDate - The date of publication, in RFC-822 format.&lt;/li&gt;
+	&lt;li&gt;relatedStories - An optional array of objects specifying related stories.
+	Each object has the following subset of properties:
+	&quot;title&quot;, &quot;titleNoFormatting&quot;, &quot;url&quot;, &quot;unescapedUrl&quot;, &quot;publisher&quot;, &quot;location&quot;, &quot;publishedDate&quot;.
+	&lt;/li&gt;
+	&lt;/ul&gt;
+	The query accepts one parameter: text - The string to search for</span></li><li class="functionIcon public inherited even"><a class="inline-link" href="#dojox.data.GoogleSearchStore">dojox.data.GoogleSearchStore</a><span class="parameters">(args)</span> <span>A data store for retrieving search results from Google.
+	This data store acts as a base class for Google searches,
+	and has a number of child data stores that implement different
+	searches. This store defaults to searching the web, and is functionally
+	identical to the dojox.data.GoogleWebSearchStore object.
+	The following attributes are supported on each item:
+	&lt;ul&gt;
+	&lt;li&gt;url - The URL for the item&lt;/li&gt;
+	&lt;li&gt;unescapedUrl - The URL for the item, with URL escaping. This is often more readable&lt;/li&gt;
+	&lt;li&gt;visibleUrl - The URL with no protocol specified.
+	&lt;li&gt;cacheUrl - The URL to the copy of the document cached by Google
+	&lt;li&gt;title - The page title in HTML format.&lt;/li&gt;
+	&lt;li&gt;titleNoFormatting - The page title in plain text&lt;/li&gt;
+	&lt;li&gt;content - A snippet of information about the page&lt;/li&gt;
+	&lt;/ul&gt;
+	The query accepts one parameter: text - The string to search for</span></li><li class="functionIcon public inherited odd"><a class="inline-link" href="#dojox.data.GoogleVideoSearchStore">dojox.data.GoogleVideoSearchStore</a><span class="parameters">()</span> <span>A data store for retrieving search results from Google.
+	The following attributes are supported on each item:
+	&lt;ul&gt;
+	&lt;li&gt;title - The blog post title in HTML format.&lt;/li&gt;
+	&lt;li&gt;titleNoFormatting - The  blog post title in plain text&lt;/li&gt;
+	&lt;li&gt;content - A snippet of information about the blog post&lt;/li&gt;
+	&lt;li&gt;url - The URL for the item&lt;/li&gt;
+	&lt;li&gt;published - The published date, in RFC-822 format.&lt;/li&gt;
+	&lt;li&gt;publisher - The name of the publisher.&lt;/li&gt;
+	&lt;li&gt;duration - The approximate duration, in seconds, of the video.&lt;/li&gt;
+	&lt;li&gt;tbWidth - The width in pixels of the video.&lt;/li&gt;
+	&lt;li&gt;tbHeight - The height in pixels of the video&lt;/li&gt;
+	&lt;li&gt;tbUrl - The URL to a thumbnail representation of the video.&lt;/li&gt;
+	&lt;li&gt;playUrl - If present, supplies the url of the flash version of the video that can be played inline on your page. To play this video simply create and &lt;embed&gt; element on your page using this value as the src attribute and using application/x-shockwave-flash as the type attribute. If you want the video to play right away, make sure to append &amp;autoPlay=true to the url..&lt;/li&gt;
+	&lt;/ul&gt;
+	The query accepts one parameter: text - The string to search for</span></li><li class="functionIcon public inherited even"><a class="inline-link" href="#dojox.data.GoogleWebSearchStore">dojox.data.GoogleWebSearchStore</a><span class="parameters">()</span></li><li class="functionIcon public inherited odd"><a class="inline-link" href="#dojox.data.HtmlStore">dojox.data.HtmlStore</a><span class="parameters">(args)</span> <span>Initializer for the HTML table store.</span></li><li class="functionIcon public inherited even"><a class="inline-link" href="#dojox.data.HtmlTableStore">dojox.data.HtmlTableStore</a><span class="parameters">(args)</span></li><li class="functionIcon public inherited odd"><a class="inline-link" href="#dojox.data.ItemExplorer">dojox.data.ItemExplorer</a><span class="parameters">(options)</span></li><li class="functionIcon public inherited even"><a class="inline-link" href="#dojox.data.JsonQueryRestStore">dojox.data.JsonQueryRestStore</a><span class="parameters">()</span></li><li class="functionIcon public inherited odd"><a class="inline-link" href="#dojox.data.JsonRestStore">dojox.data.JsonRestStore</a><span class="parameters">(options)</span> <span>Allow no trailing slash on target paths. This is generally discouraged since
+	it creates prevents simple scalar values from being used a relative URLs.
+	Disabled by default.
+	
+	
+	Write API Support
+	
+	
+	Notifcation Support</span></li><li class="functionIcon public inherited even"><a class="inline-link" href="#dojox.data.KeyValueStore">dojox.data.KeyValueStore</a><span class="parameters">(keywordParameters)</span> <span>This is a dojo.data store implementation.  It can take in either a Javascript
+	array, JSON string, or URL as the data source.  Data is expected to be in the
+	following format:
+	[
+	{ &quot;key1&quot;: &quot;value1&quot; },
+	{ &quot;key2&quot;: &quot;value2&quot; }
+	]
+	This is to mimic the Java Properties file format.  Each 'item' from this store
+	is a JS object representing a key-value pair.  If an item in the above array has
+	more than one key/value pair, only the first will be used/accessed.</span></li><li class="functionIcon public inherited odd"><a class="inline-link" href="#dojox.data.OpenSearchStore">dojox.data.OpenSearchStore</a><span class="parameters">(args)</span> <span>Initializer for the OpenSearchStore store.</span></li><li class="functionIcon public inherited even"><a class="inline-link" href="#dojox.data.OpmlStore">dojox.data.OpmlStore</a><span class="parameters">(keywordParameters)</span> <span>*   The OpmlStore implements the dojo.data.api.Read API.</span></li><li class="functionIcon public inherited odd"><a class="inline-link" href="#dojox.data.PersevereStore">dojox.data.PersevereStore</a><span class="parameters">()</span></li><li class="functionIcon public inherited even"><a class="inline-link" href="#dojox.data.PicasaStore">dojox.data.PicasaStore</a><span class="parameters">(args)</span> <span>Initializer for the PicasaStore store.</span></li><li class="functionIcon public inherited odd"><a class="inline-link" href="#dojox.data.QueryReadStore">dojox.data.QueryReadStore</a><span class="parameters">(params)</span> <span>By default all the sorting is done serverside before the data is returned
+	which is the proper place to be doing it for really large datasets.</span></li><li class="functionIcon public inherited even"><a class="inline-link" href="#dojox.data.RailsStore">dojox.data.RailsStore</a><span class="parameters">(options)</span> <span>RailsStore is a data store for interacting with RESTful Rails controllers</span></li><li class="functionIcon public inherited odd"><a class="inline-link" href="#dojox.data.S3Store">dojox.data.S3Store</a><span class="parameters">()</span></li><li class="functionIcon public inherited even"><a class="inline-link" href="#dojox.data.ServiceStore">dojox.data.ServiceStore</a><span class="parameters">(options)</span> <span>ServiceStore constructor, instantiate a new ServiceStore
+	A ServiceStore can be configured from a JSON Schema. Queries are just
+	passed through to the underlying services</span></li><li class="functionIcon public inherited odd"><a class="inline-link" href="#dojox.data.SnapLogicStore">dojox.data.SnapLogicStore</a><span class="parameters">(args)</span> <span>Initialize a SnapLogicStore object.</span></li><li class="functionIcon public inherited even"><a class="inline-link" href="#dojox.data.StoreExplorer">dojox.data.StoreExplorer</a><span class="parameters">(options)</span></li><li class="functionIcon public inherited odd"><a class="inline-link" href="#dojox.data.WikipediaStore">dojox.data.WikipediaStore</a><span class="parameters">(options)</span> <span>Initializer for the Wikipedia data store interface.</span></li><li class="functionIcon public inherited even"><a class="inline-link" href="#dojox.data.XmlItem">dojox.data.XmlItem</a><span class="parameters">(element, store, query)</span> <span>A data item of 'XmlStore'</span></li><li class="functionIcon public inherited odd"><a class="inline-link" href="#dojox.data.XmlStore">dojox.data.XmlStore</a><span class="parameters">(args)</span> <span>A data store for XML based services or documents</span></li><li class="functionIcon public inherited even"><a class="inline-link" href="#dojox.data.restListener">dojox.data.restListener</a><span class="parameters">(message)</span> <span>this function can be used to receive REST notifications, from Comet or from another frame</span></li></ul></div><h2 class="jsdoc-summary-heading">Attached Objects <span class="jsdoc-summary-toggle"></span></h2><div class="jsdoc-summary-list"><div class="jsdoc-field"><div class="jsdoc-title"><span class="constructor"><a class="jsdoc-link" href="/api/1.7/dojox/data/AndOrReadStore">dojox.data.AndOrReadStore</a></span></div></div><div class="jsdoc-field"><div class="jsdoc-title"><span class="object"><a class="jsdoc-link" href="/api/1.7/dojox/data/AndOrReadStore/_features/dojo/data/api">dojox.data.AndOrReadStore._features.dojo.data.api</a></span></div></div><div class="jsdoc-field"><div class="jsdoc-title"><span class="object"><a class="jsdoc-link" href="/api/1.7/dojox/data/AndOrReadStore/_datatypeMap">dojox.data.AndOrReadStore._datatypeMap</a></span></div></div><div class="jsdoc-field"><div class="jsdoc-title"><span class="constructor"><a class="jsdoc-link" href="/api/1.7/dojox/data/AndOrWriteStore">dojox.data.AndOrWriteStore</a></span></div></div><div class="jsdoc-field"><div class="jsdoc-title"><span class="object"><a class="jsdoc-link" href="/api/1.7/dojox/data/AndOrWriteStore/_features/dojo/data/api">dojox.data.AndOrWriteStore._features.dojo.data.api</a></span></div></div><div class="jsdoc-field"><div class="jsdoc-title"><span class="object"><a class="jsdoc-link" href="/api/1.7/dojox/data/AndOrWriteStore/_datatypeMap/Date">dojox.data.AndOrWriteStore._datatypeMap.Date</a></span></div></div><div class="jsdoc-field"><div class="jsdoc-title"><span class="constructor"><a class="jsdoc-link" href="/api/1.7/dojox/data/AppStore">dojox.data.AppStore</a></span></div></div><div class="jsdoc-field"><div class="jsdoc-title"><span class="constructor"><a class="jsdoc-link" href="/api/1.7/dojox/data/AtomReadStore">dojox.data.AtomReadStore</a></span></div></div><div class="jsdoc-field"><div class="jsdoc-title"><span class="constructor"><a class="jsdoc-link" href="/api/1.7/dojox/data/CdfStore">dojox.data.CdfStore</a></span></div></div><div class="jsdoc-field"><div class="jsdoc-title"><span class="constructor"><a class="jsdoc-link" href="/api/1.7/dojox/data/ClientFilter">dojox.data.ClientFilter</a></span></div></div><div class="jsdoc-field"><div class="jsdoc-title"><span class="constructor"><a class="jsdoc-link" href="/api/1.7/dojox/data/CouchDBRestStore">dojox.data.CouchDBRestStore</a></span></div></div><div class="jsdoc-field"><div class="jsdoc-title"><span class="object"><a class="jsdoc-link" href="/api/1.7/dojox/data/CouchDBRestStore/service">dojox.data.CouchDBRestStore.service</a></span></div></div><div class="jsdoc-field"><div class="jsdoc-title"><span class="constructor"><a class="jsdoc-link" href="/api/1.7/dojox/data/CssClassStore">dojox.data.CssClassStore</a></span></div></div><div class="jsdoc-field"><div class="jsdoc-title"><span class="constructor"><a class="jsdoc-link" href="/api/1.7/dojox/data/CssRuleStore">dojox.data.CssRuleStore</a></span></div></div><div class="jsdoc-field"><div class="jsdoc-title"><span class="constructor"><a class="jsdoc-link" href="/api/1.7/dojox/data/CsvStore">dojox.data.CsvStore</a></span></div></div><div class="jsdoc-field"><div class="jsdoc-title"><span class="constructor"><a class="jsdoc-link" href="/api/1.7/dojox/data/FileStore">dojox.data.FileStore</a></span></div></div><div class="jsdoc-field"><div class="jsdoc-title"><span class="constructor"><a class="jsdoc-link" href="/api/1.7/dojox/data/FlickrRestStore">dojox.data.FlickrRestStore</a></span></div></div><div class="jsdoc-field"><div class="jsdoc-title"><span class="object"><a class="jsdoc-link" href="/api/1.7/dojox/data/FlickrRestStore/_sortAttributes">dojox.data.FlickrRestStore._sortAttributes</a></span></div></div><div class="jsdoc-field"><div class="jsdoc-title"><span class="constructor"><a class="jsdoc-link" href="/api/1.7/dojox/data/FlickrStore">dojox.data.FlickrStore</a></span></div></div><div class="jsdoc-field"><div class="jsdoc-title"><span class="constructor"><a class="jsdoc-link" href="/api/1.7/dojox/data/GoogleFeedStore">dojox.data.GoogleFeedStore</a></span></div></div><div class="jsdoc-field"><div class="jsdoc-title"><span class="object"><a class="jsdoc-link" href="/api/1.7/dojox/data/GoogleFeedStore/_queryAttrs">dojox.data.GoogleFeedStore._queryAttrs</a></span></div></div><div class="jsdoc-field"><div class="jsdoc-title"><span class="constructor"><a class="jsdoc-link" href="/api/1.7/dojox/data/GoogleSearchStore">dojox.data.GoogleSearchStore</a></span></div></div><div class="jsdoc-field"><div class="jsdoc-title"><span class="object"><a class="jsdoc-link" href="/api/1.7/dojox/data/GoogleSearchStore/_aggregatedAttributes">dojox.data.GoogleSearchStore._aggregatedAttributes</a></span></div></div><div class="jsdoc-field"><div class="jsdoc-title"><span class="object"><a class="jsdoc-link" href="/api/1.7/dojox/data/GoogleSearchStore/_queryAttrs">dojox.data.GoogleSearchStore._queryAttrs</a></span></div></div><div class="jsdoc-field"><div class="jsdoc-title"><span class="constructor"><a class="jsdoc-link" href="/api/1.7/dojox/data/GoogleWebSearchStore">dojox.data.GoogleWebSearchStore</a></span></div></div><div class="jsdoc-field"><div class="jsdoc-title"><span class="constructor"><a class="jsdoc-link" href="/api/1.7/dojox/data/GoogleBlogSearchStore">dojox.data.GoogleBlogSearchStore</a></span></div></div><div class="jsdoc-field"><div class="jsdoc-title"><span class="constructor"><a class="jsdoc-link" href="/api/1.7/dojox/data/GoogleLocalSearchStore">dojox.data.GoogleLocalSearchStore</a></span></div></div><div class="jsdoc-field"><div class="jsdoc-title"><span class="object"><a class="jsdoc-link" href="/api/1.7/dojox/data/GoogleLocalSearchStore/_aggregatedAttributes">dojox.data.GoogleLocalSearchStore._aggregatedAttributes</a></span></div></div><div class="jsdoc-field"><div class="jsdoc-title"><span class="object"><a class="jsdoc-link" href="/api/1.7/dojox/data/GoogleLocalSearchStore/_queryAttrs">dojox.data.GoogleLocalSearchStore._queryAttrs</a></span></div></div><div class="jsdoc-field"><div class="jsdoc-title"><span class="constructor"><a class="jsdoc-link" href="/api/1.7/dojox/data/GoogleVideoSearchStore">dojox.data.GoogleVideoSearchStore</a></span></div></div><div class="jsdoc-field"><div class="jsdoc-title"><span class="constructor"><a class="jsdoc-link" href="/api/1.7/dojox/data/GoogleNewsSearchStore">dojox.data.GoogleNewsSearchStore</a></span></div></div><div class="jsdoc-field"><div class="jsdoc-title"><span class="constructor"><a class="jsdoc-link" href="/api/1.7/dojox/data/GoogleBookSearchStore">dojox.data.GoogleBookSearchStore</a></span></div></div><div class="jsdoc-field"><div class="jsdoc-title"><span class="constructor"><a class="jsdoc-link" href="/api/1.7/dojox/data/GoogleImageSearchStore">dojox.data.GoogleImageSearchStore</a></span></div></div><div class="jsdoc-field"><div class="jsdoc-title"><span class="constructor"><a class="jsdoc-link" href="/api/1.7/dojox/data/HtmlStore">dojox.data.HtmlStore</a></span></div></div><div class="jsdoc-field"><div class="jsdoc-title"><span class="constructor"><a class="jsdoc-link" href="/api/1.7/dojox/data/HtmlTableStore">dojox.data.HtmlTableStore</a></span></div></div><div class="jsdoc-field"><div class="jsdoc-title"><span class="constructor"><a class="jsdoc-link" href="/api/1.7/dojox/data/ItemExplorer">dojox.data.ItemExplorer</a></span></div></div><div class="jsdoc-field"><div class="jsdoc-title"><span class="constructor"><a class="jsdoc-link" href="/api/1.7/dojox/data/JsonQueryRestStore">dojox.data.JsonQueryRestStore</a></span></div></div><div class="jsdoc-field"><div class="jsdoc-title"><span class="constructor"><a class="jsdoc-link" href="/api/1.7/dojox/data/JsonRestStore">dojox.data.JsonRestStore</a></span></div></div><div class="jsdoc-field"><div class="jsdoc-title"><span class="object"><a class="jsdoc-link" href="/api/1.7/dojox/data/JsonRestStore/service">dojox.data.JsonRestStore.service</a></span></div></div><div class="jsdoc-field"><div class="jsdoc-title"><span class="object"><a class="jsdoc-link" href="/api/1.7/dojox/data/JsonRestStore/schema">dojox.data.JsonRestStore.schema</a></span></div></div><div class="jsdoc-field"><div class="jsdoc-title"><span class="constructor"><a class="jsdoc-link" href="/api/1.7/dojox/data/ServiceStore">dojox.data.ServiceStore</a></span></div></div><div class="jsdoc-field"><div class="jsdoc-title"><span class="constructor"><a class="jsdoc-link" href="/api/1.7/dojox/data/KeyValueStore">dojox.data.KeyValueStore</a></span></div></div><div class="jsdoc-field"><div class="jsdoc-title"><span class="constructor"><a class="jsdoc-link" href="/api/1.7/dojox/data/OpenSearchStore">dojox.data.OpenSearchStore</a></span></div></div><div class="jsdoc-field"><div class="jsdoc-title"><span class="object"><a class="jsdoc-link" href="/api/1.7/dojox/data/OpenSearchStore/urlElement">dojox.data.OpenSearchStore.urlElement</a></span></div></div><div class="jsdoc-field"><div class="jsdoc-title"><span class="constructor"><a class="jsdoc-link" href="/api/1.7/dojox/data/OpmlStore">dojox.data.OpmlStore</a></span></div></div><div class="jsdoc-field"><div class="jsdoc-title"><span class="constructor"><a class="jsdoc-link" href="/api/1.7/dojox/data/PersevereStore">dojox.data.PersevereStore</a></span></div></div><div class="jsdoc-field"><div class="jsdoc-title"><span class="constructor"><a class="jsdoc-link" href="/api/1.7/dojox/data/PicasaStore">dojox.data.PicasaStore</a></span></div></div><div class="jsdoc-field"><div class="jsdoc-title"><span class="constructor"><a class="jsdoc-link" href="/api/1.7/dojox/data/QueryReadStore">dojox.data.QueryReadStore</a></span></div></div><div class="jsdoc-field"><div class="jsdoc-title"><span class="object"><a class="jsdoc-link" href="/api/1.7/dojox/data/QueryReadStore/_features/dojo/data/api">dojox.data.QueryReadStore._features.dojo.data.api</a></span></div></div><div class="jsdoc-field"><div class="jsdoc-title"><span class="constructor"><a class="jsdoc-link" href="/api/1.7/dojox/data/RailsStore">dojox.data.RailsStore</a></span></div></div><div class="jsdoc-field"><div class="jsdoc-title"><span class="constructor"><a class="jsdoc-link" href="/api/1.7/dojox/data/S3Store">dojox.data.S3Store</a></span></div></div><div class="jsdoc-field"><div class="jsdoc-title"><span class="constructor"><a class="jsdoc-link" href="/api/1.7/dojox/data/SnapLogicStore">dojox.data.SnapLogicStore</a></span></div></div><div class="jsdoc-field"><div class="jsdoc-title"><span class="object"><a class="jsdoc-link" href="/api/1.7/dojox/data/SnapLogicStore/Parts">dojox.data.SnapLogicStore.Parts</a></span></div></div><div class="jsdoc-field"><div class="jsdoc-title"><span class="constructor"><a class="jsdoc-link" href="/api/1.7/dojox/data/StoreExplorer">dojox.data.StoreExplorer</a></span></div></div><div class="jsdoc-field"><div class="jsdoc-title"><span class="object"><a class="jsdoc-link" href="/api/1.7/dojox/data/StoreExplorer/grid/_pending_requests">dojox.data.StoreExplorer.grid._pending_requests</a></span></div></div><div class="jsdoc-field"><div class="jsdoc-title"><span class="object"><a class="jsdoc-link" href="/api/1.7/dojox/data/StoreExplorer/grid">dojox.data.StoreExplorer.grid</a></span></div></div><div class="jsdoc-field"><div class="jsdoc-title"><span class="constructor"><a class="jsdoc-link" href="/api/1.7/dojox/data/WikipediaStore">dojox.data.WikipediaStore</a></span></div></div><div class="jsdoc-field"><div class="jsdoc-title"><span class="constructor"><a class="jsdoc-link" href="/api/1.7/dojox/data/XmlItem">dojox.data.XmlItem</a></span></div></div><div class="jsdoc-field"><div class="jsdoc-title"><span class="constructor"><a class="jsdoc-link" href="/api/1.7/dojox/data/XmlStore">dojox.data.XmlStore</a></span></div></div><div class="jsdoc-field"><div class="jsdoc-title"><span class="object"><a class="jsdoc-link" href="/api/1.7/dojox/data/util">dojox.data.util</a></span></div></div><div class="jsdoc-field"><div class="jsdoc-title"><span class="constructor"><a class="jsdoc-link" href="/api/1.7/dojox/data/util/JsonQuery">dojox.data.util.JsonQuery</a></span></div></div></div></div></div><div class="jsdoc-children"><div class="jsdoc-fields"><h2>Properties</h2><div class="jsdoc-field public inherited even"><div class="jsdoc-title"><a name="dojox.data.util"></a><span class="objectIcon">dojox.data.util</span></div><div class="jsdoc-inheritance">Defined by <a class="jsdoc-link" href="/api/1.7/dojox/data">dojox.data</a></div></div><h2>Methods</h2><div class="jsdoc-field public inherited odd"><div class="jsdoc-title"><a name="dojox.data.AndOrReadStore"></a><span class="functionIcon">dojox.data.AndOrReadStore</span></div><div class="jsdoc-inheritance">Defined by <a class="jsdoc-link" href="/api/1.7/dojox/data">dojox.data</a></div><div class="jsdoc-summary">AndOrReadStore uses ItemFileReadStore as a base, modifying only the query (_fetchItems) section.
+	Supports queries of the form: query:&quot;id:1* OR dept:'Sales Department' || (id:2* &amp;&amp; NOT dept:S*)&quot;
+	Includes legacy/widget support via:
+	query:{complexQuery:&quot;id:1* OR dept:'Sales Department' || (id:2* &amp;&amp; NOT dept:S*)&quot;}
+	The ItemFileReadStore implements the dojo.data.api.Read API and reads
+	data from JSON files that have contents in this format --
+	{ items: [
+	{ name:'Kermit', color:'green', age:12, friends:['Gonzo', {_reference:{name:'Fozzie Bear'}}]},
+	{ name:'Fozzie Bear', wears:['hat', 'tie']},
+	{ name:'Miss Piggy', pets:'Foo-Foo'}
+	]}
+	Note that it can also contain an 'identifer' property that specified which attribute on the items
+	in the array of items that acts as the unique identifier for that item.
+	
+	
+	
+	use &quot;&quot; rather than undefined for the benefit of the parser (#3539)</div><table class="jsdoc-parameters"><tr><th>Parameter</th><th>Type</th><th>Description</th></tr><tr><td class="jsdoc-param-name">keywordParameters</td><td class="jsdoc-param-type">Object</td><td class="jsdoc-param-description">typeMap: object)
+	The structure of the typeMap object is as follows:
+	{
+	type0: function || object,
+	type1: function || object,
+	...
+	typeN: function || object
+	}
+	Where if it is a function, it is assumed to be an object constructor that takes the
+	value of _value as the initialization parameters.  If it is an object, then it is assumed
+	to be an object of general form:
+	{
+	type: function, //constructor.
+	deserialize:	function(value) //The function that parses the value and constructs the object defined by type appropriately.
+	}</td></tr></table></div><div class="jsdoc-field public inherited even"><div class="jsdoc-title"><a name="dojox.data.AndOrWriteStore"></a><span class="functionIcon">dojox.data.AndOrWriteStore</span></div><div class="jsdoc-inheritance">Defined by <a class="jsdoc-link" href="/api/1.7/dojox/data">dojox.data</a></div><div class="jsdoc-summary">typeMap: object)
+	The structure of the typeMap object is as follows:
+	{
+	type0: function || object,
+	type1: function || object,
+	...
+	typeN: function || object
+	}
+	Where if it is a function, it is assumed to be an object constructor that takes the
+	value of _value as the initialization parameters.  It is serialized assuming object.toString()
+	serialization.  If it is an object, then it is assumed
+	to be an object of general form:
+	{
+	type: function, //constructor.
+	deserialize:	function(value) //The function that parses the value and constructs the object defined by type appropriately.
+	serialize:	function(object) //The function that converts the object back into the proper file format form.
+	}</div><table class="jsdoc-parameters"><tr><th>Parameter</th><th>Type</th><th>Description</th></tr><tr><td class="jsdoc-param-name">keywordParameters</td><td class="jsdoc-param-type">object</td><td class="jsdoc-param-description">typeMap: object)
+	The structure of the typeMap object is as follows:
+	{
+	type0: function || object,
+	type1: function || object,
+	...
+	typeN: function || object
+	}
+	Where if it is a function, it is assumed to be an object constructor that takes the
+	value of _value as the initialization parameters.  It is serialized assuming object.toString()
+	serialization.  If it is an object, then it is assumed
+	to be an object of general form:
+	{
+	type: function, //constructor.
+	deserialize:	function(value) //The function that parses the value and constructs the object defined by type appropriately.
+	serialize:	function(object) //The function that converts the object back into the proper file format form.
+	}</td></tr></table></div><div class="jsdoc-field public inherited odd"><div class="jsdoc-title"><a name="dojox.data.AppStore"></a><span class="functionIcon">dojox.data.AppStore</span></div><div class="jsdoc-inheritance">Defined by <a class="jsdoc-link" href="/api/1.7/dojox/data">dojox.data</a></div><div class="jsdoc-summary"><p>The APP Store is instantiated either in markup or programmatically by supplying a
+url of the Collection to be used.</p>
+</div><table class="jsdoc-parameters"><tr><th>Parameter</th><th>Type</th><th>Description</th></tr><tr><td class="jsdoc-param-name">args</td><td class="jsdoc-param-type">Object</td><td class="jsdoc-param-description">An anonymous object to initialize properties.  It expects the following values:</td></tr></table></div><div class="jsdoc-field public inherited even"><div class="jsdoc-title"><a name="dojox.data.AtomReadStore"></a><span class="functionIcon">dojox.data.AtomReadStore</span></div><div class="jsdoc-inheritance">Defined by <a class="jsdoc-link" href="/api/1.7/dojox/data">dojox.data</a></div><div class="jsdoc-summary"><p>A data store for Atom XML based services or documents.  This store is still under development
+and doesn't support wildcard filtering yet. Attribute filtering is limited to category or id.</p>
+</div><table class="jsdoc-parameters"><tr><th>Parameter</th><th>Type</th><th>Description</th></tr><tr><td class="jsdoc-param-name">args</td><td class="jsdoc-param-type">object</td><td class="jsdoc-param-description">An anonymous object to initialize properties.	It expects the following values:</td></tr></table></div><div class="jsdoc-field public inherited odd"><div class="jsdoc-title"><a name="dojox.data.CdfStore"></a><span class="functionIcon">dojox.data.CdfStore</span></div><div class="jsdoc-inheritance">Defined by <a class="jsdoc-link" href="/api/1.7/dojox/data">dojox.data</a></div><div class="jsdoc-summary">IMPORTANT: The CDF Store is designed to work with Tibco GI, and references Tibco's
+	JSX3 JavaScript library and will not work without it.
+	
+	The CDF Store implements dojo.data.Read, Write, and Identity api's.  It is a local
+	(in memory) store that handles XML documents formatted according to the
+	Common Data Format (CDF) spec:
+	http://www.tibco.com/devnet/resources/gi/3_1/tips_and_techniques/CommonDataFormatCDF.pdf
+	
+	The purpose of this store is to provide a glue between a jsx3 CDF file and a Dijit.
+	
+	While a CDF document is an XML file, other than the initial input, all data returned
+	from and written to this store should be in object format.</div><table class="jsdoc-parameters"><tr><th>Parameter</th><th>Type</th><th>Description</th></tr><tr><td class="jsdoc-param-name">args</td><td class="jsdoc-param-type">Object</td><td class="jsdoc-param-description"></td></tr></table><div class="jsdoc-examples"><div class="jsdoc-example"><div><strong>Example 1</strong></div>
+<pre class="brush: js;" lang="javascript">
+	'&lt;data jsxid=&quot;jsxroot&quot;&gt;&lt;record jsxtext=&quot;A&quot;/&gt;&lt;record jsxtext=&quot;B&quot; jsxid=&quot;2&quot; jsxid=&quot;2&quot;/&gt;&lt;/data&gt;'
+</pre></div></div></div><div class="jsdoc-field public inherited even"><div class="jsdoc-title"><a name="dojox.data.ClientFilter"></a><span class="functionIcon">dojox.data.ClientFilter</span></div><div class="jsdoc-inheritance">Defined by <a class="jsdoc-link" href="/api/1.7/dojox/data">dojox.data</a></div><div class="jsdoc-summary"><p>To a update a result set after a notification (onNew, onSet, and onDelete),
+widgets can call the updateResultSet method. Widgets can use the updated
+result sets to determine how to react to notifications, and how to update their displayed results
+based on changes.</p>
+
+<p>This module will use the best available information to update result sets, using query attribute
+objects to determine if items are in a result set, and using the sort arrays to maintain sort
+information. However, queries can be opaque strings, and this module can not update
+results by itself in this case. In this situations, data stores can provide a isUpdateable(request) function
+and matchesQuery(item,request) function. If a data store can handle a query, it can return true from
+isUpdateable and if an item matches a query, it can return true from matchesQuery. Here is
+definition of isUpdateable and matchesQuery
+isUpdateable(request)  - request is the keywords arguments as is passed to the fetch function.
+matchesQuery(item,request) - item is the item to test, and request is the value arguments object
+for the fetch function.</p>
+
+<p>You can define a property on this object instance "cacheByDefault" to a value of true that will
+cause all queries to be cached by default unless the cache queryOption is explicitly set to false.
+This can be defined in the constructor options for ServiceStore/JsonRestStore and subtypes.</p>
+</div><div class="jsdoc-examples"><div class="jsdoc-example"><div><strong>Example 1</strong></div>
+to make a updated-result-set data store from an existing data store:
+<pre class="brush: js;" lang="javascript">
+	dojo.declare(&quot;dojox.data.MyLiveDataStore&quot;,
+		dojox.data.MyDataStore,dojox.data.ClientFilter], // subclass LiveResultSets if available
+		{}
+	);
+</pre></div></div></div><div class="jsdoc-field public inherited odd"><div class="jsdoc-title"><a name="dojox.data.CouchDBRestStore"></a><span class="functionIcon">dojox.data.CouchDBRestStore</span></div><div class="jsdoc-inheritance">Defined by <a class="jsdoc-link" href="/api/1.7/dojox/data">dojox.data</a></div></div><div class="jsdoc-field public inherited even"><div class="jsdoc-title"><a name="dojox.data.CssClassStore"></a><span class="functionIcon">dojox.data.CssClassStore</span></div><div class="jsdoc-inheritance">Defined by <a class="jsdoc-link" href="/api/1.7/dojox/data">dojox.data</a></div><div class="jsdoc-summary"><p>The CssClassStore allows users to get information about active Css classes in the page running the CssClassStore.
+It can also filter out classes from specific stylesheets.  The attributes it exposes on classes are as follows:
+class:      The classname, including the '.'.
+classSans:  The classname without the '.'.</p>
+</div></div><div class="jsdoc-field public inherited odd"><div class="jsdoc-title"><a name="dojox.data.CssRuleStore"></a><span class="functionIcon">dojox.data.CssRuleStore</span></div><div class="jsdoc-inheritance">Defined by <a class="jsdoc-link" href="/api/1.7/dojox/data">dojox.data</a></div><div class="jsdoc-summary"><p>The CssRuleStore allows users to get information about active CSS rules in the page running the CssRuleStore.
+It can also filter out rules from specific stylesheets.  The attributes it exposes on rules are as follows:
+selector:               The selector text.
+classes:                An array of classes present in this selector.
+rule:                   The actual DOM Rule object.
+style:                  The actual DOM CSSStyleDeclaration object.
+cssText:                The cssText string provided on the rule object.
+styleSheet:             The originating DOM Stylesheet object.
+parentStyleSheet:       The parent stylesheet to the sheet this rule originates from.
+parentStyleSheetHref:   The href of the parent stylesheet.</p>
+
+<p>AND every style attribute denoted as style.*, such as style.textAlign or style.backgroundColor</p>
+</div><table class="jsdoc-parameters"><tr><th>Parameter</th><th>Type</th><th>Description</th></tr><tr><td class="jsdoc-param-name">keywordParameters</td><td class="jsdoc-param-type">Object</td><td class="jsdoc-param-description"></td></tr></table></div><div class="jsdoc-field public inherited even"><div class="jsdoc-title"><a name="dojox.data.CsvStore"></a><span class="functionIcon">dojox.data.CsvStore</span></div><div class="jsdoc-inheritance">Defined by <a class="jsdoc-link" href="/api/1.7/dojox/data">dojox.data</a></div><div class="jsdoc-summary">The CsvStore implements the dojo.data.api.Read API and reads
+	data from files in CSV (Comma Separated Values) format.
+	All values are simple string values. References to other items
+	are not supported as attribute values in this datastore.
+	
+	Example data file:
+	name, color, age, tagline
+	Kermit, green, 12, &quot;Hi, I'm Kermit the Frog.&quot;
+	Fozzie Bear, orange, 10, &quot;Wakka Wakka Wakka!&quot;
+	Miss Piggy, pink, 11, &quot;Kermie!&quot;
+	
+	Note that values containing a comma must be enclosed with quotes (&quot;&quot;)
+	Also note that values containing quotes must be escaped with two consecutive quotes (&quot;&quot;quoted&quot;&quot;)
+	
+	examples:
+	var csvStore = new dojox.data.CsvStore({url:&quot;movies.csv&quot;);
+	var csvStore = new dojox.data.CsvStore({url:&quot;http://example.com/movies.csv&quot;);</div><table class="jsdoc-parameters"><tr><th>Parameter</th><th>Type</th><th>Description</th></tr><tr><td class="jsdoc-param-name">keywordParameters</td><td class="jsdoc-param-type">Object</td><td class="jsdoc-param-description">identifier: String} The column label for the column to use for the identity.  Optional.  If not set, the identity is the row number.</td></tr></table></div><div class="jsdoc-field public inherited odd"><div class="jsdoc-title"><a name="dojox.data.FileStore"></a><span class="functionIcon">dojox.data.FileStore</span></div><div class="jsdoc-inheritance">Defined by <a class="jsdoc-link" href="/api/1.7/dojox/data">dojox.data</a></div><div class="jsdoc-summary"><p>A simple store that provides a datastore interface to a filesystem.  It takes a few parameters
+for initialization:</p>
+</div><table class="jsdoc-parameters"><tr><th>Parameter</th><th>Type</th><th>Description</th></tr><tr><td class="jsdoc-param-name">args</td><td class="jsdoc-param-type">Object</td><td class="jsdoc-param-description"></td></tr></table><div class="jsdoc-examples"><div class="jsdoc-example"><div><strong>Example 1</strong></div>
+options="expand,dirsOnly,showHiddenFiles"</div></div></div><div class="jsdoc-field public inherited even"><div class="jsdoc-title"><a name="dojox.data.FlickrRestStore"></a><span class="functionIcon">dojox.data.FlickrRestStore</span></div><div class="jsdoc-inheritance">Defined by <a class="jsdoc-link" href="/api/1.7/dojox/data">dojox.data</a></div><div class="jsdoc-summary"><p>The FlickrRestStore is a Datastore interface to one of the basic services
+of the Flickr service, the public photo feed.  This does not provide
+access to all the services of Flickr.</p>
+
+<p>This store cannot do * and ? filtering as the flickr service
+provides no interface for wildcards.</p>
+</div><table class="jsdoc-parameters"><tr><th>Parameter</th><th>Type</th><th>Description</th></tr><tr><td class="jsdoc-param-name">args</td><td class="jsdoc-param-type">Object</td><td class="jsdoc-param-description"></td></tr></table></div><div class="jsdoc-field public inherited odd"><div class="jsdoc-title"><a name="dojox.data.FlickrStore"></a><span class="functionIcon">dojox.data.FlickrStore</span></div><div class="jsdoc-inheritance">Defined by <a class="jsdoc-link" href="/api/1.7/dojox/data">dojox.data</a></div><div class="jsdoc-summary"><p>The FlickrStore is a Datastore interface to one of the basic services
+of the Flickr service, the public photo feed.  This does not provide
+access to all the services of Flickr.</p>
+
+<p>This store cannot do * and ? filtering as the flickr service
+provides no interface for wildcards.</p>
+</div><table class="jsdoc-parameters"><tr><th>Parameter</th><th>Type</th><th>Description</th></tr><tr><td class="jsdoc-param-name">args</td><td class="jsdoc-param-type">Object</td><td class="jsdoc-param-description"></td></tr></table></div><div class="jsdoc-field public inherited even"><div class="jsdoc-title"><a name="dojox.data.GoogleBlogSearchStore"></a><span class="functionIcon">dojox.data.GoogleBlogSearchStore</span></div><div class="jsdoc-inheritance">Defined by <a class="jsdoc-link" href="/api/1.7/dojox/data">dojox.data</a></div></div><div class="jsdoc-field public inherited odd"><div class="jsdoc-title"><a name="dojox.data.GoogleBookSearchStore"></a><span class="functionIcon">dojox.data.GoogleBookSearchStore</span></div><div class="jsdoc-inheritance">Defined by <a class="jsdoc-link" href="/api/1.7/dojox/data">dojox.data</a></div><div class="jsdoc-summary">A data store for retrieving search results from Google.
+	The following attributes are supported on each item:
+	&lt;ul&gt;
+	&lt;li&gt;title - The book title in HTML format.&lt;/li&gt;
+	&lt;li&gt;titleNoFormatting - The book title in plain text&lt;/li&gt;
+	&lt;li&gt;authors - An array of authors&lt;/li&gt;
+	&lt;li&gt;url - The URL for the item&lt;/li&gt;
+	&lt;li&gt;unescapedUrl - The URL for the item, with URL escaping. This is often more readable&lt;/li&gt;
+	&lt;li&gt;bookId - An identifier for the book, usually an ISBN.&lt;/li&gt;
+	&lt;li&gt;pageCount - The number of pages in the book.&lt;/li&gt;
+	&lt;li&gt;publishedYear - The year of publication.&lt;/li&gt;
+	&lt;/ul&gt;
+	The query accepts one parameter: text - The string to search for</div></div><div class="jsdoc-field public inherited even"><div class="jsdoc-title"><a name="dojox.data.GoogleFeedStore"></a><span class="functionIcon">dojox.data.GoogleFeedStore</span></div><div class="jsdoc-inheritance">Defined by <a class="jsdoc-link" href="/api/1.7/dojox/data">dojox.data</a></div><div class="jsdoc-summary">A data store for retrieving RSS and Atom feeds from Google. The
+	feeds can come from any source, which is specified in the &quot;url&quot;
+	parameter of the query passed to the &quot;fetch&quot; function.
+	The following attributes are supported on each item:
+	&lt;ul&gt;
+	&lt;li&gt;title - The feed entry title.&lt;/li&gt;
+	&lt;li&gt;link - The URL for the HTML version of the feed entry.&lt;/li&gt;
+	&lt;li&gt;content - The full content of the blog post, in HTML format&lt;/li&gt;
+	&lt;li&gt;summary - A snippet of information about the feed entry, in plain text&lt;/li&gt;
+	&lt;li&gt;published - The string date on which the entry was published.
+	You can parse the date with new Date(store.getValue(item, &quot;published&quot;)&lt;/li&gt;
+	&lt;li&gt;categories - An array of string tags for the entry&lt;/li&gt;
+	&lt;/ul&gt;
+	The query accepts one parameter: url - The URL of the feed to retrieve</div></div><div class="jsdoc-field public inherited odd"><div class="jsdoc-title"><a name="dojox.data.GoogleImageSearchStore"></a><span class="functionIcon">dojox.data.GoogleImageSearchStore</span></div><div class="jsdoc-inheritance">Defined by <a class="jsdoc-link" href="/api/1.7/dojox/data">dojox.data</a></div><div class="jsdoc-summary">A data store for retrieving search results from Google.
+	The following attributes are supported on each item:
+	&lt;ul&gt;
+	&lt;li&gt;title - The image title in HTML format.&lt;/li&gt;
+	&lt;li&gt;titleNoFormatting - The image title in plain text&lt;/li&gt;
+	&lt;li&gt;url - The URL for the image&lt;/li&gt;
+	&lt;li&gt;unescapedUrl - The URL for the image, with URL escaping. This is often more readable&lt;/li&gt;
+	&lt;li&gt;tbUrl - The URL for the image thumbnail&lt;/li&gt;
+	&lt;li&gt;visibleUrl - A shortened version of the URL associated with the result, stripped of a protocol and path&lt;/li&gt;
+	&lt;li&gt;originalContextUrl - The URL of the page containing the image.&lt;/li&gt;
+	&lt;li&gt;width - The width of the image in pixels.&lt;/li&gt;
+	&lt;li&gt;height - The height of the image in pixels.&lt;/li&gt;
+	&lt;li&gt;tbWidth - The width of the image thumbnail in pixels.&lt;/li&gt;
+	&lt;li&gt;tbHeight - The height of the image thumbnail in pixels.&lt;/li&gt;
+	&lt;li&gt;content - A snippet of information about the image, in HTML format&lt;/li&gt;
+	&lt;li&gt;contentNoFormatting - A snippet of information about the image, in plain text&lt;/li&gt;
+	&lt;/ul&gt;
+	The query accepts one parameter: text - The string to search for</div></div><div class="jsdoc-field public inherited even"><div class="jsdoc-title"><a name="dojox.data.GoogleLocalSearchStore"></a><span class="functionIcon">dojox.data.GoogleLocalSearchStore</span></div><div class="jsdoc-inheritance">Defined by <a class="jsdoc-link" href="/api/1.7/dojox/data">dojox.data</a></div><div class="jsdoc-summary">A data store for retrieving search results from Google.
+	The following attributes are supported on each item:
+	&lt;ul&gt;
+	&lt;li&gt;title - The blog post title in HTML format.&lt;/li&gt;
+	&lt;li&gt;titleNoFormatting - The  blog post title in plain text&lt;/li&gt;
+	&lt;li&gt;content - A snippet of information about the blog post&lt;/li&gt;
+	&lt;li&gt;url - The URL for the item&lt;/li&gt;
+	&lt;li&gt;lat - The latitude.&lt;/li&gt;
+	&lt;li&gt;lng - The longtitude.&lt;/li&gt;
+	&lt;li&gt;streetAddress - The street address&lt;/li&gt;
+	&lt;li&gt;city - The city&lt;/li&gt;
+	&lt;li&gt;region - The region&lt;/li&gt;
+	&lt;li&gt;country - The country&lt;/li&gt;
+	&lt;li&gt;phoneNumbers - Phone numbers associated with this address. Can be one or more.&lt;/li&gt;
+	&lt;li&gt;ddUrl - A URL that can be used to provide driving directions from the center of the search results to this search results&lt;/li&gt;
+	&lt;li&gt;ddUrlToHere - A URL that can be used to provide driving directions from this search result to a user specified location&lt;/li&gt;
+	&lt;li&gt;staticMapUrl - The published date, in RFC-822 format&lt;/li&gt;
+	&lt;li&gt;viewport - Recommended viewport for the query results (same for all results in a query)
+	&lt;ul&gt;
+	&lt;li&gt;center - contains lat, lng properties&lt;/li&gt;
+	&lt;li&gt;span - lat, lng properties for the viewport span&lt;/li&gt;
+	&lt;li&gt;ne, sw - lat, lng properties for the viewport corners&lt;li&gt;
+	&lt;/ul&gt;
+	&lt;/li&gt;
+	&lt;/ul&gt;
+	The query accepts the following parameters:
+	&lt;ul&gt;
+	&lt;li&gt;text - The string to search for&lt;/li&gt;
+	&lt;li&gt;centerLatLong - Comma-separated lat &amp; long for the center of the search (e.g. &quot;48.8565,2.3509&quot;)&lt;/li&gt;
+	&lt;li&gt;searchSpan - Comma-separated lat &amp; long degrees indicating the size of the desired search area (e.g. &quot;0.065165,0.194149&quot;)&lt;/li&gt;
+	&lt;/ul&gt;</div></div><div class="jsdoc-field public inherited odd"><div class="jsdoc-title"><a name="dojox.data.GoogleNewsSearchStore"></a><span class="functionIcon">dojox.data.GoogleNewsSearchStore</span></div><div class="jsdoc-inheritance">Defined by <a class="jsdoc-link" href="/api/1.7/dojox/data">dojox.data</a></div><div class="jsdoc-summary">A data store for retrieving search results from Google.
+	The following attributes are supported on each item:
+	&lt;ul&gt;
+	&lt;li&gt;title - The news story title in HTML format.&lt;/li&gt;
+	&lt;li&gt;titleNoFormatting - The news story title in plain text&lt;/li&gt;
+	&lt;li&gt;content - A snippet of information about the news story&lt;/li&gt;
+	&lt;li&gt;url - The URL for the item&lt;/li&gt;
+	&lt;li&gt;unescapedUrl - The URL for the item, with URL escaping. This is often more readable&lt;/li&gt;
+	&lt;li&gt;publisher - The name of the publisher&lt;/li&gt;
+	&lt;li&gt;clusterUrl - A URL pointing to a page listing related storied.&lt;/li&gt;
+	&lt;li&gt;location - The location of the news story.&lt;/li&gt;
+	&lt;li&gt;publishedDate - The date of publication, in RFC-822 format.&lt;/li&gt;
+	&lt;li&gt;relatedStories - An optional array of objects specifying related stories.
+	Each object has the following subset of properties:
+	&quot;title&quot;, &quot;titleNoFormatting&quot;, &quot;url&quot;, &quot;unescapedUrl&quot;, &quot;publisher&quot;, &quot;location&quot;, &quot;publishedDate&quot;.
+	&lt;/li&gt;
+	&lt;/ul&gt;
+	The query accepts one parameter: text - The string to search for</div></div><div class="jsdoc-field public inherited even"><div class="jsdoc-title"><a name="dojox.data.GoogleSearchStore"></a><span class="functionIcon">dojox.data.GoogleSearchStore</span></div><div class="jsdoc-inheritance">Defined by <a class="jsdoc-link" href="/api/1.7/dojox/data">dojox.data</a></div><div class="jsdoc-summary"><p>The GoogleSearchStore is a Datastore interface to
+the Google search service. The constructor accepts the following arguments:
+<ul>
+<li>label - the label attribute to use. Defaults to titleNoFormatting</li>
+<li>key - The API key to use. This is optional</li>
+<li>lang - The language locale to use. Defaults to the browser locale</li>
+</ul></p>
+</div><table class="jsdoc-parameters"><tr><th>Parameter</th><th>Type</th><th>Description</th></tr><tr><td class="jsdoc-param-name">args</td><td class="jsdoc-param-type">Object</td><td class="jsdoc-param-description"></td></tr></table></div><div class="jsdoc-field public inherited odd"><div class="jsdoc-title"><a name="dojox.data.GoogleVideoSearchStore"></a><span class="functionIcon">dojox.data.GoogleVideoSearchStore</span></div><div class="jsdoc-inheritance">Defined by <a class="jsdoc-link" href="/api/1.7/dojox/data">dojox.data</a></div><div class="jsdoc-summary">A data store for retrieving search results from Google.
+	The following attributes are supported on each item:
+	&lt;ul&gt;
+	&lt;li&gt;title - The blog post title in HTML format.&lt;/li&gt;
+	&lt;li&gt;titleNoFormatting - The  blog post title in plain text&lt;/li&gt;
+	&lt;li&gt;content - A snippet of information about the blog post&lt;/li&gt;
+	&lt;li&gt;url - The URL for the item&lt;/li&gt;
+	&lt;li&gt;published - The published date, in RFC-822 format.&lt;/li&gt;
+	&lt;li&gt;publisher - The name of the publisher.&lt;/li&gt;
+	&lt;li&gt;duration - The approximate duration, in seconds, of the video.&lt;/li&gt;
+	&lt;li&gt;tbWidth - The width in pixels of the video.&lt;/li&gt;
+	&lt;li&gt;tbHeight - The height in pixels of the video&lt;/li&gt;
+	&lt;li&gt;tbUrl - The URL to a thumbnail representation of the video.&lt;/li&gt;
+	&lt;li&gt;playUrl - If present, supplies the url of the flash version of the video that can be played inline on your page. To play this video simply create and &lt;embed&gt; element on your page using this value as the src attribute and using application/x-shockwave-flash as the type attribute. If you want the video to play right away, make sure to append &amp;autoPlay=true to the url..&lt;/li&gt;
+	&lt;/ul&gt;
+	The query accepts one parameter: text - The string to search for</div></div><div class="jsdoc-field public inherited even"><div class="jsdoc-title"><a name="dojox.data.GoogleWebSearchStore"></a><span class="functionIcon">dojox.data.GoogleWebSearchStore</span></div><div class="jsdoc-inheritance">Defined by <a class="jsdoc-link" href="/api/1.7/dojox/data">dojox.data</a></div></div><div class="jsdoc-field public inherited odd"><div class="jsdoc-title"><a name="dojox.data.HtmlStore"></a><span class="functionIcon">dojox.data.HtmlStore</span></div><div class="jsdoc-inheritance">Defined by <a class="jsdoc-link" href="/api/1.7/dojox/data">dojox.data</a></div><div class="jsdoc-summary"><p>The HtmlStore can be created in one of two ways: a) by parsing an existing
+table or list DOM node on the current page or b) by referencing an external url and giving
+the id of the table or list in that page.  The remote url will be parsed as an html page.</p>
+
+<p>The HTML table or list should be of the following form:</p>
+
+<pre><code>&lt;table id="myTable"&gt;
+    &lt;thead&gt;
+        &lt;tr&gt;
+            &lt;th&gt;Attribute1&lt;/th&gt;
+            &lt;th&gt;Attribute2&lt;/th&gt;
+        &lt;/tr&gt;
+    &lt;/thead&gt;
+    &lt;tbody&gt;
+        &lt;tr&gt;
+            &lt;td&gt;Value1.1&lt;/td&gt;
+            &lt;td&gt;Value1.2&lt;/td&gt;
+        &lt;/tr&gt;
+        &lt;tr&gt;
+            &lt;td&gt;Value2.1&lt;/td&gt;
+            &lt;td&gt;Value2.2&lt;/td&gt;
+        &lt;/tr&gt;
+    &lt;/tbody&gt;
+&lt;/table&gt;
+</code></pre>
+
+<p>-or-</p>
+
+<pre><code>&lt;ul id="myUnorderedList"&gt;
+    &lt;li&gt;Value.1&lt;/li&gt;
+    &lt;li&gt;Value.2&lt;/li&gt;
+&lt;/ul&gt;
+</code></pre>
+
+<p>-or-</p>
+
+<pre><code>&lt;ol id="myOrderedList"&gt;
+    &lt;li&gt;Value.1&lt;/li&gt;
+    &lt;li&gt;Value.2&lt;/li&gt;
+&lt;/ol&gt;
+</code></pre>
+</div><table class="jsdoc-parameters"><tr><th>Parameter</th><th>Type</th><th>Description</th></tr><tr><td class="jsdoc-param-name">args</td><td class="jsdoc-param-type">Object</td><td class="jsdoc-param-description">An anonymous object to initialize properties.  It expects the following values:</td></tr></table></div><div class="jsdoc-field public inherited even"><div class="jsdoc-title"><a name="dojox.data.HtmlTableStore"></a><span class="functionIcon">dojox.data.HtmlTableStore</span></div><div class="jsdoc-inheritance">Defined by <a class="jsdoc-link" href="/api/1.7/dojox/data">dojox.data</a></div><table class="jsdoc-parameters"><tr><th>Parameter</th><th>Type</th><th>Description</th></tr><tr><td class="jsdoc-param-name">args</td><td class="jsdoc-param-type">Object</td><td class="jsdoc-param-description"></td></tr></table></div><div class="jsdoc-field public inherited odd"><div class="jsdoc-title"><a name="dojox.data.ItemExplorer"></a><span class="functionIcon">dojox.data.ItemExplorer</span></div><div class="jsdoc-inheritance">Defined by <a class="jsdoc-link" href="/api/1.7/dojox/data">dojox.data</a></div><table class="jsdoc-parameters"><tr><th>Parameter</th><th>Type</th><th>Description</th></tr><tr><td class="jsdoc-param-name">options</td><td class="jsdoc-param-type"></td><td class="jsdoc-param-description"></td></tr></table></div><div class="jsdoc-field public inherited even"><div class="jsdoc-title"><a name="dojox.data.JsonQueryRestStore"></a><span class="functionIcon">dojox.data.JsonQueryRestStore</span></div><div class="jsdoc-inheritance">Defined by <a class="jsdoc-link" href="/api/1.7/dojox/data">dojox.data</a></div></div><div class="jsdoc-field public inherited odd"><div class="jsdoc-title"><a name="dojox.data.JsonRestStore"></a><span class="functionIcon">dojox.data.JsonRestStore</span></div><div class="jsdoc-inheritance">Defined by <a class="jsdoc-link" href="/api/1.7/dojox/data">dojox.data</a></div><div class="jsdoc-summary"><p>The JsonRestStore will cause all saved modifications to be sent to the server using Rest commands (PUT, POST, or DELETE).
+When using a Rest store on a public network, it is important to implement proper security measures to
+control access to resources.
+On the server side implementing a REST interface means providing GET, PUT, POST, and DELETE handlers.
+GET - Retrieve an object or array/result set, this can be by id (like /table/1) or with a
+query (like /table/?name=foo).
+PUT - This should modify a object, the URL will correspond to the id (like /table/1), and the body will
+provide the modified object
+POST - This should create a new object. The URL will correspond to the target store (like /table/)
+and the body should be the properties of the new object. The server's response should include a
+Location header that indicates the id of the newly created object. This id will be used for subsequent
+PUT and DELETE requests. JsonRestStore also includes a Content-Location header that indicates
+the temporary randomly generated id used by client, and this location is used for subsequent
+PUT/DELETEs if no Location header is provided by the server or if a modification is sent prior
+to receiving a response from the server.
+DELETE - This should delete an object by id.
+These articles include more detailed information on using the JsonRestStore:
+http://www.sitepen.com/blog/2008/06/13/restful-json-dojo-data/
+http://blog.medryx.org/2008/07/24/jsonreststore-overview/</p>
+</div><table class="jsdoc-parameters"><tr><th>Parameter</th><th>Type</th><th>Description</th></tr><tr><td class="jsdoc-param-name">options</td><td class="jsdoc-param-type">Keyword</td><td class="jsdoc-param-description">arguments
+	
+	The *schema* parameter
+	This is a schema object for this store. This should be JSON Schema format.
+	
+	The *service* parameter
+	This is the service object that is used to retrieve lazy data and save results
+	The function should be directly callable with a single parameter of an object id to be loaded
+	The function should also have the following methods:
+	put(id,value) - puts the value at the given id
+	post(id,value) - posts (appends) the value at the given id
+	delete(id) - deletes the value corresponding to the given id
+	Note that it is critical that the service parses responses as JSON.
+	If you are using dojox.rpc.Service, the easiest way to make sure this
+	happens is to make the responses have a content type of
+	application/json. If you are creating your own service, make sure you
+	use handleAs: &quot;json&quot; with your XHR requests.
+	
+	The *target* parameter
+	This is the target URL for this Service store. This may be used in place
+	of a service parameter to connect directly to RESTful URL without
+	using a dojox.rpc.Service object.
+	
+	The *idAttribute* parameter
+	Defaults to 'id'. The name of the attribute that holds an objects id.
+	This can be a preexisting id provided by the server.
+	If an ID isn't already provided when an object
+	is fetched or added to the store, the autoIdentity system
+	will generate an id for it and add it to the index.
+	
+	The *syncMode* parameter
+	Setting this to true will set the store to using synchronous calls by default.
+	Sync calls return their data immediately from the calling function, so
+	callbacks are unnecessary</td></tr></table><div class="jsdoc-examples"><div class="jsdoc-example"><div><strong>Example 1</strong></div>
+A JsonRestStore takes a REST service or a URL and uses it the remote communication for a
+read/write dojo.data implementation. A JsonRestStore can be created with a simple URL like:
+<pre class="brush: js;" lang="javascript">
+	new JsonRestStore({target:&quot;/MyData/&quot;});
+</pre></div><div class="jsdoc-example"><div><strong>Example 2</strong></div>
+To use a JsonRestStore with a service, you should create a
+service with a REST transport. This can be configured with an SMD:
+<pre class="brush: js;" lang="javascript">
+	{
+		services: {
+			jsonRestStore: {
+				transport: &quot;REST&quot;,
+				envelope: &quot;URL&quot;,
+				target: &quot;store.php&quot;,
+				contentType:&quot;application/json&quot;,
+				parameters: [
+					{name: &quot;location&quot;, type: &quot;string&quot;, optional: true}
+				]
+			}
+		}
+	}
+The SMD can then be used to create service, and the service can be passed to a JsonRestStore. For example:</pre>
+<pre class="brush: js;" lang="javascript">
+	var myServices = new dojox.rpc.Service(dojo.moduleUrl(&quot;dojox.rpc.tests.resources&quot;, &quot;test.smd&quot;));
+	var jsonStore = new dojox.data.JsonRestStore({service:myServices.jsonRestStore});
+</pre></div><div class="jsdoc-example"><div><strong>Example 3</strong></div>
+The JsonRestStore also supports lazy loading. References can be made to objects that have not been loaded.
+For example if a service returned:
+<pre class="brush: js;" lang="javascript">
+	{&quot;name&quot;:&quot;Example&quot;,&quot;lazyLoadedObject&quot;:{&quot;$ref&quot;:&quot;obj2&quot;}}
+And this object has accessed using the dojo.data API:</pre>
+<pre class="brush: js;" lang="javascript">
+	var obj = jsonStore.getValue(myObject,&quot;lazyLoadedObject&quot;);
+The object would automatically be requested from the server (with an object id of &quot;obj2&quot;).</pre></div></div></div><div class="jsdoc-field public inherited even"><div class="jsdoc-title"><a name="dojox.data.KeyValueStore"></a><span class="functionIcon">dojox.data.KeyValueStore</span></div><div class="jsdoc-inheritance">Defined by <a class="jsdoc-link" href="/api/1.7/dojox/data">dojox.data</a></div><div class="jsdoc-summary">This is a dojo.data store implementation.  It can take in either a Javascript
+	array, JSON string, or URL as the data source.  Data is expected to be in the
+	following format:
+	[
+	{ &quot;key1&quot;: &quot;value1&quot; },
+	{ &quot;key2&quot;: &quot;value2&quot; }
+	]
+	This is to mimic the Java Properties file format.  Each 'item' from this store
+	is a JS object representing a key-value pair.  If an item in the above array has
+	more than one key/value pair, only the first will be used/accessed.</div><table class="jsdoc-parameters"><tr><th>Parameter</th><th>Type</th><th>Description</th></tr><tr><td class="jsdoc-param-name">keywordParameters</td><td class="jsdoc-param-type">Object</td><td class="jsdoc-param-description">dataVar: jsonObject}</td></tr></table></div><div class="jsdoc-field public inherited odd"><div class="jsdoc-title"><a name="dojox.data.OpenSearchStore"></a><span class="functionIcon">dojox.data.OpenSearchStore</span></div><div class="jsdoc-inheritance">Defined by <a class="jsdoc-link" href="/api/1.7/dojox/data">dojox.data</a></div><div class="jsdoc-summary"><p>The OpenSearchStore is a Datastore interface to any search
+engine that implements the open search specifications.</p>
+</div><table class="jsdoc-parameters"><tr><th>Parameter</th><th>Type</th><th>Description</th></tr><tr><td class="jsdoc-param-name">args</td><td class="jsdoc-param-type">Object</td><td class="jsdoc-param-description"></td></tr></table></div><div class="jsdoc-field public inherited even"><div class="jsdoc-title"><a name="dojox.data.OpmlStore"></a><span class="functionIcon">dojox.data.OpmlStore</span></div><div class="jsdoc-inheritance">Defined by <a class="jsdoc-link" href="/api/1.7/dojox/data">dojox.data</a></div><div class="jsdoc-summary">*   The OpmlStore implements the dojo.data.api.Read API.</div><table class="jsdoc-parameters"><tr><th>Parameter</th><th>Type</th><th>Description</th></tr><tr><td class="jsdoc-param-name">keywordParameters</td><td class="jsdoc-param-type">Object</td><td class="jsdoc-param-description">url: String, label: String}  Where label is optional and configures what should be used as the return from getLabel()</td></tr></table></div><div class="jsdoc-field public inherited odd"><div class="jsdoc-title"><a name="dojox.data.PersevereStore"></a><span class="functionIcon">dojox.data.PersevereStore</span></div><div class="jsdoc-inheritance">Defined by <a class="jsdoc-link" href="/api/1.7/dojox/data">dojox.data</a></div></div><div class="jsdoc-field public inherited even"><div class="jsdoc-title"><a name="dojox.data.PicasaStore"></a><span class="functionIcon">dojox.data.PicasaStore</span></div><div class="jsdoc-inheritance">Defined by <a class="jsdoc-link" href="/api/1.7/dojox/data">dojox.data</a></div><div class="jsdoc-summary"><p>The PicasaStore is a Datastore interface to one of the basic services
+of the Picasa service, the public photo feed.  This does not provide
+access to all the services of Picasa.</p>
+
+<p>This store cannot do * and ? filtering as the picasa service
+provides no interface for wildcards.</p>
+</div><table class="jsdoc-parameters"><tr><th>Parameter</th><th>Type</th><th>Description</th></tr><tr><td class="jsdoc-param-name">args</td><td class="jsdoc-param-type">Object</td><td class="jsdoc-param-description"></td></tr></table></div><div class="jsdoc-field public inherited odd"><div class="jsdoc-title"><a name="dojox.data.QueryReadStore"></a><span class="functionIcon">dojox.data.QueryReadStore</span></div><div class="jsdoc-inheritance">Defined by <a class="jsdoc-link" href="/api/1.7/dojox/data">dojox.data</a></div><div class="jsdoc-summary">By default all the sorting is done serverside before the data is returned
+	which is the proper place to be doing it for really large datasets.</div><table class="jsdoc-parameters"><tr><th>Parameter</th><th>Type</th><th>Description</th></tr><tr><td class="jsdoc-param-name">params</td><td class="jsdoc-param-type">Object</td><td class="jsdoc-param-description"></td></tr></table><div class="jsdoc-examples"><div class="jsdoc-example"><div><strong>Example 1</strong></div>
+<pre class="brush: js;" lang="javascript">
+	// The parameter &quot;query&quot; contains the data that are sent to the server.
+	var store = new dojox.data.QueryReadStore({url:'/search.php'});
+	store.fetch({query:{name:'a'}, queryOptions:{ignoreCase:false}});
+</pre>
+<pre class="brush: js;" lang="javascript">
+	// Since &quot;serverQuery&quot; is given, it overrules and those data are
+	// sent to the server.
+	var store = new dojox.data.QueryReadStore({url:'/search.php'});
+	store.fetch({serverQuery:{name:'a'}, queryOptions:{ignoreCase:false}});
+</pre>
+<pre class="brush: js;" lang="javascript">
+	&lt;div dojoType=&quot;dojox.data.QueryReadStore&quot;
+		jsId=&quot;store2&quot;
+		url=&quot;../tests/stores/QueryReadStore.php&quot;
+		requestMethod=&quot;post&quot;&gt;&lt;/div&gt;
+	&lt;div dojoType=&quot;dojox.grid.data.DojoData&quot;
+		jsId=&quot;model2&quot;
+		store=&quot;store2&quot;
+		sortFields=&quot;[{attribute: 'name', descending: true}]&quot;
+		rowsPerPage=&quot;30&quot;&gt;&lt;/div&gt;
+	&lt;div dojoType=&quot;dojox.Grid&quot; id=&quot;grid2&quot;
+		model=&quot;model2&quot;
+		structure=&quot;gridLayout&quot;
+		style=&quot;height:300px; width:800px;&quot;&gt;&lt;/div&gt;
+</pre></div></div></div><div class="jsdoc-field public inherited even"><div class="jsdoc-title"><a name="dojox.data.RailsStore"></a><span class="functionIcon">dojox.data.RailsStore</span></div><div class="jsdoc-inheritance">Defined by <a class="jsdoc-link" href="/api/1.7/dojox/data">dojox.data</a></div><div class="jsdoc-summary">RailsStore is a data store for interacting with RESTful Rails controllers</div><table class="jsdoc-parameters"><tr><th>Parameter</th><th>Type</th><th>Description</th></tr><tr><td class="jsdoc-param-name">options</td><td class="jsdoc-param-type"></td><td class="jsdoc-param-description"></td></tr></table></div><div class="jsdoc-field public inherited odd"><div class="jsdoc-title"><a name="dojox.data.S3Store"></a><span class="functionIcon">dojox.data.S3Store</span></div><div class="jsdoc-inheritance">Defined by <a class="jsdoc-link" href="/api/1.7/dojox/data">dojox.data</a></div></div><div class="jsdoc-field public inherited even"><div class="jsdoc-title"><a name="dojox.data.ServiceStore"></a><span class="functionIcon">dojox.data.ServiceStore</span></div><div class="jsdoc-inheritance">Defined by <a class="jsdoc-link" href="/api/1.7/dojox/data">dojox.data</a></div><div class="jsdoc-summary"><p>ServiceStore can do client side caching and result set updating if
+dojox.data.ClientFilter is loaded. Do this add:
+    dojo.require("dojox.data.ClientFilter")
+prior to loading the ServiceStore (ClientFilter must be loaded before ServiceStore).
+To utilize client side filtering with a subclass, you can break queries into
+client side and server side components by putting client side actions in
+clientFilter property in fetch calls. For example you could override fetch:
+    fetch: function(args){
+        // do the sorting and paging on the client side
+        args.clientFilter = {start:args.start, count: args.count, sort: args.sort};
+        // args.query will be passed to the service object for the server side handling
+        return this.inherited(arguments);
+    }
+When extending this class, if you would like to create lazy objects, you can follow
+the example from dojox.data.tests.stores.ServiceStore:
+    var lazyItem = {
+        <em>loadObject: function(callback){
+            this.name="loaded";
+            delete this.</em>loadObject;
+            callback(this);
+        }
+    };
+setup a byId alias to the api call</p>
+</div><table class="jsdoc-parameters"><tr><th>Parameter</th><th>Type</th><th>Description</th></tr><tr><td class="jsdoc-param-name">options</td><td class="jsdoc-param-type">Keyword</td><td class="jsdoc-param-description">arguments
+	The *schema* parameter
+	This is a schema object for this store. This should be JSON Schema format.
+	
+	The *service* parameter
+	This is the service object that is used to retrieve lazy data and save results
+	The function should be directly callable with a single parameter of an object id to be loaded
+	
+	The *idAttribute* parameter
+	Defaults to 'id'. The name of the attribute that holds an objects id.
+	This can be a preexisting id provided by the server.
+	If an ID isn't already provided when an object
+	is fetched or added to the store, the autoIdentity system
+	will generate an id for it and add it to the index.
+	
+	The *estimateCountFactor* parameter
+	This parameter is used by the ServiceStore to estimate the total count. When
+	paging is indicated in a fetch and the response includes the full number of items
+	requested by the fetch's count parameter, then the total count will be estimated
+	to be estimateCountFactor multiplied by the provided count. If this is 1, then it is assumed that the server
+	does not support paging, and the response is the full set of items, where the
+	total count is equal to the numer of items returned. If the server does support
+	paging, an estimateCountFactor of 2 is a good value for estimating the total count
+	It is also possible to override _processResults if the server can provide an exact
+	total count.
+	
+	The *syncMode* parameter
+	Setting this to true will set the store to using synchronous calls by default.
+	Sync calls return their data immediately from the calling function, so
+	callbacks are unnecessary. This will only work with a synchronous capable service.</td></tr></table></div><div class="jsdoc-field public inherited odd"><div class="jsdoc-title"><a name="dojox.data.SnapLogicStore"></a><span class="functionIcon">dojox.data.SnapLogicStore</span></div><div class="jsdoc-inheritance">Defined by <a class="jsdoc-link" href="/api/1.7/dojox/data">dojox.data</a></div><div class="jsdoc-summary">Initialize a SnapLogicStore object.</div><table class="jsdoc-parameters"><tr><th>Parameter</th><th>Type</th><th>Description</th></tr><tr><td class="jsdoc-param-name">args</td><td class="jsdoc-param-type">Object</td><td class="jsdoc-param-description">An object that contains properties for initializing the new data store object. The
+	following properties are understood:</td></tr></table></div><div class="jsdoc-field public inherited even"><div class="jsdoc-title"><a name="dojox.data.StoreExplorer"></a><span class="functionIcon">dojox.data.StoreExplorer</span></div><div class="jsdoc-inheritance">Defined by <a class="jsdoc-link" href="/api/1.7/dojox/data">dojox.data</a></div><table class="jsdoc-parameters"><tr><th>Parameter</th><th>Type</th><th>Description</th></tr><tr><td class="jsdoc-param-name">options</td><td class="jsdoc-param-type"></td><td class="jsdoc-param-description"></td></tr></table></div><div class="jsdoc-field public inherited odd"><div class="jsdoc-title"><a name="dojox.data.WikipediaStore"></a><span class="functionIcon">dojox.data.WikipediaStore</span></div><div class="jsdoc-inheritance">Defined by <a class="jsdoc-link" href="/api/1.7/dojox/data">dojox.data</a></div><div class="jsdoc-summary"><p>The WikipediaStore is a data store interface to Wikipedia, using the
+Wikipedia SMD spec from dojox.rpc. It currently is useful only for
+finding articles that contain some particular text or grabbing single
+articles by full name; no wildcards or other filtering are supported.</p>
+</div><table class="jsdoc-parameters"><tr><th>Parameter</th><th>Type</th><th>Description</th></tr><tr><td class="jsdoc-param-name">options</td><td class="jsdoc-param-type"></td><td class="jsdoc-param-description"></td></tr></table><div class="jsdoc-examples"><div class="jsdoc-example"><div><strong>Example 1</strong></div>
+<pre class="brush: js;" lang="javascript">
+	var store = new dojox.data.WikipediaStore();
+	store.fetch({
+		query: {title:&quot;Dojo Toolkit&quot;},
+		onItem: function(item){
+			dojo.byId(&quot;somediv&quot;).innerHTML = item.text[&quot;*&quot;];
+		}
+	});
+</pre></div></div></div><div class="jsdoc-field public inherited even"><div class="jsdoc-title"><a name="dojox.data.XmlItem"></a><span class="functionIcon">dojox.data.XmlItem</span></div><div class="jsdoc-inheritance">Defined by <a class="jsdoc-link" href="/api/1.7/dojox/data">dojox.data</a></div><div class="jsdoc-summary"><p>This class represents an item of 'XmlStore' holding an XML element.
+'element'
+element:
+An XML element</p>
+</div><table class="jsdoc-parameters"><tr><th>Parameter</th><th>Type</th><th>Description</th></tr><tr><td class="jsdoc-param-name">element</td><td class="jsdoc-param-type">An</td><td class="jsdoc-param-description">XML element</td></tr><tr><td class="jsdoc-param-name">store</td><td class="jsdoc-param-type">The</td><td class="jsdoc-param-description">containing store, if any.</td></tr><tr><td class="jsdoc-param-name">query</td><td class="jsdoc-param-type">The</td><td class="jsdoc-param-description">query to use to look up a specific element.
+	Usually an XPath or dojo.query statement.</td></tr></table></div><div class="jsdoc-field public inherited odd"><div class="jsdoc-title"><a name="dojox.data.XmlStore"></a><span class="functionIcon">dojox.data.XmlStore</span></div><div class="jsdoc-inheritance">Defined by <a class="jsdoc-link" href="/api/1.7/dojox/data">dojox.data</a></div><div class="jsdoc-summary"><p>A data store for XML based services or documents</p>
+</div><table class="jsdoc-parameters"><tr><th>Parameter</th><th>Type</th><th>Description</th></tr><tr><td class="jsdoc-param-name">args</td><td class="jsdoc-param-type">object</td><td class="jsdoc-param-description">An anonymous object to initialize properties.  It expects the following values:</td></tr></table></div><div class="jsdoc-field public inherited even"><div class="jsdoc-title"><a name="dojox.data.restListener"></a><span class="functionIcon">dojox.data.restListener</span></div><div class="jsdoc-inheritance">Defined by <a class="jsdoc-link" href="/api/1.7/dojox/data">dojox.data</a></div><div class="jsdoc-summary"><p>Example:
+    dojo.connect(window,"onMessage",null,function(event) {
+        var data = dojo.fromJson(event.data);
+        dojox.restListener(data);
+    });</p>
+</div><table class="jsdoc-parameters"><tr><th>Parameter</th><th>Type</th><th>Description</th></tr><tr><td class="jsdoc-param-name">message</td><td class="jsdoc-param-type"></td><td class="jsdoc-param-description"></td></tr></table></div></div></div>

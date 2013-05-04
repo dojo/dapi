@@ -1,0 +1,216 @@
+<div class="jsdoc-permalink" style="display:none;">/api/1.7/dojox/layout</div><h1 class="jsdoc-title objectIcon36">dojox.layout <span style="font-size:11px;color:#999;">(version 1.7)</span></h1><div class="jsdoc-prototype">Object &raquo; dojox.layout</div><div class="jsdoc-full-summary"><p>A collection of layout related Widgets</p>
+</div><div class="jsdoc-children"><div class="jsdoc-field-list"><h2 class="jsdoc-summary-heading">Property Summary <span class="jsdoc-summary-toggle"></span></h2><div class="jsdoc-summary-list"><ul><li class="objectIcon public inherited even"><a class="inline-link" href="#dojox.layout.dnd">dojox.layout.dnd</a></li><li class="objectIcon public inherited odd"><a class="inline-link" href="#dojox.layout.ext-dijit">dojox.layout.ext-dijit</a></li></ul></div><h2 class="jsdoc-summary-heading">Method Summary <span class="jsdoc-summary-toggle"></span></h2><div class="jsdoc-summary-list"><ul><li class="functionIcon public inherited even"><a class="inline-link" href="#dojox.layout.ContentPane">dojox.layout.ContentPane</a><span class="parameters">()</span> <span>cleans content to make it less likely to generate DOM/JS errors.</span></li><li class="functionIcon public inherited odd"><a class="inline-link" href="#dojox.layout.Dock">dojox.layout.Dock</a><span class="parameters">()</span> <span>A widget that attaches to a node and keeps track of incoming / outgoing FloatingPanes
+	and handles layout</span></li><li class="functionIcon public inherited even"><a class="inline-link" href="#dojox.layout.DragPane">dojox.layout.DragPane</a><span class="parameters">()</span> <span>Makes a pane's content dragable by/within it's surface</span></li><li class="functionIcon public inherited odd"><a class="inline-link" href="#dojox.layout.ExpandoPane">dojox.layout.ExpandoPane</a><span class="parameters">()</span> <span>An experimental collapsing-pane for dijit.layout.BorderContainer</span></li><li class="functionIcon public inherited even"><a class="inline-link" href="#dojox.layout.FloatingPane">dojox.layout.FloatingPane</a><span class="parameters">()</span> <span>A non-modal Floating window.</span></li><li class="functionIcon public inherited odd"><a class="inline-link" href="#dojox.layout.GridContainer">dojox.layout.GridContainer</a><span class="parameters">()</span> <span>A grid containing any kind of objects and acting like web portals.</span></li><li class="functionIcon public inherited even"><a class="inline-link" href="#dojox.layout.GridContainerLite">dojox.layout.GridContainerLite</a><span class="parameters">(props, node)</span> <span>The GridContainerLite is a container of child elements that are placed in a kind of grid.</span></li><li class="functionIcon public inherited odd"><a class="inline-link" href="#dojox.layout.RadioGroup">dojox.layout.RadioGroup</a><span class="parameters">()</span> <span>A Container that turns its Layout Children into a single Pane and transitions between states
+	onHover of the button</span></li><li class="functionIcon public inherited even"><a class="inline-link" href="#dojox.layout.RadioGroupFade">dojox.layout.RadioGroupFade</a><span class="parameters">()</span> <span>An extension on a stock RadioGroup, that fades the panes.</span></li><li class="functionIcon public inherited odd"><a class="inline-link" href="#dojox.layout.RadioGroupSlide">dojox.layout.RadioGroupSlide</a><span class="parameters">()</span> <span>A Sliding Radio Group</span></li><li class="functionIcon public inherited even"><a class="inline-link" href="#dojox.layout.ResizeHandle">dojox.layout.ResizeHandle</a><span class="parameters">()</span> <span>A dragable handle used to resize an attached node.</span></li><li class="functionIcon public inherited odd"><a class="inline-link" href="#dojox.layout.RotatorContainer">dojox.layout.RotatorContainer</a><span class="parameters">()</span> <span>Extends a StackContainer to automatically transition between children
+	and display navigation in the form of tabs or a pager.</span></li><li class="functionIcon public inherited even"><a class="inline-link" href="#dojox.layout.RotatorPager">dojox.layout.RotatorPager</a><span class="parameters">()</span> <span>Defines controls used to manipulate a RotatorContainer</span></li><li class="functionIcon public inherited odd"><a class="inline-link" href="#dojox.layout.ScrollPane">dojox.layout.ScrollPane</a><span class="parameters">()</span> <span>A pane that &quot;scrolls&quot; its content based on the mouse poisition inside</span></li><li class="functionIcon public inherited even"><a class="inline-link" href="#dojox.layout.TableContainer">dojox.layout.TableContainer</a><span class="parameters">()</span> <span>A container that lays out its child widgets in a table layout.</span></li><li class="functionIcon public inherited odd"><a class="inline-link" href="#dojox.layout.ToggleSplitter">dojox.layout.ToggleSplitter</a><span class="parameters">()</span> <span>A draggable and clickable spacer between two items in a dijit.layout.BorderContainer`.</span></li><li class="functionIcon private inherited even"><a class="inline-link" href="#dojox.layout._DockNode">dojox.layout._DockNode</a><span class="parameters">()</span> <span>dojox.layout._DockNode is a private widget used to keep track of
+	which pane is docked.</span></li><li class="functionIcon private inherited odd"><a class="inline-link" href="#dojox.layout._RadioButton">dojox.layout._RadioButton</a><span class="parameters">()</span> <span>The Buttons for a RadioGroup</span></li><li class="functionIcon private inherited even"><a class="inline-link" href="#dojox.layout._ResizeHelper">dojox.layout._ResizeHelper</a><span class="parameters">()</span> <span>A global private resize helper shared between any
+	`dojox.layout.ResizeHandle` with activeSizing off.</span></li></ul></div><h2 class="jsdoc-summary-heading">Attached Objects <span class="jsdoc-summary-toggle"></span></h2><div class="jsdoc-summary-list"><div class="jsdoc-field"><div class="jsdoc-title"><span class="constructor"><a class="jsdoc-link" href="/api/1.7/dojox/layout/ContentPane">dojox.layout.ContentPane</a></span></div></div><div class="jsdoc-field"><div class="jsdoc-title"><span class="constructor"><a class="jsdoc-link" href="/api/1.7/dojox/layout/DragPane">dojox.layout.DragPane</a></span></div></div><div class="jsdoc-field"><div class="jsdoc-title"><span class="constructor"><a class="jsdoc-link" href="/api/1.7/dojox/layout/ExpandoPane">dojox.layout.ExpandoPane</a></span></div></div><div class="jsdoc-field"><div class="jsdoc-title"><span class="constructor"><a class="jsdoc-link" href="/api/1.7/dojox/layout/FloatingPane">dojox.layout.FloatingPane</a></span></div></div><div class="jsdoc-field"><div class="jsdoc-title"><span class="constructor"><a class="jsdoc-link" href="/api/1.7/dojox/layout/Dock">dojox.layout.Dock</a></span></div></div><div class="jsdoc-field"><div class="jsdoc-title"><span class="constructor"><a class="jsdoc-link" href="/api/1.7/dojox/layout/GridContainer">dojox.layout.GridContainer</a></span></div></div><div class="jsdoc-field"><div class="jsdoc-title"><span class="object"><a class="jsdoc-link" href="/api/1.7/dojox/layout/GridContainer/gridContainerTable">dojox.layout.GridContainer.gridContainerTable</a></span></div></div><div class="jsdoc-field"><div class="jsdoc-title"><span class="object"><a class="jsdoc-link" href="/api/1.7/dojox/layout/GridContainer/_grid">dojox.layout.GridContainer._grid</a></span></div></div><div class="jsdoc-field"><div class="jsdoc-title"><span class="constructor"><a class="jsdoc-link" href="/api/1.7/dojox/layout/GridContainerLite">dojox.layout.GridContainerLite</a></span></div></div><div class="jsdoc-field"><div class="jsdoc-title"><span class="object"><a class="jsdoc-link" href="/api/1.7/dojox/layout/GridContainerLite/_dragManager">dojox.layout.GridContainerLite._dragManager</a></span></div></div><div class="jsdoc-field"><div class="jsdoc-title"><span class="object"><a class="jsdoc-link" href="/api/1.7/dojox/layout/GridContainerLite/_contentBox">dojox.layout.GridContainerLite._contentBox</a></span></div></div><div class="jsdoc-field"><div class="jsdoc-title"><span class="array"><a class="jsdoc-link" href="/api/1.7/dojox/layout/GridContainerLite/_grid">dojox.layout.GridContainerLite._grid</a></span></div></div><div class="jsdoc-field"><div class="jsdoc-title"><span class="constructor"><a class="jsdoc-link" href="/api/1.7/dojox/layout/RadioGroup">dojox.layout.RadioGroup</a></span></div></div><div class="jsdoc-field"><div class="jsdoc-title"><span class="constructor"><a class="jsdoc-link" href="/api/1.7/dojox/layout/RadioGroupFade">dojox.layout.RadioGroupFade</a></span></div></div><div class="jsdoc-field"><div class="jsdoc-title"><span class="constructor"><a class="jsdoc-link" href="/api/1.7/dojox/layout/RadioGroupSlide">dojox.layout.RadioGroupSlide</a></span></div></div><div class="jsdoc-field"><div class="jsdoc-title"><span class="constructor"><a class="jsdoc-link" href="/api/1.7/dojox/layout/_RadioButton">dojox.layout._RadioButton</a></span></div></div><div class="jsdoc-field"><div class="jsdoc-title"><span class="constructor"><a class="jsdoc-link" href="/api/1.7/dojox/layout/_ResizeHelper">dojox.layout._ResizeHelper</a></span></div></div><div class="jsdoc-field"><div class="jsdoc-title"><span class="constructor"><a class="jsdoc-link" href="/api/1.7/dojox/layout/ResizeHandle">dojox.layout.ResizeHandle</a></span></div></div><div class="jsdoc-field"><div class="jsdoc-title"><span class="object"><a class="jsdoc-link" href="/api/1.7/dojox/layout/ResizeHandle/startSize">dojox.layout.ResizeHandle.startSize</a></span></div></div><div class="jsdoc-field"><div class="jsdoc-title"><span class="constructor"><a class="jsdoc-link" href="/api/1.7/dojox/layout/RotatorContainer">dojox.layout.RotatorContainer</a></span></div></div><div class="jsdoc-field"><div class="jsdoc-title"><span class="constructor"><a class="jsdoc-link" href="/api/1.7/dojox/layout/RotatorPager">dojox.layout.RotatorPager</a></span></div></div><div class="jsdoc-field"><div class="jsdoc-title"><span class="object"><a class="jsdoc-link" href="/api/1.7/dojox/layout/RotatorPager/current">dojox.layout.RotatorPager.current</a></span></div></div><div class="jsdoc-field"><div class="jsdoc-title"><span class="object"><a class="jsdoc-link" href="/api/1.7/dojox/layout/RotatorPager/total">dojox.layout.RotatorPager.total</a></span></div></div><div class="jsdoc-field"><div class="jsdoc-title"><span class="constructor"><a class="jsdoc-link" href="/api/1.7/dojox/layout/ScrollPane">dojox.layout.ScrollPane</a></span></div></div><div class="jsdoc-field"><div class="jsdoc-title"><span class="constructor"><a class="jsdoc-link" href="/api/1.7/dojox/layout/TableContainer">dojox.layout.TableContainer</a></span></div></div><div class="jsdoc-field"><div class="jsdoc-title"><span class="object"><a class="jsdoc-link" href="/api/1.7/dojox/layout/TableContainer/table">dojox.layout.TableContainer.table</a></span></div></div><div class="jsdoc-field"><div class="jsdoc-title"><span class="constructor"><a class="jsdoc-link" href="/api/1.7/dojox/layout/ToggleSplitter">dojox.layout.ToggleSplitter</a></span></div></div><div class="jsdoc-field"><div class="jsdoc-title"><span class="object"><a class="jsdoc-link" href="/api/1.7/dojox/layout/ToggleSplitter/child">dojox.layout.ToggleSplitter.child</a></span></div></div><div class="jsdoc-field"><div class="jsdoc-title"><span class="object"><a class="jsdoc-link" href="/api/1.7/dojox/layout/ToggleSplitter/a11yText">dojox.layout.ToggleSplitter.a11yText</a></span></div></div><div class="jsdoc-field"><div class="jsdoc-title"><span class="object"><a class="jsdoc-link" href="/api/1.7/dojox/layout/dnd">dojox.layout.dnd</a></span></div></div><div class="jsdoc-field"><div class="jsdoc-title"><span class="constructor"><a class="jsdoc-link" href="/api/1.7/dojox/layout/dnd/Avatar">dojox.layout.dnd.Avatar</a></span></div></div><div class="jsdoc-field"><div class="jsdoc-title"><span class="object"><a class="jsdoc-link" href="/api/1.7/dojox/layout/dnd/Avatar/manager">dojox.layout.dnd.Avatar.manager</a></span></div></div><div class="jsdoc-field"><div class="jsdoc-title"><span class="constructor"><a class="jsdoc-link" href="/api/1.7/dojox/layout/dnd/PlottedDnd">dojox.layout.dnd.PlottedDnd</a></span></div></div><div class="jsdoc-field"><div class="jsdoc-title"><span class="object"><a class="jsdoc-link" href="/api/1.7/dojox/layout/dnd/PlottedDnd/current">dojox.layout.dnd.PlottedDnd.current</a></span></div></div><div class="jsdoc-field"><div class="jsdoc-title"><span class="object"><a class="jsdoc-link" href="/api/1.7/dojox/layout/dnd/PlottedDnd/offsetDrag">dojox.layout.dnd.PlottedDnd.offsetDrag</a></span></div></div><div class="jsdoc-field"><div class="jsdoc-title"><span class="constructor"><a class="jsdoc-link" href="/api/1.7/dojox/layout/dnd/DropIndicator">dojox.layout.dnd.DropIndicator</a></span></div></div><div class="jsdoc-field"><div class="jsdoc-title"><span class="object"><a class="jsdoc-link" href="/api/1.7/dojox/layout/ext-dijit/layout">dojox.layout.ext-dijit.layout</a></span></div></div><div class="jsdoc-field"><div class="jsdoc-title"><span class="object"><a class="jsdoc-link" href="/api/1.7/dojox/layout/ext-dijit">dojox.layout.ext-dijit</a></span></div></div></div></div></div><div class="jsdoc-children"><div class="jsdoc-fields"><h2>Properties</h2><div class="jsdoc-field public inherited even"><div class="jsdoc-title"><a name="dojox.layout.dnd"></a><span class="objectIcon">dojox.layout.dnd</span></div><div class="jsdoc-inheritance">Defined by <a class="jsdoc-link" href="/api/1.7/dojox/layout">dojox.layout</a></div></div><div class="jsdoc-field public inherited odd"><div class="jsdoc-title"><a name="dojox.layout.ext-dijit"></a><span class="objectIcon">dojox.layout.ext-dijit</span></div><div class="jsdoc-inheritance">Defined by <a class="jsdoc-link" href="/api/1.7/dojox/layout">dojox.layout</a></div></div><h2>Methods</h2><div class="jsdoc-field public inherited even"><div class="jsdoc-title"><a name="dojox.layout.ContentPane"></a><span class="functionIcon">dojox.layout.ContentPane</span></div><div class="jsdoc-inheritance">Defined by <a class="jsdoc-link" href="/api/1.7/dojox/layout">dojox.layout</a></div><div class="jsdoc-summary"><p>useful if you send ContentPane a complete page, instead of a html fragment
+scans for</p>
+
+<ul>
+<li>title Node, remove</li>
+<li>DOCTYPE tag, remove</li>
+</ul>
+</div></div><div class="jsdoc-field public inherited odd"><div class="jsdoc-title"><a name="dojox.layout.Dock"></a><span class="functionIcon">dojox.layout.Dock</span></div><div class="jsdoc-inheritance">Defined by <a class="jsdoc-link" href="/api/1.7/dojox/layout">dojox.layout</a></div><div class="jsdoc-summary">A widget that attaches to a node and keeps track of incoming / outgoing FloatingPanes
+	and handles layout</div></div><div class="jsdoc-field public inherited even"><div class="jsdoc-title"><a name="dojox.layout.DragPane"></a><span class="functionIcon">dojox.layout.DragPane</span></div><div class="jsdoc-inheritance">Defined by <a class="jsdoc-link" href="/api/1.7/dojox/layout">dojox.layout</a></div><div class="jsdoc-summary"><p>A small widget which takes a node with overflow:auto and
+allows dragging to position the content. Useful with images,
+or for just adding "something" to a overflow-able div.</p>
+</div></div><div class="jsdoc-field public inherited odd"><div class="jsdoc-title"><a name="dojox.layout.ExpandoPane"></a><span class="functionIcon">dojox.layout.ExpandoPane</span></div><div class="jsdoc-inheritance">Defined by <a class="jsdoc-link" href="/api/1.7/dojox/layout">dojox.layout</a></div><div class="jsdoc-summary"><p>Works just like a ContentPane inside of a borderContainer. Will expand/collapse on
+command, and supports having Layout Children as direct descendants</p>
+</div></div><div class="jsdoc-field public inherited even"><div class="jsdoc-title"><a name="dojox.layout.FloatingPane"></a><span class="functionIcon">dojox.layout.FloatingPane</span></div><div class="jsdoc-inheritance">Defined by <a class="jsdoc-link" href="/api/1.7/dojox/layout">dojox.layout</a></div><div class="jsdoc-summary"><p>Makes a <code>dojox.layout.ContentPane</code> float and draggable by it's title [similar to TitlePane]
+and over-rides onClick to onDblClick for wipeIn/Out of containerNode
+provides minimize(dock) / show() and hide() methods, and resize [almost]</p>
+</div></div><div class="jsdoc-field public inherited odd"><div class="jsdoc-title"><a name="dojox.layout.GridContainer"></a><span class="functionIcon">dojox.layout.GridContainer</span></div><div class="jsdoc-inheritance">Defined by <a class="jsdoc-link" href="/api/1.7/dojox/layout">dojox.layout</a></div><div class="jsdoc-summary"><p>This component inherits of all features of gridContainerLite plus :
+- Resize colums
+- Add / remove columns
+- Fix columns at left or at right.</p>
+</div><div class="jsdoc-examples"><div class="jsdoc-example"><div><strong>Example 1</strong></div>
+<pre class="brush: js;" lang="javascript">
+	&lt;div dojoType=&quot;dojox.layout.GridContainer&quot; nbZones=&quot;3&quot; isAutoOrganized=&quot;true&quot;&gt;
+		&lt;div dojoType=&quot;dijit.layout.ContentPane&quot;&gt;Content Pane 1 : Drag Me !&lt;/div&gt;
+		&lt;div dojoType=&quot;dijit.layout.ContentPane&quot;&gt;Content Pane 2 : Drag Me !&lt;/div&gt;
+		&lt;div dojoType=&quot;dijit.layout.ContentPane&quot;&gt;Content Pane 3 : Drag Me !&lt;/div&gt;
+	&lt;/div&gt;
+</pre></div><div class="jsdoc-example"><div><strong>Example 2</strong></div>
+<pre class="brush: js;" lang="javascript">
+	dojo.ready(function(){
+		var cpane1 = new dijit.layout.ContentPane({ title:&quot;cpane1&quot;, content: &quot;Content Pane 1 : Drag Me !&quot; }),
+			cpane2 = new dijit.layout.ContentPane({ title:&quot;cpane2&quot;, content: &quot;Content Pane 2 : Drag Me !&quot; }),
+			cpane3 = new dijit.layout.ContentPane({ title:&quot;cpane3&quot;, content: &quot;Content Pane 3 : Drag Me !&quot; });
+</pre>
+<pre class="brush: js;" lang="javascript">
+		var widget = new dojox.layout.GridContainer({
+			nbZones: 3,
+			isAutoOrganized: true
+		}, dojo.byId(&quot;idNode&quot;));
+		widget.addChild(cpane1, 0, 0);
+		widget.addChild(cpane2, 1, 0);
+		widget.addChild(cpane3, 2, 1);
+		widget.startup();
+	});
+</pre></div></div></div><div class="jsdoc-field public inherited even"><div class="jsdoc-title"><a name="dojox.layout.GridContainerLite"></a><span class="functionIcon">dojox.layout.GridContainerLite</span></div><div class="jsdoc-inheritance">Defined by <a class="jsdoc-link" href="/api/1.7/dojox/layout">dojox.layout</a></div><div class="jsdoc-summary"><p>GridContainerLite displays the child elements by column
+(ie: the children widths are fixed by the column width of the grid but
+the children heights are free).
+Each child is movable by drag and drop inside the GridContainer.
+The position of other children is automatically calculated when a child is moved.</p>
+</div><table class="jsdoc-parameters"><tr><th>Parameter</th><th>Type</th><th>Description</th></tr><tr><td class="jsdoc-param-name">props</td><td class="jsdoc-param-type">Object</td><td class="jsdoc-param-description"></td></tr><tr><td class="jsdoc-param-name">node</td><td class="jsdoc-param-type">DOMNode</td><td class="jsdoc-param-description"></td></tr></table><div class="jsdoc-examples"><div class="jsdoc-example"><div><strong>Example 1</strong></div>
+<pre class="brush: js;" lang="javascript">
+	&lt;div dojoType=&quot;dojox.layout.GridContainerLite&quot; nbZones=&quot;3&quot; isAutoOrganized=&quot;true&quot;&gt;
+		&lt;div dojoType=&quot;dijit.layout.ContentPane&quot;&gt;Content Pane 1 : Drag Me !&lt;/div&gt;
+		&lt;div dojoType=&quot;dijit.layout.ContentPane&quot;&gt;Content Pane 2 : Drag Me !&lt;/div&gt;
+		&lt;div dojoType=&quot;dijit.layout.ContentPane&quot;&gt;Content Pane 3 : Drag Me !&lt;/div&gt;
+	&lt;/div&gt;
+</pre></div><div class="jsdoc-example"><div><strong>Example 2</strong></div>
+<pre class="brush: js;" lang="javascript">
+	dojo.ready(function(){
+		var cpane1 = new dijit.layout.ContentPane({
+			title:&quot;cpane1&quot;, content: &quot;Content Pane 1 : Drag Me !&quot;
+		}),
+		cpane2 = new dijit.layout.ContentPane({
+			title:&quot;cpane2&quot;,
+			content: &quot;Content Pane 2 : Drag Me !&quot;
+		}),
+		cpane3 = new dijit.layout.ContentPane({
+			title:&quot;cpane3&quot;,
+			content: &quot;Content Pane 3 : Drag Me !&quot;
+		});
+</pre>
+<pre class="brush: js;" lang="javascript">
+		var widget = new dojox.layout.GridContainerLite({
+			nbZones: 3,
+			isAutoOrganized: true
+		}, dojo.byId(&quot;idNode&quot;));
+		widget.addChild(cpane1, 0, 0);
+		widget.addChild(cpane2, 1, 0);
+		widget.addChild(cpane3, 2, 1);
+		widget.startup();
+	});
+</pre></div></div></div><div class="jsdoc-field public inherited odd"><div class="jsdoc-title"><a name="dojox.layout.RadioGroup"></a><span class="functionIcon">dojox.layout.RadioGroup</span></div><div class="jsdoc-inheritance">Defined by <a class="jsdoc-link" href="/api/1.7/dojox/layout">dojox.layout</a></div><div class="jsdoc-summary">A Container that turns its Layout Children into a single Pane and transitions between states
+	onHover of the button</div></div><div class="jsdoc-field public inherited even"><div class="jsdoc-title"><a name="dojox.layout.RadioGroupFade"></a><span class="functionIcon">dojox.layout.RadioGroupFade</span></div><div class="jsdoc-inheritance">Defined by <a class="jsdoc-link" href="/api/1.7/dojox/layout">dojox.layout</a></div><div class="jsdoc-summary">An extension on a stock RadioGroup, that fades the panes.</div></div><div class="jsdoc-field public inherited odd"><div class="jsdoc-title"><a name="dojox.layout.RadioGroupSlide"></a><span class="functionIcon">dojox.layout.RadioGroupSlide</span></div><div class="jsdoc-inheritance">Defined by <a class="jsdoc-link" href="/api/1.7/dojox/layout">dojox.layout</a></div><div class="jsdoc-summary"><p>An extension on a stock RadioGroup widget, sliding the pane
+into view from being hidden. The entry direction is randomized
+on each view</p>
+</div></div><div class="jsdoc-field public inherited even"><div class="jsdoc-title"><a name="dojox.layout.ResizeHandle"></a><span class="functionIcon">dojox.layout.ResizeHandle</span></div><div class="jsdoc-inheritance">Defined by <a class="jsdoc-link" href="/api/1.7/dojox/layout">dojox.layout</a></div><div class="jsdoc-summary"><p>The handle on the bottom-right corner of FloatingPane or other widgets that allows
+the widget to be resized.
+Typically not used directly.</p>
+</div></div><div class="jsdoc-field public inherited odd"><div class="jsdoc-title"><a name="dojox.layout.RotatorContainer"></a><span class="functionIcon">dojox.layout.RotatorContainer</span></div><div class="jsdoc-inheritance">Defined by <a class="jsdoc-link" href="/api/1.7/dojox/layout">dojox.layout</a></div><div class="jsdoc-summary"><p>The RotatorContainer cycles through the children with a transition.</p>
+
+<p>published topics:
+[widgetId]-update - Notifies pager(s) that a child has changed.
+Parameters:</p>
+
+<p>/<em>boolean</em>/ playing - true if playing, false if paused
+/<em>int</em>/ current     - current selected child
+/<em>int</em>/ total       - total number of children</p>
+</div><div class="jsdoc-examples"><div class="jsdoc-example"><div><strong>Example 1</strong></div>
+<pre class="brush: js;" lang="javascript">
+	&lt;div dojoType=&quot;dojox.layout.RotatorContainer&quot; id=&quot;myRotator&quot; showTabs=&quot;true&quot; autoStart=&quot;true&quot; transitionDelay=&quot;5000&quot;&gt;
+		&lt;div id=&quot;pane1&quot; dojoType=&quot;dijit.layout.ContentPane&quot; title=&quot;1&quot;&gt;
+			Pane 1!
+		&lt;/div&gt;
+		&lt;div id=&quot;pane2&quot; dojoType=&quot;dijit.layout.ContentPane&quot; title=&quot;2&quot;&gt;
+			Pane 2!
+		&lt;/div&gt;
+		&lt;div id=&quot;pane3&quot; dojoType=&quot;dijit.layout.ContentPane&quot; title=&quot;3&quot; transitionDelay=&quot;10000&quot;&gt;
+			Pane 3 with overrided transitionDelay!
+		&lt;/div&gt;
+	&lt;/div&gt;
+</pre></div></div></div><div class="jsdoc-field public inherited even"><div class="jsdoc-title"><a name="dojox.layout.RotatorPager"></a><span class="functionIcon">dojox.layout.RotatorPager</span></div><div class="jsdoc-inheritance">Defined by <a class="jsdoc-link" href="/api/1.7/dojox/layout">dojox.layout</a></div><div class="jsdoc-summary"><p>A pager can be defined one of two ways:</p>
+
+<ul>
+<li><p>Externally of the RotatorContainer's template and tell the
+RotatorPager the rotatorId of the RotatorContainer</p></li>
+<li><p>As a direct descendant of the RotatorContainer (i.e. inside the
+RotatorContainer's template)</p></li>
+</ul>
+
+<p>The pager can contain the following components:</p>
+
+<ul>
+<li>Previous button</li>
+<li>Must be a dijit.form.Button</li>
+<li><p>dojoAttachPoint must be named "previous"</p></li>
+<li><p>Next button</p></li>
+<li>Must be a dijit.form.Button</li>
+<li><p>dojoAttachPoint must be named "next"</p></li>
+<li><p>Play/Pause toggle button</p></li>
+<li>Must be a dijit.form.ToggleButton</li>
+<li>dojoAttachPoint must be named "playPause"</li>
+<li><p>Use iconClass to specify toggled state</p></li>
+<li><p>Current child #</p></li>
+<li><p>dojoAttachPoint must be named "current"</p></li>
+<li><p>Total # of children</p></li>
+<li>dojoAttachPoint must be named "total"</li>
+</ul>
+
+<p>You can choose to exclude specific controls as well as add elements
+for styling.</p>
+
+<p>Should you need a pager, but don't want to use Dijit buttons, you can
+write your own pager widget and just wire it into the topics.  The
+topic names are prefixed with the widget ID of the RotatorContainer.
+Notifications are received from and sent to the RotatorContainer as
+well as other RotatorPagers.</p>
+
+<p>published topics:
+[widgetId]-cycle - Notify that the next or previous button was pressed.
+Parameters:</p>
+
+<p>/<em>boolean</em>/ next - true if next, false if previous
+[widgetId]-state - Notify that the play/pause button was toggled.
+Parameters:</p>
+
+<p>/<em>boolean</em>/ playing - true if playing, false if paused</p>
+</div><div class="jsdoc-examples"><div class="jsdoc-example"><div><strong>Example 1</strong></div>
+A pager with the current/total children and previous/next buttons.
+<pre class="brush: js;" lang="javascript">
+	&lt;div dojoType=&quot;dojox.layout.RotatorPager&quot; rotatorId=&quot;myRotator&quot;&gt;
+		&lt;button dojoType=&quot;dijit.form.Button&quot; dojoAttachPoint=&quot;previous&quot;&gt;Prev&lt;/button&gt;
+		&lt;span dojoAttachPoint=&quot;current&quot;&gt;&lt;/span&gt; / &lt;span dojoAttachPoint=&quot;total&quot;&gt;&lt;/span&gt;
+		&lt;button dojoType=&quot;dijit.form.Button&quot; dojoAttachPoint=&quot;next&quot;&gt;Next&lt;/button&gt;
+	&lt;/div&gt;
+</pre></div><div class="jsdoc-example"><div><strong>Example 2</strong></div>
+A pager with only a play/pause toggle button.
+<pre class="brush: js;" lang="javascript">
+	&lt;div dojoType=&quot;dojox.layout.RotatorPager&quot; rotatorId=&quot;myRotator&quot;&gt;
+		&lt;button dojoType=&quot;dijit.form.ToggleButton&quot; dojoAttachPoint=&quot;playPause&quot;&gt;&lt;/button&gt;
+	&lt;/div&gt;
+</pre></div><div class="jsdoc-example"><div><strong>Example 3</strong></div>
+A pager styled with iconClass.
+<pre class="brush: js;" lang="javascript">
+	&lt;div dojoType=&quot;dojox.layout.RotatorPager&quot; class=&quot;rotatorIcons&quot; rotatorId=&quot;myRotator&quot;&gt;
+		&lt;button dojoType=&quot;dijit.form.Button&quot; iconClass=&quot;previous&quot; dojoAttachPoint=&quot;previous&quot;&gt;Prev&lt;/button&gt;
+		&lt;button dojoType=&quot;dijit.form.ToggleButton&quot; iconClass=&quot;playPause&quot; dojoAttachPoint=&quot;playPause&quot;&gt;&lt;/button&gt;
+		&lt;button dojoType=&quot;dijit.form.Button&quot; iconClass=&quot;next&quot; dojoAttachPoint=&quot;next&quot;&gt;Next&lt;/button&gt;
+		&lt;span dojoAttachPoint=&quot;current&quot;&gt;&lt;/span&gt; / &lt;span dojoAttachPoint=&quot;total&quot;&gt;&lt;/span&gt;
+	&lt;/div&gt;
+</pre></div></div></div><div class="jsdoc-field public inherited odd"><div class="jsdoc-title"><a name="dojox.layout.ScrollPane"></a><span class="functionIcon">dojox.layout.ScrollPane</span></div><div class="jsdoc-inheritance">Defined by <a class="jsdoc-link" href="/api/1.7/dojox/layout">dojox.layout</a></div><div class="jsdoc-summary"><p>A sizable container that takes it's content's natural size and creates
+a scroll effect based on the relative mouse position. It is an interesting
+way to display lists of data, or blocks of content, within a confined
+space.</p>
+
+<p>Horizontal scrolling is supported. Combination scrolling is not.</p>
+</div><div class="jsdoc-examples"><div class="jsdoc-example"><div><strong>Example 1</strong></div>
+<pre class="brush: js;" lang="javascript">
+	&lt;div dojoType=&quot;dojox.layout.ScrollPane&quot; style=&quot;width:150px height:300px;&quot;&gt;
+		&lt;!-- any height content --&gt;
+	&lt;/div&gt;
+</pre></div></div></div><div class="jsdoc-field public inherited even"><div class="jsdoc-title"><a name="dojox.layout.TableContainer"></a><span class="functionIcon">dojox.layout.TableContainer</span></div><div class="jsdoc-inheritance">Defined by <a class="jsdoc-link" href="/api/1.7/dojox/layout">dojox.layout</a></div><div class="jsdoc-summary"><p>The TableContainer lays out child widgets in a Table layout.
+Each widget can specify a "label" or a "title" parameter.
+This label is displayed either above or to the left of
+a widget depending on whether the "orientation" attribute
+is "horiz" or "vert", for horizontal and vertical respectively.
+The number of columns is configured using the "cols" attribute.
+The width of labels can be configured using the "labelWidth" parameter.</p>
+</div><div class="jsdoc-examples"><div class="jsdoc-example"><div><strong>Example 1</strong></div>
+<pre class="brush: js;" lang="javascript">
+	&lt;div dojoType=&quot;dojox.layout.TableContainer&quot; orientation=&quot;vert&quot; cols=&quot;3&gt;
+		&lt;div dojoType=&quot;dijit.form.TextInput&quot; value=&quot;John&quot; label=&quot;First Name:&quot;&gt;&lt;/div&gt;
+		&lt;div dojoType=&quot;dijit.form.CheckBox&quot; label=&quot;Is Student?:&quot;&gt;&lt;/div&gt;
+		&lt;div dojoType=&quot;dojox.form.DateTextBox&quot; label=&quot;Date Of Birth:&quot;&gt;&lt;/div&gt;
+	&lt;/div&gt;
+</pre></div></div></div><div class="jsdoc-field public inherited odd"><div class="jsdoc-title"><a name="dojox.layout.ToggleSplitter"></a><span class="functionIcon">dojox.layout.ToggleSplitter</span></div><div class="jsdoc-inheritance">Defined by <a class="jsdoc-link" href="/api/1.7/dojox/layout">dojox.layout</a></div><div class="jsdoc-summary"><p>This is instantiated by `dijit.layout.BorderContainer. Users should not
+create it directly.</p>
+</div></div><div class="jsdoc-field private inherited even"><div class="jsdoc-title"><a name="dojox.layout._DockNode"></a><span class="functionIcon">dojox.layout._DockNode</span></div><div class="jsdoc-inheritance">Defined by <a class="jsdoc-link" href="/api/1.7/dojox/layout">dojox.layout</a></div><div class="jsdoc-summary">dojox.layout._DockNode is a private widget used to keep track of
+	which pane is docked.</div></div><div class="jsdoc-field private inherited odd"><div class="jsdoc-title"><a name="dojox.layout._RadioButton"></a><span class="functionIcon">dojox.layout._RadioButton</span></div><div class="jsdoc-inheritance">Defined by <a class="jsdoc-link" href="/api/1.7/dojox/layout">dojox.layout</a></div><div class="jsdoc-summary"><p>A private widget used to manipulate the StackContainer (RadioGroup*). Don't create directly.</p>
+</div></div><div class="jsdoc-field private inherited even"><div class="jsdoc-title"><a name="dojox.layout._ResizeHelper"></a><span class="functionIcon">dojox.layout._ResizeHelper</span></div><div class="jsdoc-inheritance">Defined by <a class="jsdoc-link" href="/api/1.7/dojox/layout">dojox.layout</a></div><div class="jsdoc-summary">A global private resize helper shared between any
+	`dojox.layout.ResizeHandle` with activeSizing off.</div></div></div></div>

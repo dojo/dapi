@@ -1,0 +1,30 @@
+<div class="jsdoc-permalink" style="display:none;">/api/1.7/dojox/geo/charting/widget</div><h1 class="jsdoc-title objectIcon36">dojox.geo.charting.widget <span style="font-size:11px;color:#999;">(version 1.7)</span></h1><div class="jsdoc-prototype">Object &raquo; dojox.geo.charting.widget</div><div class="jsdoc-children"><div class="jsdoc-field-list"><h2 class="jsdoc-summary-heading">Method Summary <span class="jsdoc-summary-toggle"></span></h2><div class="jsdoc-summary-list"><ul><li class="functionIcon public inherited even"><a class="inline-link" href="#dojox.geo.charting.widget.Legend">dojox.geo.charting.widget.Legend</a><span class="parameters">()</span> <span>A legend widget displaying association between colors and Feature value ranges.</span></li><li class="functionIcon public inherited odd"><a class="inline-link" href="#dojox.geo.charting.widget.Map">dojox.geo.charting.widget.Map</a><span class="parameters">(options, div)</span> <span>A map viewer widget based on the dojox.geo.charting.Map component</span></li></ul></div><h2 class="jsdoc-summary-heading">Attached Objects <span class="jsdoc-summary-toggle"></span></h2><div class="jsdoc-summary-list"><div class="jsdoc-field"><div class="jsdoc-title"><span class="constructor"><a class="jsdoc-link" href="/api/1.7/dojox/geo/charting/widget/Legend">dojox.geo.charting.widget.Legend</a></span></div></div><div class="jsdoc-field"><div class="jsdoc-title"><span class="constructor"><a class="jsdoc-link" href="/api/1.7/dojox/geo/charting/widget/Map">dojox.geo.charting.widget.Map</a></span></div></div><div class="jsdoc-field"><div class="jsdoc-title"><span class="object"><a class="jsdoc-link" href="/api/1.7/dojox/geo/charting/widget/Map/map">dojox.geo.charting.widget.Map.map</a></span></div></div></div></div></div><div class="jsdoc-children"><div class="jsdoc-fields"><h2>Methods</h2><div class="jsdoc-field public inherited even"><div class="jsdoc-title"><a name="dojox.geo.charting.widget.Legend"></a><span class="functionIcon">dojox.geo.charting.widget.Legend</span></div><div class="jsdoc-inheritance">Defined by <a class="jsdoc-link" href="/api/1.7/dojox/geo/charting/widget">dojox.geo.charting.widget</a></div><div class="jsdoc-summary"><p>This widget basically is a table comprising (icon,string) pairs, describing the color scheme
+used for the map and its associated text descriptions.</p>
+</div><div class="jsdoc-examples"><div class="jsdoc-example"><div><strong>Example 1</strong></div>
+<pre class="brush: js;" lang="javascript">
+	var legend = new dojox.geo.charting.widget.Legend({
+		map: map
+	});
+</pre></div></div></div><div class="jsdoc-field public inherited odd"><div class="jsdoc-title"><a name="dojox.geo.charting.widget.Map"></a><span class="functionIcon">dojox.geo.charting.widget.Map</span></div><div class="jsdoc-inheritance">Defined by <a class="jsdoc-link" href="/api/1.7/dojox/geo/charting/widget">dojox.geo.charting.widget</a></div><div class="jsdoc-summary"><p>The <code>dojox.geo.charting.widget.Map</code> widget combines map display together with charting capabilities.
+It encapsulates  an <code>dojox.geo.charting.Map</code> object on which most operations are delegated.
+Parameters can be passed as argument at construction time to specify map data file (json shape format)
+as well as charting data.</p>
+
+<p>The parameters are :</p>
+
+<ul>
+<li><code>shapeData</code>: The json object containing map data or the name of the file containing map data.</li>
+<li><code>dataStore</code>: the dataStore to fetch the charting data from</li>
+<li><code>dataBindingAttribute</code>: property name of the dataStore items to use as value for charting</li>
+<li><code>markerData</code>: tooltips to display for map features, handled as json style.</li>
+<li><code>adjustMapCenterOnResize</code>: if true, the center of the map remains the same when resizing the widget</li>
+<li><code>adjustMapScaleOnResize</code>: if true, the map scale is adjusted to leave the visible portion of the map identical as much as possible</li>
+</ul>
+</div><table class="jsdoc-parameters"><tr><th>Parameter</th><th>Type</th><th>Description</th></tr><tr><td class="jsdoc-param-name">options</td><td class="jsdoc-param-type">Object</td><td class="jsdoc-param-description"></td></tr><tr><td class="jsdoc-param-name">div</td><td class="jsdoc-param-type">HtmlNode</td><td class="jsdoc-param-description"></td></tr></table><div class="jsdoc-examples"><div class="jsdoc-example"><div><strong>Example 1</strong></div>
+<pre class="brush: js;" lang="javascript">
+	var map = new dojox.geo.charting.widget.Map({
+		shapeData : 'map.json',
+		adjustMapCenterOnresize : true,
+		adjustMapScaleOnresize : true,
+	});
+</pre></div></div></div></div></div>

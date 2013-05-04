@@ -1,0 +1,32 @@
+<div class="jsdoc-permalink" style="display:none;">/api/1.7/dojox/string</div><h1 class="jsdoc-title objectIcon36">dojox.string <span style="font-size:11px;color:#999;">(version 1.7)</span></h1><div class="jsdoc-prototype">Object &raquo; dojox.string</div><div class="jsdoc-full-summary"><p>A collection of various objects for advanced string manipulation, including a Builder and a tokenizer.</p>
+</div><div class="jsdoc-children"><div class="jsdoc-field-list"><h2 class="jsdoc-summary-heading">Method Summary <span class="jsdoc-summary-toggle"></span></h2><div class="jsdoc-summary-list"><ul><li class="functionIcon public inherited even"><a class="inline-link" href="#dojox.string.BidiEngine">dojox.string.BidiEngine</a><span class="parameters">()</span> <span>This class provides a bidi transformation engine, i.e.
+	functions for reordering and shaping bidi text.</span></li></ul></div><h2 class="jsdoc-summary-heading">Attached Objects <span class="jsdoc-summary-toggle"></span></h2><div class="jsdoc-summary-list"><div class="jsdoc-field"><div class="jsdoc-title"><span class="constructor"><a class="jsdoc-link" href="/api/1.7/dojox/string/BidiEngine">dojox.string.BidiEngine</a></span></div></div></div></div></div><div class="jsdoc-children"><div class="jsdoc-fields"><h2>Methods</h2><div class="jsdoc-field public inherited even"><div class="jsdoc-title"><a name="dojox.string.BidiEngine"></a><span class="functionIcon">dojox.string.BidiEngine</span></div><div class="jsdoc-inheritance">Defined by <a class="jsdoc-link" href="/api/1.7/dojox/string">dojox.string</a></div><div class="jsdoc-summary"><p>Bidi stands for support for languages with a bidirectional script.</p>
+
+<p>Usually Unicode Bidi Algorithm used by OS platform (and web browsers) is capable of properly transforming
+Bidi text and as a result it is adequately displayed on the screen. However, in some situations,
+Unicode Bidi Algorithm is not invoked or is not properly applied. This may occur in situation in which software
+responsible for rendering the text is not leveraging Unicode Bidi Algorithm implemented by OS (e.g. dojox.GFX renderers).</p>
+
+<p>Bidi engine provided in this class implements Unicode Bidi Algorithm as specified at:
+http://www.unicode.org/reports/tr9/.</p>
+
+<p>For more information on basic Bidi concepts please read following article:
+"Bidirectional script support - A primer" available from:
+http://www.ibm.com/developerworks/websphere/library/techarticles/bidi/bidigen.html</p>
+
+<p>As of February 2011, Bidi engine has following limitations:
+1. No support for following numeric shaping options:
+H - Hindi,
+C - Contextual,
+N - Nominal.
+2. No support for following shaping options:
+I - Initial shaping,
+M - Middle shaping,
+F - Final shaping,
+B - Isolated shaping.
+3. No support for source-to-target or/and target-to-source maps.
+4. No support for LRE/RLE/LRO/RLO/PDF (they are handled like neutrals).
+5. No support for Windows compatibility.
+6. No support for  insert/remove marks.
+7. No support for code pages (currently only UTF-8 is supported. Ideally we should convert from any code page to UTF-8).</p>
+</div></div></div></div>

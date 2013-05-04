@@ -1,0 +1,199 @@
+<div class="jsdoc-permalink" style="display:none;">/api/1.7/dojox/gauges</div><h1 class="jsdoc-title objectIcon36">dojox.gauges <span style="font-size:11px;color:#999;">(version 1.7)</span></h1><div class="jsdoc-prototype">Object &raquo; dojox.gauges</div><div class="jsdoc-children"><div class="jsdoc-field-list"><h2 class="jsdoc-summary-heading">Method Summary <span class="jsdoc-summary-toggle"></span></h2><div class="jsdoc-summary-list"><ul><li class="functionIcon public inherited even"><a class="inline-link" href="#dojox.gauges.AnalogArcIndicator">dojox.gauges.AnalogArcIndicator</a><span class="parameters">()</span> <span>An indicator for the AnalogGauge that draws a segment of arc.
+	The segment of arc starts at the start angle of the gauge and ends at the
+	angle that corresponds to the value of the indicator.</span></li><li class="functionIcon public inherited odd"><a class="inline-link" href="#dojox.gauges.AnalogArrowIndicator">dojox.gauges.AnalogArrowIndicator</a><span class="parameters">()</span> <span>An indicator for the AnalogGauge that draws an arrow. The arrow is drawn on the angle that corresponds
+	to the value of the indicator.</span></li><li class="functionIcon public inherited even"><a class="inline-link" href="#dojox.gauges.AnalogCircleIndicator">dojox.gauges.AnalogCircleIndicator</a><span class="parameters">()</span> <span>An indicator for the AnalogGauge that draws a circle. The center of the circle is positioned
+	on the circular gauge according to the value of the indicator. The circle has for radius the
+	length of the indicator. This indicator is mainly used to draw round ticks for the scale.</span></li><li class="functionIcon public inherited odd"><a class="inline-link" href="#dojox.gauges.AnalogGauge">dojox.gauges.AnalogGauge</a><span class="parameters">()</span> <span>a gauge built using the dojox.gfx package.</span></li><li class="functionIcon public inherited even"><a class="inline-link" href="#dojox.gauges.AnalogIndicatorBase">dojox.gauges.AnalogIndicatorBase</a><span class="parameters">()</span> <span>An abstract base class for indicators that can be used in an AnalogGauge.</span></li><li class="functionIcon public inherited odd"><a class="inline-link" href="#dojox.gauges.AnalogLineIndicator">dojox.gauges.AnalogLineIndicator</a><span class="parameters">()</span> <span>An indicator for the AnalogGauge that draws a segment of line that has for length the length of the indicator
+	and that starts at an offset from the center of the gauge. The line is drawn on the angle that corresponds
+	to the value of the indicator.</span></li><li class="functionIcon public inherited even"><a class="inline-link" href="#dojox.gauges.AnalogNeedleIndicator">dojox.gauges.AnalogNeedleIndicator</a><span class="parameters">()</span> <span>An indicator for the AnalogGauge that draws a needle. The needle is drawn on the angle that corresponds
+	to the value of the indicator.</span></li><li class="functionIcon public inherited odd"><a class="inline-link" href="#dojox.gauges.BarCircleIndicator">dojox.gauges.BarCircleIndicator</a><span class="parameters">()</span> <span>An indicator for the BarGauge that draws a circle at a position that corresponds to the
+	indicator value. This indicator is mainly used to draw round ticks for the scale.</span></li><li class="functionIcon public inherited even"><a class="inline-link" href="#dojox.gauges.BarGauge">dojox.gauges.BarGauge</a><span class="parameters">()</span> <span>a bar graph built using the dojox.gfx package.</span></li><li class="functionIcon public inherited odd"><a class="inline-link" href="#dojox.gauges.BarIndicator">dojox.gauges.BarIndicator</a><span class="parameters">()</span> <span>An indicator for the BarGauge that draws a bar corresponding to the indicator value.</span></li><li class="functionIcon public inherited even"><a class="inline-link" href="#dojox.gauges.BarLineIndicator">dojox.gauges.BarLineIndicator</a><span class="parameters">()</span> <span>An indicator for the BarGauge that draws a segment a line corresponding to the indicator value.</span></li><li class="functionIcon public inherited odd"><a class="inline-link" href="#dojox.gauges.GlossyCircularGauge">dojox.gauges.GlossyCircularGauge</a><span class="parameters">()</span> <span>Represents a circular gauge with a glossy appearance.</span></li><li class="functionIcon public inherited even"><a class="inline-link" href="#dojox.gauges.GlossyCircularGaugeBase">dojox.gauges.GlossyCircularGaugeBase</a><span class="parameters">()</span> <span>The base class for GlossyCircularGauge and GlossySemiCircularGauge.</span></li><li class="functionIcon public inherited odd"><a class="inline-link" href="#dojox.gauges.GlossyCircularGaugeNeedle">dojox.gauges.GlossyCircularGaugeNeedle</a><span class="parameters">()</span> <span>The needle for the dojox.gauges.GlossyCircularGauge and
+	dojox.gauges.GlossySemiCircularGauge.</span></li><li class="functionIcon public inherited even"><a class="inline-link" href="#dojox.gauges.GlossyHorizontalGauge">dojox.gauges.GlossyHorizontalGauge</a><span class="parameters">()</span> <span>Represents an horizontal bar gauge with a glossy appearance.</span></li><li class="functionIcon public inherited odd"><a class="inline-link" href="#dojox.gauges.GlossyHorizontalGaugeMarker">dojox.gauges.GlossyHorizontalGaugeMarker</a><span class="parameters">()</span> <span>The marker for the dojox.gauges.GlossyHorizontalGauge.</span></li><li class="functionIcon public inherited even"><a class="inline-link" href="#dojox.gauges.GlossySemiCircularGauge">dojox.gauges.GlossySemiCircularGauge</a><span class="parameters">()</span> <span>Represents a semi circular gauge with a glossy appearance.</span></li><li class="functionIcon public inherited odd"><a class="inline-link" href="#dojox.gauges.Range">dojox.gauges.Range</a><span class="parameters">()</span> <span>a range to be used in a _Gauge</span></li><li class="functionIcon public inherited even"><a class="inline-link" href="#dojox.gauges.TextIndicator">dojox.gauges.TextIndicator</a><span class="parameters">()</span> <span>A gauge indicator the simply draws its value as text.</span></li><li class="functionIcon private inherited odd"><a class="inline-link" href="#dojox.gauges._Gauge">dojox.gauges._Gauge</a><span class="parameters">()</span> <span>The abstract base class for gauges.</span></li><li class="functionIcon private inherited even"><a class="inline-link" href="#dojox.gauges._Indicator">dojox.gauges._Indicator</a><span class="parameters">()</span> <span>An indicator to be used in a gauge</span></li></ul></div><h2 class="jsdoc-summary-heading">Attached Objects <span class="jsdoc-summary-toggle"></span></h2><div class="jsdoc-summary-list"><div class="jsdoc-field"><div class="jsdoc-title"><span class="constructor"><a class="jsdoc-link" href="/api/1.7/dojox/gauges/AnalogArcIndicator">dojox.gauges.AnalogArcIndicator</a></span></div></div><div class="jsdoc-field"><div class="jsdoc-title"><span class="object"><a class="jsdoc-link" href="/api/1.7/dojox/gauges/AnalogArcIndicator/_gauge">dojox.gauges.AnalogArcIndicator._gauge</a></span></div></div><div class="jsdoc-field"><div class="jsdoc-title"><span class="constructor"><a class="jsdoc-link" href="/api/1.7/dojox/gauges/AnalogIndicatorBase">dojox.gauges.AnalogIndicatorBase</a></span></div></div><div class="jsdoc-field"><div class="jsdoc-title"><span class="constructor"><a class="jsdoc-link" href="/api/1.7/dojox/gauges/AnalogArrowIndicator">dojox.gauges.AnalogArrowIndicator</a></span></div></div><div class="jsdoc-field"><div class="jsdoc-title"><span class="constructor"><a class="jsdoc-link" href="/api/1.7/dojox/gauges/AnalogCircleIndicator">dojox.gauges.AnalogCircleIndicator</a></span></div></div><div class="jsdoc-field"><div class="jsdoc-title"><span class="constructor"><a class="jsdoc-link" href="/api/1.7/dojox/gauges/AnalogGauge">dojox.gauges.AnalogGauge</a></span></div></div><div class="jsdoc-field"><div class="jsdoc-title"><span class="constructor"><a class="jsdoc-link" href="/api/1.7/dojox/gauges/_Gauge">dojox.gauges._Gauge</a></span></div></div><div class="jsdoc-field"><div class="jsdoc-title"><span class="constructor"><a class="jsdoc-link" href="/api/1.7/dojox/gauges/AnalogLineIndicator">dojox.gauges.AnalogLineIndicator</a></span></div></div><div class="jsdoc-field"><div class="jsdoc-title"><span class="constructor"><a class="jsdoc-link" href="/api/1.7/dojox/gauges/AnalogNeedleIndicator">dojox.gauges.AnalogNeedleIndicator</a></span></div></div><div class="jsdoc-field"><div class="jsdoc-title"><span class="constructor"><a class="jsdoc-link" href="/api/1.7/dojox/gauges/BarCircleIndicator">dojox.gauges.BarCircleIndicator</a></span></div></div><div class="jsdoc-field"><div class="jsdoc-title"><span class="object"><a class="jsdoc-link" href="/api/1.7/dojox/gauges/BarCircleIndicator/_gauge">dojox.gauges.BarCircleIndicator._gauge</a></span></div></div><div class="jsdoc-field"><div class="jsdoc-title"><span class="constructor"><a class="jsdoc-link" href="/api/1.7/dojox/gauges/BarLineIndicator">dojox.gauges.BarLineIndicator</a></span></div></div><div class="jsdoc-field"><div class="jsdoc-title"><span class="constructor"><a class="jsdoc-link" href="/api/1.7/dojox/gauges/BarGauge">dojox.gauges.BarGauge</a></span></div></div><div class="jsdoc-field"><div class="jsdoc-title"><span class="constructor"><a class="jsdoc-link" href="/api/1.7/dojox/gauges/BarIndicator">dojox.gauges.BarIndicator</a></span></div></div><div class="jsdoc-field"><div class="jsdoc-title"><span class="object"><a class="jsdoc-link" href="/api/1.7/dojox/gauges/BarIndicator/_gauge">dojox.gauges.BarIndicator._gauge</a></span></div></div><div class="jsdoc-field"><div class="jsdoc-title"><span class="object"><a class="jsdoc-link" href="/api/1.7/dojox/gauges/BarLineIndicator/_gauge">dojox.gauges.BarLineIndicator._gauge</a></span></div></div><div class="jsdoc-field"><div class="jsdoc-title"><span class="constructor"><a class="jsdoc-link" href="/api/1.7/dojox/gauges/_Indicator">dojox.gauges._Indicator</a></span></div></div><div class="jsdoc-field"><div class="jsdoc-title"><span class="constructor"><a class="jsdoc-link" href="/api/1.7/dojox/gauges/GlossyCircularGauge">dojox.gauges.GlossyCircularGauge</a></span></div></div><div class="jsdoc-field"><div class="jsdoc-title"><span class="constructor"><a class="jsdoc-link" href="/api/1.7/dojox/gauges/GlossyCircularGaugeBase">dojox.gauges.GlossyCircularGaugeBase</a></span></div></div><div class="jsdoc-field"><div class="jsdoc-title"><span class="object"><a class="jsdoc-link" href="/api/1.7/dojox/gauges/GlossyCircularGaugeBase/_needle">dojox.gauges.GlossyCircularGaugeBase._needle</a></span></div></div><div class="jsdoc-field"><div class="jsdoc-title"><span class="object"><a class="jsdoc-link" href="/api/1.7/dojox/gauges/GlossyCircularGaugeBase/_textIndicator">dojox.gauges.GlossyCircularGaugeBase._textIndicator</a></span></div></div><div class="jsdoc-field"><div class="jsdoc-title"><span class="constructor"><a class="jsdoc-link" href="/api/1.7/dojox/gauges/GlossyCircularGaugeNeedle">dojox.gauges.GlossyCircularGaugeNeedle</a></span></div></div><div class="jsdoc-field"><div class="jsdoc-title"><span class="constructor"><a class="jsdoc-link" href="/api/1.7/dojox/gauges/GlossyHorizontalGauge">dojox.gauges.GlossyHorizontalGauge</a></span></div></div><div class="jsdoc-field"><div class="jsdoc-title"><span class="object"><a class="jsdoc-link" href="/api/1.7/dojox/gauges/GlossyHorizontalGauge/_needle">dojox.gauges.GlossyHorizontalGauge._needle</a></span></div></div><div class="jsdoc-field"><div class="jsdoc-title"><span class="constructor"><a class="jsdoc-link" href="/api/1.7/dojox/gauges/GlossyHorizontalGaugeMarker">dojox.gauges.GlossyHorizontalGaugeMarker</a></span></div></div><div class="jsdoc-field"><div class="jsdoc-title"><span class="object"><a class="jsdoc-link" href="/api/1.7/dojox/gauges/GlossyHorizontalGaugeMarker/_gauge">dojox.gauges.GlossyHorizontalGaugeMarker._gauge</a></span></div></div><div class="jsdoc-field"><div class="jsdoc-title"><span class="constructor"><a class="jsdoc-link" href="/api/1.7/dojox/gauges/GlossySemiCircularGauge">dojox.gauges.GlossySemiCircularGauge</a></span></div></div><div class="jsdoc-field"><div class="jsdoc-title"><span class="constructor"><a class="jsdoc-link" href="/api/1.7/dojox/gauges/Range">dojox.gauges.Range</a></span></div></div><div class="jsdoc-field"><div class="jsdoc-title"><span class="constructor"><a class="jsdoc-link" href="/api/1.7/dojox/gauges/TextIndicator">dojox.gauges.TextIndicator</a></span></div></div><div class="jsdoc-field"><div class="jsdoc-title"><span class="object"><a class="jsdoc-link" href="/api/1.7/dojox/gauges/TextIndicator/_gauge">dojox.gauges.TextIndicator._gauge</a></span></div></div><div class="jsdoc-field"><div class="jsdoc-title"><span class="object"><a class="jsdoc-link" href="/api/1.7/dojox/gauges/_Gauge/_backgroundDefault">dojox.gauges._Gauge._backgroundDefault</a></span></div></div><div class="jsdoc-field"><div class="jsdoc-title"><span class="object"><a class="jsdoc-link" href="/api/1.7/dojox/gauges/_Indicator/font">dojox.gauges._Indicator.font</a></span></div></div></div></div></div><div class="jsdoc-children"><div class="jsdoc-fields"><h2>Methods</h2><div class="jsdoc-field public inherited even"><div class="jsdoc-title"><a name="dojox.gauges.AnalogArcIndicator"></a><span class="functionIcon">dojox.gauges.AnalogArcIndicator</span></div><div class="jsdoc-inheritance">Defined by <a class="jsdoc-link" href="/api/1.7/dojox/gauges">dojox.gauges</a></div><div class="jsdoc-summary">An indicator for the AnalogGauge that draws a segment of arc.
+	The segment of arc starts at the start angle of the gauge and ends at the
+	angle that corresponds to the value of the indicator.</div></div><div class="jsdoc-field public inherited odd"><div class="jsdoc-title"><a name="dojox.gauges.AnalogArrowIndicator"></a><span class="functionIcon">dojox.gauges.AnalogArrowIndicator</span></div><div class="jsdoc-inheritance">Defined by <a class="jsdoc-link" href="/api/1.7/dojox/gauges">dojox.gauges</a></div><div class="jsdoc-summary">An indicator for the AnalogGauge that draws an arrow. The arrow is drawn on the angle that corresponds
+	to the value of the indicator.</div></div><div class="jsdoc-field public inherited even"><div class="jsdoc-title"><a name="dojox.gauges.AnalogCircleIndicator"></a><span class="functionIcon">dojox.gauges.AnalogCircleIndicator</span></div><div class="jsdoc-inheritance">Defined by <a class="jsdoc-link" href="/api/1.7/dojox/gauges">dojox.gauges</a></div><div class="jsdoc-summary">An indicator for the AnalogGauge that draws a circle. The center of the circle is positioned
+	on the circular gauge according to the value of the indicator. The circle has for radius the
+	length of the indicator. This indicator is mainly used to draw round ticks for the scale.</div></div><div class="jsdoc-field public inherited odd"><div class="jsdoc-title"><a name="dojox.gauges.AnalogGauge"></a><span class="functionIcon">dojox.gauges.AnalogGauge</span></div><div class="jsdoc-inheritance">Defined by <a class="jsdoc-link" href="/api/1.7/dojox/gauges">dojox.gauges</a></div><div class="jsdoc-summary"><p>using dojo.gfx (and thus either SVG or VML based on what is supported), this widget
+builds a gauge component, used to display numerical data in a familiar format</p>
+</div><div class="jsdoc-examples"><div class="jsdoc-example"><div><strong>Example 1</strong></div>
+<pre class="brush: js;" lang="javascript">
+	&lt;script type=&quot;text/javascript&quot;&gt;
+		require([&quot;dojox/gauges/AnalogGauge&quot;]);
+	&lt;/script&gt;
+</pre>
+<pre class="brush: js;" lang="javascript">
+	&lt;div	dojoType=&quot;dojox.gauges.AnalogGauge&quot;
+			id=&quot;testGauge&quot;
+			width=&quot;300&quot;
+			height=&quot;200&quot;
+			cx=150
+			cy=175
+			radius=125
+			image=&quot;gaugeOverlay.png&quot;
+			imageOverlay=&quot;false&quot;
+			imageWidth=&quot;280&quot;
+			imageHeight=&quot;155&quot;
+			imageX=&quot;12&quot;
+			imageY=&quot;38&quot;&gt;
+	&lt;/div&gt;
+</pre></div></div></div><div class="jsdoc-field public inherited even"><div class="jsdoc-title"><a name="dojox.gauges.AnalogIndicatorBase"></a><span class="functionIcon">dojox.gauges.AnalogIndicatorBase</span></div><div class="jsdoc-inheritance">Defined by <a class="jsdoc-link" href="/api/1.7/dojox/gauges">dojox.gauges</a></div><div class="jsdoc-summary">An abstract base class for indicators that can be used in an AnalogGauge.</div></div><div class="jsdoc-field public inherited odd"><div class="jsdoc-title"><a name="dojox.gauges.AnalogLineIndicator"></a><span class="functionIcon">dojox.gauges.AnalogLineIndicator</span></div><div class="jsdoc-inheritance">Defined by <a class="jsdoc-link" href="/api/1.7/dojox/gauges">dojox.gauges</a></div><div class="jsdoc-summary">An indicator for the AnalogGauge that draws a segment of line that has for length the length of the indicator
+	and that starts at an offset from the center of the gauge. The line is drawn on the angle that corresponds
+	to the value of the indicator.</div></div><div class="jsdoc-field public inherited even"><div class="jsdoc-title"><a name="dojox.gauges.AnalogNeedleIndicator"></a><span class="functionIcon">dojox.gauges.AnalogNeedleIndicator</span></div><div class="jsdoc-inheritance">Defined by <a class="jsdoc-link" href="/api/1.7/dojox/gauges">dojox.gauges</a></div><div class="jsdoc-summary">An indicator for the AnalogGauge that draws a needle. The needle is drawn on the angle that corresponds
+	to the value of the indicator.</div></div><div class="jsdoc-field public inherited odd"><div class="jsdoc-title"><a name="dojox.gauges.BarCircleIndicator"></a><span class="functionIcon">dojox.gauges.BarCircleIndicator</span></div><div class="jsdoc-inheritance">Defined by <a class="jsdoc-link" href="/api/1.7/dojox/gauges">dojox.gauges</a></div><div class="jsdoc-summary">An indicator for the BarGauge that draws a circle at a position that corresponds to the
+	indicator value. This indicator is mainly used to draw round ticks for the scale.</div></div><div class="jsdoc-field public inherited even"><div class="jsdoc-title"><a name="dojox.gauges.BarGauge"></a><span class="functionIcon">dojox.gauges.BarGauge</span></div><div class="jsdoc-inheritance">Defined by <a class="jsdoc-link" href="/api/1.7/dojox/gauges">dojox.gauges</a></div><div class="jsdoc-summary"><p>using dojo.gfx (and thus either SVG or VML based on what is supported), this widget
+builds a bar graph component, used to display numerical data in a familiar format.</p>
+
+<p>usage:
+<script type="text/javascript">
+require(["dojox/gauges/BarGauge"]);
+</script>
+...
+<div    dojoType="dojox.gauges.BarGauge"
+id="testBarGauge"
+barGaugeHeight="55"
+dataY="25"
+dataHeight="25"
+dataWidth="225">
+</div></p>
+</div></div><div class="jsdoc-field public inherited odd"><div class="jsdoc-title"><a name="dojox.gauges.BarIndicator"></a><span class="functionIcon">dojox.gauges.BarIndicator</span></div><div class="jsdoc-inheritance">Defined by <a class="jsdoc-link" href="/api/1.7/dojox/gauges">dojox.gauges</a></div><div class="jsdoc-summary">An indicator for the BarGauge that draws a bar corresponding to the indicator value.</div></div><div class="jsdoc-field public inherited even"><div class="jsdoc-title"><a name="dojox.gauges.BarLineIndicator"></a><span class="functionIcon">dojox.gauges.BarLineIndicator</span></div><div class="jsdoc-inheritance">Defined by <a class="jsdoc-link" href="/api/1.7/dojox/gauges">dojox.gauges</a></div><div class="jsdoc-summary">An indicator for the BarGauge that draws a segment a line corresponding to the indicator value.</div></div><div class="jsdoc-field public inherited odd"><div class="jsdoc-title"><a name="dojox.gauges.GlossyCircularGauge"></a><span class="functionIcon">dojox.gauges.GlossyCircularGauge</span></div><div class="jsdoc-inheritance">Defined by <a class="jsdoc-link" href="/api/1.7/dojox/gauges">dojox.gauges</a></div><div class="jsdoc-summary">Represents a circular gauge with a glossy appearance.</div><div class="jsdoc-examples"><div class="jsdoc-example"><div><strong>Example 1</strong></div>
+<pre class="brush: js;" lang="javascript">
+	&lt;div	dojoType=&quot;dojox.gauges.GlossyCircularGauge&quot;
+		id=&quot;testGauge&quot;
+		width=&quot;300&quot;
+		height=&quot;300&quot;
+		min=&quot;0&quot;
+		max=&quot;100&quot;
+		value=&quot;0&quot;
+		majorTicksInterval=&quot;10&quot;
+		majorTicksColor=&quot;#c4c4c4&quot;
+		minorTicksInterval=&quot;5&quot;
+		minorTicksColor=&quot;#c4c4c4&quot;
+		color=&quot;black&quot;
+		needleColor=&quot;#c4c4c4&quot;
+		font=&quot;normal normal normal 10pt sans-serif&quot;
+		textIndicatorFont=&quot;normal normal normal 20pt sans-serif&quot;
+		textIndicatorVisible=&quot;true&quot;
+		textIndicatorColor=&quot;#c4c4c4&quot;
+		majorTicksLabelPlacement=&quot;inside&quot;|&quot;outside&quot;
+		noChange=&quot;true&quot;
+		title=&quot;title&quot;
+		scalePrecision=&quot;0&quot;
+		textIndicatorPrecision=&quot;0&quot;&gt;
+	&lt;/div&gt;
+</pre></div></div></div><div class="jsdoc-field public inherited even"><div class="jsdoc-title"><a name="dojox.gauges.GlossyCircularGaugeBase"></a><span class="functionIcon">dojox.gauges.GlossyCircularGaugeBase</span></div><div class="jsdoc-inheritance">Defined by <a class="jsdoc-link" href="/api/1.7/dojox/gauges">dojox.gauges</a></div><div class="jsdoc-summary">The base class for GlossyCircularGauge and GlossySemiCircularGauge.</div></div><div class="jsdoc-field public inherited odd"><div class="jsdoc-title"><a name="dojox.gauges.GlossyCircularGaugeNeedle"></a><span class="functionIcon">dojox.gauges.GlossyCircularGaugeNeedle</span></div><div class="jsdoc-inheritance">Defined by <a class="jsdoc-link" href="/api/1.7/dojox/gauges">dojox.gauges</a></div><div class="jsdoc-summary"><p>This object defines the needle for the dojox.gauges.GlossyCircularGauge and
+dojox.gauges.GlossySemiCircularGauge.
+Since the needle is created by the gauges class, you do not have to use this class directly.</p>
+</div></div><div class="jsdoc-field public inherited even"><div class="jsdoc-title"><a name="dojox.gauges.GlossyHorizontalGauge"></a><span class="functionIcon">dojox.gauges.GlossyHorizontalGauge</span></div><div class="jsdoc-inheritance">Defined by <a class="jsdoc-link" href="/api/1.7/dojox/gauges">dojox.gauges</a></div><div class="jsdoc-summary">Represents an horizontal bar gauge with a glossy appearance.</div><div class="jsdoc-examples"><div class="jsdoc-example"><div><strong>Example 1</strong></div>
+<pre class="brush: js;" lang="javascript">
+	&lt;div dojoType=&quot;dojox.gauges.GlossyHorizontalGauge&quot;
+		id=&quot;testGauge&quot;
+		width=&quot;500&quot;
+		height=&quot;100&quot;
+		min=&quot;0&quot;
+		max=&quot;100&quot;
+		value=&quot;0&quot;
+		majorTicksInterval=&quot;10&quot;
+		majorTicksColor=&quot;#c4c4c4&quot;
+		minorTicksInterval=&quot;5&quot;
+		minorTicksColor=&quot;#c4c4c4&quot;
+		color=&quot;black&quot;
+		markerColor=&quot;#c4c4c4&quot;
+		font=&quot;normal normal normal 10pt sans-serif&quot;
+		noChange=&quot;true&quot;
+		title=&quot;title&quot;
+		scalePrecision=&quot;0&quot;
+	&gt;
+	&lt;/div&gt;
+</pre></div></div></div><div class="jsdoc-field public inherited odd"><div class="jsdoc-title"><a name="dojox.gauges.GlossyHorizontalGaugeMarker"></a><span class="functionIcon">dojox.gauges.GlossyHorizontalGaugeMarker</span></div><div class="jsdoc-inheritance">Defined by <a class="jsdoc-link" href="/api/1.7/dojox/gauges">dojox.gauges</a></div><div class="jsdoc-summary"><p>This object defines the marker for the dojox.gauges.GlossyHorizontalGauge.
+Since the needle is created by the gauges class, you do not have to use this class directly.</p>
+</div></div><div class="jsdoc-field public inherited even"><div class="jsdoc-title"><a name="dojox.gauges.GlossySemiCircularGauge"></a><span class="functionIcon">dojox.gauges.GlossySemiCircularGauge</span></div><div class="jsdoc-inheritance">Defined by <a class="jsdoc-link" href="/api/1.7/dojox/gauges">dojox.gauges</a></div><div class="jsdoc-summary">Represents a semi circular gauge with a glossy appearance.</div><div class="jsdoc-examples"><div class="jsdoc-example"><div><strong>Example 1</strong></div>
+<pre class="brush: js;" lang="javascript">
+	&lt;div	dojoType=&quot;dojox.gauges.GlossySemiCircularGauge&quot;
+		id=&quot;testGauge&quot;
+		width=&quot;300&quot;
+		height=&quot;300&quot;
+		min=&quot;0&quot;
+		max=&quot;100&quot;
+		value=&quot;0&quot;
+		majorTicksInterval=&quot;10&quot;
+		majorTicksColor=&quot;#c4c4c4&quot;
+		minorTicksInterval=&quot;5&quot;
+		minorTicksColor=&quot;#c4c4c4&quot;
+		color=&quot;black&quot;
+		needleColor=&quot;#c4c4c4&quot;
+		font=&quot;normal normal normal 10pt sans-serif&quot;
+		textIndicatorFont=&quot;normal normal normal 20pt sans-serif&quot;
+		textIndicatorVisible=&quot;true&quot;
+		textIndicatorColor=&quot;#c4c4c4&quot;
+		majorTicksLabelPlacement=&quot;inside&quot;|&quot;outside&quot;
+		noChange=&quot;true&quot;
+		title=&quot;title&quot;
+		scalePrecision=&quot;0&quot;
+		textIndicatorPrecision=&quot;0&quot;
+	&gt;
+	&lt;/div&gt;
+</pre></div></div></div><div class="jsdoc-field public inherited odd"><div class="jsdoc-title"><a name="dojox.gauges.Range"></a><span class="functionIcon">dojox.gauges.Range</span></div><div class="jsdoc-inheritance">Defined by <a class="jsdoc-link" href="/api/1.7/dojox/gauges">dojox.gauges</a></div><div class="jsdoc-summary"><p>a range widget, which has given properties.  drawn by a _Gauge.</p>
+</div><div class="jsdoc-examples"><div class="jsdoc-example"><div><strong>Example 1</strong></div>
+<pre class="brush: js;" lang="javascript">
+	&lt;script type=&quot;text/javascript&quot;&gt;
+		require([&quot;dojox/gauges/AnalogGauge&quot;]);
+	&lt;/script&gt;
+	...
+	&lt;div	dojoType=&quot;dojox.gauges.AnalogGauge&quot;
+			id=&quot;testGauge&quot;
+			width=&quot;300&quot;
+			height=&quot;200&quot;
+			cx=150
+			cy=175
+			radius=125
+			image=&quot;gaugeOverlay.png&quot;
+			imageOverlay=&quot;false&quot;
+			imageWidth=&quot;280&quot;
+			imageHeight=&quot;155&quot;
+			imageX=&quot;12&quot;
+			imageY=&quot;38&quot;&gt;
+		&lt;div	dojoType=&quot;dojox.gauges.Range&quot;
+				low=5
+				high=10
+				hover=&quot;5 - 10&quot;
+		&gt;&lt;/div&gt;
+		&lt;div	dojoType=&quot;dojox.gauges.Range&quot;
+				low=10
+				high=20
+				hover=&quot;10 - 20&quot;
+		&gt;&lt;/div&gt;
+	&lt;/div&gt;
+</pre></div></div></div><div class="jsdoc-field public inherited even"><div class="jsdoc-title"><a name="dojox.gauges.TextIndicator"></a><span class="functionIcon">dojox.gauges.TextIndicator</span></div><div class="jsdoc-inheritance">Defined by <a class="jsdoc-link" href="/api/1.7/dojox/gauges">dojox.gauges</a></div><div class="jsdoc-summary">A gauge indicator the simply draws its value as text.</div></div><div class="jsdoc-field private inherited odd"><div class="jsdoc-title"><a name="dojox.gauges._Gauge"></a><span class="functionIcon">dojox.gauges._Gauge</span></div><div class="jsdoc-inheritance">Defined by <a class="jsdoc-link" href="/api/1.7/dojox/gauges">dojox.gauges</a></div><div class="jsdoc-summary"><p>using dojo.gfx (and thus either SVG or VML based on what is supported), this widget
+builds a gauge component, used to display numerical data in a familiar format.
+This widget is not to be used alone. it is meant to be subclassed, such as
+dojox.gauges.BarGauge or dojox.gauges.AnalogGauge</p>
+</div></div><div class="jsdoc-field private inherited even"><div class="jsdoc-title"><a name="dojox.gauges._Indicator"></a><span class="functionIcon">dojox.gauges._Indicator</span></div><div class="jsdoc-inheritance">Defined by <a class="jsdoc-link" href="/api/1.7/dojox/gauges">dojox.gauges</a></div><div class="jsdoc-summary"><p>An indicator widget, which has given properties.  drawn by a gauge.</p>
+</div><div class="jsdoc-examples"><div class="jsdoc-example"><div><strong>Example 1</strong></div>
+<pre class="brush: js;" lang="javascript">
+	&lt;script type=&quot;text/javascript&quot;&gt;
+		require([&quot;dojox/gauges/AnalogGauge&quot;,&quot;dojox/gauges/Indicator&quot;]);
+	&lt;/script&gt;
+	...
+	&lt;div	dojoType=&quot;dojox.gauges.AnalogGauge&quot;
+			id=&quot;testGauge&quot;
+			width=&quot;300&quot;
+			height=&quot;200&quot;
+			cx=150
+			cy=175
+			radius=125
+			image=&quot;gaugeOverlay.png&quot;
+			imageOverlay=&quot;false&quot;
+			imageWidth=&quot;280&quot;
+			imageHeight=&quot;155&quot;
+			imageX=&quot;12&quot;
+			imageY=&quot;38&quot;&gt;
+		&lt;div 	dojoType=&quot;dojox.gauges.Indicator&quot;
+				value=17
+				type=&quot;arrow&quot;
+				length=135
+				width=3
+				hover=&quot;Value: 17&quot;
+				onDragMove=&quot;handleDragMove&quot;&gt;
+		&lt;/div&gt;
+	&lt;/div&gt;
+</pre></div></div></div></div></div>

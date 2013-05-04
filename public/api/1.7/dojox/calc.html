@@ -1,0 +1,53 @@
+<div class="jsdoc-permalink" style="display:none;">/api/1.7/dojox/calc</div><h1 class="jsdoc-title objectIcon36">dojox.calc <span style="font-size:11px;color:#999;">(version 1.7)</span></h1><div class="jsdoc-prototype">Object &raquo; dojox.calc</div><div class="jsdoc-children"><div class="jsdoc-field-list"><h2 class="jsdoc-summary-heading">Method Summary <span class="jsdoc-summary-toggle"></span></h2><div class="jsdoc-summary-list"><ul><li class="functionIcon public inherited even"><a class="inline-link" href="#dojox.calc.FuncGen">dojox.calc.FuncGen</a><span class="parameters">()</span> <span>The dialog layout for making functions
+	
+	
+	
+	the user can save functions to the writestore
+	
+	
+	users cannot edit the read store contents, but they can use them
+	
+	
+	use the names to get to the function</span></li><li class="functionIcon public inherited odd"><a class="inline-link" href="#dojox.calc.GraphPro">dojox.calc.GraphPro</a><span class="parameters">()</span> <span>The dialog widget for a graphing, scientific calculator</span></li><li class="functionIcon public inherited even"><a class="inline-link" href="#dojox.calc.Grapher">dojox.calc.Grapher</a><span class="parameters">()</span> <span>The dialog layout for making graphs
+	
+	
+	
+	attributes to name the indices of this.array</span></li><li class="functionIcon public inherited odd"><a class="inline-link" href="#dojox.calc.Standard">dojox.calc.Standard</a><span class="parameters">()</span> <span>The dialog layout for a standard 4 function/algebraic calculator
+	
+	
+	
+	insertMinusSign: function(){
+	//
+	var v = this.subtract.get('label');
+	if(v != '(-)' &amp;&amp; this.putInAnsIfTextboxIsHighlighted(this.textboxWidget.textbox)){
+	this.insertText(&quot;Ans-&quot;);
+	return;
+	}
+	this.insertText('-');
+	},</span></li><li class="functionIcon private inherited even"><a class="inline-link" href="#dojox.calc._Executor">dojox.calc._Executor</a><span class="parameters">()</span> <span>A graphing, scientific calculator</span></li></ul></div><h2 class="jsdoc-summary-heading">Attached Objects <span class="jsdoc-summary-toggle"></span></h2><div class="jsdoc-summary-list"><div class="jsdoc-field"><div class="jsdoc-title"><span class="constructor"><a class="jsdoc-link" href="/api/1.7/dojox/calc/FuncGen">dojox.calc.FuncGen</a></span></div></div><div class="jsdoc-field"><div class="jsdoc-title"><span class="object"><a class="jsdoc-link" href="/api/1.7/dojox/calc/FuncGen/combo">dojox.calc.FuncGen.combo</a></span></div></div><div class="jsdoc-field"><div class="jsdoc-title"><span class="constructor"><a class="jsdoc-link" href="/api/1.7/dojox/calc/GraphPro">dojox.calc.GraphPro</a></span></div></div><div class="jsdoc-field"><div class="jsdoc-title"><span class="constructor"><a class="jsdoc-link" href="/api/1.7/dojox/calc/Standard">dojox.calc.Standard</a></span></div></div><div class="jsdoc-field"><div class="jsdoc-title"><span class="constructor"><a class="jsdoc-link" href="/api/1.7/dojox/calc/Grapher">dojox.calc.Grapher</a></span></div></div><div class="jsdoc-field"><div class="jsdoc-title"><span class="object"><a class="jsdoc-link" href="/api/1.7/dojox/calc/Standard/textboxWidget/textbox">dojox.calc.Standard.textboxWidget.textbox</a></span></div></div><div class="jsdoc-field"><div class="jsdoc-title"><span class="object"><a class="jsdoc-link" href="/api/1.7/dojox/calc/Standard/displayBox">dojox.calc.Standard.displayBox</a></span></div></div><div class="jsdoc-field"><div class="jsdoc-title"><span class="constructor"><a class="jsdoc-link" href="/api/1.7/dojox/calc/_Executor">dojox.calc._Executor</a></span></div></div></div></div></div><div class="jsdoc-children"><div class="jsdoc-fields"><h2>Methods</h2><div class="jsdoc-field public inherited even"><div class="jsdoc-title"><a name="dojox.calc.FuncGen"></a><span class="functionIcon">dojox.calc.FuncGen</span></div><div class="jsdoc-inheritance">Defined by <a class="jsdoc-link" href="/api/1.7/dojox/calc">dojox.calc</a></div><div class="jsdoc-summary">The dialog layout for making functions
+	
+	
+	
+	the user can save functions to the writestore
+	
+	
+	users cannot edit the read store contents, but they can use them
+	
+	
+	use the names to get to the function</div></div><div class="jsdoc-field public inherited odd"><div class="jsdoc-title"><a name="dojox.calc.GraphPro"></a><span class="functionIcon">dojox.calc.GraphPro</span></div><div class="jsdoc-inheritance">Defined by <a class="jsdoc-link" href="/api/1.7/dojox/calc">dojox.calc</a></div><div class="jsdoc-summary">The dialog widget for a graphing, scientific calculator</div></div><div class="jsdoc-field public inherited even"><div class="jsdoc-title"><a name="dojox.calc.Grapher"></a><span class="functionIcon">dojox.calc.Grapher</span></div><div class="jsdoc-inheritance">Defined by <a class="jsdoc-link" href="/api/1.7/dojox/calc">dojox.calc</a></div><div class="jsdoc-summary">The dialog layout for making graphs
+	
+	
+	
+	attributes to name the indices of this.array</div></div><div class="jsdoc-field public inherited odd"><div class="jsdoc-title"><a name="dojox.calc.Standard"></a><span class="functionIcon">dojox.calc.Standard</span></div><div class="jsdoc-inheritance">Defined by <a class="jsdoc-link" href="/api/1.7/dojox/calc">dojox.calc</a></div><div class="jsdoc-summary">The dialog layout for a standard 4 function/algebraic calculator
+	
+	
+	
+	insertMinusSign: function(){
+	//
+	var v = this.subtract.get('label');
+	if(v != '(-)' &amp;&amp; this.putInAnsIfTextboxIsHighlighted(this.textboxWidget.textbox)){
+	this.insertText(&quot;Ans-&quot;);
+	return;
+	}
+	this.insertText('-');
+	},</div></div><div class="jsdoc-field private inherited even"><div class="jsdoc-title"><a name="dojox.calc._Executor"></a><span class="functionIcon">dojox.calc._Executor</span></div><div class="jsdoc-inheritance">Defined by <a class="jsdoc-link" href="/api/1.7/dojox/calc">dojox.calc</a></div><div class="jsdoc-summary">A graphing, scientific calculator</div></div></div></div>

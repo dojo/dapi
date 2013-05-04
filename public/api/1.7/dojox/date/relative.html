@@ -1,0 +1,22 @@
+<div class="jsdoc-permalink" style="display:none;">/api/1.7/dojox/date/relative</div><h1 class="jsdoc-title objectIcon36">dojox.date.relative <span style="font-size:11px;color:#999;">(version 1.7)</span></h1><div class="jsdoc-prototype">Object &raquo; dojox.date.relative</div><div class="jsdoc-require">dojo.require("dojox.date.relative");</div><div class="jsdoc-prototype">Defined in dojox/date/relative.js</div><div class="jsdoc-children"><div class="jsdoc-field-list"><h2 class="jsdoc-summary-heading">Method Summary <span class="jsdoc-summary-toggle"></span></h2><div class="jsdoc-summary-list"><ul><li class="functionIcon private inherited even"><a class="inline-link" href="#dojox.date.relative.__FormatOptions">dojox.date.relative.__FormatOptions</a><span class="parameters">()</span></li><li class="functionIcon public inherited odd"><a class="inline-link" href="#dojox.date.relative.format">dojox.date.relative.format</a><span class="parameters">(dateObject, options)</span> <span>Format a Date object as a String, using locale-specific settings,
+	relative to the current date or some other date.</span></li></ul></div></div></div><div class="jsdoc-children"><div class="jsdoc-fields"><h2>Methods</h2><div class="jsdoc-field private inherited even"><div class="jsdoc-title"><a name="dojox.date.relative.__FormatOptions"></a><span class="functionIcon">dojox.date.relative.__FormatOptions</span></div><div class="jsdoc-inheritance">Defined by <a class="jsdoc-link" href="/api/1.7/dojox/date/relative">dojox.date.relative</a></div></div><div class="jsdoc-field public inherited odd"><div class="jsdoc-title"><a name="dojox.date.relative.format"></a><span class="functionIcon">dojox.date.relative.format</span></div><div class="jsdoc-inheritance">Defined by <a class="jsdoc-link" href="/api/1.7/dojox/date/relative">dojox.date.relative</a></div><div class="jsdoc-summary"><p>Create a string from a Date object using the most significant information
+and a known localized pattern.  This method formats both the date and
+time from dateObject.  Formatting patterns are chosen appropriate to
+the locale.</p>
+
+<p>If the day portion of the date falls within the current date (or the
+relativeDate option, if present), then the time will be all that
+is displayed</p>
+
+<p>If the day portion of the date falls within the past week (or the
+week preceeding relativeDate, if present), then the display will show
+day of week and time.  This functionality can be turned off by setting
+weekCheck to false.</p>
+
+<p>If the year portion of the date falls within the current year (or the
+year portion of relativeDate, if present), then the display will show
+month and day.</p>
+
+<p>Otherwise, this function is equivalent to calling dojo.date.format with
+formatLength of "medium"</p>
+</div><table class="jsdoc-parameters"><tr><th>Parameter</th><th>Type</th><th>Description</th></tr><tr><td class="jsdoc-param-name">dateObject</td><td class="jsdoc-param-type">Date</td><td class="jsdoc-param-description">the date and time to be formatted.</td></tr><tr><td class="jsdoc-param-name">options</td><td class="jsdoc-param-type">Object</td><td class="jsdoc-param-description"><div><em>Optional.</em></div><table class="jsdoc-parameters" style="margin-left:0;margin-right:0;margin-bottom:0;"><tr><th>Parameter</th><th>Type</th><th>Description</th></tr></table></td></tr></table></div></div></div>

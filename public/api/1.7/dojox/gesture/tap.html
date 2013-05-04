@@ -1,0 +1,38 @@
+<div class="jsdoc-permalink" style="display:none;">/api/1.7/dojox/gesture/tap</div><h1 class="jsdoc-title constructorIcon36">dojox.gesture.tap <span style="font-size:11px;color:#999;">(version 1.7)</span></h1><div class="jsdoc-prototype">Object &raquo; <a class="jsdoc-link" href="/api/1.7/Base">Base</a> &raquo; dojox.gesture.tap</div><div class="jsdoc-require">dojo.require("dojox.gesture.tap");</div><div class="jsdoc-prototype">Defined in dojox/gesture/tap.js</div><div class="jsdoc-function-information"><h3>Usage:</h3><div class="function-signature"><span class="keyword">var</span> foo = new dojox.gesture.tap();</div></div><div class="jsdoc-full-summary"><p>This module provides tap gesture event handlers:</p>
+
+<ol>
+<li><p>dojox.gesture.tap: 'tap' event</p></li>
+<li><p>dojox.gesture.tap.hold: 'tap.hold' event</p></li>
+<li><p>dojox.gesture.tap.doubletap: 'tap.doubletap' event</p></li>
+</ol>
+</div><div class="jsdoc-examples"><h2>Examples:</h2><div class="jsdoc-example"><h3>Example 1</h3>
+A. Used with dojo.connect()
+<pre class="brush: js;" lang="javascript">
+	dojo.connect(node, dojox.gesture.tap, function(e){});
+	dojo.connect(node, dojox.gesture.tap.hold, function(e){});
+	dojo.connect(node, dojox.gesture.tap.doubletap, function(e){});
+</pre>
+B. Used with dojo.on
+<pre class="brush: js;" lang="javascript">
+	define(['dojo/on', 'dojox/gesture/tap'], function(on, tap){
+		on(node, tap, function(e){});
+		on(node, tap.hold, function(e){});
+		on(node, tap.doubletap, function(e){});
+</pre>
+C. Used with dojox.gesture.tap.* directly
+<pre class="brush: js;" lang="javascript">
+	dojox.gesture.tap(node, function(e){});
+	dojox.gesture.tap.hold(node, function(e){});
+	dojox.gesture.tap.doubletap(node, function(e){});
+</pre>
+Though there is always a default gesture instance after being required, e.g
+<pre class="brush: js;" lang="javascript">
+	require(['dojox/gesture/tap'], function(){...});
+</pre>
+It's possible to create a new one with different parameter setting:
+<pre class="brush: js;" lang="javascript">
+	var myTap = new dojox.gesture.tap.Tap({holdThreshold: 300});
+	dojo.connect(node, myTap, function(e){});
+	dojo.connect(node, myTap.hold, function(e){});
+	dojo.connect(node, myTap.doubletap, function(e){});
+</pre></div></div><div class="jsdoc-children"><div class="jsdoc-field-list"><h2 class="jsdoc-summary-heading">Method Summary <span class="jsdoc-summary-toggle"></span></h2><div class="jsdoc-summary-list"><ul><li class="functionIcon private inherited even"><a class="inline-link" href="#_initTap">_initTap</a><span class="parameters">(data, e)</span> <span>Update the gesture data with new tap info</span></li><li class="functionIcon private inherited odd"><a class="inline-link" href="#_isTap">_isTap</a><span class="parameters">(data, e)</span> <span>Check whether it's an valid tap</span></li><li class="functionIcon public  even"><a class="inline-link" href="#constructor">constructor</a><span class="parameters">()</span><span class="jsdoc-returns"> returns dojox.gesture.tap</span> <span>A reference to the constructor function for this object.</span></li><li class="functionIcon public inherited odd"><a class="inline-link" href="#press">press</a><span class="parameters">(data, e)</span> <span>Overwritten, record initial tap info and register a timeout checker for 'tap.hold'</span></li><li class="functionIcon public inherited even"><a class="inline-link" href="#release">release</a><span class="parameters">(data, e)</span> <span>Overwritten, fire matched 'tap' or 'tap.doubletap' during touchend</span></li></ul></div></div></div><div class="jsdoc-children"><div class="jsdoc-fields"><h2>Methods</h2><div class="jsdoc-field private inherited even"><div class="jsdoc-title"><a name="_initTap"></a><span class="functionIcon">_initTap</span></div><div class="jsdoc-inheritance">Defined by <a class="jsdoc-link" href="/api/1.7/dojox/gesture/tap">dojox.gesture.tap</a></div><div class="jsdoc-summary">Update the gesture data with new tap info</div><table class="jsdoc-parameters"><tr><th>Parameter</th><th>Type</th><th>Description</th></tr><tr><td class="jsdoc-param-name">data</td><td class="jsdoc-param-type">Object</td><td class="jsdoc-param-description"></td></tr><tr><td class="jsdoc-param-name">e</td><td class="jsdoc-param-type">Event</td><td class="jsdoc-param-description"></td></tr></table></div><div class="jsdoc-field private inherited odd"><div class="jsdoc-title"><a name="_isTap"></a><span class="functionIcon">_isTap</span></div><div class="jsdoc-inheritance">Defined by <a class="jsdoc-link" href="/api/1.7/dojox/gesture/tap">dojox.gesture.tap</a></div><div class="jsdoc-summary">Check whether it's an valid tap</div><table class="jsdoc-parameters"><tr><th>Parameter</th><th>Type</th><th>Description</th></tr><tr><td class="jsdoc-param-name">data</td><td class="jsdoc-param-type">Object</td><td class="jsdoc-param-description"></td></tr><tr><td class="jsdoc-param-name">e</td><td class="jsdoc-param-type">Event</td><td class="jsdoc-param-description"></td></tr></table></div><div class="jsdoc-field public  even"><div class="jsdoc-title"><a name="constructor"></a><span class="functionIcon">constructor</span></div><div class="jsdoc-inheritance">Overrides <a class="jsdoc-link" href="/api/1.7/Object">Object</a></div><div class="jsdoc-return-type">Returns <strong>dojox.gesture.tap</strong></div><div class="jsdoc-summary">A reference to the constructor function for this object.</div></div><div class="jsdoc-field public inherited odd"><div class="jsdoc-title"><a name="press"></a><span class="functionIcon">press</span></div><div class="jsdoc-inheritance">Defined by <a class="jsdoc-link" href="/api/1.7/dojox/gesture/tap">dojox.gesture.tap</a></div><div class="jsdoc-summary">Overwritten, record initial tap info and register a timeout checker for 'tap.hold'</div><table class="jsdoc-parameters"><tr><th>Parameter</th><th>Type</th><th>Description</th></tr><tr><td class="jsdoc-param-name">data</td><td class="jsdoc-param-type">Object</td><td class="jsdoc-param-description"></td></tr><tr><td class="jsdoc-param-name">e</td><td class="jsdoc-param-type">Event</td><td class="jsdoc-param-description"></td></tr></table></div><div class="jsdoc-field public inherited even"><div class="jsdoc-title"><a name="release"></a><span class="functionIcon">release</span></div><div class="jsdoc-inheritance">Defined by <a class="jsdoc-link" href="/api/1.7/dojox/gesture/tap">dojox.gesture.tap</a></div><div class="jsdoc-summary">Overwritten, fire matched 'tap' or 'tap.doubletap' during touchend</div><table class="jsdoc-parameters"><tr><th>Parameter</th><th>Type</th><th>Description</th></tr><tr><td class="jsdoc-param-name">data</td><td class="jsdoc-param-type">Object</td><td class="jsdoc-param-description"></td></tr><tr><td class="jsdoc-param-name">e</td><td class="jsdoc-param-type">Event</td><td class="jsdoc-param-description"></td></tr></table></div></div></div>

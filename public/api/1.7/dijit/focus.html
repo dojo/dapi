@@ -1,0 +1,22 @@
+<div class="jsdoc-permalink" style="display:none;">/api/1.7/dijit/focus</div><h1 class="jsdoc-title functionIcon36">dijit.focus <span style="font-size:11px;color:#999;">(version 1.7)</span></h1><div class="jsdoc-prototype">Object &raquo; dijit.focus</div><div class="jsdoc-require">dojo.require("dijit.focus");</div><div class="jsdoc-prototype">Defined in dijit/focus.js</div><div class="jsdoc-full-summary"><p>Tracks the currently focused node, and which widgets are currently &quot;active&quot;.
+Access via require([&quot;dijit/focus&quot;], function(focus){ ... }).</p>
+
+<p>A widget is considered active if it or a descendant widget has focus,
+or if a non-focusable node of this widget or a descendant was recently clicked.</p>
+
+<p>Call focus.watch(&quot;curNode&quot;, callback) to track the current focused DOMNode,
+or focus.watch(&quot;activeStack&quot;, callback) to track the currently focused stack of widgets.</p>
+
+<p>Call focus.on(&quot;widget-blur&quot;, func) or focus.on(&quot;widget-focus&quot;, ...) to monitor when
+when widgets become active/inactive</p>
+
+<p>Finally, focus(node) will focus a node, suppressing errors if the node doesn't exist.</p>
+</div><div class="jsdoc-children"><div class="jsdoc-field-list"><h2 class="jsdoc-summary-heading">Method Summary <span class="jsdoc-summary-toggle"></span></h2><div class="jsdoc-summary-list"><ul><li class="functionIcon public inherited even"><a class="inline-link" href="#dijit.focus.registerIframe">dijit.focus.registerIframe</a><span class="parameters">(iframe)</span> <span>Registers listeners on the specified iframe so that any click
+	or focus event on that iframe (or anything in it) is reported
+	as a focus/click event on the &lt;iframe&gt; itself.</span></li><li class="functionIcon public inherited odd"><a class="inline-link" href="#dijit.focus.registerWin">dijit.focus.registerWin</a><span class="parameters">(targetWindow, effectiveNode)</span> <span>Registers listeners on the specified window (either the main
+	window or an iframe's window) to detect when the user has clicked somewhere
+	or focused somewhere.</span></li></ul></div></div></div><div class="jsdoc-children"><div class="jsdoc-fields"><h2>Methods</h2><div class="jsdoc-field public inherited even"><div class="jsdoc-title"><a name="dijit.focus.registerIframe"></a><span class="functionIcon">dijit.focus.registerIframe</span></div><div class="jsdoc-inheritance">Defined by <a class="jsdoc-link" href="/api/1.7/dijit/focus">dijit.focus</a></div><div class="jsdoc-return-type"><div class="jsdoc-return-description">Handle with remove() method to deregister.</div></div><div class="jsdoc-summary"><p>Currently only used by editor.</p>
+</div><table class="jsdoc-parameters"><tr><th>Parameter</th><th>Type</th><th>Description</th></tr><tr><td class="jsdoc-param-name">iframe</td><td class="jsdoc-param-type"></td><td class="jsdoc-param-description"></td></tr></table></div><div class="jsdoc-field public inherited odd"><div class="jsdoc-title"><a name="dijit.focus.registerWin"></a><span class="functionIcon">dijit.focus.registerWin</span></div><div class="jsdoc-inheritance">Defined by <a class="jsdoc-link" href="/api/1.7/dijit/focus">dijit.focus</a></div><div class="jsdoc-return-type"><div class="jsdoc-return-description">Handle with remove() method to deregister.</div></div><div class="jsdoc-summary"><p>Users should call registerIframe() instead of this method.</p>
+</div><table class="jsdoc-parameters"><tr><th>Parameter</th><th>Type</th><th>Description</th></tr><tr><td class="jsdoc-param-name">targetWindow</td><td class="jsdoc-param-type">Window</td><td class="jsdoc-param-description"><div><em>Optional.</em></div>If specified this is the window associated with the iframe,
+	i.e. iframe.contentWindow.</td></tr><tr><td class="jsdoc-param-name">effectiveNode</td><td class="jsdoc-param-type">DOMNode</td><td class="jsdoc-param-description"><div><em>Optional.</em></div>If specified, report any focus events inside targetWindow as
+	an event on effectiveNode, rather than on evt.target.</td></tr></table></div></div></div>

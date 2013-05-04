@@ -1,0 +1,1059 @@
+<div class="jsdoc-permalink" style="display:none;">/api/1.7/dojo/NodeList</div><h1 class="jsdoc-title constructorIcon36">dojo.NodeList <span style="font-size:11px;color:#999;">(version 1.7)</span></h1><div class="jsdoc-prototype">Object &raquo; dojo.NodeList</div><div class="jsdoc-function-information"><h3>Usage:</h3><div class="function-signature"><span class="keyword">var</span> foo = new dojo.NodeList(<span class="jsdoc-comment-type">/*  */</span> array);</div></div><div class="jsdoc-full-summary"><p>dojo.NodeList instances provide many utilities that reflect
+core Dojo APIs for Array iteration and manipulation, DOM
+manipulation, and event handling. Instead of needing to dig up</p>
+
+<p>functions in the dojo.* namespace, NodeLists generally make the
+full power of Dojo available for DOM manipulation tasks in a
+simple, chainable way.</p>
+</div><div class="jsdoc-examples"><h2>Examples:</h2><div class="jsdoc-example"><h3>Example 1</h3>
+create a node list from a node
+<pre class="brush: js;" lang="javascript">
+		new dojo.NodeList(dojo.byId(&quot;foo&quot;));
+</pre></div><div class="jsdoc-example"><h3>Example 2</h3>
+get a NodeList from a CSS query and iterate on it
+<pre class="brush: js;" lang="javascript">
+		var l = dojo.query(&quot;.thinger&quot;);
+		l.forEach(function(node, index, nodeList){
+				console.log(index, node.innerHTML);
+		});
+</pre></div><div class="jsdoc-example"><h3>Example 3</h3>
+use native and Dojo-provided array methods to manipulate a
+NodeList without needing to use dojo.* functions explicitly:
+<pre class="brush: js;" lang="javascript">
+		var l = dojo.query(&quot;.thinger&quot;);
+		// since NodeLists are real arrays, they have a length
+		// property that is both readable and writable and
+		// push/pop/shift/unshift methods
+		console.log(l.length);
+		l.push(dojo.create(&quot;span&quot;));
+</pre>
+<pre class="brush: js;" lang="javascript">
+		// dojo's normalized array methods work too:
+		console.log( l.indexOf(dojo.byId(&quot;foo&quot;)) );
+		// ...including the special &quot;function as string&quot; shorthand
+		console.log( l.every(&quot;item.nodeType == 1&quot;) );
+</pre>
+<pre class="brush: js;" lang="javascript">
+		// NodeLists can be [..] indexed, or you can use the at()
+		// function to get specific items wrapped in a new NodeList:
+		var node = l[3]; // the 4th element
+		var newList = l.at(1, 3); // the 2nd and 4th elements
+</pre></div><div class="jsdoc-example"><h3>Example 4</h3>
+the style functions you expect are all there too:
+<pre class="brush: js;" lang="javascript">
+		// style() as a getter...
+		var borders = dojo.query(&quot;.thinger&quot;).style(&quot;border&quot;);
+		// ...and as a setter:
+		dojo.query(&quot;.thinger&quot;).style(&quot;border&quot;, &quot;1px solid black&quot;);
+		// class manipulation
+		dojo.query(&quot;li:nth-child(even)&quot;).addClass(&quot;even&quot;);
+		// even getting the coordinates of all the items
+		var coords = dojo.query(&quot;.thinger&quot;).coords();
+</pre></div><div class="jsdoc-example"><h3>Example 5</h3>
+DOM manipulation functions from the dojo.* namespace area also
+available:
+<pre class="brush: js;" lang="javascript">
+		// remove all of the elements in the list from their
+		// parents (akin to &quot;deleting&quot; them from the document)
+		dojo.query(&quot;.thinger&quot;).orphan();
+		// place all elements in the list at the front of #foo
+		dojo.query(&quot;.thinger&quot;).place(&quot;foo&quot;, &quot;first&quot;);
+</pre></div><div class="jsdoc-example"><h3>Example 6</h3>
+Event handling couldn't be easier. `dojo.connect` is mapped in,
+and shortcut handlers are provided for most DOM events:
+<pre class="brush: js;" lang="javascript">
+		// like dojo.connect(), but with implicit scope
+		dojo.query(&quot;li&quot;).connect(&quot;onclick&quot;, console, &quot;log&quot;);
+</pre>
+<pre class="brush: js;" lang="javascript">
+		// many common event handlers are already available directly:
+		dojo.query(&quot;li&quot;).onclick(console, &quot;log&quot;);
+		var toggleHovered = dojo.hitch(dojo, &quot;toggleClass&quot;, &quot;hovered&quot;);
+		dojo.query(&quot;p&quot;)
+				.onmouseenter(toggleHovered)
+				.onmouseleave(toggleHovered);
+</pre></div><div class="jsdoc-example"><h3>Example 7</h3>
+chainability is a key advantage of NodeLists:
+<pre class="brush: js;" lang="javascript">
+		dojo.query(&quot;.thinger&quot;)
+				.onclick(function(e){ /* ... */ })
+				.at(1, 3, 8) // get a subset
+						.style(&quot;padding&quot;, &quot;5px&quot;)
+						.forEach(console.log);
+</pre></div></div><div class="jsdoc-children"><div class="jsdoc-field-list"><h2 class="jsdoc-summary-heading">Property Summary <span class="jsdoc-summary-toggle"></span></h2><div class="jsdoc-summary-list"><ul><li class="objectIcon public inherited even"><a class="inline-link" href="#dojo.NodeList.addContent">dojo.NodeList.addContent</a></li><li class="objectIcon public inherited odd"><a class="inline-link" href="#dojo.NodeList.attr">dojo.NodeList.attr</a></li><li class="objectIcon public inherited even"><a class="inline-link" href="#dojo.NodeList.prototype">dojo.NodeList.prototype</a></li><li class="objectIcon public inherited odd"><a class="inline-link" href="#dojo.NodeList.style">dojo.NodeList.style</a></li></ul></div><h2 class="jsdoc-summary-heading">Method Summary <span class="jsdoc-summary-toggle"></span></h2><div class="jsdoc-summary-list"><ul><li class="functionIcon private inherited even"><a class="inline-link" href="#_anim">_anim</a><span class="parameters">(obj, method, args)</span><span class="jsdoc-returns"> returns dojo.Animation|dojo.NodeList</span></li><li class="functionIcon private inherited odd"><a class="inline-link" href="#_buildArrayFromCallback">_buildArrayFromCallback</a><span class="parameters">(callback)</span><span class="jsdoc-returns"> returns Array</span> <span>builds a new array of possibly differing size based on the input list.
+	Since the returned array is likely of different size than the input array,
+	the array's map function cannot be used.</span></li><li class="functionIcon private inherited even"><a class="inline-link" href="#_getRelatedUniqueNodes">_getRelatedUniqueNodes</a><span class="parameters">(query, callback)</span><span class="jsdoc-returns"> returns dojo.NodeList</span> <span>cycles over all the nodes and calls a callback
+	to collect nodes for a possible inclusion in a result.
+	The callback will get two args: callback(node, ary),
+	where ary is the array being used to collect the nodes.</span></li><li class="functionIcon private inherited odd"><a class="inline-link" href="#_getUniqueAsNodeList">_getUniqueAsNodeList</a><span class="parameters">(nodes)</span><span class="jsdoc-returns"> returns dojo.NodeList</span> <span>given a list of nodes, make sure only unique
+	elements are returned as our NodeList object.
+	Does not call _stash().</span></li><li class="functionIcon private inherited even"><a class="inline-link" href="#_getUniqueNodeListWithParent">_getUniqueNodeListWithParent</a><span class="parameters">(nodes, query)</span><span class="jsdoc-returns"> returns dojo.NodeList</span> <span>gets unique element nodes, filters them further
+	with an optional query and then calls _stash to track parent NodeList.</span></li><li class="functionIcon private inherited odd"><a class="inline-link" href="#_placeMultiple">_placeMultiple</a><span class="parameters">(query, position)</span><span class="jsdoc-returns"> returns dojo.NodeList</span> <span>private method for inserting queried nodes into all nodes in this NodeList
+	at different positions. Differs from NodeList.place because it will clone
+	the nodes in this NodeList if the query matches more than one element.</span></li><li class="functionIcon private inherited even"><a class="inline-link" href="#_stash">_stash</a><span class="parameters">(parent)</span><span class="jsdoc-returns"> returns dojo.NodeList</span> <span>private function to hold to a parent NodeList. end() to return the parent NodeList.</span></li><li class="functionIcon public inherited odd"><a class="inline-link" href="#after">after</a><span class="parameters">(content)</span><span class="jsdoc-returns"> returns dojo.NodeList</span> <span>Places the content after every node in the NodeList.</span></li><li class="functionIcon public inherited even"><a class="inline-link" href="#andSelf">andSelf</a><span class="parameters">()</span><span class="jsdoc-returns"> returns dojo.NodeList</span> <span>Adds the nodes from the previous dojo.NodeList to the current dojo.NodeList.</span></li><li class="functionIcon public inherited odd"><a class="inline-link" href="#anim">anim</a><span class="parameters">(properties, duration, easing, onEnd, delay)</span><span class="jsdoc-returns"> returns dojo.Animation</span> <span>Animate one or more CSS properties for all nodes in this list.
+	The returned animation object will already be playing when it
+	is returned. See the docs for `dojo.anim` for full details.</span></li><li class="functionIcon public inherited even"><a class="inline-link" href="#animateProperty">animateProperty</a><span class="parameters">(args)</span><span class="jsdoc-returns"> returns dojo.Animation|dojo.NodeList</span> <span>Animate all elements of this NodeList across the properties specified.
+	syntax identical to `dojo.animateProperty`</span></li><li class="functionIcon public inherited odd"><a class="inline-link" href="#append">append</a><span class="parameters">(content)</span><span class="jsdoc-returns"> returns dojo.NodeList</span> <span>appends the content to every node in the NodeList.</span></li><li class="functionIcon public inherited even"><a class="inline-link" href="#appendTo">appendTo</a><span class="parameters">(query)</span><span class="jsdoc-returns"> returns dojo.NodeList</span> <span>appends nodes in this NodeList to the nodes matched by
+	the query passed to appendTo.</span></li><li class="functionIcon public inherited odd"><a class="inline-link" href="#at">at</a><span class="parameters">(index)</span><span class="jsdoc-returns"> returns dojo.NodeList</span> <span>Returns a new NodeList comprised of items in this NodeList
+	at the given index or indices.</span></li><li class="functionIcon public inherited even"><a class="inline-link" href="#before">before</a><span class="parameters">(content)</span><span class="jsdoc-returns"> returns dojo.NodeList</span> <span>Places the content before every node in the NodeList.</span></li><li class="functionIcon public inherited odd"><a class="inline-link" href="#children">children</a><span class="parameters">(query)</span> <span>Returns all immediate child elements for nodes in this dojo.NodeList.
+	Optionally takes a query to filter the child elements.</span></li><li class="functionIcon public inherited even"><a class="inline-link" href="#clone">clone</a><span class="parameters">()</span><span class="jsdoc-returns"> returns dojo.NodeList</span> <span>Clones all the nodes in this NodeList and returns them as a new NodeList.</span></li><li class="functionIcon public inherited odd"><a class="inline-link" href="#closest">closest</a><span class="parameters">(query, root)</span><span class="jsdoc-returns"> returns To make rhino strict checking happy.</span> <span>Returns closest parent that matches query, including current node in this
+	dojo.NodeList if it matches the query.</span></li><li class="functionIcon public inherited even"><a class="inline-link" href="#concat">concat</a><span class="parameters">(item)</span><span class="jsdoc-returns"> returns dojo.NodeList</span> <span>Returns a new NodeList comprised of items in this NodeList
+	as well as items passed in as parameters</span></li><li class="functionIcon public inherited odd"><a class="inline-link" href="#connect">connect</a><span class="parameters">(methodName, objOrFunc, funcName)</span> <span>attach event handlers to every item of the NodeList. Uses dojo.connect()
+	so event properties are normalized</span></li><li class="functionIcon public  even"><a class="inline-link" href="#constructor">constructor</a><span class="parameters">(array)</span><span class="jsdoc-returns"> returns dojo.NodeList</span> <span>A reference to the constructor function for this object.</span></li><li class="functionIcon public inherited odd"><a class="inline-link" href="#coords">coords</a><span class="parameters">()</span><span class="jsdoc-returns"> returns Array</span> <span>Deprecated: Use position() for border-box x/y/w/h
+	or marginBox() for margin-box w/h/l/t.
+	Returns the box objects of all elements in a node list as
+	an Array (*not* a NodeList). Acts like `dojo.coords`, though assumes
+	the node passed is each node in this list.</span></li><li class="functionIcon public inherited even"><a class="inline-link" href="#data">data</a><span class="parameters">(key, value)</span> <span>stash or get some arbitrary data on/from these nodes.</span></li><li class="functionIcon public inherited odd"><a class="inline-link" href="#delegate">delegate</a><span class="parameters">(selector, eventName, fn)</span> <span>Monitor nodes in this NodeList for [bubbled] events on nodes that match selector.
+	Calls fn(evt) for those events, where (inside of fn()), this == the node
+	that matches the selector.</span></li><li class="functionIcon public inherited even"><a class="inline-link" href="#end">end</a><span class="parameters">()</span> <span>Ends use of the current `dojo.NodeList` by returning the previous dojo.NodeList
+	that generated the current dojo.NodeList.</span></li><li class="functionIcon public inherited odd"><a class="inline-link" href="#even">even</a><span class="parameters">()</span> <span>Returns the even nodes in this dojo.NodeList as a dojo.NodeList.</span></li><li class="functionIcon public inherited even"><a class="inline-link" href="#every">every</a><span class="parameters">(callback, thisObject)</span><span class="jsdoc-returns"> returns Boolean</span> <span>see `dojo.every()` and the (Array.every
+	docs)[http://developer.mozilla.org/en/docs/Core_JavaScript_1.5_Reference:Global_Objects:Array:every].
+	Takes the same structure of arguments and returns as
+	dojo.every() with the caveat that the passed array is
+	implicitly this NodeList</span></li><li class="functionIcon public inherited odd"><a class="inline-link" href="#fadeIn">fadeIn</a><span class="parameters">(args)</span><span class="jsdoc-returns"> returns dojo.Animation|dojo.NodeList</span> <span>fade in all elements of this NodeList via `dojo.fadeIn`</span></li><li class="functionIcon public inherited even"><a class="inline-link" href="#fadeOut">fadeOut</a><span class="parameters">(args)</span><span class="jsdoc-returns"> returns dojo.Animation|dojo.NodeList</span> <span>fade out all elements of this NodeList via `dojo.fadeOut`</span></li><li class="functionIcon public inherited odd"><a class="inline-link" href="#filter">filter</a><span class="parameters">(filter)</span><span class="jsdoc-returns"> returns dojo.NodeList</span> <span>&quot;masks&quot; the built-in javascript filter() method (supported
+	in Dojo via `dojo.filter`) to support passing a simple
+	string filter in addition to supporting filtering function
+	objects.</span></li><li class="functionIcon public inherited even"><a class="inline-link" href="#first">first</a><span class="parameters">()</span><span class="jsdoc-returns"> returns dojo.NodeList</span> <span>Returns the first node in this dojo.NodeList as a dojo.NodeList.</span></li><li class="functionIcon public inherited odd"><a class="inline-link" href="#forEach">forEach</a><span class="parameters">(callback, thisObj)</span><span class="jsdoc-returns"> returns dojo.NodeList</span> <span>see `dojo.forEach()`. The primary difference is that the acted-on
+	array is implicitly this NodeList. If you want the option to break out
+	of the forEach loop, use every() or some() instead.</span></li><li class="functionIcon public inherited even"><a class="inline-link" href="#html">html</a><span class="parameters">(content, params)</span><span class="jsdoc-returns"> returns dojo.NodeList|String</span> <span>see the information for &quot;innerHTML&quot;. &quot;html&quot; is an alias for &quot;innerHTML&quot;, but is
+	only defined if dojo.NodeList-html has not been loaded.</span></li><li class="functionIcon public inherited odd"><a class="inline-link" href="#indexOf">indexOf</a><span class="parameters">(value, fromIndex)</span><span class="jsdoc-returns"> returns Integer</span> <span>see dojo.indexOf(). The primary difference is that the acted-on
+	array is implicitly this NodeList</span></li><li class="functionIcon public inherited even"><a class="inline-link" href="#innerHTML">innerHTML</a><span class="parameters">(value)</span><span class="jsdoc-returns"> returns dojo.NodeList|String</span> <span>allows setting the innerHTML of each node in the NodeList,
+	if there is a value passed in, otherwise, reads the innerHTML value of the first node.</span></li><li class="functionIcon public inherited odd"><a class="inline-link" href="#insertAfter">insertAfter</a><span class="parameters">(query)</span><span class="jsdoc-returns"> returns dojo.NodeList</span> <span>The nodes in this NodeList will be placed after the nodes
+	matched by the query passed to insertAfter.</span></li><li class="functionIcon public inherited even"><a class="inline-link" href="#insertBefore">insertBefore</a><span class="parameters">(query)</span><span class="jsdoc-returns"> returns dojo.NodeList</span> <span>The nodes in this NodeList will be placed after the nodes
+	matched by the query passed to insertAfter.</span></li><li class="functionIcon public inherited odd"><a class="inline-link" href="#instantiate">instantiate</a><span class="parameters">(declaredClass, properties)</span> <span>Create a new instance of a specified class, using the
+	specified properties and each node in the nodeList as a
+	srcNodeRef.</span></li><li class="functionIcon public inherited even"><a class="inline-link" href="#last">last</a><span class="parameters">()</span><span class="jsdoc-returns"> returns dojo.NodeList</span> <span>Returns the last node in this dojo.NodeList as a dojo.NodeList.</span></li><li class="functionIcon public inherited odd"><a class="inline-link" href="#lastIndexOf">lastIndexOf</a><span class="parameters">(value, fromIndex)</span><span class="jsdoc-returns"> returns Integer</span> <span>see dojo.lastIndexOf(). The primary difference is that the
+	acted-on array is implicitly this NodeList</span></li><li class="functionIcon public inherited even"><a class="inline-link" href="#map">map</a><span class="parameters">(func, obj)</span><span class="jsdoc-returns"> returns dojo.NodeList</span> <span>see dojo.map(). The primary difference is that the acted-on
+	array is implicitly this NodeList and the return is a
+	dojo.NodeList (a subclass of Array)
+	/return d.map(this, func, obj, d.NodeList); // dojo.NodeList</span></li><li class="functionIcon public inherited odd"><a class="inline-link" href="#next">next</a><span class="parameters">(query)</span> <span>Returns the next element for nodes in this dojo.NodeList.
+	Optionally takes a query to filter the next elements.</span></li><li class="functionIcon public inherited even"><a class="inline-link" href="#nextAll">nextAll</a><span class="parameters">(query)</span> <span>Returns all sibling elements that come after the nodes in this dojo.NodeList.
+	Optionally takes a query to filter the sibling elements.</span></li><li class="functionIcon public inherited odd"><a class="inline-link" href="#odd">odd</a><span class="parameters">()</span> <span>Returns the odd nodes in this dojo.NodeList as a dojo.NodeList.</span></li><li class="functionIcon public inherited even"><a class="inline-link" href="#parent">parent</a><span class="parameters">(query)</span> <span>Returns immediate parent elements for nodes in this dojo.NodeList.
+	Optionally takes a query to filter the parent elements.</span></li><li class="functionIcon public inherited odd"><a class="inline-link" href="#parents">parents</a><span class="parameters">(query)</span> <span>Returns all parent elements for nodes in this dojo.NodeList.
+	Optionally takes a query to filter the child elements.</span></li><li class="functionIcon public inherited even"><a class="inline-link" href="#prepend">prepend</a><span class="parameters">(content)</span><span class="jsdoc-returns"> returns dojo.NodeList</span> <span>prepends the content to every node in the NodeList.</span></li><li class="functionIcon public inherited odd"><a class="inline-link" href="#prependTo">prependTo</a><span class="parameters">(query)</span><span class="jsdoc-returns"> returns dojo.NodeList</span> <span>prepends nodes in this NodeList to the nodes matched by
+	the query passed to prependTo.</span></li><li class="functionIcon public inherited even"><a class="inline-link" href="#prev">prev</a><span class="parameters">(query)</span> <span>Returns the previous element for nodes in this dojo.NodeList.
+	Optionally takes a query to filter the previous elements.</span></li><li class="functionIcon public inherited odd"><a class="inline-link" href="#prevAll">prevAll</a><span class="parameters">(query)</span> <span>Returns all sibling elements that come before the nodes in this dojo.NodeList.
+	Optionally takes a query to filter the sibling elements.</span></li><li class="functionIcon public inherited even"><a class="inline-link" href="#remove">remove</a><span class="parameters">(simpleFilter)</span><span class="jsdoc-returns"> returns dojo.NodeList</span> <span>alias for dojo.NodeList's orphan method. Removes elements
+	in this list that match the simple filter from their parents
+	and returns them as a new NodeList.</span></li><li class="functionIcon public inherited odd"><a class="inline-link" href="#removeData">removeData</a><span class="parameters">(key)</span> <span>Remove the data associated with these nodes.</span></li><li class="functionIcon public inherited even"><a class="inline-link" href="#replaceAll">replaceAll</a><span class="parameters">(query)</span><span class="jsdoc-returns"> returns dojo.NodeList</span> <span>replaces nodes matched by the query passed to replaceAll with the nodes
+	in this NodeList.</span></li><li class="functionIcon public inherited odd"><a class="inline-link" href="#replaceWith">replaceWith</a><span class="parameters">(content)</span><span class="jsdoc-returns"> returns dojo.NodeList</span> <span>Replaces each node in ths NodeList with the content passed to replaceWith.</span></li><li class="functionIcon public inherited even"><a class="inline-link" href="#siblings">siblings</a><span class="parameters">(query)</span> <span>Returns all sibling elements for nodes in this dojo.NodeList.
+	Optionally takes a query to filter the sibling elements.</span></li><li class="functionIcon public inherited odd"><a class="inline-link" href="#slice">slice</a><span class="parameters">(begin, end)</span> <span>Returns a new NodeList, maintaining this one in place</span></li><li class="functionIcon public inherited even"><a class="inline-link" href="#slideTo">slideTo</a><span class="parameters">(args)</span><span class="jsdoc-returns"> returns dojo.Animation|dojo.NodeList</span> <span>slide all elements of the node list to the specified place via `dojo.fx.slideTo`</span></li><li class="functionIcon public inherited odd"><a class="inline-link" href="#some">some</a><span class="parameters">(callback, thisObject)</span><span class="jsdoc-returns"> returns Boolean</span> <span>Takes the same structure of arguments and returns as
+	`dojo.some()` with the caveat that the passed array is
+	implicitly this NodeList.  See `dojo.some()` and Mozilla's
+	(Array.some
+	documentation)[http://developer.mozilla.org/en/docs/Core_JavaScript_1.5_Reference:Global_Objects:Array:some].</span></li><li class="functionIcon public inherited even"><a class="inline-link" href="#splice">splice</a><span class="parameters">(index, howmany, item)</span> <span>Returns a new NodeList, manipulating this NodeList based on
+	the arguments passed, potentially splicing in new elements
+	at an offset, optionally deleting elements</span></li><li class="functionIcon public inherited odd"><a class="inline-link" href="#text">text</a><span class="parameters">(value)</span><span class="jsdoc-returns"> returns dojo.NodeList|String</span> <span>allows setting the text value of each node in the NodeList,
+	if there is a value passed in, otherwise, returns the text value for all the
+	nodes in the NodeList in one string.</span></li><li class="functionIcon public  even"><a class="inline-link" href="#toString">toString</a><span class="parameters">()</span><span class="jsdoc-returns"> returns String</span> <span>Returns a string representation of the object.</span></li><li class="functionIcon public inherited odd"><a class="inline-link" href="#val">val</a><span class="parameters">(value)</span><span class="jsdoc-returns"> returns dojo.NodeList|String||Array</span> <span>If a value is passed, allows seting the value property of form elements in this
+	NodeList, or properly selecting/checking the right value for radio/checkbox/select
+	elements. If no value is passed, the value of the first node in this NodeList
+	is returned.</span></li><li class="functionIcon public inherited even"><a class="inline-link" href="#wipeIn">wipeIn</a><span class="parameters">(args)</span><span class="jsdoc-returns"> returns dojo.Animation|dojo.NodeList</span> <span>wipe in all elements of this NodeList via `dojo.fx.wipeIn`</span></li><li class="functionIcon public inherited odd"><a class="inline-link" href="#wipeOut">wipeOut</a><span class="parameters">(args)</span><span class="jsdoc-returns"> returns dojo.Animation|dojo.NodeList</span> <span>wipe out all elements of this NodeList via `dojo.fx.wipeOut`</span></li><li class="functionIcon public inherited even"><a class="inline-link" href="#wrap">wrap</a><span class="parameters">(html)</span><span class="jsdoc-returns"> returns dojo.NodeList</span> <span>Wrap each node in the NodeList with html passed to wrap.</span></li><li class="functionIcon public inherited odd"><a class="inline-link" href="#wrapAll">wrapAll</a><span class="parameters">(html)</span><span class="jsdoc-returns"> returns dojo.NodeList</span> <span>Insert html where the first node in this NodeList lives, then place all
+	nodes in this NodeList as the child of the html.</span></li><li class="functionIcon public inherited even"><a class="inline-link" href="#wrapInner">wrapInner</a><span class="parameters">(html)</span><span class="jsdoc-returns"> returns dojo.NodeList</span> <span>For each node in the NodeList, wrap all its children with the passed in html.</span></li></ul></div><h2 class="jsdoc-summary-heading">Event Summary <span class="jsdoc-summary-toggle"></span></h2><div class="jsdoc-summary-list"><ul><li class="functionIcon public inherited odd"><a class="inline-link" href="#on">on</a><span class="parameters">(eventName, listener)</span><span class="jsdoc-returns"> returns TODO: apply to the NodeList so the same selector engine is used for matches</span> <span>Listen for events on the nodes in the NodeList. Basic usage is:
+	 query(&quot;.my-class&quot;).on(&quot;click&quot;, listener);
+	This supports event delegation by using selectors as the first argument with the event names as
+	pseudo selectors. For example:
+	 dojo.query(&quot;#my-list&quot;).on(&quot;li:click&quot;, listener);
+	This will listen for click events within &lt;li&gt; elements that are inside the #my-list element.
+	Because on supports CSS selector syntax, we can use comma-delimited events as well:
+	 dojo.query(&quot;#my-list&quot;).on(&quot;li button:mouseover, li:click&quot;, listener);</span></li></ul></div></div></div><div class="jsdoc-children"><div class="jsdoc-fields"><h2>Properties</h2><div class="jsdoc-field public inherited even"><div class="jsdoc-title"><a name="dojo.NodeList.addContent"></a><span class="objectIcon">dojo.NodeList.addContent</span></div><div class="jsdoc-inheritance">Defined by <a class="jsdoc-link" href="/api/1.7/dojo/NodeList">dojo.NodeList</a></div></div><div class="jsdoc-field public inherited odd"><div class="jsdoc-title"><a name="dojo.NodeList.attr"></a><span class="objectIcon">dojo.NodeList.attr</span></div><div class="jsdoc-inheritance">Defined by <a class="jsdoc-link" href="/api/1.7/dojo/NodeList">dojo.NodeList</a></div></div><div class="jsdoc-field public inherited even"><div class="jsdoc-title"><a name="dojo.NodeList.prototype"></a><span class="objectIcon">dojo.NodeList.prototype</span></div><div class="jsdoc-inheritance">Defined by <a class="jsdoc-link" href="/api/1.7/dojo/NodeList">dojo.NodeList</a></div></div><div class="jsdoc-field public inherited odd"><div class="jsdoc-title"><a name="dojo.NodeList.style"></a><span class="objectIcon">dojo.NodeList.style</span></div><div class="jsdoc-inheritance">Defined by <a class="jsdoc-link" href="/api/1.7/dojo/NodeList">dojo.NodeList</a></div></div><h2>Methods</h2><div class="jsdoc-field private inherited even"><div class="jsdoc-title"><a name="_anim"></a><span class="functionIcon">_anim</span></div><div class="jsdoc-inheritance">Defined by <a class="jsdoc-link" href="/api/1.7/dojo/NodeList">dojo.NodeList</a></div><div class="jsdoc-return-type">Returns <strong>dojo.Animation|dojo.NodeList</strong></div><table class="jsdoc-parameters"><tr><th>Parameter</th><th>Type</th><th>Description</th></tr><tr><td class="jsdoc-param-name">obj</td><td class="jsdoc-param-type"></td><td class="jsdoc-param-description"></td></tr><tr><td class="jsdoc-param-name">method</td><td class="jsdoc-param-type"></td><td class="jsdoc-param-description"></td></tr><tr><td class="jsdoc-param-name">args</td><td class="jsdoc-param-type"></td><td class="jsdoc-param-description"></td></tr></table></div><div class="jsdoc-field private inherited odd"><div class="jsdoc-title"><a name="_buildArrayFromCallback"></a><span class="functionIcon">_buildArrayFromCallback</span></div><div class="jsdoc-inheritance">Defined by <a class="jsdoc-link" href="/api/1.7/dojo/NodeList">dojo.NodeList</a></div><div class="jsdoc-return-type">Returns <strong>Array</strong></div><div class="jsdoc-summary">builds a new array of possibly differing size based on the input list.
+	Since the returned array is likely of different size than the input array,
+	the array's map function cannot be used.</div><table class="jsdoc-parameters"><tr><th>Parameter</th><th>Type</th><th>Description</th></tr><tr><td class="jsdoc-param-name">callback</td><td class="jsdoc-param-type">Function</td><td class="jsdoc-param-description"></td></tr></table></div><div class="jsdoc-field private inherited even"><div class="jsdoc-title"><a name="_getRelatedUniqueNodes"></a><span class="functionIcon">_getRelatedUniqueNodes</span></div><div class="jsdoc-inheritance">Defined by <a class="jsdoc-link" href="/api/1.7/dojo/NodeList">dojo.NodeList</a></div><div class="jsdoc-return-type">Returns <strong>dojo.NodeList</strong></div><div class="jsdoc-summary">cycles over all the nodes and calls a callback
+	to collect nodes for a possible inclusion in a result.
+	The callback will get two args: callback(node, ary),
+	where ary is the array being used to collect the nodes.</div><table class="jsdoc-parameters"><tr><th>Parameter</th><th>Type</th><th>Description</th></tr><tr><td class="jsdoc-param-name">query</td><td class="jsdoc-param-type">String</td><td class="jsdoc-param-description"><div><em>Optional.</em></div></td></tr><tr><td class="jsdoc-param-name">callback</td><td class="jsdoc-param-type">Function</td><td class="jsdoc-param-description"></td></tr></table></div><div class="jsdoc-field private inherited odd"><div class="jsdoc-title"><a name="_getUniqueAsNodeList"></a><span class="functionIcon">_getUniqueAsNodeList</span></div><div class="jsdoc-inheritance">Defined by <a class="jsdoc-link" href="/api/1.7/dojo/NodeList">dojo.NodeList</a></div><div class="jsdoc-return-type">Returns <strong>dojo.NodeList</strong></div><div class="jsdoc-summary">given a list of nodes, make sure only unique
+	elements are returned as our NodeList object.
+	Does not call _stash().</div><table class="jsdoc-parameters"><tr><th>Parameter</th><th>Type</th><th>Description</th></tr><tr><td class="jsdoc-param-name">nodes</td><td class="jsdoc-param-type">Array</td><td class="jsdoc-param-description"></td></tr></table></div><div class="jsdoc-field private inherited even"><div class="jsdoc-title"><a name="_getUniqueNodeListWithParent"></a><span class="functionIcon">_getUniqueNodeListWithParent</span></div><div class="jsdoc-inheritance">Defined by <a class="jsdoc-link" href="/api/1.7/dojo/NodeList">dojo.NodeList</a></div><div class="jsdoc-return-type">Returns <strong>dojo.NodeList</strong></div><div class="jsdoc-summary">gets unique element nodes, filters them further
+	with an optional query and then calls _stash to track parent NodeList.</div><table class="jsdoc-parameters"><tr><th>Parameter</th><th>Type</th><th>Description</th></tr><tr><td class="jsdoc-param-name">nodes</td><td class="jsdoc-param-type">Array</td><td class="jsdoc-param-description"></td></tr><tr><td class="jsdoc-param-name">query</td><td class="jsdoc-param-type">String</td><td class="jsdoc-param-description"></td></tr></table></div><div class="jsdoc-field private inherited odd"><div class="jsdoc-title"><a name="_placeMultiple"></a><span class="functionIcon">_placeMultiple</span></div><div class="jsdoc-inheritance">Defined by <a class="jsdoc-link" href="/api/1.7/dojo/NodeList">dojo.NodeList</a></div><div class="jsdoc-return-type">Returns <strong>dojo.NodeList</strong></div><div class="jsdoc-summary">private method for inserting queried nodes into all nodes in this NodeList
+	at different positions. Differs from NodeList.place because it will clone
+	the nodes in this NodeList if the query matches more than one element.</div><table class="jsdoc-parameters"><tr><th>Parameter</th><th>Type</th><th>Description</th></tr><tr><td class="jsdoc-param-name">query</td><td class="jsdoc-param-type">String||Node||NodeList</td><td class="jsdoc-param-description"></td></tr><tr><td class="jsdoc-param-name">position</td><td class="jsdoc-param-type">String</td><td class="jsdoc-param-description"></td></tr></table></div><div class="jsdoc-field private inherited even"><div class="jsdoc-title"><a name="_stash"></a><span class="functionIcon">_stash</span></div><div class="jsdoc-inheritance">Defined by <a class="jsdoc-link" href="/api/1.7/dojo/NodeList">dojo.NodeList</a></div><div class="jsdoc-return-type">Returns <strong>dojo.NodeList</strong></div><div class="jsdoc-summary">private function to hold to a parent NodeList. end() to return the parent NodeList.</div><table class="jsdoc-parameters"><tr><th>Parameter</th><th>Type</th><th>Description</th></tr><tr><td class="jsdoc-param-name">parent</td><td class="jsdoc-param-type"></td><td class="jsdoc-param-description"></td></tr></table><div class="jsdoc-examples"><div class="jsdoc-example"><div><strong>Example 1</strong></div>
+How to make a `dojo.NodeList` method that only returns the third node in
+the dojo.NodeList but allows access to the original NodeList by using this._stash:
+<pre class="brush: js;" lang="javascript">
+		dojo.extend(dojo.NodeList, {
+				third: function(){
+						var newNodeList = dojo.NodeList(this[2]);
+						return newNodeList._stash(this);
+				}
+		});
+		// then see how _stash applies a sub-list, to be .end()'ed out of
+		dojo.query(&quot;.foo&quot;)
+				.third()
+						.addClass(&quot;thirdFoo&quot;)
+				.end()
+				// access to the orig .foo list
+				.removeClass(&quot;foo&quot;)
+</pre></div></div></div><div class="jsdoc-field public inherited odd"><div class="jsdoc-title"><a name="after"></a><span class="functionIcon">after</span></div><div class="jsdoc-inheritance">Defined by <a class="jsdoc-link" href="/api/1.7/dojo/NodeList">dojo.NodeList</a></div><div class="jsdoc-return-type">Returns <strong>dojo.NodeList</strong>: <span class="jsdoc-return-description">dojo.NodeList, the nodes currently in this NodeList will be returned,
+	not the appended content.</span></div><div class="jsdoc-summary"><p>The content will be cloned if the length of NodeList
+is greater than 1. Only the DOM nodes are cloned, not
+any attached event handlers.</p>
+</div><table class="jsdoc-parameters"><tr><th>Parameter</th><th>Type</th><th>Description</th></tr><tr><td class="jsdoc-param-name">content</td><td class="jsdoc-param-type">String||Element||NodeList</td><td class="jsdoc-param-description"></td></tr></table><div class="jsdoc-examples"><div class="jsdoc-example"><div><strong>Example 1</strong></div>
+assume a DOM created by this markup:
+<pre class="brush: js;" lang="javascript">
+	&lt;div id=&quot;foo&quot;&gt;&lt;p&gt;Hello Mars&lt;/p&gt;&lt;/div&gt;
+	&lt;div id=&quot;bar&quot;&gt;&lt;p&gt;Hello World&lt;/p&gt;&lt;/div&gt;
+Running this code:</pre>
+<pre class="brush: js;" lang="javascript">
+	dojo.query(&quot;div&quot;).after(&quot;&lt;span&gt;after&lt;/span&gt;&quot;);
+Results in this DOM structure:</pre>
+<pre class="brush: js;" lang="javascript">
+	&lt;div id=&quot;foo&quot;&gt;&lt;p&gt;Hello Mars&lt;/p&gt;&lt;/div&gt;&lt;span&gt;after&lt;/span&gt;
+	&lt;div id=&quot;bar&quot;&gt;&lt;p&gt;Hello World&lt;/p&gt;&lt;/div&gt;&lt;span&gt;after&lt;/span&gt;
+</pre></div></div></div><div class="jsdoc-field public inherited even"><div class="jsdoc-title"><a name="andSelf"></a><span class="functionIcon">andSelf</span></div><div class="jsdoc-inheritance">Defined by <a class="jsdoc-link" href="/api/1.7/dojo/NodeList">dojo.NodeList</a></div><div class="jsdoc-return-type">Returns <strong>dojo.NodeList</strong>: <span class="jsdoc-return-description">dojo.NodeList</span></div><div class="jsdoc-summary"><p>.end() can be used on the returned dojo.NodeList to get back to the
+original dojo.NodeList.</p>
+</div><div class="jsdoc-examples"><div class="jsdoc-example"><div><strong>Example 1</strong></div>
+assume a DOM created by this markup:
+<pre class="brush: js;" lang="javascript">
+	&lt;div class=&quot;container&quot;&gt;
+		&lt;div class=&quot;red prev&quot;&gt;Red One&lt;/div&gt;
+		Some Text
+		&lt;div class=&quot;blue prev&quot;&gt;Blue One&lt;/div&gt;
+		&lt;div class=&quot;red second&quot;&gt;Red Two&lt;/div&gt;
+		&lt;div class=&quot;blue&quot;&gt;Blue Two&lt;/div&gt;
+	&lt;/div&gt;
+Running this code:</pre>
+<pre class="brush: js;" lang="javascript">
+	dojo.query(&quot;.second&quot;).prevAll().andSelf();
+returns the two divs with class of &quot;prev&quot;, as well as the div with class &quot;second&quot;.</pre></div></div></div><div class="jsdoc-field public inherited odd"><div class="jsdoc-title"><a name="anim"></a><span class="functionIcon">anim</span></div><div class="jsdoc-inheritance">Defined by <a class="jsdoc-link" href="/api/1.7/dojo/NodeList">dojo.NodeList</a></div><div class="jsdoc-return-type">Returns <strong>dojo.Animation</strong></div><div class="jsdoc-summary">Animate one or more CSS properties for all nodes in this list.
+	The returned animation object will already be playing when it
+	is returned. See the docs for `dojo.anim` for full details.</div><table class="jsdoc-parameters"><tr><th>Parameter</th><th>Type</th><th>Description</th></tr><tr><td class="jsdoc-param-name">properties</td><td class="jsdoc-param-type">Object</td><td class="jsdoc-param-description">the properties to animate. does NOT support the `auto` parameter like other
+	NodeList-fx methods.</td></tr><tr><td class="jsdoc-param-name">duration</td><td class="jsdoc-param-type">Integer</td><td class="jsdoc-param-description"><div><em>Optional.</em></div>Optional. The time to run the animations for</td></tr><tr><td class="jsdoc-param-name">easing</td><td class="jsdoc-param-type">Function</td><td class="jsdoc-param-description"><div><em>Optional.</em></div>Optional. The easing function to use.</td></tr><tr><td class="jsdoc-param-name">onEnd</td><td class="jsdoc-param-type">Function</td><td class="jsdoc-param-description"><div><em>Optional.</em></div>A function to be called when the animation ends</td></tr><tr><td class="jsdoc-param-name">delay</td><td class="jsdoc-param-type">Integer</td><td class="jsdoc-param-description"><div><em>Optional.</em></div>how long to delay playing the returned animation</td></tr></table><div class="jsdoc-examples"><div class="jsdoc-example"><div><strong>Example 1</strong></div>
+Another way to fade out:
+<pre class="brush: js;" lang="javascript">
+	dojo.query(&quot;.thinger&quot;).anim({ opacity: 0 });
+</pre></div><div class="jsdoc-example"><div><strong>Example 2</strong></div>
+animate all elements with the "thigner" class to a width of 500
+pixels over half a second
+<pre class="brush: js;" lang="javascript">
+	dojo.query(&quot;.thinger&quot;).anim({ width: 500 }, 700);
+</pre></div></div></div><div class="jsdoc-field public inherited even"><div class="jsdoc-title"><a name="animateProperty"></a><span class="functionIcon">animateProperty</span></div><div class="jsdoc-inheritance">Defined by <a class="jsdoc-link" href="/api/1.7/dojo/NodeList">dojo.NodeList</a></div><div class="jsdoc-return-type">Returns <strong>dojo.Animation|dojo.NodeList</strong>: <span class="jsdoc-return-description">dojo.Animation|dojo.NodeList
+	A special args member `auto` can be passed to automatically play the animation.
+	If args.auto is present, the original dojo.NodeList will be returned for further
+	chaining. Otherwise the dojo.Animation instance is returned and must be .play()'ed</span></div><div class="jsdoc-summary">Animate all elements of this NodeList across the properties specified.
+	syntax identical to `dojo.animateProperty`</div><table class="jsdoc-parameters"><tr><th>Parameter</th><th>Type</th><th>Description</th></tr><tr><td class="jsdoc-param-name">args</td><td class="jsdoc-param-type">Object</td><td class="jsdoc-param-description"><div><em>Optional.</em></div>Additional dojo.Animation arguments to mix into this set with the addition of
+	an `auto` parameter.</td></tr></table><div class="jsdoc-examples"><div class="jsdoc-example"><div><strong>Example 1</strong></div>
+<pre class="brush: js;" lang="javascript">
+	dojo.query(&quot;.zork&quot;).animateProperty({
+		duration: 500,
+		properties: {
+			color:		{ start: &quot;black&quot;, end: &quot;white&quot; },
+			left:		{ end: 300 }
+		}
+	}).play();
+</pre></div><div class="jsdoc-example"><div><strong>Example 2</strong></div>
+<pre class="brush: js;" lang="javascript">
+	dojo.query(&quot;.grue&quot;).animateProperty({
+		auto:true,
+		properties: {
+			height:240
+		}
+	}).onclick(handler);
+</pre></div></div></div><div class="jsdoc-field public inherited odd"><div class="jsdoc-title"><a name="append"></a><span class="functionIcon">append</span></div><div class="jsdoc-inheritance">Defined by <a class="jsdoc-link" href="/api/1.7/dojo/NodeList">dojo.NodeList</a></div><div class="jsdoc-return-type">Returns <strong>dojo.NodeList</strong>: <span class="jsdoc-return-description">dojo.NodeList, the nodes currently in this NodeList will be returned,
+	not the appended content.</span></div><div class="jsdoc-summary"><p>The content will be cloned if the length of NodeList
+is greater than 1. Only the DOM nodes are cloned, not
+any attached event handlers.</p>
+</div><table class="jsdoc-parameters"><tr><th>Parameter</th><th>Type</th><th>Description</th></tr><tr><td class="jsdoc-param-name">content</td><td class="jsdoc-param-type">String||DOMNode||NodeList</td><td class="jsdoc-param-description"></td></tr></table><div class="jsdoc-examples"><div class="jsdoc-example"><div><strong>Example 1</strong></div>
+assume a DOM created by this markup:
+<pre class="brush: js;" lang="javascript">
+	&lt;div id=&quot;foo&quot;&gt;&lt;p&gt;Hello Mars&lt;/p&gt;&lt;/div&gt;
+	&lt;div id=&quot;bar&quot;&gt;&lt;p&gt;Hello World&lt;/p&gt;&lt;/div&gt;
+Running this code:</pre>
+<pre class="brush: js;" lang="javascript">
+	dojo.query(&quot;div&quot;).append(&quot;&lt;span&gt;append&lt;/span&gt;&quot;);
+Results in this DOM structure:</pre>
+<pre class="brush: js;" lang="javascript">
+	&lt;div id=&quot;foo&quot;&gt;&lt;p&gt;Hello Mars&lt;/p&gt;&lt;span&gt;append&lt;/span&gt;&lt;/div&gt;
+	&lt;div id=&quot;bar&quot;&gt;&lt;p&gt;Hello World&lt;/p&gt;&lt;span&gt;append&lt;/span&gt;&lt;/div&gt;
+</pre></div></div></div><div class="jsdoc-field public inherited even"><div class="jsdoc-title"><a name="appendTo"></a><span class="functionIcon">appendTo</span></div><div class="jsdoc-inheritance">Defined by <a class="jsdoc-link" href="/api/1.7/dojo/NodeList">dojo.NodeList</a></div><div class="jsdoc-return-type">Returns <strong>dojo.NodeList</strong>: <span class="jsdoc-return-description">dojo.NodeList, the nodes currently in this NodeList will be returned,
+	not the matched nodes from the query.</span></div><div class="jsdoc-summary"><p>The nodes in this NodeList will be cloned if the query
+matches more than one element. Only the DOM nodes are cloned, not
+any attached event handlers.</p>
+</div><table class="jsdoc-parameters"><tr><th>Parameter</th><th>Type</th><th>Description</th></tr><tr><td class="jsdoc-param-name">query</td><td class="jsdoc-param-type">String</td><td class="jsdoc-param-description"></td></tr></table><div class="jsdoc-examples"><div class="jsdoc-example"><div><strong>Example 1</strong></div>
+assume a DOM created by this markup:
+<pre class="brush: js;" lang="javascript">
+	&lt;span&gt;append&lt;/span&gt;
+	&lt;p&gt;Hello Mars&lt;/p&gt;
+	&lt;p&gt;Hello World&lt;/p&gt;
+Running this code:</pre>
+<pre class="brush: js;" lang="javascript">
+	dojo.query(&quot;span&quot;).appendTo(&quot;p&quot;);
+Results in this DOM structure:</pre>
+<pre class="brush: js;" lang="javascript">
+	&lt;p&gt;Hello Mars&lt;span&gt;append&lt;/span&gt;&lt;/p&gt;
+	&lt;p&gt;Hello World&lt;span&gt;append&lt;/span&gt;&lt;/p&gt;
+</pre></div></div></div><div class="jsdoc-field public inherited odd"><div class="jsdoc-title"><a name="at"></a><span class="functionIcon">at</span></div><div class="jsdoc-inheritance">Defined by <a class="jsdoc-link" href="/api/1.7/dojo/NodeList">dojo.NodeList</a></div><div class="jsdoc-return-type">Returns <strong>dojo.NodeList</strong>: <span class="jsdoc-return-description">dojo.NodeList</span></div><div class="jsdoc-summary">Returns a new NodeList comprised of items in this NodeList
+	at the given index or indices.</div><table class="jsdoc-parameters"><tr><th>Parameter</th><th>Type</th><th>Description</th></tr><tr><td class="jsdoc-param-name">index</td><td class="jsdoc-param-type">Integer</td><td class="jsdoc-param-description"><div><em>One or more can be passed.</em></div>One or more 0-based indices of items in the current
+	NodeList. A negative index will start at the end of the
+	list and go backwards.</td></tr></table><div class="jsdoc-examples"><div class="jsdoc-example"><div><strong>Example 1</strong></div>
+Shorten the list to the first, second, and third elements
+<pre class="brush: js;" lang="javascript">
+		dojo.query(&quot;a&quot;).at(0, 1, 2).forEach(fn);
+</pre></div><div class="jsdoc-example"><div><strong>Example 2</strong></div>
+Retrieve the first and last elements of a unordered list:
+<pre class="brush: js;" lang="javascript">
+		dojo.query(&quot;ul &gt; li&quot;).at(0, -1).forEach(cb);
+</pre></div><div class="jsdoc-example"><div><strong>Example 3</strong></div>
+Do something for the first element only, but end() out back to
+the original list and continue chaining:
+<pre class="brush: js;" lang="javascript">
+		dojo.query(&quot;a&quot;).at(0).onclick(fn).end().forEach(function(n){
+				console.log(n); // all anchors on the page.
+		})
+</pre></div></div></div><div class="jsdoc-field public inherited even"><div class="jsdoc-title"><a name="before"></a><span class="functionIcon">before</span></div><div class="jsdoc-inheritance">Defined by <a class="jsdoc-link" href="/api/1.7/dojo/NodeList">dojo.NodeList</a></div><div class="jsdoc-return-type">Returns <strong>dojo.NodeList</strong>: <span class="jsdoc-return-description">dojo.NodeList, the nodes currently in this NodeList will be returned,
+	not the appended content.</span></div><div class="jsdoc-summary"><p>The content will be cloned if the length of NodeList
+is greater than 1. Only the DOM nodes are cloned, not
+any attached event handlers.</p>
+</div><table class="jsdoc-parameters"><tr><th>Parameter</th><th>Type</th><th>Description</th></tr><tr><td class="jsdoc-param-name">content</td><td class="jsdoc-param-type">String||DOMNode||NodeList</td><td class="jsdoc-param-description"></td></tr></table><div class="jsdoc-examples"><div class="jsdoc-example"><div><strong>Example 1</strong></div>
+assume a DOM created by this markup:
+<pre class="brush: js;" lang="javascript">
+	&lt;div id=&quot;foo&quot;&gt;&lt;p&gt;Hello Mars&lt;/p&gt;&lt;/div&gt;
+	&lt;div id=&quot;bar&quot;&gt;&lt;p&gt;Hello World&lt;/p&gt;&lt;/div&gt;
+Running this code:</pre>
+<pre class="brush: js;" lang="javascript">
+	dojo.query(&quot;div&quot;).before(&quot;&lt;span&gt;before&lt;/span&gt;&quot;);
+Results in this DOM structure:</pre>
+<pre class="brush: js;" lang="javascript">
+	&lt;span&gt;before&lt;/span&gt;&lt;div id=&quot;foo&quot;&gt;&lt;p&gt;Hello Mars&lt;/p&gt;&lt;/div&gt;
+	&lt;span&gt;before&lt;/span&gt;&lt;div id=&quot;bar&quot;&gt;&lt;p&gt;Hello World&lt;/p&gt;&lt;/div&gt;
+</pre></div></div></div><div class="jsdoc-field public inherited odd"><div class="jsdoc-title"><a name="children"></a><span class="functionIcon">children</span></div><div class="jsdoc-inheritance">Defined by <a class="jsdoc-link" href="/api/1.7/dojo/NodeList">dojo.NodeList</a></div><div class="jsdoc-return-type"><div class="jsdoc-return-description">dojo.NodeList, all immediate child elements for the nodes in this dojo.NodeList.</div></div><div class="jsdoc-summary"><p>.end() can be used on the returned dojo.NodeList to get back to the
+original dojo.NodeList.</p>
+</div><table class="jsdoc-parameters"><tr><th>Parameter</th><th>Type</th><th>Description</th></tr><tr><td class="jsdoc-param-name">query</td><td class="jsdoc-param-type">String</td><td class="jsdoc-param-description"><div><em>Optional.</em></div>a CSS selector.</td></tr></table><div class="jsdoc-examples"><div class="jsdoc-example"><div><strong>Example 1</strong></div>
+assume a DOM created by this markup:
+<pre class="brush: js;" lang="javascript">
+	&lt;div class=&quot;container&quot;&gt;
+		&lt;div class=&quot;red&quot;&gt;Red One&lt;/div&gt;
+		Some Text
+		&lt;div class=&quot;blue&quot;&gt;Blue One&lt;/div&gt;
+		&lt;div class=&quot;red&quot;&gt;Red Two&lt;/div&gt;
+		&lt;div class=&quot;blue&quot;&gt;Blue Two&lt;/div&gt;
+	&lt;/div&gt;
+Running this code:</pre>
+<pre class="brush: js;" lang="javascript">
+	dojo.query(&quot;.container&quot;).children();
+returns the four divs that are children of the container div.</pre>
+Running this code:
+<pre class="brush: js;" lang="javascript">
+	dojo.query(&quot;.container&quot;).children(&quot;.red&quot;);
+returns the two divs that have the class &quot;red&quot;.</pre></div></div></div><div class="jsdoc-field public inherited even"><div class="jsdoc-title"><a name="clone"></a><span class="functionIcon">clone</span></div><div class="jsdoc-inheritance">Defined by <a class="jsdoc-link" href="/api/1.7/dojo/NodeList">dojo.NodeList</a></div><div class="jsdoc-return-type">Returns <strong>dojo.NodeList</strong>: <span class="jsdoc-return-description">dojo.NodeList, a cloned set of the original nodes.</span></div><div class="jsdoc-summary"><p>Only the DOM nodes are cloned, not any attached event handlers.</p>
+</div><div class="jsdoc-examples"><div class="jsdoc-example"><div><strong>Example 1</strong></div>
+assume a DOM created by this markup:
+<pre class="brush: js;" lang="javascript">
+	&lt;div class=&quot;container&quot;&gt;
+		&lt;div class=&quot;red&quot;&gt;Red One&lt;/div&gt;
+		&lt;div class=&quot;blue&quot;&gt;Blue One&lt;/div&gt;
+		&lt;div class=&quot;red&quot;&gt;Red Two&lt;/div&gt;
+		&lt;div class=&quot;blue&quot;&gt;Blue Two&lt;/div&gt;
+	&lt;/div&gt;
+Running this code:</pre>
+<pre class="brush: js;" lang="javascript">
+	dojo.query(&quot;.red&quot;).clone().appendTo(&quot;.container&quot;);
+Results in this DOM structure:</pre>
+<pre class="brush: js;" lang="javascript">
+	&lt;div class=&quot;container&quot;&gt;
+		&lt;div class=&quot;red&quot;&gt;Red One&lt;/div&gt;
+		&lt;div class=&quot;blue&quot;&gt;Blue One&lt;/div&gt;
+		&lt;div class=&quot;red&quot;&gt;Red Two&lt;/div&gt;
+		&lt;div class=&quot;blue&quot;&gt;Blue Two&lt;/div&gt;
+		&lt;div class=&quot;red&quot;&gt;Red One&lt;/div&gt;
+		&lt;div class=&quot;red&quot;&gt;Red Two&lt;/div&gt;
+	&lt;/div&gt;
+</pre></div></div></div><div class="jsdoc-field public inherited odd"><div class="jsdoc-title"><a name="closest"></a><span class="functionIcon">closest</span></div><div class="jsdoc-inheritance">Defined by <a class="jsdoc-link" href="/api/1.7/dojo/NodeList">dojo.NodeList</a></div><div class="jsdoc-return-type">Returns <strong>To make rhino strict checking happy.</strong>: <span class="jsdoc-return-description">dojo.NodeList, the closest parent that matches the query, including the current
+	node in this dojo.NodeList if it matches the query.</span></div><div class="jsdoc-summary"><p>.end() can be used on the returned dojo.NodeList to get back to the
+original dojo.NodeList.</p>
+</div><table class="jsdoc-parameters"><tr><th>Parameter</th><th>Type</th><th>Description</th></tr><tr><td class="jsdoc-param-name">query</td><td class="jsdoc-param-type">String</td><td class="jsdoc-param-description">a CSS selector.</td></tr><tr><td class="jsdoc-param-name">root</td><td class="jsdoc-param-type">String|DOMNode</td><td class="jsdoc-param-description"><div><em>Optional.</em></div>If specified, query is relative to &quot;root&quot; rather than document body.</td></tr></table><div class="jsdoc-examples"><div class="jsdoc-example"><div><strong>Example 1</strong></div>
+assume a DOM created by this markup:
+<pre class="brush: js;" lang="javascript">
+	&lt;div class=&quot;container&quot;&gt;
+		&lt;div class=&quot;red&quot;&gt;Red One&lt;/div&gt;
+		Some Text
+		&lt;div class=&quot;blue&quot;&gt;Blue One&lt;/div&gt;
+		&lt;div class=&quot;red&quot;&gt;Red Two&lt;/div&gt;
+		&lt;div class=&quot;blue&quot;&gt;Blue Two&lt;/div&gt;
+	&lt;/div&gt;
+Running this code:</pre>
+<pre class="brush: js;" lang="javascript">
+	dojo.query(&quot;.red&quot;).closest(&quot;.container&quot;);
+returns the div with class &quot;container&quot;.</pre></div></div></div><div class="jsdoc-field public inherited even"><div class="jsdoc-title"><a name="concat"></a><span class="functionIcon">concat</span></div><div class="jsdoc-inheritance">Defined by <a class="jsdoc-link" href="/api/1.7/dojo/NodeList">dojo.NodeList</a></div><div class="jsdoc-return-type">Returns <strong>dojo.NodeList</strong>: <span class="jsdoc-return-description">dojo.NodeList</span></div><div class="jsdoc-summary"><p>This method behaves exactly like the Array.concat method
+with the caveat that it returns a <code>dojo.NodeList</code> and not a
+raw Array. For more details, see the (Array.concat
+docs)[http://developer.mozilla.org/en/docs/Core<em>JavaScript</em>1.5<em>Reference:Global</em>Objects:Array:concat]</p>
+</div><table class="jsdoc-parameters"><tr><th>Parameter</th><th>Type</th><th>Description</th></tr><tr><td class="jsdoc-param-name">item</td><td class="jsdoc-param-type">Object</td><td class="jsdoc-param-description"><div><em>Optional.</em></div>Any number of optional parameters may be passed in to be
+	spliced into the NodeList</td></tr></table></div><div class="jsdoc-field public inherited odd"><div class="jsdoc-title"><a name="connect"></a><span class="functionIcon">connect</span></div><div class="jsdoc-inheritance">Defined by <a class="jsdoc-link" href="/api/1.7/dojo/NodeList">dojo.NodeList</a></div><div class="jsdoc-summary">attach event handlers to every item of the NodeList. Uses dojo.connect()
+	so event properties are normalized</div><table class="jsdoc-parameters"><tr><th>Parameter</th><th>Type</th><th>Description</th></tr><tr><td class="jsdoc-param-name">methodName</td><td class="jsdoc-param-type">String</td><td class="jsdoc-param-description">the name of the method to attach to. For DOM events, this should be
+	the lower-case name of the event</td></tr><tr><td class="jsdoc-param-name">objOrFunc</td><td class="jsdoc-param-type">Object|Function|String</td><td class="jsdoc-param-description">if 2 arguments are passed (methodName, objOrFunc), objOrFunc should
+	reference a function or be the name of the function in the global
+	namespace to attach. If 3 arguments are provided
+	(methodName, objOrFunc, funcName), objOrFunc must be the scope to
+	locate the bound function in</td></tr><tr><td class="jsdoc-param-name">funcName</td><td class="jsdoc-param-type">String</td><td class="jsdoc-param-description"><div><em>Optional.</em></div>optional. A string naming the function in objOrFunc to bind to the
+	event. May also be a function reference.</td></tr></table><div class="jsdoc-examples"><div class="jsdoc-example"><div><strong>Example 1</strong></div>
+add an onclick handler to every button on the page
+<pre class="brush: js;" lang="javascript">
+	dojo.query(&quot;div:nth-child(odd)&quot;).connect(&quot;onclick&quot;, function(e){
+		console.log(&quot;clicked!&quot;);
+	});
+</pre></div><div class="jsdoc-example"><div><strong>Example 2</strong></div>
+attach foo.bar() to every odd div's onmouseover
+<pre class="brush: js;" lang="javascript">
+	dojo.query(&quot;div:nth-child(odd)&quot;).connect(&quot;onmouseover&quot;, foo, &quot;bar&quot;);
+</pre></div></div></div><div class="jsdoc-field public  even"><div class="jsdoc-title"><a name="constructor"></a><span class="functionIcon">constructor</span></div><div class="jsdoc-inheritance">Overrides <a class="jsdoc-link" href="/api/1.7/Object">Object</a></div><div class="jsdoc-return-type">Returns <strong>dojo.NodeList</strong></div><div class="jsdoc-summary">A reference to the constructor function for this object.</div><table class="jsdoc-parameters"><tr><th>Parameter</th><th>Type</th><th>Description</th></tr><tr><td class="jsdoc-param-name">array</td><td class="jsdoc-param-type"></td><td class="jsdoc-param-description"></td></tr></table></div><div class="jsdoc-field public inherited odd"><div class="jsdoc-title"><a name="coords"></a><span class="functionIcon">coords</span></div><div class="jsdoc-inheritance">Defined by <a class="jsdoc-link" href="/api/1.7/dojo/NodeList">dojo.NodeList</a></div><div class="jsdoc-return-type">Returns <strong>Array</strong></div><div class="jsdoc-summary">Deprecated: Use position() for border-box x/y/w/h
+	or marginBox() for margin-box w/h/l/t.
+	Returns the box objects of all elements in a node list as
+	an Array (*not* a NodeList). Acts like `dojo.coords`, though assumes
+	the node passed is each node in this list.</div></div><div class="jsdoc-field public inherited even"><div class="jsdoc-title"><a name="data"></a><span class="functionIcon">data</span></div><div class="jsdoc-inheritance">Defined by <a class="jsdoc-link" href="/api/1.7/dojo/NodeList">dojo.NodeList</a></div><div class="jsdoc-return-type"><div class="jsdoc-return-description">Object|Anything|Nothing
+	When used as a setter via `dojo.NodeList`, a NodeList instance is returned
+	for further chaning. When used as a getter via `dojo.NodeList` an ARRAY
+	of items is returned. The items in the array correspond to the elements
+	in the original list. This is true even when the list length is 1, eg:
+	when looking up a node by ID (#foo)</div></div><div class="jsdoc-summary"><p>Stash or get some arbirtrary data on/from these nodes. This private _data function is
+exposed publicly on <code>dojo.NodeList</code>, eg: as the result of a <code>dojo.query</code> call.
+DIFFERS from jQuery.data in that when used as a getter, the entire list is ALWAYS
+returned. EVEN WHEN THE LIST IS length == 1.</p>
+
+<p>A single-node version of this function is provided as <code>dojo._nodeData</code>, which follows
+the same signature, though expects a String ID or DomNode reference in the first
+position, before key/value arguments.</p>
+
+<p>node: String|DomNode
+The node to associate data with</p>
+</div><table class="jsdoc-parameters"><tr><th>Parameter</th><th>Type</th><th>Description</th></tr><tr><td class="jsdoc-param-name">key</td><td class="jsdoc-param-type">Object|String</td><td class="jsdoc-param-description"><div><em>Optional.</em></div>If an object, act as a setter and iterate over said object setting data items as defined.
+	If a string, and `value` present, set the data for defined `key` to `value`
+	If a string, and `value` absent, act as a getter, returning the data associated with said `key`</td></tr><tr><td class="jsdoc-param-name">value</td><td class="jsdoc-param-type">Anything</td><td class="jsdoc-param-description"><div><em>Optional.</em></div>The value to set for said `key`, provided `key` is a string (and not an object)</td></tr></table><div class="jsdoc-examples"><div class="jsdoc-example"><div><strong>Example 1</strong></div>
+Set a key `bar` to some data, then retrieve it.
+<pre class="brush: js;" lang="javascript">
+	dojo.query(&quot;.foo&quot;).data(&quot;bar&quot;, &quot;touched&quot;);
+	var touched = dojo.query(&quot;.foo&quot;).data(&quot;bar&quot;);
+	if(touched[0] == &quot;touched&quot;){ alert('win'); }
+</pre></div><div class="jsdoc-example"><div><strong>Example 2</strong></div>
+Get all the data items for a given node.
+<pre class="brush: js;" lang="javascript">
+	var list = dojo.query(&quot;.foo&quot;).data();
+	var first = list[0];
+</pre></div><div class="jsdoc-example"><div><strong>Example 3</strong></div>
+Set the data to a complex hash. Overwrites existing keys with new value
+<pre class="brush: js;" lang="javascript">
+	dojo.query(&quot;.foo&quot;).data({ bar:&quot;baz&quot;, foo:&quot;bar&quot; });
+Then get some random key:</pre>
+<pre class="brush: js;" lang="javascript">
+	dojo.query(&quot;.foo&quot;).data(&quot;foo&quot;); // returns [`bar`]
+</pre></div></div></div><div class="jsdoc-field public inherited odd"><div class="jsdoc-title"><a name="delegate"></a><span class="functionIcon">delegate</span></div><div class="jsdoc-inheritance">Defined by <a class="jsdoc-link" href="/api/1.7/dojo/NodeList">dojo.NodeList</a></div><div class="jsdoc-summary"><p>Sets up event handlers that can catch events on any subnodes matching a given selector,
+including nodes created after delegate() has been called.</p>
+
+<p>This allows an app to setup a single event handler on a high level node, rather than many
+event handlers on subnodes. For example, one onclick handler for a Tree widget, rather than separate
+handlers for each node in the tree.
+Since setting up many event handlers is expensive, this can increase performance.</p>
+
+<p>Note that delegate() will not work for events that don't bubble, like focus.
+onmouseenter/onmouseleave also don't currently work.</p>
+</div><table class="jsdoc-parameters"><tr><th>Parameter</th><th>Type</th><th>Description</th></tr><tr><td class="jsdoc-param-name">selector</td><td class="jsdoc-param-type">String</td><td class="jsdoc-param-description">CSS selector valid to `dojo.query`, like &quot;.foo&quot; or &quot;div &gt; span&quot;.  The
+	selector is relative to the nodes in this NodeList, not the document root.
+	For example myNodeList.delegate(&quot;&gt; a&quot;, &quot;onclick&quot;, ...) will catch events on
+	anchor nodes which are (immediate) children of the nodes in myNodeList.</td></tr><tr><td class="jsdoc-param-name">eventName</td><td class="jsdoc-param-type">String</td><td class="jsdoc-param-description">Standard event name used as an argument to `dojo.connect`, like &quot;onclick&quot;.</td></tr><tr><td class="jsdoc-param-name">fn</td><td class="jsdoc-param-type">Function</td><td class="jsdoc-param-description">Callback function passed the event object, and where this == the node that matches the selector.
+	That means that for example, after setting up a handler via
+	dojo.query(&quot;body&quot;).delegate(&quot;fieldset&quot;, &quot;onclick&quot;, ...)
+	clicking on a fieldset or *any nodes inside of a fieldset* will be reported
+	as a click on the fieldset itself.</td></tr></table><div class="jsdoc-examples"><div class="jsdoc-example"><div><strong>Example 1</strong></div>
+<pre class="brush: js;" lang="javascript">
+	dojo.query(&quot;navbar&quot;).delegate(&quot;a&quot;, &quot;onclick&quot;, function(evt){
+			console.log(&quot;user clicked anchor &quot;, this.node);
+	});
+</pre></div></div></div><div class="jsdoc-field public inherited even"><div class="jsdoc-title"><a name="end"></a><span class="functionIcon">end</span></div><div class="jsdoc-inheritance">Defined by <a class="jsdoc-link" href="/api/1.7/dojo/NodeList">dojo.NodeList</a></div><div class="jsdoc-summary"><p>Returns the <code>dojo.NodeList</code> that generated the current <code>dojo.NodeList</code>. If there
+is no parent dojo.NodeList, an empty dojo.NodeList is returned.</p>
+</div><div class="jsdoc-examples"><div class="jsdoc-example"><div><strong>Example 1</strong></div>
+    dojo.query("a")
+<pre class="brush: js;" lang="javascript">
+				.filter(&quot;.disabled&quot;)
+						// operate on the anchors that only have a disabled class
+						.style(&quot;color&quot;, &quot;grey&quot;)
+				.end()
+				// jump back to the list of anchors
+				.style(...)
+</pre></div></div></div><div class="jsdoc-field public inherited odd"><div class="jsdoc-title"><a name="even"></a><span class="functionIcon">even</span></div><div class="jsdoc-inheritance">Defined by <a class="jsdoc-link" href="/api/1.7/dojo/NodeList">dojo.NodeList</a></div><div class="jsdoc-return-type"><div class="jsdoc-return-description">dojo.NodeList, with the even nodes in this dojo.NodeList</div></div><div class="jsdoc-summary"><p>.end() can be used on the returned dojo.NodeList to get back to the
+original dojo.NodeList.</p>
+</div><div class="jsdoc-examples"><div class="jsdoc-example"><div><strong>Example 1</strong></div>
+assume a DOM created by this markup:
+<pre class="brush: js;" lang="javascript">
+	&lt;div class=&quot;container&quot;&gt;
+		&lt;div class=&quot;interior red&quot;&gt;Red One&lt;/div&gt;
+		&lt;div class=&quot;interior blue&quot;&gt;Blue One&lt;/div&gt;
+		&lt;div class=&quot;interior red&quot;&gt;Red Two&lt;/div&gt;
+		&lt;div class=&quot;interior blue&quot;&gt;Blue Two&lt;/div&gt;
+	&lt;/div&gt;
+Running this code:</pre>
+<pre class="brush: js;" lang="javascript">
+	dojo.query(&quot;.interior&quot;).even();
+returns the two divs with class &quot;blue&quot;</pre></div></div></div><div class="jsdoc-field public inherited even"><div class="jsdoc-title"><a name="every"></a><span class="functionIcon">every</span></div><div class="jsdoc-inheritance">Defined by <a class="jsdoc-link" href="/api/1.7/dojo/NodeList">dojo.NodeList</a></div><div class="jsdoc-return-type">Returns <strong>Boolean</strong></div><div class="jsdoc-summary">see `dojo.every()` and the (Array.every
+	docs)[http://developer.mozilla.org/en/docs/Core_JavaScript_1.5_Reference:Global_Objects:Array:every].
+	Takes the same structure of arguments and returns as
+	dojo.every() with the caveat that the passed array is
+	implicitly this NodeList</div><table class="jsdoc-parameters"><tr><th>Parameter</th><th>Type</th><th>Description</th></tr><tr><td class="jsdoc-param-name">callback</td><td class="jsdoc-param-type">Function:</td><td class="jsdoc-param-description">the callback</td></tr><tr><td class="jsdoc-param-name">thisObject</td><td class="jsdoc-param-type">Object:</td><td class="jsdoc-param-description"><div><em>Optional.</em></div>the context</td></tr></table></div><div class="jsdoc-field public inherited odd"><div class="jsdoc-title"><a name="fadeIn"></a><span class="functionIcon">fadeIn</span></div><div class="jsdoc-inheritance">Defined by <a class="jsdoc-link" href="/api/1.7/dojo/NodeList">dojo.NodeList</a></div><div class="jsdoc-return-type">Returns <strong>dojo.Animation|dojo.NodeList</strong>: <span class="jsdoc-return-description">dojo.Animation|dojo.NodeList
+	A special args member `auto` can be passed to automatically play the animation.
+	If args.auto is present, the original dojo.NodeList will be returned for further
+	chaining. Otherwise the dojo.Animation instance is returned and must be .play()'ed</span></div><div class="jsdoc-summary">fade in all elements of this NodeList via `dojo.fadeIn`</div><table class="jsdoc-parameters"><tr><th>Parameter</th><th>Type</th><th>Description</th></tr><tr><td class="jsdoc-param-name">args</td><td class="jsdoc-param-type">Object</td><td class="jsdoc-param-description"><div><em>Optional.</em></div>Additional dojo.Animation arguments to mix into this set with the addition of
+	an `auto` parameter.</td></tr></table><div class="jsdoc-examples"><div class="jsdoc-example"><div><strong>Example 1</strong></div>
+Fade in all tables with class "blah":
+<pre class="brush: js;" lang="javascript">
+	dojo.query(&quot;table.blah&quot;).fadeIn().play();
+</pre></div></div></div><div class="jsdoc-field public inherited even"><div class="jsdoc-title"><a name="fadeOut"></a><span class="functionIcon">fadeOut</span></div><div class="jsdoc-inheritance">Defined by <a class="jsdoc-link" href="/api/1.7/dojo/NodeList">dojo.NodeList</a></div><div class="jsdoc-return-type">Returns <strong>dojo.Animation|dojo.NodeList</strong>: <span class="jsdoc-return-description">dojo.Animation|dojo.NodeList
+	A special args member `auto` can be passed to automatically play the animation.
+	If args.auto is present, the original dojo.NodeList will be returned for further
+	chaining. Otherwise the dojo.Animation instance is returned and must be .play()'ed</span></div><div class="jsdoc-summary">fade out all elements of this NodeList via `dojo.fadeOut`</div><table class="jsdoc-parameters"><tr><th>Parameter</th><th>Type</th><th>Description</th></tr><tr><td class="jsdoc-param-name">args</td><td class="jsdoc-param-type">Object</td><td class="jsdoc-param-description"><div><em>Optional.</em></div>Additional dojo.Animation arguments to mix into this set with the addition of
+	an `auto` parameter.</td></tr></table><div class="jsdoc-examples"><div class="jsdoc-example"><div><strong>Example 1</strong></div>
+Fade out all elements with class "zork":
+<pre class="brush: js;" lang="javascript">
+	dojo.query(&quot;.zork&quot;).fadeOut().play();
+</pre></div><div class="jsdoc-example"><div><strong>Example 2</strong></div>
+Fade them on a delay and do something at the end:
+<pre class="brush: js;" lang="javascript">
+	var fo = dojo.query(&quot;.zork&quot;).fadeOut();
+	dojo.connect(fo, &quot;onEnd&quot;, function(){ /*...*/ });
+	fo.play();
+</pre></div><div class="jsdoc-example"><div><strong>Example 3</strong></div>
+Using `auto`:
+<pre class="brush: js;" lang="javascript">
+	dojo.query(&quot;li&quot;).fadeOut({ auto:true }).filter(filterFn).forEach(doit);
+</pre></div></div></div><div class="jsdoc-field public inherited odd"><div class="jsdoc-title"><a name="filter"></a><span class="functionIcon">filter</span></div><div class="jsdoc-inheritance">Defined by <a class="jsdoc-link" href="/api/1.7/dojo/NodeList">dojo.NodeList</a></div><div class="jsdoc-return-type">Returns <strong>dojo.NodeList</strong></div><div class="jsdoc-summary">&quot;masks&quot; the built-in javascript filter() method (supported
+	in Dojo via `dojo.filter`) to support passing a simple
+	string filter in addition to supporting filtering function
+	objects.</div><table class="jsdoc-parameters"><tr><th>Parameter</th><th>Type</th><th>Description</th></tr><tr><td class="jsdoc-param-name">filter</td><td class="jsdoc-param-type">String|Function</td><td class="jsdoc-param-description">If a string, a CSS rule like &quot;.thinger&quot; or &quot;div &gt; span&quot;.</td></tr></table><div class="jsdoc-examples"><div class="jsdoc-example"><div><strong>Example 1</strong></div>
+"regular" JS filter syntax as exposed in dojo.filter:
+<pre class="brush: js;" lang="javascript">
+		dojo.query(&quot;*&quot;).filter(function(item){
+				// highlight every paragraph
+				return (item.nodeName == &quot;p&quot;);
+		}).style(&quot;backgroundColor&quot;, &quot;yellow&quot;);
+</pre></div><div class="jsdoc-example"><div><strong>Example 2</strong></div>
+the same filtering using a CSS selector
+<pre class="brush: js;" lang="javascript">
+		dojo.query(&quot;*&quot;).filter(&quot;p&quot;).styles(&quot;backgroundColor&quot;, &quot;yellow&quot;);
+</pre></div></div></div><div class="jsdoc-field public inherited even"><div class="jsdoc-title"><a name="first"></a><span class="functionIcon">first</span></div><div class="jsdoc-inheritance">Defined by <a class="jsdoc-link" href="/api/1.7/dojo/NodeList">dojo.NodeList</a></div><div class="jsdoc-return-type">Returns <strong>dojo.NodeList</strong>: <span class="jsdoc-return-description">dojo.NodeList, with the first node in this dojo.NodeList</span></div><div class="jsdoc-summary"><p>.end() can be used on the returned dojo.NodeList to get back to the
+original dojo.NodeList.</p>
+</div><div class="jsdoc-examples"><div class="jsdoc-example"><div><strong>Example 1</strong></div>
+assume a DOM created by this markup:
+<pre class="brush: js;" lang="javascript">
+	&lt;div class=&quot;container&quot;&gt;
+		&lt;div class=&quot;red&quot;&gt;Red One&lt;/div&gt;
+		&lt;div class=&quot;blue first&quot;&gt;Blue One&lt;/div&gt;
+		&lt;div class=&quot;red&quot;&gt;Red Two&lt;/div&gt;
+		&lt;div class=&quot;blue last&quot;&gt;Blue Two&lt;/div&gt;
+	&lt;/div&gt;
+Running this code:</pre>
+<pre class="brush: js;" lang="javascript">
+	dojo.query(&quot;.blue&quot;).first();
+returns the div with class &quot;blue&quot; and &quot;first&quot;.</pre></div></div></div><div class="jsdoc-field public inherited odd"><div class="jsdoc-title"><a name="forEach"></a><span class="functionIcon">forEach</span></div><div class="jsdoc-inheritance">Defined by <a class="jsdoc-link" href="/api/1.7/dojo/NodeList">dojo.NodeList</a></div><div class="jsdoc-return-type">Returns <strong>dojo.NodeList</strong></div><div class="jsdoc-summary">see `dojo.forEach()`. The primary difference is that the acted-on
+	array is implicitly this NodeList. If you want the option to break out
+	of the forEach loop, use every() or some() instead.</div><table class="jsdoc-parameters"><tr><th>Parameter</th><th>Type</th><th>Description</th></tr><tr><td class="jsdoc-param-name">callback</td><td class="jsdoc-param-type"></td><td class="jsdoc-param-description"></td></tr><tr><td class="jsdoc-param-name">thisObj</td><td class="jsdoc-param-type"></td><td class="jsdoc-param-description"></td></tr></table></div><div class="jsdoc-field public inherited even"><div class="jsdoc-title"><a name="html"></a><span class="functionIcon">html</span></div><div class="jsdoc-inheritance">Defined by <a class="jsdoc-link" href="/api/1.7/dojo/NodeList">dojo.NodeList</a></div><div class="jsdoc-return-type">Returns <strong>dojo.NodeList|String</strong>: <span class="jsdoc-return-description">if no value is passed, the result is String, the innerHTML of the first node.
+	If a value is passed, the return is this dojo.NodeList</span></div><div class="jsdoc-summary"><p>An alias for the "innerHTML" method, but only defined if there is not an existing
+"html" method on dojo.NodeList. Be careful if you are working in an environment
+where it is possible that dojo.NodeList-html could have been loaded, since its
+definition of "html" will take precedence. If you are not sure if dojo.NodeList-html
+could be loaded, use the "innerHTML" method.</p>
+</div><table class="jsdoc-parameters"><tr><th>Parameter</th><th>Type</th><th>Description</th></tr><tr><td class="jsdoc-param-name">content</td><td class="jsdoc-param-type">String|DomNode|NodeList</td><td class="jsdoc-param-description"><div><em>Optional.</em></div>An html string, node or enumerable list of nodes for insertion into the dom</td></tr><tr><td class="jsdoc-param-name">params</td><td class="jsdoc-param-type">Object</td><td class="jsdoc-param-description"><div><em>Optional.</em></div>Optional flags/properties to configure the content-setting. See dojo.html._ContentSetter</td></tr></table><div class="jsdoc-examples"><div class="jsdoc-example"><div><strong>Example 1</strong></div>
+ dojo.query(".thingList").html("<li dojoType='dojo.dnd.Moveable'>1</li><li dojoType='dojo.dnd.Moveable'>2</li><li dojoType='dojo.dnd.Moveable'>3</li>",
+ {
+ 	parseContent: true,
+ 	onBegin: function(){
+ 		this.content = this.content.replace(/([0-9])/g, this.id + &quot;: $1&quot;);
+ 		this.inherited(&quot;onBegin&quot;, arguments);
+ 	}
+ }).removeClass(&quot;notdone&quot;).addClass(&quot;done&quot;);</div></div></div><div class="jsdoc-field public inherited odd"><div class="jsdoc-title"><a name="indexOf"></a><span class="functionIcon">indexOf</span></div><div class="jsdoc-inheritance">Defined by <a class="jsdoc-link" href="/api/1.7/dojo/NodeList">dojo.NodeList</a></div><div class="jsdoc-return-type">Returns <strong>Integer</strong>: <span class="jsdoc-return-description">Positive Integer or 0 for a match, -1 of not found.</span></div><div class="jsdoc-summary"><p>For more details on the behavior of indexOf, see Mozilla's
+(indexOf
+docs)[http://developer.mozilla.org/en/docs/Core<em>JavaScript</em>1.5<em>Reference:Global</em>Objects:Array:indexOf]</p>
+</div><table class="jsdoc-parameters"><tr><th>Parameter</th><th>Type</th><th>Description</th></tr><tr><td class="jsdoc-param-name">value</td><td class="jsdoc-param-type">Object:</td><td class="jsdoc-param-description">The value to search for.</td></tr><tr><td class="jsdoc-param-name">fromIndex</td><td class="jsdoc-param-type">Integer:</td><td class="jsdoc-param-description"><div><em>Optional.</em></div>The location to start searching from. Optional. Defaults to 0.</td></tr></table></div><div class="jsdoc-field public inherited even"><div class="jsdoc-title"><a name="innerHTML"></a><span class="functionIcon">innerHTML</span></div><div class="jsdoc-inheritance">Defined by <a class="jsdoc-link" href="/api/1.7/dojo/NodeList">dojo.NodeList</a></div><div class="jsdoc-return-type">Returns <strong>dojo.NodeList|String</strong>: <span class="jsdoc-return-description">if no value is passed, the result is String, the innerHTML of the first node.
+	If a value is passed, the return is this dojo.NodeList</span></div><div class="jsdoc-summary"><p>This method is simpler than the dojo.NodeList.html() method provided by
+<code>dojo.NodeList-html</code>. This method just does proper innerHTML insertion of HTML fragments,
+and it allows for the innerHTML to be read for the first node in the node list.
+Since dojo.NodeList-html already took the "html" name, this method is called
+"innerHTML". However, if dojo.NodeList-html has not been loaded yet, this
+module will define an "html" method that can be used instead. Be careful if you
+are working in an environment where it is possible that dojo.NodeList-html could
+have been loaded, since its definition of "html" will take precedence.
+The nodes represented by the value argument will be cloned if more than one
+node is in this NodeList. The nodes in this NodeList are returned in the "set"
+usage of this method, not the HTML that was inserted.</p>
+</div><table class="jsdoc-parameters"><tr><th>Parameter</th><th>Type</th><th>Description</th></tr><tr><td class="jsdoc-param-name">value</td><td class="jsdoc-param-type">String||DOMNode|NodeList</td><td class="jsdoc-param-description"><div><em>Optional.</em></div></td></tr></table><div class="jsdoc-examples"><div class="jsdoc-example"><div><strong>Example 1</strong></div>
+assume a DOM created by this markup:
+<pre class="brush: js;" lang="javascript">
+	&lt;div id=&quot;foo&quot;&gt;&lt;/div&gt;
+	&lt;div id=&quot;bar&quot;&gt;&lt;/div&gt;
+This code inserts &lt;p&gt;Hello World&lt;/p&gt; into both divs:</pre>
+<pre class="brush: js;" lang="javascript">
+	dojo.query(&quot;div&quot;).innerHTML(&quot;&lt;p&gt;Hello World&lt;/p&gt;&quot;);
+</pre></div><div class="jsdoc-example"><div><strong>Example 2</strong></div>
+assume a DOM created by this markup:
+<pre class="brush: js;" lang="javascript">
+	&lt;div id=&quot;foo&quot;&gt;&lt;p&gt;Hello Mars&lt;/p&gt;&lt;/div&gt;
+	&lt;div id=&quot;bar&quot;&gt;&lt;p&gt;Hello World&lt;/p&gt;&lt;/div&gt;
+This code returns &quot;&lt;p&gt;Hello Mars&lt;/p&gt;&quot;:</pre>
+<pre class="brush: js;" lang="javascript">
+	var message = dojo.query(&quot;div&quot;).innerHTML();
+</pre></div></div></div><div class="jsdoc-field public inherited odd"><div class="jsdoc-title"><a name="insertAfter"></a><span class="functionIcon">insertAfter</span></div><div class="jsdoc-inheritance">Defined by <a class="jsdoc-link" href="/api/1.7/dojo/NodeList">dojo.NodeList</a></div><div class="jsdoc-return-type">Returns <strong>dojo.NodeList</strong>: <span class="jsdoc-return-description">dojo.NodeList, the nodes currently in this NodeList will be returned,
+	not the matched nodes from the query.</span></div><div class="jsdoc-summary"><p>The nodes in this NodeList will be cloned if the query
+matches more than one element. Only the DOM nodes are cloned, not
+any attached event handlers.</p>
+</div><table class="jsdoc-parameters"><tr><th>Parameter</th><th>Type</th><th>Description</th></tr><tr><td class="jsdoc-param-name">query</td><td class="jsdoc-param-type">String</td><td class="jsdoc-param-description"></td></tr></table><div class="jsdoc-examples"><div class="jsdoc-example"><div><strong>Example 1</strong></div>
+assume a DOM created by this markup:
+<pre class="brush: js;" lang="javascript">
+	&lt;span&gt;after&lt;/span&gt;
+	&lt;p&gt;Hello Mars&lt;/p&gt;
+	&lt;p&gt;Hello World&lt;/p&gt;
+Running this code:</pre>
+<pre class="brush: js;" lang="javascript">
+	dojo.query(&quot;span&quot;).insertAfter(&quot;p&quot;);
+Results in this DOM structure:</pre>
+<pre class="brush: js;" lang="javascript">
+	&lt;p&gt;Hello Mars&lt;/p&gt;&lt;span&gt;after&lt;/span&gt;
+	&lt;p&gt;Hello World&lt;/p&gt;&lt;span&gt;after&lt;/span&gt;
+</pre></div></div></div><div class="jsdoc-field public inherited even"><div class="jsdoc-title"><a name="insertBefore"></a><span class="functionIcon">insertBefore</span></div><div class="jsdoc-inheritance">Defined by <a class="jsdoc-link" href="/api/1.7/dojo/NodeList">dojo.NodeList</a></div><div class="jsdoc-return-type">Returns <strong>dojo.NodeList</strong>: <span class="jsdoc-return-description">dojo.NodeList, the nodes currently in this NodeList will be returned,
+	not the matched nodes from the query.</span></div><div class="jsdoc-summary"><p>The nodes in this NodeList will be cloned if the query
+matches more than one element. Only the DOM nodes are cloned, not
+any attached event handlers.</p>
+</div><table class="jsdoc-parameters"><tr><th>Parameter</th><th>Type</th><th>Description</th></tr><tr><td class="jsdoc-param-name">query</td><td class="jsdoc-param-type">String</td><td class="jsdoc-param-description"></td></tr></table><div class="jsdoc-examples"><div class="jsdoc-example"><div><strong>Example 1</strong></div>
+assume a DOM created by this markup:
+<pre class="brush: js;" lang="javascript">
+	&lt;span&gt;before&lt;/span&gt;
+	&lt;p&gt;Hello Mars&lt;/p&gt;
+	&lt;p&gt;Hello World&lt;/p&gt;
+Running this code:</pre>
+<pre class="brush: js;" lang="javascript">
+	dojo.query(&quot;span&quot;).insertBefore(&quot;p&quot;);
+Results in this DOM structure:</pre>
+<pre class="brush: js;" lang="javascript">
+	&lt;span&gt;before&lt;/span&gt;&lt;p&gt;Hello Mars&lt;/p&gt;
+	&lt;span&gt;before&lt;/span&gt;&lt;p&gt;Hello World&lt;/p&gt;
+</pre></div></div></div><div class="jsdoc-field public inherited odd"><div class="jsdoc-title"><a name="instantiate"></a><span class="functionIcon">instantiate</span></div><div class="jsdoc-inheritance">Defined by <a class="jsdoc-link" href="/api/1.7/dojo/NodeList">dojo.NodeList</a></div><div class="jsdoc-summary">Create a new instance of a specified class, using the
+	specified properties and each node in the nodeList as a
+	srcNodeRef.</div><table class="jsdoc-parameters"><tr><th>Parameter</th><th>Type</th><th>Description</th></tr><tr><td class="jsdoc-param-name">declaredClass</td><td class="jsdoc-param-type">String|Object</td><td class="jsdoc-param-description"></td></tr><tr><td class="jsdoc-param-name">properties</td><td class="jsdoc-param-type">Object</td><td class="jsdoc-param-description"><div><em>Optional.</em></div></td></tr></table><div class="jsdoc-examples"><div class="jsdoc-example"><div><strong>Example 1</strong></div>
+Grabs all buttons in the page and converts them to diji.form.Buttons.
+<pre class="brush: js;" lang="javascript">
+		var buttons = dojo.query(&quot;button&quot;).instantiate(&quot;dijit.form.Button&quot;, {showLabel: true});
+</pre></div></div></div><div class="jsdoc-field public inherited even"><div class="jsdoc-title"><a name="last"></a><span class="functionIcon">last</span></div><div class="jsdoc-inheritance">Defined by <a class="jsdoc-link" href="/api/1.7/dojo/NodeList">dojo.NodeList</a></div><div class="jsdoc-return-type">Returns <strong>dojo.NodeList</strong>: <span class="jsdoc-return-description">dojo.NodeList, with the last node in this dojo.NodeList</span></div><div class="jsdoc-summary"><p>.end() can be used on the returned dojo.NodeList to get back to the
+original dojo.NodeList.</p>
+</div><div class="jsdoc-examples"><div class="jsdoc-example"><div><strong>Example 1</strong></div>
+assume a DOM created by this markup:
+<pre class="brush: js;" lang="javascript">
+	&lt;div class=&quot;container&quot;&gt;
+		&lt;div class=&quot;red&quot;&gt;Red One&lt;/div&gt;
+		&lt;div class=&quot;blue first&quot;&gt;Blue One&lt;/div&gt;
+		&lt;div class=&quot;red&quot;&gt;Red Two&lt;/div&gt;
+		&lt;div class=&quot;blue last&quot;&gt;Blue Two&lt;/div&gt;
+	&lt;/div&gt;
+Running this code:</pre>
+<pre class="brush: js;" lang="javascript">
+	dojo.query(&quot;.blue&quot;).last();
+returns the last div with class &quot;blue&quot;,</pre></div></div></div><div class="jsdoc-field public inherited odd"><div class="jsdoc-title"><a name="lastIndexOf"></a><span class="functionIcon">lastIndexOf</span></div><div class="jsdoc-inheritance">Defined by <a class="jsdoc-link" href="/api/1.7/dojo/NodeList">dojo.NodeList</a></div><div class="jsdoc-return-type">Returns <strong>Integer</strong>: <span class="jsdoc-return-description">Positive Integer or 0 for a match, -1 of not found.</span></div><div class="jsdoc-summary"><p>For more details on the behavior of lastIndexOf, see
+Mozilla's (lastIndexOf
+docs)[http://developer.mozilla.org/en/docs/Core<em>JavaScript</em>1.5<em>Reference:Global</em>Objects:Array:lastIndexOf]</p>
+</div><table class="jsdoc-parameters"><tr><th>Parameter</th><th>Type</th><th>Description</th></tr><tr><td class="jsdoc-param-name">value</td><td class="jsdoc-param-type">Object</td><td class="jsdoc-param-description">The value to search for.</td></tr><tr><td class="jsdoc-param-name">fromIndex</td><td class="jsdoc-param-type">Integer</td><td class="jsdoc-param-description"><div><em>Optional.</em></div>The location to start searching from. Optional. Defaults to 0.</td></tr></table></div><div class="jsdoc-field public inherited even"><div class="jsdoc-title"><a name="map"></a><span class="functionIcon">map</span></div><div class="jsdoc-inheritance">Defined by <a class="jsdoc-link" href="/api/1.7/dojo/NodeList">dojo.NodeList</a></div><div class="jsdoc-return-type">Returns <strong>dojo.NodeList</strong></div><div class="jsdoc-summary">see dojo.map(). The primary difference is that the acted-on
+	array is implicitly this NodeList and the return is a
+	dojo.NodeList (a subclass of Array)
+	/return d.map(this, func, obj, d.NodeList); // dojo.NodeList</div><table class="jsdoc-parameters"><tr><th>Parameter</th><th>Type</th><th>Description</th></tr><tr><td class="jsdoc-param-name">func</td><td class="jsdoc-param-type">Function</td><td class="jsdoc-param-description"></td></tr><tr><td class="jsdoc-param-name">obj</td><td class="jsdoc-param-type">Function</td><td class="jsdoc-param-description"><div><em>Optional.</em></div></td></tr></table></div><div class="jsdoc-field public inherited odd"><div class="jsdoc-title"><a name="next"></a><span class="functionIcon">next</span></div><div class="jsdoc-inheritance">Defined by <a class="jsdoc-link" href="/api/1.7/dojo/NodeList">dojo.NodeList</a></div><div class="jsdoc-return-type"><div class="jsdoc-return-description">dojo.NodeList, the next element for nodes in this dojo.NodeList.</div></div><div class="jsdoc-summary"><p>.end() can be used on the returned dojo.NodeList to get back to the
+original dojo.NodeList.</p>
+</div><table class="jsdoc-parameters"><tr><th>Parameter</th><th>Type</th><th>Description</th></tr><tr><td class="jsdoc-param-name">query</td><td class="jsdoc-param-type">String</td><td class="jsdoc-param-description"><div><em>Optional.</em></div>a CSS selector.</td></tr></table><div class="jsdoc-examples"><div class="jsdoc-example"><div><strong>Example 1</strong></div>
+assume a DOM created by this markup:
+<pre class="brush: js;" lang="javascript">
+	&lt;div class=&quot;container&quot;&gt;
+		&lt;div class=&quot;red&quot;&gt;Red One&lt;/div&gt;
+		Some Text
+		&lt;div class=&quot;blue first&quot;&gt;Blue One&lt;/div&gt;
+		&lt;div class=&quot;red&quot;&gt;Red Two&lt;/div&gt;
+		&lt;div class=&quot;blue last&quot;&gt;Blue Two&lt;/div&gt;
+	&lt;/div&gt;
+Running this code:</pre>
+<pre class="brush: js;" lang="javascript">
+	dojo.query(&quot;.first&quot;).next();
+returns the div with class &quot;red&quot; and has innerHTML of &quot;Red Two&quot;.</pre>
+Running this code:
+<pre class="brush: js;" lang="javascript">
+	dojo.query(&quot;.last&quot;).next(&quot;.red&quot;);
+does not return any elements.</pre></div></div></div><div class="jsdoc-field public inherited even"><div class="jsdoc-title"><a name="nextAll"></a><span class="functionIcon">nextAll</span></div><div class="jsdoc-inheritance">Defined by <a class="jsdoc-link" href="/api/1.7/dojo/NodeList">dojo.NodeList</a></div><div class="jsdoc-return-type"><div class="jsdoc-return-description">dojo.NodeList, all sibling elements that come after the nodes in this dojo.NodeList.</div></div><div class="jsdoc-summary"><p>.end() can be used on the returned dojo.NodeList to get back to the
+original dojo.NodeList.</p>
+</div><table class="jsdoc-parameters"><tr><th>Parameter</th><th>Type</th><th>Description</th></tr><tr><td class="jsdoc-param-name">query</td><td class="jsdoc-param-type">String</td><td class="jsdoc-param-description"><div><em>Optional.</em></div>a CSS selector.</td></tr></table><div class="jsdoc-examples"><div class="jsdoc-example"><div><strong>Example 1</strong></div>
+assume a DOM created by this markup:
+<pre class="brush: js;" lang="javascript">
+	&lt;div class=&quot;container&quot;&gt;
+		&lt;div class=&quot;red&quot;&gt;Red One&lt;/div&gt;
+		Some Text
+		&lt;div class=&quot;blue first&quot;&gt;Blue One&lt;/div&gt;
+		&lt;div class=&quot;red next&quot;&gt;Red Two&lt;/div&gt;
+		&lt;div class=&quot;blue next&quot;&gt;Blue Two&lt;/div&gt;
+	&lt;/div&gt;
+Running this code:</pre>
+<pre class="brush: js;" lang="javascript">
+	dojo.query(&quot;.first&quot;).nextAll();
+returns the two divs with class of &quot;next&quot;.</pre>
+Running this code:
+<pre class="brush: js;" lang="javascript">
+	dojo.query(&quot;.first&quot;).nextAll(&quot;.red&quot;);
+returns the one div with class &quot;red&quot; and innerHTML &quot;Red Two&quot;.</pre></div></div></div><div class="jsdoc-field public inherited odd"><div class="jsdoc-title"><a name="odd"></a><span class="functionIcon">odd</span></div><div class="jsdoc-inheritance">Defined by <a class="jsdoc-link" href="/api/1.7/dojo/NodeList">dojo.NodeList</a></div><div class="jsdoc-return-type"><div class="jsdoc-return-description">dojo.NodeList, with the odd nodes in this dojo.NodeList</div></div><div class="jsdoc-summary"><p>.end() can be used on the returned dojo.NodeList to get back to the
+original dojo.NodeList.</p>
+</div><div class="jsdoc-examples"><div class="jsdoc-example"><div><strong>Example 1</strong></div>
+assume a DOM created by this markup:
+<pre class="brush: js;" lang="javascript">
+	&lt;div class=&quot;container&quot;&gt;
+		&lt;div class=&quot;interior red&quot;&gt;Red One&lt;/div&gt;
+		&lt;div class=&quot;interior blue&quot;&gt;Blue One&lt;/div&gt;
+		&lt;div class=&quot;interior red&quot;&gt;Red Two&lt;/div&gt;
+		&lt;div class=&quot;interior blue&quot;&gt;Blue Two&lt;/div&gt;
+	&lt;/div&gt;
+Running this code:</pre>
+<pre class="brush: js;" lang="javascript">
+	dojo.query(&quot;.interior&quot;).odd();
+returns the two divs with class &quot;red&quot;</pre></div></div></div><div class="jsdoc-field public inherited even"><div class="jsdoc-title"><a name="parent"></a><span class="functionIcon">parent</span></div><div class="jsdoc-inheritance">Defined by <a class="jsdoc-link" href="/api/1.7/dojo/NodeList">dojo.NodeList</a></div><div class="jsdoc-return-type"><div class="jsdoc-return-description">dojo.NodeList, immediate parent elements for nodes in this dojo.NodeList.</div></div><div class="jsdoc-summary"><p>.end() can be used on the returned dojo.NodeList to get back to the
+original dojo.NodeList.</p>
+</div><table class="jsdoc-parameters"><tr><th>Parameter</th><th>Type</th><th>Description</th></tr><tr><td class="jsdoc-param-name">query</td><td class="jsdoc-param-type">String</td><td class="jsdoc-param-description"><div><em>Optional.</em></div>a CSS selector.</td></tr></table><div class="jsdoc-examples"><div class="jsdoc-example"><div><strong>Example 1</strong></div>
+assume a DOM created by this markup:
+<pre class="brush: js;" lang="javascript">
+	&lt;div class=&quot;container&quot;&gt;
+		&lt;div class=&quot;red&quot;&gt;Red One&lt;/div&gt;
+		&lt;div class=&quot;blue first&quot;&gt;&lt;span class=&quot;text&quot;&gt;Blue One&lt;/span&gt;&lt;/div&gt;
+		&lt;div class=&quot;red&quot;&gt;Red Two&lt;/div&gt;
+		&lt;div class=&quot;blue&quot;&gt;&lt;span class=&quot;text&quot;&gt;Blue Two&lt;/span&gt;&lt;/div&gt;
+	&lt;/div&gt;
+Running this code:</pre>
+<pre class="brush: js;" lang="javascript">
+	dojo.query(&quot;.text&quot;).parent();
+returns the two divs with class &quot;blue&quot;.</pre>
+Running this code:
+<pre class="brush: js;" lang="javascript">
+	dojo.query(&quot;.text&quot;).parent(&quot;.first&quot;);
+returns the one div with class &quot;blue&quot; and &quot;first&quot;.</pre></div></div></div><div class="jsdoc-field public inherited odd"><div class="jsdoc-title"><a name="parents"></a><span class="functionIcon">parents</span></div><div class="jsdoc-inheritance">Defined by <a class="jsdoc-link" href="/api/1.7/dojo/NodeList">dojo.NodeList</a></div><div class="jsdoc-return-type"><div class="jsdoc-return-description">dojo.NodeList, all parent elements for nodes in this dojo.NodeList.</div></div><div class="jsdoc-summary"><p>.end() can be used on the returned dojo.NodeList to get back to the
+original dojo.NodeList.</p>
+</div><table class="jsdoc-parameters"><tr><th>Parameter</th><th>Type</th><th>Description</th></tr><tr><td class="jsdoc-param-name">query</td><td class="jsdoc-param-type">String</td><td class="jsdoc-param-description"><div><em>Optional.</em></div>a CSS selector.</td></tr></table><div class="jsdoc-examples"><div class="jsdoc-example"><div><strong>Example 1</strong></div>
+assume a DOM created by this markup:
+<pre class="brush: js;" lang="javascript">
+	&lt;div class=&quot;container&quot;&gt;
+		&lt;div class=&quot;red&quot;&gt;Red One&lt;/div&gt;
+		&lt;div class=&quot;blue first&quot;&gt;&lt;span class=&quot;text&quot;&gt;Blue One&lt;/span&gt;&lt;/div&gt;
+		&lt;div class=&quot;red&quot;&gt;Red Two&lt;/div&gt;
+		&lt;div class=&quot;blue&quot;&gt;&lt;span class=&quot;text&quot;&gt;Blue Two&lt;/span&gt;&lt;/div&gt;
+	&lt;/div&gt;
+Running this code:</pre>
+<pre class="brush: js;" lang="javascript">
+	dojo.query(&quot;.text&quot;).parents();
+returns the two divs with class &quot;blue&quot;, the div with class &quot;container&quot;,</pre>
+<pre class="brush: js;" lang="javascript">
+	the body element and the html element.
+Running this code:</pre>
+<pre class="brush: js;" lang="javascript">
+	dojo.query(&quot;.text&quot;).parents(&quot;.container&quot;);
+returns the one div with class &quot;container&quot;.</pre></div></div></div><div class="jsdoc-field public inherited even"><div class="jsdoc-title"><a name="prepend"></a><span class="functionIcon">prepend</span></div><div class="jsdoc-inheritance">Defined by <a class="jsdoc-link" href="/api/1.7/dojo/NodeList">dojo.NodeList</a></div><div class="jsdoc-return-type">Returns <strong>dojo.NodeList</strong>: <span class="jsdoc-return-description">dojo.NodeList, the nodes currently in this NodeList will be returned,
+	not the appended content.
+	assume a DOM created by this markup:
+		<div id="foo"><p>Hello Mars</p></div>
+		<div id="bar"><p>Hello World</p></div>
+	Running this code:
+		dojo.query("div").prepend("<span>prepend</span>");
+	Results in this DOM structure:
+		<div id="foo"><span>prepend</span><p>Hello Mars</p></div>
+		<div id="bar"><span>prepend</span><p>Hello World</p></div></span></div><div class="jsdoc-summary"><p>The content will be cloned if the length of NodeList
+is greater than 1. Only the DOM nodes are cloned, not
+any attached event handlers.</p>
+</div><table class="jsdoc-parameters"><tr><th>Parameter</th><th>Type</th><th>Description</th></tr><tr><td class="jsdoc-param-name">content</td><td class="jsdoc-param-type">String||DOMNode||NodeList</td><td class="jsdoc-param-description"></td></tr></table></div><div class="jsdoc-field public inherited odd"><div class="jsdoc-title"><a name="prependTo"></a><span class="functionIcon">prependTo</span></div><div class="jsdoc-inheritance">Defined by <a class="jsdoc-link" href="/api/1.7/dojo/NodeList">dojo.NodeList</a></div><div class="jsdoc-return-type">Returns <strong>dojo.NodeList</strong>: <span class="jsdoc-return-description">dojo.NodeList, the nodes currently in this NodeList will be returned,
+	not the matched nodes from the query.</span></div><div class="jsdoc-summary"><p>The nodes in this NodeList will be cloned if the query
+matches more than one element. Only the DOM nodes are cloned, not
+any attached event handlers.</p>
+</div><table class="jsdoc-parameters"><tr><th>Parameter</th><th>Type</th><th>Description</th></tr><tr><td class="jsdoc-param-name">query</td><td class="jsdoc-param-type">String</td><td class="jsdoc-param-description"></td></tr></table><div class="jsdoc-examples"><div class="jsdoc-example"><div><strong>Example 1</strong></div>
+assume a DOM created by this markup:
+<pre class="brush: js;" lang="javascript">
+	&lt;span&gt;prepend&lt;/span&gt;
+	&lt;p&gt;Hello Mars&lt;/p&gt;
+	&lt;p&gt;Hello World&lt;/p&gt;
+Running this code:</pre>
+<pre class="brush: js;" lang="javascript">
+	dojo.query(&quot;span&quot;).prependTo(&quot;p&quot;);
+Results in this DOM structure:</pre>
+<pre class="brush: js;" lang="javascript">
+	&lt;p&gt;&lt;span&gt;prepend&lt;/span&gt;Hello Mars&lt;/p&gt;
+	&lt;p&gt;&lt;span&gt;prepend&lt;/span&gt;Hello World&lt;/p&gt;
+</pre></div></div></div><div class="jsdoc-field public inherited even"><div class="jsdoc-title"><a name="prev"></a><span class="functionIcon">prev</span></div><div class="jsdoc-inheritance">Defined by <a class="jsdoc-link" href="/api/1.7/dojo/NodeList">dojo.NodeList</a></div><div class="jsdoc-return-type"><div class="jsdoc-return-description">dojo.NodeList, the previous element for nodes in this dojo.NodeList.</div></div><div class="jsdoc-summary"><p>.end() can be used on the returned dojo.NodeList to get back to the
+original dojo.NodeList.</p>
+</div><table class="jsdoc-parameters"><tr><th>Parameter</th><th>Type</th><th>Description</th></tr><tr><td class="jsdoc-param-name">query</td><td class="jsdoc-param-type">String</td><td class="jsdoc-param-description"><div><em>Optional.</em></div>a CSS selector.</td></tr></table><div class="jsdoc-examples"><div class="jsdoc-example"><div><strong>Example 1</strong></div>
+assume a DOM created by this markup:
+<pre class="brush: js;" lang="javascript">
+	&lt;div class=&quot;container&quot;&gt;
+		&lt;div class=&quot;red&quot;&gt;Red One&lt;/div&gt;
+		Some Text
+		&lt;div class=&quot;blue first&quot;&gt;Blue One&lt;/div&gt;
+		&lt;div class=&quot;red&quot;&gt;Red Two&lt;/div&gt;
+		&lt;div class=&quot;blue&quot;&gt;Blue Two&lt;/div&gt;
+	&lt;/div&gt;
+Running this code:</pre>
+<pre class="brush: js;" lang="javascript">
+	dojo.query(&quot;.first&quot;).prev();
+returns the div with class &quot;red&quot; and has innerHTML of &quot;Red One&quot;.</pre>
+Running this code:
+<pre class="brush: js;" lang="javascript">
+	dojo.query(&quot;.first&quot;).prev(&quot;.blue&quot;);
+does not return any elements.</pre></div></div></div><div class="jsdoc-field public inherited odd"><div class="jsdoc-title"><a name="prevAll"></a><span class="functionIcon">prevAll</span></div><div class="jsdoc-inheritance">Defined by <a class="jsdoc-link" href="/api/1.7/dojo/NodeList">dojo.NodeList</a></div><div class="jsdoc-return-type"><div class="jsdoc-return-description">dojo.NodeList, all sibling elements that come before the nodes in this dojo.NodeList.</div></div><div class="jsdoc-summary"><p>The returned nodes will be in reverse DOM order -- the first node in the list will
+be the node closest to the original node/NodeList.
+.end() can be used on the returned dojo.NodeList to get back to the
+original dojo.NodeList.</p>
+</div><table class="jsdoc-parameters"><tr><th>Parameter</th><th>Type</th><th>Description</th></tr><tr><td class="jsdoc-param-name">query</td><td class="jsdoc-param-type">String</td><td class="jsdoc-param-description"><div><em>Optional.</em></div>a CSS selector.</td></tr></table><div class="jsdoc-examples"><div class="jsdoc-example"><div><strong>Example 1</strong></div>
+assume a DOM created by this markup:
+<pre class="brush: js;" lang="javascript">
+	&lt;div class=&quot;container&quot;&gt;
+		&lt;div class=&quot;red prev&quot;&gt;Red One&lt;/div&gt;
+		Some Text
+		&lt;div class=&quot;blue prev&quot;&gt;Blue One&lt;/div&gt;
+		&lt;div class=&quot;red second&quot;&gt;Red Two&lt;/div&gt;
+		&lt;div class=&quot;blue&quot;&gt;Blue Two&lt;/div&gt;
+	&lt;/div&gt;
+Running this code:</pre>
+<pre class="brush: js;" lang="javascript">
+	dojo.query(&quot;.second&quot;).prevAll();
+returns the two divs with class of &quot;prev&quot;.</pre>
+Running this code:
+<pre class="brush: js;" lang="javascript">
+	dojo.query(&quot;.first&quot;).prevAll(&quot;.red&quot;);
+returns the one div with class &quot;red prev&quot; and innerHTML &quot;Red One&quot;.</pre></div></div></div><div class="jsdoc-field public inherited even"><div class="jsdoc-title"><a name="remove"></a><span class="functionIcon">remove</span></div><div class="jsdoc-inheritance">Defined by <a class="jsdoc-link" href="/api/1.7/dojo/NodeList">dojo.NodeList</a></div><div class="jsdoc-return-type">Returns <strong>dojo.NodeList</strong>: <span class="jsdoc-return-description">dojo.NodeList</span></div><div class="jsdoc-summary">alias for dojo.NodeList's orphan method. Removes elements
+	in this list that match the simple filter from their parents
+	and returns them as a new NodeList.</div><table class="jsdoc-parameters"><tr><th>Parameter</th><th>Type</th><th>Description</th></tr><tr><td class="jsdoc-param-name">simpleFilter</td><td class="jsdoc-param-type">String</td><td class="jsdoc-param-description">single-expression CSS rule. For example, &quot;.thinger&quot; or
+	&quot;#someId[attrName='value']&quot; but not &quot;div &gt; span&quot;. In short,
+	anything which does not invoke a descent to evaluate but
+	can instead be used to test a single node is acceptable.</td></tr></table></div><div class="jsdoc-field public inherited odd"><div class="jsdoc-title"><a name="removeData"></a><span class="functionIcon">removeData</span></div><div class="jsdoc-inheritance">Defined by <a class="jsdoc-link" href="/api/1.7/dojo/NodeList">dojo.NodeList</a></div><div class="jsdoc-summary">Remove the data associated with these nodes.</div><table class="jsdoc-parameters"><tr><th>Parameter</th><th>Type</th><th>Description</th></tr><tr><td class="jsdoc-param-name">key</td><td class="jsdoc-param-type">String</td><td class="jsdoc-param-description"><div><em>Optional.</em></div>If ommitted, clean all data for this node.
+	If passed, remove the data item found at `key`</td></tr></table></div><div class="jsdoc-field public inherited even"><div class="jsdoc-title"><a name="replaceAll"></a><span class="functionIcon">replaceAll</span></div><div class="jsdoc-inheritance">Defined by <a class="jsdoc-link" href="/api/1.7/dojo/NodeList">dojo.NodeList</a></div><div class="jsdoc-return-type">Returns <strong>dojo.NodeList</strong>: <span class="jsdoc-return-description">The nodes currently in this NodeList will be returned, not the matched nodes
+	from the query. The nodes currently in this NodeLIst could have
+	been cloned, so the returned NodeList will include the cloned nodes.</span></div><div class="jsdoc-summary"><p>The nodes in this NodeList will be cloned if the query
+matches more than one element. Only the DOM nodes are cloned, not
+any attached event handlers.</p>
+</div><table class="jsdoc-parameters"><tr><th>Parameter</th><th>Type</th><th>Description</th></tr><tr><td class="jsdoc-param-name">query</td><td class="jsdoc-param-type">String</td><td class="jsdoc-param-description"></td></tr></table><div class="jsdoc-examples"><div class="jsdoc-example"><div><strong>Example 1</strong></div>
+assume a DOM created by this markup:
+<pre class="brush: js;" lang="javascript">
+	&lt;div class=&quot;container&quot;&gt;
+		&lt;div class=&quot;spacer&quot;&gt;___&lt;/div&gt;
+		&lt;div class=&quot;red&quot;&gt;Red One&lt;/div&gt;
+		&lt;div class=&quot;spacer&quot;&gt;___&lt;/div&gt;
+		&lt;div class=&quot;blue&quot;&gt;Blue One&lt;/div&gt;
+		&lt;div class=&quot;spacer&quot;&gt;___&lt;/div&gt;
+		&lt;div class=&quot;red&quot;&gt;Red Two&lt;/div&gt;
+		&lt;div class=&quot;spacer&quot;&gt;___&lt;/div&gt;
+		&lt;div class=&quot;blue&quot;&gt;Blue Two&lt;/div&gt;
+	&lt;/div&gt;
+Running this code:</pre>
+<pre class="brush: js;" lang="javascript">
+	dojo.query(&quot;.red&quot;).replaceAll(&quot;.blue&quot;);
+Results in this DOM structure:</pre>
+<pre class="brush: js;" lang="javascript">
+	&lt;div class=&quot;container&quot;&gt;
+		&lt;div class=&quot;spacer&quot;&gt;___&lt;/div&gt;
+		&lt;div class=&quot;spacer&quot;&gt;___&lt;/div&gt;
+		&lt;div class=&quot;red&quot;&gt;Red One&lt;/div&gt;
+		&lt;div class=&quot;red&quot;&gt;Red Two&lt;/div&gt;
+		&lt;div class=&quot;spacer&quot;&gt;___&lt;/div&gt;
+		&lt;div class=&quot;spacer&quot;&gt;___&lt;/div&gt;
+		&lt;div class=&quot;red&quot;&gt;Red One&lt;/div&gt;
+		&lt;div class=&quot;red&quot;&gt;Red Two&lt;/div&gt;
+	&lt;/div&gt;
+</pre></div></div></div><div class="jsdoc-field public inherited odd"><div class="jsdoc-title"><a name="replaceWith"></a><span class="functionIcon">replaceWith</span></div><div class="jsdoc-inheritance">Defined by <a class="jsdoc-link" href="/api/1.7/dojo/NodeList">dojo.NodeList</a></div><div class="jsdoc-return-type">Returns <strong>dojo.NodeList</strong>: <span class="jsdoc-return-description">The nodes currently in this NodeList will be returned, not the replacing content.
+	Note that the returned nodes have been removed from the DOM.</span></div><div class="jsdoc-summary"><p>The content will be cloned if the length of NodeList
+is greater than 1. Only the DOM nodes are cloned, not
+any attached event handlers.</p>
+</div><table class="jsdoc-parameters"><tr><th>Parameter</th><th>Type</th><th>Description</th></tr><tr><td class="jsdoc-param-name">content</td><td class="jsdoc-param-type">String||DOMNode||NodeList</td><td class="jsdoc-param-description"></td></tr></table><div class="jsdoc-examples"><div class="jsdoc-example"><div><strong>Example 1</strong></div>
+assume a DOM created by this markup:
+<pre class="brush: js;" lang="javascript">
+	&lt;div class=&quot;container&quot;&gt;
+		&lt;div class=&quot;red&quot;&gt;Red One&lt;/div&gt;
+		&lt;div class=&quot;blue&quot;&gt;Blue One&lt;/div&gt;
+		&lt;div class=&quot;red&quot;&gt;Red Two&lt;/div&gt;
+		&lt;div class=&quot;blue&quot;&gt;Blue Two&lt;/div&gt;
+	&lt;/div&gt;
+Running this code:</pre>
+<pre class="brush: js;" lang="javascript">
+	dojo.query(&quot;.red&quot;).replaceWith('&lt;div class=&quot;green&quot;&gt;Green&lt;/div&gt;');
+Results in this DOM structure:</pre>
+<pre class="brush: js;" lang="javascript">
+	&lt;div class=&quot;container&quot;&gt;
+		&lt;div class=&quot;green&quot;&gt;Green&lt;/div&gt;
+		&lt;div class=&quot;blue&quot;&gt;Blue One&lt;/div&gt;
+		&lt;div class=&quot;green&quot;&gt;Green&lt;/div&gt;
+		&lt;div class=&quot;blue&quot;&gt;Blue Two&lt;/div&gt;
+	&lt;/div&gt;
+</pre></div></div></div><div class="jsdoc-field public inherited even"><div class="jsdoc-title"><a name="siblings"></a><span class="functionIcon">siblings</span></div><div class="jsdoc-inheritance">Defined by <a class="jsdoc-link" href="/api/1.7/dojo/NodeList">dojo.NodeList</a></div><div class="jsdoc-return-type"><div class="jsdoc-return-description">dojo.NodeList, all sibling elements for nodes in this dojo.NodeList.</div></div><div class="jsdoc-summary"><p>.end() can be used on the returned dojo.NodeList to get back to the
+original dojo.NodeList.</p>
+</div><table class="jsdoc-parameters"><tr><th>Parameter</th><th>Type</th><th>Description</th></tr><tr><td class="jsdoc-param-name">query</td><td class="jsdoc-param-type">String</td><td class="jsdoc-param-description"><div><em>Optional.</em></div>a CSS selector.</td></tr></table><div class="jsdoc-examples"><div class="jsdoc-example"><div><strong>Example 1</strong></div>
+assume a DOM created by this markup:
+<pre class="brush: js;" lang="javascript">
+	&lt;div class=&quot;container&quot;&gt;
+		&lt;div class=&quot;red&quot;&gt;Red One&lt;/div&gt;
+		Some Text
+		&lt;div class=&quot;blue first&quot;&gt;Blue One&lt;/div&gt;
+		&lt;div class=&quot;red&quot;&gt;Red Two&lt;/div&gt;
+		&lt;div class=&quot;blue&quot;&gt;Blue Two&lt;/div&gt;
+	&lt;/div&gt;
+Running this code:</pre>
+<pre class="brush: js;" lang="javascript">
+	dojo.query(&quot;.first&quot;).siblings();
+returns the two divs with class &quot;red&quot; and the other div</pre>
+<pre class="brush: js;" lang="javascript">
+	with class &quot;blue&quot; that does not have &quot;first&quot;.
+Running this code:</pre>
+<pre class="brush: js;" lang="javascript">
+	dojo.query(&quot;.first&quot;).siblings(&quot;.red&quot;);
+returns the two div with class &quot;red&quot;.</pre></div></div></div><div class="jsdoc-field public inherited odd"><div class="jsdoc-title"><a name="slice"></a><span class="functionIcon">slice</span></div><div class="jsdoc-inheritance">Defined by <a class="jsdoc-link" href="/api/1.7/dojo/NodeList">dojo.NodeList</a></div><div class="jsdoc-summary"><p>This method behaves exactly like the Array.slice method
+with the caveat that it returns a dojo.NodeList and not a
+raw Array. For more details, see Mozilla's (slice
+documentation)[http://developer.mozilla.org/en/docs/Core<em>JavaScript</em>1.5<em>Reference:Global</em>Objects:Array:slice]</p>
+</div><table class="jsdoc-parameters"><tr><th>Parameter</th><th>Type</th><th>Description</th></tr><tr><td class="jsdoc-param-name">begin</td><td class="jsdoc-param-type">Integer</td><td class="jsdoc-param-description">Can be a positive or negative integer, with positive
+	integers noting the offset to begin at, and negative
+	integers denoting an offset from the end (i.e., to the left
+	of the end)</td></tr><tr><td class="jsdoc-param-name">end</td><td class="jsdoc-param-type">Integer</td><td class="jsdoc-param-description"><div><em>Optional.</em></div>Optional parameter to describe what position relative to
+	the NodeList's zero index to end the slice at. Like begin,
+	can be positive or negative.</td></tr></table></div><div class="jsdoc-field public inherited even"><div class="jsdoc-title"><a name="slideTo"></a><span class="functionIcon">slideTo</span></div><div class="jsdoc-inheritance">Defined by <a class="jsdoc-link" href="/api/1.7/dojo/NodeList">dojo.NodeList</a></div><div class="jsdoc-return-type">Returns <strong>dojo.Animation|dojo.NodeList</strong>: <span class="jsdoc-return-description">dojo.Animation|dojo.NodeList
+	A special args member `auto` can be passed to automatically play the animation.
+	If args.auto is present, the original dojo.NodeList will be returned for further
+	chaining. Otherwise the dojo.Animation instance is returned and must be .play()'ed</span></div><div class="jsdoc-summary">slide all elements of the node list to the specified place via `dojo.fx.slideTo`</div><table class="jsdoc-parameters"><tr><th>Parameter</th><th>Type</th><th>Description</th></tr><tr><td class="jsdoc-param-name">args</td><td class="jsdoc-param-type">Object</td><td class="jsdoc-param-description"><div><em>Optional.</em></div>Additional dojo.Animation arguments to mix into this set with the addition of
+	an `auto` parameter.</td></tr></table><div class="jsdoc-examples"><div class="jsdoc-example"><div><strong>Example 1</strong></div>
+<pre class="brush: js;" lang="javascript">
+	Move all tables with class &quot;blah&quot; to 300/300:
+	dojo.query(&quot;table.blah&quot;).slideTo({
+		left: 40,
+		top: 50
+	}).play();
+</pre></div></div></div><div class="jsdoc-field public inherited odd"><div class="jsdoc-title"><a name="some"></a><span class="functionIcon">some</span></div><div class="jsdoc-inheritance">Defined by <a class="jsdoc-link" href="/api/1.7/dojo/NodeList">dojo.NodeList</a></div><div class="jsdoc-return-type">Returns <strong>Boolean</strong></div><div class="jsdoc-summary">Takes the same structure of arguments and returns as
+	`dojo.some()` with the caveat that the passed array is
+	implicitly this NodeList.  See `dojo.some()` and Mozilla's
+	(Array.some
+	documentation)[http://developer.mozilla.org/en/docs/Core_JavaScript_1.5_Reference:Global_Objects:Array:some].</div><table class="jsdoc-parameters"><tr><th>Parameter</th><th>Type</th><th>Description</th></tr><tr><td class="jsdoc-param-name">callback</td><td class="jsdoc-param-type">Function:</td><td class="jsdoc-param-description">the callback</td></tr><tr><td class="jsdoc-param-name">thisObject</td><td class="jsdoc-param-type">Object:</td><td class="jsdoc-param-description"><div><em>Optional.</em></div>the context</td></tr></table></div><div class="jsdoc-field public inherited even"><div class="jsdoc-title"><a name="splice"></a><span class="functionIcon">splice</span></div><div class="jsdoc-inheritance">Defined by <a class="jsdoc-link" href="/api/1.7/dojo/NodeList">dojo.NodeList</a></div><div class="jsdoc-return-type"><div class="jsdoc-return-description">dojo.NodeList</div></div><div class="jsdoc-summary"><p>This method behaves exactly like the Array.splice method
+with the caveat that it returns a dojo.NodeList and not a
+raw Array. For more details, see Mozilla's (splice
+documentation)[http://developer.mozilla.org/en/docs/Core<em>JavaScript</em>1.5<em>Reference:Global</em>Objects:Array:splice]
+For backwards compatibility, calling .end() on the spliced NodeList
+does not return the original NodeList -- splice alters the NodeList in place.</p>
+</div><table class="jsdoc-parameters"><tr><th>Parameter</th><th>Type</th><th>Description</th></tr><tr><td class="jsdoc-param-name">index</td><td class="jsdoc-param-type">Integer</td><td class="jsdoc-param-description">begin can be a positive or negative integer, with positive
+	integers noting the offset to begin at, and negative
+	integers denoting an offset from the end (i.e., to the left
+	of the end)</td></tr><tr><td class="jsdoc-param-name">howmany</td><td class="jsdoc-param-type">Integer</td><td class="jsdoc-param-description"><div><em>Optional.</em></div>Optional parameter to describe what position relative to
+	the NodeList's zero index to end the slice at. Like begin,
+	can be positive or negative.</td></tr><tr><td class="jsdoc-param-name">item</td><td class="jsdoc-param-type">Object</td><td class="jsdoc-param-description"><div><em>Optional.</em></div>Any number of optional parameters may be passed in to be
+	spliced into the NodeList</td></tr></table></div><div class="jsdoc-field public inherited odd"><div class="jsdoc-title"><a name="text"></a><span class="functionIcon">text</span></div><div class="jsdoc-inheritance">Defined by <a class="jsdoc-link" href="/api/1.7/dojo/NodeList">dojo.NodeList</a></div><div class="jsdoc-return-type">Returns <strong>dojo.NodeList|String</strong>: <span class="jsdoc-return-description">if no value is passed, the result is String, the text value of the first node.
+	If a value is passed, the return is this dojo.NodeList</span></div><div class="jsdoc-summary">allows setting the text value of each node in the NodeList,
+	if there is a value passed in, otherwise, returns the text value for all the
+	nodes in the NodeList in one string.</div><table class="jsdoc-parameters"><tr><th>Parameter</th><th>Type</th><th>Description</th></tr><tr><td class="jsdoc-param-name">value</td><td class="jsdoc-param-type">String</td><td class="jsdoc-param-description"></td></tr></table><div class="jsdoc-examples"><div class="jsdoc-example"><div><strong>Example 1</strong></div>
+assume a DOM created by this markup:
+<pre class="brush: js;" lang="javascript">
+	&lt;div id=&quot;foo&quot;&gt;&lt;/div&gt;
+	&lt;div id=&quot;bar&quot;&gt;&lt;/div&gt;
+This code inserts &quot;Hello World&quot; into both divs:</pre>
+<pre class="brush: js;" lang="javascript">
+	dojo.query(&quot;div&quot;).text(&quot;Hello World&quot;);
+</pre></div><div class="jsdoc-example"><div><strong>Example 2</strong></div>
+assume a DOM created by this markup:
+<pre class="brush: js;" lang="javascript">
+	&lt;div id=&quot;foo&quot;&gt;&lt;p&gt;Hello Mars &lt;span&gt;today&lt;/span&gt;&lt;/p&gt;&lt;/div&gt;
+	&lt;div id=&quot;bar&quot;&gt;&lt;p&gt;Hello World&lt;/p&gt;&lt;/div&gt;
+This code returns &quot;Hello Mars today&quot;:</pre>
+<pre class="brush: js;" lang="javascript">
+	var message = dojo.query(&quot;div&quot;).text();
+</pre></div></div></div><div class="jsdoc-field public  even"><div class="jsdoc-title"><a name="toString"></a><span class="functionIcon">toString</span></div><div class="jsdoc-inheritance">Overrides <a class="jsdoc-link" href="/api/1.7/Object">Object</a></div><div class="jsdoc-return-type">Returns <strong>String</strong></div><div class="jsdoc-summary">Returns a string representation of the object.</div></div><div class="jsdoc-field public inherited odd"><div class="jsdoc-title"><a name="val"></a><span class="functionIcon">val</span></div><div class="jsdoc-inheritance">Defined by <a class="jsdoc-link" href="/api/1.7/dojo/NodeList">dojo.NodeList</a></div><div class="jsdoc-return-type">Returns <strong>dojo.NodeList|String||Array</strong>: <span class="jsdoc-return-description">if no value is passed, the result is String or an Array, for the value of the
+	first node.
+	If a value is passed, the return is this dojo.NodeList</span></div><div class="jsdoc-summary">If a value is passed, allows seting the value property of form elements in this
+	NodeList, or properly selecting/checking the right value for radio/checkbox/select
+	elements. If no value is passed, the value of the first node in this NodeList
+	is returned.</div><table class="jsdoc-parameters"><tr><th>Parameter</th><th>Type</th><th>Description</th></tr><tr><td class="jsdoc-param-name">value</td><td class="jsdoc-param-type">String||Array</td><td class="jsdoc-param-description"></td></tr></table><div class="jsdoc-examples"><div class="jsdoc-example"><div><strong>Example 1</strong></div>
+assume a DOM created by this markup:
+<pre class="brush: js;" lang="javascript">
+	&lt;input type=&quot;text&quot; value=&quot;foo&quot;&gt;
+	&lt;select multiple&gt;
+		&lt;option value=&quot;red&quot; selected&gt;Red&lt;/option&gt;
+		&lt;option value=&quot;blue&quot;&gt;Blue&lt;/option&gt;
+		&lt;option value=&quot;yellow&quot; selected&gt;Yellow&lt;/option&gt;
+	&lt;/select&gt;
+This code gets and sets the values for the form fields above:</pre>
+<pre class="brush: js;" lang="javascript">
+	dojo.query('[type=&quot;text&quot;]').val(); //gets value foo
+	dojo.query('[type=&quot;text&quot;]').val(&quot;bar&quot;); //sets the input's value to &quot;bar&quot;
+	dojo.query(&quot;select&quot;).val() //gets array value [&quot;red&quot;, &quot;yellow&quot;]
+	dojo.query(&quot;select&quot;).val([&quot;blue&quot;, &quot;yellow&quot;]) //Sets the blue and yellow options to selected.
+</pre></div></div></div><div class="jsdoc-field public inherited even"><div class="jsdoc-title"><a name="wipeIn"></a><span class="functionIcon">wipeIn</span></div><div class="jsdoc-inheritance">Defined by <a class="jsdoc-link" href="/api/1.7/dojo/NodeList">dojo.NodeList</a></div><div class="jsdoc-return-type">Returns <strong>dojo.Animation|dojo.NodeList</strong>: <span class="jsdoc-return-description">dojo.Animation|dojo.NodeList
+	A special args member `auto` can be passed to automatically play the animation.
+	If args.auto is present, the original dojo.NodeList will be returned for further
+	chaining. Otherwise the dojo.Animation instance is returned and must be .play()'ed</span></div><div class="jsdoc-summary">wipe in all elements of this NodeList via `dojo.fx.wipeIn`</div><table class="jsdoc-parameters"><tr><th>Parameter</th><th>Type</th><th>Description</th></tr><tr><td class="jsdoc-param-name">args</td><td class="jsdoc-param-type">Object</td><td class="jsdoc-param-description"><div><em>Optional.</em></div>Additional dojo.Animation arguments to mix into this set with the addition of
+	an `auto` parameter.</td></tr></table><div class="jsdoc-examples"><div class="jsdoc-example"><div><strong>Example 1</strong></div>
+Fade in all tables with class "blah":
+<pre class="brush: js;" lang="javascript">
+	dojo.query(&quot;table.blah&quot;).wipeIn().play();
+</pre></div><div class="jsdoc-example"><div><strong>Example 2</strong></div>
+Utilizing `auto` to get the NodeList back:
+<pre class="brush: js;" lang="javascript">
+	dojo.query(&quot;.titles&quot;).wipeIn({ auto:true }).onclick(someFunction);
+</pre></div></div></div><div class="jsdoc-field public inherited odd"><div class="jsdoc-title"><a name="wipeOut"></a><span class="functionIcon">wipeOut</span></div><div class="jsdoc-inheritance">Defined by <a class="jsdoc-link" href="/api/1.7/dojo/NodeList">dojo.NodeList</a></div><div class="jsdoc-return-type">Returns <strong>dojo.Animation|dojo.NodeList</strong>: <span class="jsdoc-return-description">dojo.Animation|dojo.NodeList
+	A special args member `auto` can be passed to automatically play the animation.
+	If args.auto is present, the original dojo.NodeList will be returned for further
+	chaining. Otherwise the dojo.Animation instance is returned and must be .play()'ed</span></div><div class="jsdoc-summary">wipe out all elements of this NodeList via `dojo.fx.wipeOut`</div><table class="jsdoc-parameters"><tr><th>Parameter</th><th>Type</th><th>Description</th></tr><tr><td class="jsdoc-param-name">args</td><td class="jsdoc-param-type">Object</td><td class="jsdoc-param-description"><div><em>Optional.</em></div>Additional dojo.Animation arguments to mix into this set with the addition of
+	an `auto` parameter.</td></tr></table><div class="jsdoc-examples"><div class="jsdoc-example"><div><strong>Example 1</strong></div>
+Wipe out all tables with class "blah":
+<pre class="brush: js;" lang="javascript">
+	dojo.query(&quot;table.blah&quot;).wipeOut().play();
+</pre></div></div></div><div class="jsdoc-field public inherited even"><div class="jsdoc-title"><a name="wrap"></a><span class="functionIcon">wrap</span></div><div class="jsdoc-inheritance">Defined by <a class="jsdoc-link" href="/api/1.7/dojo/NodeList">dojo.NodeList</a></div><div class="jsdoc-return-type">Returns <strong>dojo.NodeList</strong>: <span class="jsdoc-return-description">dojo.NodeList, the nodes in the current NodeList will be returned,
+	not the nodes from html argument.</span></div><div class="jsdoc-summary"><p>html will be cloned if the NodeList has more than one
+element. Only DOM nodes are cloned, not any attached
+event handlers.</p>
+</div><table class="jsdoc-parameters"><tr><th>Parameter</th><th>Type</th><th>Description</th></tr><tr><td class="jsdoc-param-name">html</td><td class="jsdoc-param-type">String||DOMNode</td><td class="jsdoc-param-description"></td></tr></table><div class="jsdoc-examples"><div class="jsdoc-example"><div><strong>Example 1</strong></div>
+assume a DOM created by this markup:
+<pre class="brush: js;" lang="javascript">
+	&lt;b&gt;one&lt;/b&gt;
+	&lt;b&gt;two&lt;/b&gt;
+Running this code:</pre>
+<pre class="brush: js;" lang="javascript">
+	dojo.query(&quot;b&quot;).wrap(&quot;&lt;div&gt;&lt;span&gt;&lt;/span&gt;&lt;/div&gt;&quot;);
+Results in this DOM structure:</pre>
+<pre class="brush: js;" lang="javascript">
+	&lt;div&gt;&lt;span&gt;&lt;b&gt;one&lt;/b&gt;&lt;/span&gt;&lt;/div&gt;
+	&lt;div&gt;&lt;span&gt;&lt;b&gt;two&lt;/b&gt;&lt;/span&gt;&lt;/div&gt;
+</pre></div></div></div><div class="jsdoc-field public inherited odd"><div class="jsdoc-title"><a name="wrapAll"></a><span class="functionIcon">wrapAll</span></div><div class="jsdoc-inheritance">Defined by <a class="jsdoc-link" href="/api/1.7/dojo/NodeList">dojo.NodeList</a></div><div class="jsdoc-return-type">Returns <strong>dojo.NodeList</strong>: <span class="jsdoc-return-description">dojo.NodeList, the nodes in the current NodeList will be returned,
+	not the nodes from html argument.</span></div><div class="jsdoc-summary">Insert html where the first node in this NodeList lives, then place all
+	nodes in this NodeList as the child of the html.</div><table class="jsdoc-parameters"><tr><th>Parameter</th><th>Type</th><th>Description</th></tr><tr><td class="jsdoc-param-name">html</td><td class="jsdoc-param-type">String||DOMNode</td><td class="jsdoc-param-description"></td></tr></table><div class="jsdoc-examples"><div class="jsdoc-example"><div><strong>Example 1</strong></div>
+assume a DOM created by this markup:
+<pre class="brush: js;" lang="javascript">
+	&lt;div class=&quot;container&quot;&gt;
+		&lt;div class=&quot;red&quot;&gt;Red One&lt;/div&gt;
+		&lt;div class=&quot;blue&quot;&gt;Blue One&lt;/div&gt;
+		&lt;div class=&quot;red&quot;&gt;Red Two&lt;/div&gt;
+		&lt;div class=&quot;blue&quot;&gt;Blue Two&lt;/div&gt;
+	&lt;/div&gt;
+Running this code:</pre>
+<pre class="brush: js;" lang="javascript">
+	dojo.query(&quot;.red&quot;).wrapAll('&lt;div class=&quot;allRed&quot;&gt;&lt;/div&gt;');
+Results in this DOM structure:</pre>
+<pre class="brush: js;" lang="javascript">
+	&lt;div class=&quot;container&quot;&gt;
+		&lt;div class=&quot;allRed&quot;&gt;
+			&lt;div class=&quot;red&quot;&gt;Red One&lt;/div&gt;
+			&lt;div class=&quot;red&quot;&gt;Red Two&lt;/div&gt;
+		&lt;/div&gt;
+		&lt;div class=&quot;blue&quot;&gt;Blue One&lt;/div&gt;
+		&lt;div class=&quot;blue&quot;&gt;Blue Two&lt;/div&gt;
+	&lt;/div&gt;
+</pre></div></div></div><div class="jsdoc-field public inherited even"><div class="jsdoc-title"><a name="wrapInner"></a><span class="functionIcon">wrapInner</span></div><div class="jsdoc-inheritance">Defined by <a class="jsdoc-link" href="/api/1.7/dojo/NodeList">dojo.NodeList</a></div><div class="jsdoc-return-type">Returns <strong>dojo.NodeList</strong>: <span class="jsdoc-return-description">dojo.NodeList, the nodes in the current NodeList will be returned,
+	not the nodes from html argument.</span></div><div class="jsdoc-summary"><p>html will be cloned if the NodeList has more than one
+element. Only DOM nodes are cloned, not any attached
+event handlers.</p>
+</div><table class="jsdoc-parameters"><tr><th>Parameter</th><th>Type</th><th>Description</th></tr><tr><td class="jsdoc-param-name">html</td><td class="jsdoc-param-type">String||DOMNode</td><td class="jsdoc-param-description"></td></tr></table><div class="jsdoc-examples"><div class="jsdoc-example"><div><strong>Example 1</strong></div>
+assume a DOM created by this markup:
+<pre class="brush: js;" lang="javascript">
+	&lt;div class=&quot;container&quot;&gt;
+		&lt;div class=&quot;red&quot;&gt;Red One&lt;/div&gt;
+		&lt;div class=&quot;blue&quot;&gt;Blue One&lt;/div&gt;
+		&lt;div class=&quot;red&quot;&gt;Red Two&lt;/div&gt;
+		&lt;div class=&quot;blue&quot;&gt;Blue Two&lt;/div&gt;
+	&lt;/div&gt;
+Running this code:</pre>
+<pre class="brush: js;" lang="javascript">
+	dojo.query(&quot;.red&quot;).wrapInner('&lt;span class=&quot;special&quot;&gt;&lt;/span&gt;');
+Results in this DOM structure:</pre>
+<pre class="brush: js;" lang="javascript">
+	&lt;div class=&quot;container&quot;&gt;
+		&lt;div class=&quot;red&quot;&gt;&lt;span class=&quot;special&quot;&gt;Red One&lt;/span&gt;&lt;/div&gt;
+		&lt;div class=&quot;blue&quot;&gt;Blue One&lt;/div&gt;
+		&lt;div class=&quot;red&quot;&gt;&lt;span class=&quot;special&quot;&gt;Red Two&lt;/span&gt;&lt;/div&gt;
+		&lt;div class=&quot;blue&quot;&gt;Blue Two&lt;/div&gt;
+	&lt;/div&gt;
+</pre></div></div></div><h2>Events</h2><div class="jsdoc-field public inherited odd"><div class="jsdoc-title"><a name="on"></a><span class="functionIcon">on</span></div><div class="jsdoc-inheritance">Defined by <a class="jsdoc-link" href="/api/1.7/dojo/NodeList">dojo.NodeList</a></div><div class="jsdoc-return-type">Returns <strong>TODO: apply to the NodeList so the same selector engine is used for matches</strong></div><div class="jsdoc-summary">Listen for events on the nodes in the NodeList. Basic usage is:
+	 query(&quot;.my-class&quot;).on(&quot;click&quot;, listener);
+	This supports event delegation by using selectors as the first argument with the event names as
+	pseudo selectors. For example:
+	 dojo.query(&quot;#my-list&quot;).on(&quot;li:click&quot;, listener);
+	This will listen for click events within &lt;li&gt; elements that are inside the #my-list element.
+	Because on supports CSS selector syntax, we can use comma-delimited events as well:
+	 dojo.query(&quot;#my-list&quot;).on(&quot;li button:mouseover, li:click&quot;, listener);</div><table class="jsdoc-parameters"><tr><th>Parameter</th><th>Type</th><th>Description</th></tr><tr><td class="jsdoc-param-name">eventName</td><td class="jsdoc-param-type"></td><td class="jsdoc-param-description"></td></tr><tr><td class="jsdoc-param-name">listener</td><td class="jsdoc-param-type"></td><td class="jsdoc-param-description"></td></tr></table></div></div></div>

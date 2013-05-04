@@ -1,0 +1,46 @@
+<div class="jsdoc-permalink" style="display:none;">/api/1.7/dojox/av</div><h1 class="jsdoc-title objectIcon36">dojox.av <span style="font-size:11px;color:#999;">(version 1.7)</span></h1><div class="jsdoc-prototype">Object &raquo; dojox.av</div><div class="jsdoc-full-summary"><p>Provides Audio/Video capabilities</p>
+</div><div class="jsdoc-children"><div class="jsdoc-field-list"><h2 class="jsdoc-summary-heading">Property Summary <span class="jsdoc-summary-toggle"></span></h2><div class="jsdoc-summary-list"><ul><li class="objectIcon public inherited even"><a class="inline-link" href="#dojox.av.widget">dojox.av.widget</a></li></ul></div><h2 class="jsdoc-summary-heading">Method Summary <span class="jsdoc-summary-toggle"></span></h2><div class="jsdoc-summary-list"><ul><li class="functionIcon public inherited odd"><a class="inline-link" href="#dojox.av.FLAudio">dojox.av.FLAudio</a><span class="parameters">(options)</span> <span>Play MP3 files through the Flash SWF built in the
+	DEFT project.</span></li><li class="functionIcon public inherited even"><a class="inline-link" href="#dojox.av.FLVideo">dojox.av.FLVideo</a><span class="parameters">(options)</span> <span>Inserts a Flash FLV video into the HTML page and provides methods
+	and events for controlling the video. Also plays the H264/M4V codec
+	with a little trickery: change the '.M4V' extension to '.flv'.</span></li><li class="functionIcon private inherited odd"><a class="inline-link" href="#dojox.av._Media">dojox.av._Media</a><span class="parameters">()</span> <span>Used as a mixin for dojox and AIR media</span></li></ul></div><h2 class="jsdoc-summary-heading">Attached Objects <span class="jsdoc-summary-toggle"></span></h2><div class="jsdoc-summary-list"><div class="jsdoc-field"><div class="jsdoc-title"><span class="constructor"><a class="jsdoc-link" href="/api/1.7/dojox/av/FLAudio">dojox.av.FLAudio</a></span></div></div><div class="jsdoc-field"><div class="jsdoc-title"><span class="object"><a class="jsdoc-link" href="/api/1.7/dojox/av/FLAudio/_flashObject">dojox.av.FLAudio._flashObject</a></span></div></div><div class="jsdoc-field"><div class="jsdoc-title"><span class="constructor"><a class="jsdoc-link" href="/api/1.7/dojox/av/FLVideo">dojox.av.FLVideo</a></span></div></div><div class="jsdoc-field"><div class="jsdoc-title"><span class="object"><a class="jsdoc-link" href="/api/1.7/dojox/av/FLVideo/_flashObject">dojox.av.FLVideo._flashObject</a></span></div></div><div class="jsdoc-field"><div class="jsdoc-title"><span class="constructor"><a class="jsdoc-link" href="/api/1.7/dojox/av/_Media">dojox.av._Media</a></span></div></div><div class="jsdoc-field"><div class="jsdoc-title"><span class="object"><a class="jsdoc-link" href="/api/1.7/dojox/av/widget">dojox.av.widget</a></span></div></div><div class="jsdoc-field"><div class="jsdoc-title"><span class="constructor"><a class="jsdoc-link" href="/api/1.7/dojox/av/widget/PlayButton">dojox.av.widget.PlayButton</a></span></div></div><div class="jsdoc-field"><div class="jsdoc-title"><span class="constructor"><a class="jsdoc-link" href="/api/1.7/dojox/av/widget/Player">dojox.av.widget.Player</a></span></div></div><div class="jsdoc-field"><div class="jsdoc-title"><span class="constructor"><a class="jsdoc-link" href="/api/1.7/dojox/av/widget/ProgressSlider">dojox.av.widget.ProgressSlider</a></span></div></div><div class="jsdoc-field"><div class="jsdoc-title"><span class="constructor"><a class="jsdoc-link" href="/api/1.7/dojox/av/widget/Status">dojox.av.widget.Status</a></span></div></div><div class="jsdoc-field"><div class="jsdoc-title"><span class="constructor"><a class="jsdoc-link" href="/api/1.7/dojox/av/widget/VolumeButton">dojox.av.widget.VolumeButton</a></span></div></div></div></div></div><div class="jsdoc-children"><div class="jsdoc-fields"><h2>Properties</h2><div class="jsdoc-field public inherited even"><div class="jsdoc-title"><a name="dojox.av.widget"></a><span class="objectIcon">dojox.av.widget</span></div><div class="jsdoc-inheritance">Defined by <a class="jsdoc-link" href="/api/1.7/dojox/av">dojox.av</a></div></div><h2>Methods</h2><div class="jsdoc-field public inherited odd"><div class="jsdoc-title"><a name="dojox.av.FLAudio"></a><span class="functionIcon">dojox.av.FLAudio</span></div><div class="jsdoc-inheritance">Defined by <a class="jsdoc-link" href="/api/1.7/dojox/av">dojox.av</a></div><div class="jsdoc-summary"><p>This class is brand new, so there is a lot of
+functionality not yet available. The initial
+purpose is for playing "event" sounds like button
+clicks, and for loading and controlling multiple
+sounds at once. As of yet, streaming is not supported
+and polling the sounds for events during playback
+may still be missing information. Markup is not
+supported, as it may not be needed.</p>
+
+<p>TODO:
+Streaming, playback events, crossdomain, CDN support,
+(alternate SWF location), global volume, ID3 tag,
+factor out doLater, onLoadStatus needs work,
+play(position) / seek()</p>
+</div><table class="jsdoc-parameters"><tr><th>Parameter</th><th>Type</th><th>Description</th></tr><tr><td class="jsdoc-param-name">options</td><td class="jsdoc-param-type">Object</td><td class="jsdoc-param-description"></td></tr></table><div class="jsdoc-examples"><div class="jsdoc-example"><div><strong>Example 1</strong></div>
+<pre class="brush: js;" lang="javascript">
+	new dojox.av.FLAudio({
+		initialVolume:.7,
+		initialPan:0,
+		autoPlay:false
+	});
+</pre></div></div></div><div class="jsdoc-field public inherited even"><div class="jsdoc-title"><a name="dojox.av.FLVideo"></a><span class="functionIcon">dojox.av.FLVideo</span></div><div class="jsdoc-inheritance">Defined by <a class="jsdoc-link" href="/api/1.7/dojox/av">dojox.av</a></div><div class="jsdoc-summary">Inserts a Flash FLV video into the HTML page and provides methods
+	and events for controlling the video. Also plays the H264/M4V codec
+	with a little trickery: change the '.M4V' extension to '.flv'.</div><table class="jsdoc-parameters"><tr><th>Parameter</th><th>Type</th><th>Description</th></tr><tr><td class="jsdoc-param-name">options</td><td class="jsdoc-param-type">Object</td><td class="jsdoc-param-description"></td></tr></table><div class="jsdoc-examples"><div class="jsdoc-example"><div><strong>Example 1</strong></div>
+markup:
+<pre class="brush: js;" lang="javascript">
+	&lt;div id=&quot;vid&quot; initialVolume=&quot;.7&quot;,
+		mediaUrl=&quot;../resources/Grog.flv&quot;
+		dojoType=&quot;dojox.av.FLVideo&quot;&gt;&lt;/div&gt;
+programmatic:</pre>
+<pre class="brush: js;" lang="javascript">
+	new dojox.av.FLVideo({
+		initialVolume:.7,
+		mediaUrl:&quot;../resources/Grog.flv&quot;
+	}, &quot;vid&quot;);
+</pre>
+mediaUrl: String
+REQUIRED: The Url of the video file that will be played.
+NOTE: Must be either an absolute URL or relative to the HTML file.
+Relative paths will be converted to abslute paths</div></div></div><div class="jsdoc-field private inherited odd"><div class="jsdoc-title"><a name="dojox.av._Media"></a><span class="functionIcon">dojox.av._Media</span></div><div class="jsdoc-inheritance">Defined by <a class="jsdoc-link" href="/api/1.7/dojox/av">dojox.av</a></div><div class="jsdoc-summary"><p>Calculates the current status of the playing media and fires
+the appropriate events.</p>
+</div></div></div></div>

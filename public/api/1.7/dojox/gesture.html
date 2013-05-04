@@ -1,0 +1,205 @@
+<div class="jsdoc-permalink" style="display:none;">/api/1.7/dojox/gesture</div><h1 class="jsdoc-title objectIcon36">dojox.gesture <span style="font-size:11px;color:#999;">(version 1.7)</span></h1><div class="jsdoc-prototype">Object &raquo; dojox.gesture</div><div class="jsdoc-children"><div class="jsdoc-field-list"><h2 class="jsdoc-summary-heading">Method Summary <span class="jsdoc-summary-toggle"></span></h2><div class="jsdoc-summary-list"><ul><li class="functionIcon public inherited even"><a class="inline-link" href="#dojox.gesture.Base">dojox.gesture.Base</a><span class="parameters">(args)</span> <span>An abstract parental class for various gesture implementations.
+	
+	It's mainly responsible for:
+	
+	1. Binding on() listening handlers for supported gesture events.
+	
+	2. Monitoring underneath events and process different phases - 'press'|'move'|'release'|'cancel'.
+	
+	3. Firing and bubbling gesture events with on() API.
+	
+	A gesture implementation only needs to extend this class and overwrite appropriate phase handlers:
+	
+	- press()|move()|release()|cancel for recognizing and firing gestures</span></li><li class="functionIcon public inherited odd"><a class="inline-link" href="#dojox.gesture.swipe">dojox.gesture.swipe</a><span class="parameters">()</span> <span>This module provides swipe gestures including:
+	
+	1. dojox.gesture.swipe
+	
+	A series of 'swipe' will be fired during touchmove, this will mostly
+	be used to keep sliding the Dom target based on the swiped distance(dx, dy).
+	
+	2. dojox.gesture.swipe.end
+	
+	Fired when a swipe is ended so that an bounce animation may be applied
+	to the dom target sliding to the final position.
+	
+	Following information will be included in the fired swipe events:
+	
+	1. type: 'swipe'|'swipe.end'
+	
+	2. time: an integer indicating the delta time(in milliseconds)
+	
+	3. dx: delta distance on X axis, dx less than 0 - moving left, dx larger than 0 - moving right
+	
+	4. dy: delta distance on Y axis, dy less than 0 - moving up, dY larger than 0 - moving down
+	
+	Note - dx and dy can also be used together for a hybrid swipe(both vertically and horizontally)</span></li><li class="functionIcon public inherited even"><a class="inline-link" href="#dojox.gesture.tap">dojox.gesture.tap</a><span class="parameters">()</span> <span>This module provides tap gesture event handlers:
+	
+	1. dojox.gesture.tap: 'tap' event
+	
+	2. dojox.gesture.tap.hold: 'tap.hold' event
+	
+	3. dojox.gesture.tap.doubletap: 'tap.doubletap' event</span></li></ul></div><h2 class="jsdoc-summary-heading">Attached Objects <span class="jsdoc-summary-toggle"></span></h2><div class="jsdoc-summary-list"><div class="jsdoc-field"><div class="jsdoc-title"><span class="constructor"><a class="jsdoc-link" href="/api/1.7/dojox/gesture/Base">dojox.gesture.Base</a></span></div></div><div class="jsdoc-field"><div class="jsdoc-title"><span class="constructor"><a class="jsdoc-link" href="/api/1.7/dojox/gesture/swipe">dojox.gesture.swipe</a></span></div></div><div class="jsdoc-field"><div class="jsdoc-title"><span class="constructor"><a class="jsdoc-link" href="/api/1.7/dojox/gesture/tap">dojox.gesture.tap</a></span></div></div></div></div></div><div class="jsdoc-children"><div class="jsdoc-fields"><h2>Methods</h2><div class="jsdoc-field public inherited even"><div class="jsdoc-title"><a name="dojox.gesture.Base"></a><span class="functionIcon">dojox.gesture.Base</span></div><div class="jsdoc-inheritance">Defined by <a class="jsdoc-link" href="/api/1.7/dojox/gesture">dojox.gesture</a></div><div class="jsdoc-summary">An abstract parental class for various gesture implementations.
+	
+	It's mainly responsible for:
+	
+	1. Binding on() listening handlers for supported gesture events.
+	
+	2. Monitoring underneath events and process different phases - 'press'|'move'|'release'|'cancel'.
+	
+	3. Firing and bubbling gesture events with on() API.
+	
+	A gesture implementation only needs to extend this class and overwrite appropriate phase handlers:
+	
+	- press()|move()|release()|cancel for recognizing and firing gestures</div><table class="jsdoc-parameters"><tr><th>Parameter</th><th>Type</th><th>Description</th></tr><tr><td class="jsdoc-param-name">args</td><td class="jsdoc-param-type"></td><td class="jsdoc-param-description"></td></tr></table><div class="jsdoc-examples"><div class="jsdoc-example"><div><strong>Example 1</strong></div>
+1. A typical gesture implementation.
+
+Suppose we have dojox/gesture/a which provides 3 gesture events:&quot;a&quot;, &quot;a.x&quot;, &quot;a.y&quot; to be used as:
+<pre class="brush: js;" lang="javascript">
+	dojo.connect(node, dojox.gesture.a, function(e){});
+	dojo.connect(node, dojox.gesture.a.x, function(e){});
+	dojo.connect(node, dojox.gesture.a.y, function(e){});
+</pre>
+The definition of the gesture &quot;a&quot; may look like:
+<pre class="brush: js;" lang="javascript">
+	define([..., &quot;./Base&quot;], function(..., Base){
+		var clz = declare(Base, {
+			defaultEvent: &quot;a&quot;,
+</pre>
+<pre class="brush: js;" lang="javascript">
+			subEvents: [&quot;x&quot;, &quot;y&quot;],
+</pre>
+<pre class="brush: js;" lang="javascript">
+			press: function(data, e){
+				this.fire(node, {type: &quot;a.x&quot;, ...});
+			},
+			move: function(data, e){
+				this.fire(node, {type: &quot;a.y&quot;, ...});
+			},
+			release: function(data, e){
+				this.fire(node, {type: &quot;a&quot;, ...});
+			},
+			cancel: function(data, e){
+				// clean up
+			}
+		});
+</pre>
+<pre class="brush: js;" lang="javascript">
+		// in order to have a default instance for handy use
+		dojox.gesture.a = new clz();
+</pre>
+<pre class="brush: js;" lang="javascript">
+		// so that we can create new instances like
+		// var mine = new dojox.gesture.a.A({...})
+		dojox.gesture.a.A = clz;
+</pre>
+<pre class="brush: js;" lang="javascript">
+		return dojox.gesture.a;
+	});
+</pre>
+2. A gesture can be used in the following ways(taking dojox.gestre.tap for example):
+
+A. Used with dojo.connect()
+<pre class="brush: js;" lang="javascript">
+	dojo.connect(node, dojox.gesture.tap, function(e){});
+	dojo.connect(node, dojox.gesture.tap.hold, function(e){});
+	dojo.connect(node, dojox.gesture.tap.doubletap, function(e){});
+</pre>
+B. Used with dojo.on
+<pre class="brush: js;" lang="javascript">
+	define([&quot;dojo/on&quot;, &quot;dojox/gesture/tap&quot;], function(on, tap){
+		on(node, tap, function(e){});
+		on(node, tap.hold, function(e){});
+		on(node, tap.doubletap, function(e){});
+</pre>
+C. Used with dojox.gesture.tap directly
+<pre class="brush: js;" lang="javascript">
+	dojox.gesture.tap(node, function(e){});
+	dojox.gesture.tap.hold(node, function(e){});
+	dojox.gesture.tap.doubletap(node, function(e){});
+</pre>
+Though there is always a default gesture instance after being required, e.g
+<pre class="brush: js;" lang="javascript">
+	require([&quot;dojox/gesture/tap&quot;], function(){...});
+</pre>
+It's possible to create a new one with different parameter setting:
+<pre class="brush: js;" lang="javascript">
+	var myTap = new dojox.gesture.tap.Tap({holdThreshold: 300});
+	dojo.connect(node, myTap, function(e){});
+	dojo.connect(node, myTap.hold, function(e){});
+	dojo.connect(node, myTap.doubletap, function(e){});
+</pre>
+Please refer to dojox/gesture/ for more gesture usages</div></div></div><div class="jsdoc-field public inherited odd"><div class="jsdoc-title"><a name="dojox.gesture.swipe"></a><span class="functionIcon">dojox.gesture.swipe</span></div><div class="jsdoc-inheritance">Defined by <a class="jsdoc-link" href="/api/1.7/dojox/gesture">dojox.gesture</a></div><div class="jsdoc-summary">This module provides swipe gestures including:
+	
+	1. dojox.gesture.swipe
+	
+	A series of 'swipe' will be fired during touchmove, this will mostly
+	be used to keep sliding the Dom target based on the swiped distance(dx, dy).
+	
+	2. dojox.gesture.swipe.end
+	
+	Fired when a swipe is ended so that an bounce animation may be applied
+	to the dom target sliding to the final position.
+	
+	Following information will be included in the fired swipe events:
+	
+	1. type: 'swipe'|'swipe.end'
+	
+	2. time: an integer indicating the delta time(in milliseconds)
+	
+	3. dx: delta distance on X axis, dx less than 0 - moving left, dx larger than 0 - moving right
+	
+	4. dy: delta distance on Y axis, dy less than 0 - moving up, dY larger than 0 - moving down
+	
+	Note - dx and dy can also be used together for a hybrid swipe(both vertically and horizontally)</div><div class="jsdoc-examples"><div class="jsdoc-example"><div><strong>Example 1</strong></div>
+A. Used with dojo.connect()
+<pre class="brush: js;" lang="javascript">
+	dojo.connect(node, dojox.gesture.swipe, function(e){});
+	dojo.connect(node, dojox.gesture.swipe.end, function(e){});
+</pre>
+B. Used with dojo.on
+<pre class="brush: js;" lang="javascript">
+	define(['dojo/on', 'dojox/gesture/swipe'], function(on, swipe){
+		on(node, swipe, function(e){});
+		on(node, swipe.end, function(e){});
+</pre>
+C. Used with dojox.gesture.swipe.* directly
+<pre class="brush: js;" lang="javascript">
+	dojox.gesture.swipe(node, function(e){});
+	dojox.gesture.swipe.end(node, function(e){});
+</pre></div></div></div><div class="jsdoc-field public inherited even"><div class="jsdoc-title"><a name="dojox.gesture.tap"></a><span class="functionIcon">dojox.gesture.tap</span></div><div class="jsdoc-inheritance">Defined by <a class="jsdoc-link" href="/api/1.7/dojox/gesture">dojox.gesture</a></div><div class="jsdoc-summary">This module provides tap gesture event handlers:
+	
+	1. dojox.gesture.tap: 'tap' event
+	
+	2. dojox.gesture.tap.hold: 'tap.hold' event
+	
+	3. dojox.gesture.tap.doubletap: 'tap.doubletap' event</div><div class="jsdoc-examples"><div class="jsdoc-example"><div><strong>Example 1</strong></div>
+A. Used with dojo.connect()
+<pre class="brush: js;" lang="javascript">
+	dojo.connect(node, dojox.gesture.tap, function(e){});
+	dojo.connect(node, dojox.gesture.tap.hold, function(e){});
+	dojo.connect(node, dojox.gesture.tap.doubletap, function(e){});
+</pre>
+B. Used with dojo.on
+<pre class="brush: js;" lang="javascript">
+	define(['dojo/on', 'dojox/gesture/tap'], function(on, tap){
+		on(node, tap, function(e){});
+		on(node, tap.hold, function(e){});
+		on(node, tap.doubletap, function(e){});
+</pre>
+C. Used with dojox.gesture.tap.* directly
+<pre class="brush: js;" lang="javascript">
+	dojox.gesture.tap(node, function(e){});
+	dojox.gesture.tap.hold(node, function(e){});
+	dojox.gesture.tap.doubletap(node, function(e){});
+</pre>
+Though there is always a default gesture instance after being required, e.g
+<pre class="brush: js;" lang="javascript">
+	require(['dojox/gesture/tap'], function(){...});
+</pre>
+It's possible to create a new one with different parameter setting:
+<pre class="brush: js;" lang="javascript">
+	var myTap = new dojox.gesture.tap.Tap({holdThreshold: 300});
+	dojo.connect(node, myTap, function(e){});
+	dojo.connect(node, myTap.hold, function(e){});
+	dojo.connect(node, myTap.doubletap, function(e){});
+</pre></div></div></div></div></div>

@@ -1,0 +1,32 @@
+<div class="jsdoc-permalink" style="display:none;">/api/1.7/dojox/data/GoogleLocalSearchStore</div><h1 class="jsdoc-title constructorIcon36">dojox.data.GoogleLocalSearchStore <span style="font-size:11px;color:#999;">(version 1.7)</span></h1><div class="jsdoc-prototype">Object &raquo; <a class="jsdoc-link" href="/api/1.7/SearchStore">SearchStore</a> &raquo; dojox.data.GoogleLocalSearchStore</div><div class="jsdoc-require">dojo.require("dojox.data.GoogleSearchStore");</div><div class="jsdoc-prototype">Defined in dojox/data/GoogleSearchStore.js</div><div class="jsdoc-function-information"><h3>Usage:</h3><div class="function-signature"><span class="keyword">var</span> foo = new dojox.data.GoogleLocalSearchStore();</div></div><div class="jsdoc-full-summary"><p>A data store for retrieving search results from Google.
+The following attributes are supported on each item:
+&lt;ul&gt;
+&lt;li&gt;title - The blog post title in HTML format.&lt;/li&gt;
+&lt;li&gt;titleNoFormatting - The  blog post title in plain text&lt;/li&gt;
+&lt;li&gt;content - A snippet of information about the blog post&lt;/li&gt;
+&lt;li&gt;url - The URL for the item&lt;/li&gt;
+&lt;li&gt;lat - The latitude.&lt;/li&gt;
+&lt;li&gt;lng - The longtitude.&lt;/li&gt;
+&lt;li&gt;streetAddress - The street address&lt;/li&gt;
+&lt;li&gt;city - The city&lt;/li&gt;
+&lt;li&gt;region - The region&lt;/li&gt;
+&lt;li&gt;country - The country&lt;/li&gt;
+&lt;li&gt;phoneNumbers - Phone numbers associated with this address. Can be one or more.&lt;/li&gt;
+&lt;li&gt;ddUrl - A URL that can be used to provide driving directions from the center of the search results to this search results&lt;/li&gt;
+&lt;li&gt;ddUrlToHere - A URL that can be used to provide driving directions from this search result to a user specified location&lt;/li&gt;
+&lt;li&gt;staticMapUrl - The published date, in RFC-822 format&lt;/li&gt;
+&lt;li&gt;viewport - Recommended viewport for the query results (same for all results in a query)
+&lt;ul&gt;
+&lt;li&gt;center - contains lat, lng properties&lt;/li&gt;
+&lt;li&gt;span - lat, lng properties for the viewport span&lt;/li&gt;
+&lt;li&gt;ne, sw - lat, lng properties for the viewport corners&lt;li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+The query accepts the following parameters:
+&lt;ul&gt;
+&lt;li&gt;text - The string to search for&lt;/li&gt;
+&lt;li&gt;centerLatLong - Comma-separated lat &amp; long for the center of the search (e.g. &quot;48.8565,2.3509&quot;)&lt;/li&gt;
+&lt;li&gt;searchSpan - Comma-separated lat &amp; long degrees indicating the size of the desired search area (e.g. &quot;0.065165,0.194149&quot;)&lt;/li&gt;
+&lt;/ul&gt;</p>
+</div><div class="jsdoc-children"><div class="jsdoc-field-list"><h2 class="jsdoc-summary-heading">Property Summary <span class="jsdoc-summary-toggle"></span></h2><div class="jsdoc-summary-list"><ul><li class="objectIcon private inherited even"><a class="inline-link" href="#_aggregatedAttributes">_aggregatedAttributes</a></li><li class="objectIcon private inherited odd"><a class="inline-link" href="#_queryAttrs">_queryAttrs</a></li></ul></div><h2 class="jsdoc-summary-heading">Method Summary <span class="jsdoc-summary-toggle"></span></h2><div class="jsdoc-summary-list"><ul><li class="functionIcon public  even"><a class="inline-link" href="#constructor">constructor</a><span class="parameters">()</span><span class="jsdoc-returns"> returns dojox.data.GoogleLocalSearchStore</span> <span>A reference to the constructor function for this object.</span></li></ul></div><h2 class="jsdoc-summary-heading">Attached Objects <span class="jsdoc-summary-toggle"></span></h2><div class="jsdoc-summary-list"><div class="jsdoc-field"><div class="jsdoc-title"><span class="object"><a class="jsdoc-link" href="/api/1.7/dojox/data/GoogleLocalSearchStore/_aggregatedAttributes">dojox.data.GoogleLocalSearchStore._aggregatedAttributes</a></span></div></div><div class="jsdoc-field"><div class="jsdoc-title"><span class="object"><a class="jsdoc-link" href="/api/1.7/dojox/data/GoogleLocalSearchStore/_queryAttrs">dojox.data.GoogleLocalSearchStore._queryAttrs</a></span></div></div></div></div></div><div class="jsdoc-children"><div class="jsdoc-fields"><h2>Properties</h2><div class="jsdoc-field private inherited even"><div class="jsdoc-title"><a name="_aggregatedAttributes"></a><span class="objectIcon">_aggregatedAttributes</span></div><div class="jsdoc-inheritance">Defined by <a class="jsdoc-link" href="/api/1.7/dojox/data/GoogleLocalSearchStore">dojox.data.GoogleLocalSearchStore</a></div></div><div class="jsdoc-field private inherited odd"><div class="jsdoc-title"><a name="_queryAttrs"></a><span class="objectIcon">_queryAttrs</span></div><div class="jsdoc-inheritance">Defined by <a class="jsdoc-link" href="/api/1.7/dojox/data/GoogleLocalSearchStore">dojox.data.GoogleLocalSearchStore</a></div></div><h2>Methods</h2><div class="jsdoc-field public  even"><div class="jsdoc-title"><a name="constructor"></a><span class="functionIcon">constructor</span></div><div class="jsdoc-inheritance">Overrides <a class="jsdoc-link" href="/api/1.7/Object">Object</a></div><div class="jsdoc-return-type">Returns <strong>dojox.data.GoogleLocalSearchStore</strong></div><div class="jsdoc-summary">A reference to the constructor function for this object.</div></div></div></div>
