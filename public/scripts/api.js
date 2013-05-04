@@ -37,6 +37,7 @@ require([
             version : version
         });
         moduleTree.placeAt("moduleTreePane");
+        moduleTree.startup();
     };
     var versionChange = function (e) {
         // summary:
