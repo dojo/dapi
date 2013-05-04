@@ -39,11 +39,11 @@ app.use(stylus.middleware(
 ));
 // note I needed to add 'chmod -R +u *'  on 1.6 to set read permissions on all files (this was for the legacy exported spider.php html files)  
 app.use(express.static(__dirname + '/public'));
-
 /// do rendering
 // index - / at the moment - change so it's more specific/configurable 
 app.get('/', function (req, res) {
 //res.render('your page', {pageData: {name : ['name 1', name 2]}});
+    console.log("is xhr = " + req.xhr);
     res.render('index', { title : 'Home', config: config});
 });
 
@@ -52,6 +52,7 @@ app.get('/', function (req, res) {
 app.get('/' + config.apiDataPath + '/*', function (req, res) {
     //var returnstr = "<div>req.params : " + req.params.toString()+"</div>";
     // replace with regex
+    console.log("is xhr = " + req.xhr);
     var requested =  req.params.toString().replace(/\/version\//, "");
     console.log("requested = " + requested);
     var idxslash = requested.indexOf("/");
@@ -65,6 +66,9 @@ app.get('/' + config.apiDataPath + '/*', function (req, res) {
     });
     // should do some error handling http responses    
 });
+
+
+
 app.listen(config.port);
 console.error("REMEMBER TO DELETE ANY STATIC .HTML FILES WHICH EXPRESS STATIC WILL RENDER INSTEAD OF TEMPLATES");
 console.log("API viewer started on port " + config.port);
