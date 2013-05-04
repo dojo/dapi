@@ -1,0 +1,8 @@
+# ignore .git
+.git/
+# old data
+public/api/version/widgetbase.json
+public/api/version/details_dijit.xml
+public/api/version/details_huge.xml
+staticoutput/
+

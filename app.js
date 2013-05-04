@@ -8,6 +8,7 @@ var express = require('express'),
     envConfig = require('./lib/config'),
     config = envConfig.appConfig;
 
+console.log("started at " + new Date());
 // hardcoded config atm - move to configurable arguments object with these as defaults - mixins
 //var details = __dirname +'/public/apidata/version/details.xml'; // only dojo exists
 //var details = __dirname +'/public/apidata/version/details_dijit.xml'; // dijit/_WidgetBase good 1 to try
