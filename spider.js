@@ -35,14 +35,15 @@ function compile(str, path) {
     .set('filename', path)
     .use(nib());
 }
-
+console.log("REMEMBER TO SET THE CORRECT CONTEXT PATH CONFIGURATION FOR YOUR GENERATED DOCS");
+console.log("==========================================================");
 console.log("Static API viewer generation started");
 // generate index  config.version config.staticfolder
 var indexjade = __dirname + "/views/index.jade";
 var data = fs.readFileSync(indexjade, "utf8");
 
 var fn = jade.compile(data, {filename: indexjade, pretty: true});
-var indexhtml = fn({ title : 'Home', config: config});
+var indexhtml = fn({ title : 'DOJO API Viewer', config: config, module : null});
 // generate modules
 //var staticFolder = process.cwd() + config.staticFolder;
 var staticFolder = process.cwd() + "/public/" + config.apiDataPath + "/";
