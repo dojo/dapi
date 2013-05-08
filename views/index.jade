@@ -8,7 +8,7 @@ block main
                     div.container
                         span#logo
                             a(href="/", title="home")
-                                img(src="images/logo.png", alt="Dojo Toolkit")
+                                img(src="#{config.contextPath}images/logo.png", alt="Dojo Toolkit")
                         ul#navigation
                             li.home
                                 a(href="/")
@@ -40,7 +40,10 @@ block main
         block content            
             div#content(data-dojo-type="dijit.layout.TabContainer", data-dojo-props="region: 'center', tabStrip: true")
                 div#baseTab(data-dojo-type="dijit.layout.ContentPane",data-dojo-props="title: 'Welcome'")
-                    h1 The Dojo Toolkit API
-                    p Welcome to the Dojo Toolkit API documentation. You are browsing version 1.8 of the Dojo Toolkit. Use the selector to the left to change versions.
-                    p To find the object you're interested in, use the tree to the left...or use the quick links below. To print the documentation, simply navigate to the object of your choice and hit Print.
-                    h1 TRY AND MAKE THIS COMPILE TO A MODULE TOO i.e. SEO in the index file
+                    - if (module !=null)
+                        include module
+                    - else  
+                        h1 The Dojo Toolkit API
+                        p Welcome to the Dojo Toolkit API documentation. You are browsing version 1.8 of the Dojo Toolkit. Use the selector to the left to change versions.
+                        p To find the object you're interested in, use the tree to the left...or use the quick links below. To print the documentation, simply navigate to the object of your choice and hit Print.
+                        h1 TRY AND MAKE THIS COMPILE TO A MODULE TOO i.e. SEO in the index file

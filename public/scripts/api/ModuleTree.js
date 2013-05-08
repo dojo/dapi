@@ -52,15 +52,17 @@ define(["dojo/_base/declare", "dojo/_base/lang", "dijit/Tree", "dijit/registry",
             console.log(item.fullname);
             // TODO - this is shit and need to change - probably push node side -
             var fullName = item.fullname;
+
             if (parseFloat(version.match(/[0-9]../)) < 1.8) {
-                fullName = item.fullname.replace(/\./g, "/") + ".html";
+                fullName = item.fullname.replace(/\./g, "/").trim();
             }
             // END TODO
 
             var url = config.apiPath + "/" + version + "/" + fullName;  // TODO fix this later, should pass in the context
-
+            console.log("requested url = " + url);
+            var id = page.replace(/[\/.]/g, "_") + "_" + version;
             var pane = new ContentPane({
-                id: page.replace(/[\/.]/g, "_") + "_" + version,
+                id: id,
                 page: page,		// save page because when we select a tab we locate the corresponding TreeNode
                 href: url,
                 //content : {version: "version" , itemtid: item.id, namel: item.name, fullname : item.fullname, type: item.type},  
@@ -90,11 +92,12 @@ define(["dojo/_base/declare", "dojo/_base/lang", "dijit/Tree", "dijit/registry",
             var link = query("div.jsdoc-permalink", context)[0].innerHTML;
             // TODO baseUrl ??
             var baseUrl = "/";
+            // img should be moved to classes - im having to include the context path in order this works
             var tbc = (link ? '<span class="jsdoc-permalink"><a class="jsdoc-link" href="' + link + '">Permalink</a></span>' : '')
                 + '<label>View options: </label>'
-                + '<span class="trans-icon jsdoc-extension"><img src="css/icons/24x24/extension.png" align="middle" border="0" alt="Toggle extension module members" title="Toggle extension module members" /></span>'
-                + '<span class="trans-icon jsdoc-private"><img src="css/icons/24x24/private.png" align="middle" border="0" alt="Toggle private members" title="Toggle private members" /></span>'
-                + '<span class="trans-icon jsdoc-inherited"><img src="css/icons/24x24/inherited.png" align="middle" border="0" alt="Toggle inherited members" title="Toggle inherited members" /></span>';
+                + '<span class="trans-icon jsdoc-extension"><img src="' + config.context + 'css/icons/24x24/extension.png" align="middle" border="0" alt="Toggle extension module members" title="Toggle extension module members" /></span>'
+                + '<span class="trans-icon jsdoc-private"><img src="' + config.context + 'css/icons/24x24/private.png" align="middle" border="0" alt="Toggle private members" title="Toggle private members" /></span>'
+                + '<span class="trans-icon jsdoc-inherited"><img src="' + config.context + 'css/icons/24x24/inherited.png" align="middle" border="0" alt="Toggle inherited members" title="Toggle inherited members" /></span>';
             var toolbar = domConstruct.create("div", {
                 className: "jsdoc-toolbar",
                 innerHTML: tbc
@@ -159,6 +162,22 @@ define(["dojo/_base/declare", "dojo/_base/lang", "dijit/Tree", "dijit/registry",
                 });
             }
             adjustLists(context, this);
+
+
+            //	if SyntaxHighlighter is present, run it in the content
+            if (SyntaxHighlighter) {
+                // quick hack to convert <pre><code> --> <pre class="brush: js;" lang="javascript">,
+                // as expected by the SyntaxHighlighter
+                var children = query("pre code", context);
+                children.forEach(function (child) {
+                    var parent = child.parentNode,
+                        isXML = lang.trim(child.innerText || child.textContent).charAt(0) === "<";
+                    domConstruct.place("<pre class='brush: " + (isXML ? "xml" : "js") + ";'>" + child.innerHTML + "</pre>", parent, "after");
+                    domConstruct.destroy(parent);
+                });
+            // run highlighter
+                SyntaxHighlighter.highlight();
+            }
 
 
             //	make the summary sections collapsible.

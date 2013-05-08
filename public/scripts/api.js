@@ -10,14 +10,37 @@ require([
 	"api/ModuleTreeModel",
 	"api/ModuleTree",
 	"dojo/_base/config",
-	"dojo/query"
-], function (parser, dom, lang, ready, BorderContainer, TabContainer, ContentPane, AccordionContainer, ModuleTreeModel, ModuleTree, config, query) {
+	"dojo/query",
+	"dojo/dom-construct"
+], function (parser, dom, lang, ready, BorderContainer, TabContainer, ContentPane, AccordionContainer, ModuleTreeModel, ModuleTree, config, query, domConstruct) {
     var moduleModel = null, moduleTree = null, currentVersion = null;
     ready(function () {
         var parsed = parser.parse();
         var s = dom.byId("versionSelector");
         s.onchange = lang.hitch(s, versionChange);
         buildTree();
+
+        // TODO - syntax highlighter for premalinked loaded modules -- plus this should be reusable (mixin?) as its also used in moduletree.js
+        // should do as i thought, create an extended ContentPane with these functions because the show/hide semantics needs to be captured too (for summaries)
+        var content = dom.byId("content");
+        if (content) {
+            //	if SyntaxHighlighter is present, run it in the content
+            if (SyntaxHighlighter) {
+                // quick hack to convert <pre><code> --> <pre class="brush: js;" lang="javascript">,
+                // as expected by the SyntaxHighlighter
+                var children = query("pre code", content);
+                children.forEach(function (child) {
+                    var parent = child.parentNode,
+                        isXML = lang.trim(child.innerText || child.textContent).charAt(0) === "<";
+                    domConstruct.place("<pre class='brush: " + (isXML ? "xml" : "js") + ";'>" + child.innerHTML + "</pre>", parent, "after");
+                    domConstruct.destroy(parent);
+                });
+            // run highlighter
+                SyntaxHighlighter.highlight();
+            }
+        }
+        // END TODO
+
     });
 
     var buildTree = function () {

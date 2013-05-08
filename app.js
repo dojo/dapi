@@ -37,32 +37,52 @@ app.use(stylus.middleware(
   compile: compile
   }
 ));
-// note I needed to add 'chmod -R +u *'  on 1.6 to set read permissions on all files (this was for the legacy exported spider.php html files)  
 app.use(express.static(__dirname + '/public'));
-/// do rendering
 // index - / at the moment - change so it's more specific/configurable 
 app.get('/', function (req, res) {
-//res.render('your page', {pageData: {name : ['name 1', name 2]}});
-    console.log("is xhr = " + req.xhr);
-    res.render('index', { title : 'Home', config: config});
+    console.log("is xhr = " + req.xhr); // use this to determine if it's a permalink url or a module request url
+    res.render('index', { title : 'DOJO API Viewer', config: config, module : null});
 });
 
 // apidata should be config - already used in dojoConfig // for module clicks
 // also should be able to generate htlml from module urls (and version) e.g. this currently works http://localhost:3000/apidata/version/dijit/_TemplatedMixin
-app.get('/' + config.apiDataPath + '/*', function (req, res) {
-    //var returnstr = "<div>req.params : " + req.params.toString()+"</div>";
+app.get(config.contextPath + config.apiDataPath + '/*', function (req, res) {
     // replace with regex
-    console.log("is xhr = " + req.xhr);
-    var requested =  req.params.toString().replace(/\/version\//, "");
-    console.log("requested = " + requested);
+    console.log("is xhr = " + req.xhr); // use this to determine if it's a permalink url or a module request url
+    console.log("requested = " + req.params.toString());
+    var requested = req.params.toString().replace(/\/$/, ""); // TODO - replace(/\/$/, ""); added, no time to look at but for example loading 1.6/dojo/Animation adds a trailing slash whilst 1.6/dojo/AdapterRegistry doesnt, something browser related? 
     var idxslash = requested.indexOf("/");
-    var version = requested.slice(0, idxslash);
-    var modulefile = requested.slice(++idxslash);
+    var requestedVersion = requested.substring(0, idxslash + 1);
+    var modulefile = requested.slice(idxslash + 1);
+
+    var version = req.params.toString().substring(0, 3); // should be done with regex? or is this the implied api?
+    if (isNaN(version)) {
+        throw new Error("Version not understood - " + version);
+    }
+
+    // not sure if this is bad - handle versions earlier than 1.8 i.e. static html generated docs
+    if (parseFloat(version) < 1.8) { // currently expects a float i.e. no num
+        // item.fullname.replace(/\./g, "/")
+        var legacyfile = __dirname + '/public/api/' + version + '/' + modulefile.replace(/\./g, "/") + '.html';
+        console.log("legacy file requested " + legacyfile);
+        res.sendfile(legacyfile); // could be a security issue here
+        return;
+    }
+
+    //if (parseFloat(version) < 1.8) 
+    console.log("temp version = " + version + ", isNan = " + isNaN(version));
+    //var version = requested.slice(0, idxslash);
+
+
     console.log("version = " + version + ", modulefile = " + modulefile);
-    var detailsFile = "./public/" + config.apiDataPath + "/" + version + "/details.json";
+    var detailsFile = "./public/" + config.apiDataPath + "/" + requestedVersion + "/details.json";
     /// and a jade modulefile render
-    generate.generate(detailsFile, modulefile, version, function (retObjectItem) {
-        res.render('module', { module : retObjectItem, config: config});
+    generate.generate(detailsFile, modulefile, requestedVersion, function (retObjectItem) {
+        if (req.xhr) {
+            res.render('module', { module : retObjectItem, config: config});
+        } else { // permalink request
+            res.render('index', { title : 'DOJO API Viewer', config: config, module: retObjectItem});
+        }
     });
     // should do some error handling http responses    
 });
@@ -71,4 +91,10 @@ app.get('/' + config.apiDataPath + '/*', function (req, res) {
 
 app.listen(config.port);
 console.error("REMEMBER TO DELETE ANY STATIC .HTML FILES WHICH EXPRESS STATIC WILL RENDER INSTEAD OF TEMPLATES");
+console.log("==========================================================");
 console.log("API viewer started on port " + config.port);
+
+app.use(function (err, req, res, next) {
+    console.error(err.stack);
+    res.send(500, "Sorry there's been an error, please check the logs");
+});
