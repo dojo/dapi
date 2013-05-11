@@ -77,7 +77,7 @@ app.get(config.contextPath + config.apiDataPath + '/*', function (req, res) {
     console.log("version = " + version + ", modulefile = " + modulefile);
     var detailsFile = "./public/" + config.apiDataPath + "/" + requestedVersion + "/details.json";
     /// and a jade modulefile render
-    generate.generate(detailsFile, modulefile, requestedVersion, function (retObjectItem) {
+    generate.generate(detailsFile, modulefile, version, function (retObjectItem) {
         if (req.xhr) {
             res.render('module', { module : retObjectItem, config: config});
         } else { // permalink request

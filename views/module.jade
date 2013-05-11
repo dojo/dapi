@@ -1,4 +1,4 @@
-div.jsdoc-permalink(style="display:none") somebaseurl!{module.location}
+div.jsdoc-permalink(style="display:none") #{config.contextPath}api/#{module !=null ? module.version : config.defaultVersion}/#{module.location}
 h1(class="#{convertType(module.type)}Icon36 jsdoc-title") #{module.location}
         span(style="font-size:11px;color:#999;")  (version #{module.version})
 //  h2 !{autoHyperlink(module.description)}  SUMMARY - broke - need to understand hyperlink      
@@ -7,7 +7,7 @@ h1(class="#{convertType(module.type)}Icon36 jsdoc-title") #{module.location}
     div.jsdoc-mixins
         label Extends 
         each item in module.mixins
-            a.jsdoc-link(href='#{config.contextPath}api/#{module !=null ? module.version : config.defaultVersion}#{item.location}') #{item.location},   
+            a.jsdoc-link(href='#{config.contextPath}api/#{module !=null ? module.version : config.defaultVersion}/#{item.location}') #{item.location},   
 - if (module.summary != null)
       div.jsdoc-full-summary !{module.summary}
 - if (module.description != null)
