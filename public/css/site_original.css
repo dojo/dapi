@@ -2292,3 +2292,58 @@ h4.commentsTitle, div.js-kit-comments {
 }
 
 /* END FROM THEME */
+
+/* dtk intro page */
+
+.dtk-intro { 
+	margin-top: 1.25em;
+}
+.dtk-intro strong {
+	font-size: 1.5em;
+}
+.dtk-objects { }
+.dtk-objects h2 {
+	margin-top: 1.5em;
+}
+.clear { clear: both }
+.dtk-object {
+	float: left;
+	width: 160px;
+	min-height: 76px;
+	position: relative;
+	margin: 6px;
+	padding-left: 76px;
+}
+.dtk-object-image {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 72px;
+	height: 58px;
+	background-repeat: no-repeat;
+	background-position: center center;
+}
+.dtk-object-title { font-size: 1.25em; }
+.dtk-object-description { font-size: 0.85em; }
+.dtk-dojo { background-image: url(../images/dojo.png); }
+.dtk-dijit { background-image: url(../images/dijit.png); }
+.dtk-dojox { background-image: url(../images/dojox.png); }
+.dtk-dojo-query { background-image: url(../images/query.png); }
+.dtk-dojo-NodeList { background-image: url(../images/nodelist.png); }
+.dtk-dijit-form { background-image: url(../images/form.png); }
+.dtk-dijit-layout { background-image: url(../images/layout.png); }
+.dtk-dojox-chart2d { background-image: url(../images/charts.png); }
+.dtk-dojox-grid { background-image: url(../images/grid.png); }
+.dtk-doc-tools {
+	font-size: 0.85em;
+	margin: 0.5em;
+	margin-top: 2em;
+	text-align: right;
+}
+
+
+*/ end dtk intro */
+
+
+
+
