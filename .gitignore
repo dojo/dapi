@@ -1,15 +1,20 @@
+# node nodule deps
 node_modules
-
+# editor files
+*~
 # ignore .git
 .git/
-public/api/1.8/dijit/
-public/api/1.8/dojo/
-public/api/1.8/dojox/
-public/api/1.8/doh/
-public/api/1.9rc2/dijit/
-public/api/1.9rc2/dojo/
-public/api/1.9rc2/dojox/
-public/api/1.9rc2/doh/
+## actually just ignore all api files
+public/api
+#
+public/api/1.8/dijit
+public/api/1.8/dojo
+public/api/1.8/dojox
+public/api/1.8/doh
+public/api/1.9rc2/dijit
+public/api/1.9rc2/dojo
+public/api/1.9rc2/dojox
+public/api/1.9rc2/doh
 
 # old data
 public/api/1.8/widgetbase.json
