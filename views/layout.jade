@@ -6,7 +6,7 @@ html
     link(rel='stylesheet', href="#{config.contextPath}css/site_original.css")
     script(type="text/javascript")
         // packages: [{name:"api", location:location.pathname.replace(/\/[^/]+$/, '/') + "#{config.contextPath}scripts/api"}],
-        dojoConfig = {async:0, debug:1, noGlobals:0, 
+        dojoConfig = {async:1, debug:1, noGlobals:0, 
             packages: [{name:"api", location: "#{config.contextPath}scripts/api"}],
             apiPath : '#{config.contextPath}#{config.apiDataPath}',
             context : '#{config.contextPath}',

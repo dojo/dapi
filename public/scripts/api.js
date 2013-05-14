@@ -1,18 +1,23 @@
 require([
-	"dojo/parser",
-	"dojo/dom",
-	"dojo/_base/lang",
-	"dojo/ready",
-	"dijit/layout/BorderContainer",
-	"dijit/layout/TabContainer",
-	"dijit/layout/ContentPane",
-	"dijit/layout/AccordionContainer",
-	"api/ModuleTreeModel",
-	"api/ModuleTree",
-	"dojo/_base/config",
-	"dojo/query",
-	"dojo/dom-construct"
-], function (parser, dom, lang, ready, BorderContainer, TabContainer, ContentPane, AccordionContainer, ModuleTreeModel, ModuleTree, config, query, domConstruct) {
+    "dojo/parser",
+    "dojo/dom",
+    "dojo/_base/lang",
+    "dojo/ready",
+    "dijit/layout/BorderContainer",
+    "dijit/layout/TabContainer",
+    "api/ModuleContentPane",
+    "dijit/layout/AccordionContainer",
+    "api/ModuleTreeModel",
+    "api/ModuleTree",
+    "dojo/_base/config",
+    "dojo/query",
+    "dijit/registry",
+    "dijit/MenuItem",
+    "dijit/Menu",
+    "dojo/_base/array", // array.forEach
+    "dijit/MenuSeparator"
+], function (parser, dom, lang, ready, BorderContainer, TabContainer, ContentPane, AccordionContainer,
+        ModuleTreeModel, ModuleTree, config, query, registry, MenuItem, Menu, array, MenuSeparator) {
     var moduleModel = null, moduleTree = null, currentVersion = null;
     ready(function () {
         var parsed = parser.parse();
@@ -23,24 +28,61 @@ require([
         // TODO - syntax highlighter for premalinked loaded modules -- plus this should be reusable (mixin?) as its also used in moduletree.js
         // should do as i thought, create an extended ContentPane with these functions because the show/hide semantics needs to be captured too (for summaries)
         var content = dom.byId("content");
-        if (content) {
-            //	if SyntaxHighlighter is present, run it in the content
-            if (SyntaxHighlighter) {
-                // quick hack to convert <pre><code> --> <pre class="brush: js;" lang="javascript">,
-                // as expected by the SyntaxHighlighter
-                var children = query("pre code", content);
-                children.forEach(function (child) {
-                    var parent = child.parentNode,
-                        isXML = lang.trim(child.innerText || child.textContent).charAt(0) === "<";
-                    domConstruct.place("<pre class='brush: " + (isXML ? "xml" : "js") + ";'>" + child.innerHTML + "</pre>", parent, "after");
-                    domConstruct.destroy(parent);
-                });
-            // run highlighter
-                SyntaxHighlighter.highlight();
-            }
+        var contentpane = registry.byId("baseTab"); // the default loaded module tab (even when there is a permalink and intro screen) will always be named baseTab - intro screen id changed
+        if (contentpane) {
+            contentpane.initModulePane();
         }
-        // END TODO
 
+
+        var tabContainer = registry.byId("content");
+        /* temp - add a close all option - move to context menu on the tab label */
+        dojo.getObject("dijit.layout._ScrollingTabControllerMenuButton").prototype.loadDropDown = function (callback) {
+            this.dropDown = new Menu({
+                id: this.containerId + "_menu",
+                ownerDocument: this.ownerDocument,
+                dir: this.dir,
+                lang: this.lang,
+                textDir: this.textDir
+            });
+            var container = registry.byId(this.containerId);
+            // add close all
+            var menuItem = new MenuItem({
+                label: "Close all",
+                iconClass: "dijitInline dijitIcon dijitMenuItemIcon dijitIconDelete",
+                onClick: function () {
+                    var _this = this;
+                    tabContainer.getChildren().forEach(function (item) {
+                        console.log(item);
+                        if (item.closable) {
+                            tabContainer.removeChild(item);
+                            item.destroyRecursive();
+                        }
+                    });
+                }
+            });
+            this.dropDown.addChild(menuItem);
+            this.dropDown.addChild(new MenuSeparator());
+            // end close all            
+
+            array.forEach(container.getChildren(), function (page) {
+                var menuItem = new MenuItem({
+                    id: page.id + "_stcMi",
+                    label: page.title,
+                    iconClass: page.iconClass,
+                    disabled: page.disabled,
+                    ownerDocument: this.ownerDocument,
+                    dir: page.dir,
+                    lang: page.lang,
+                    textDir: page.textDir,
+                    onClick: function () {
+                        container.selectChild(page);
+                    }
+                });
+                this.dropDown.addChild(menuItem);
+            }, this);
+            callback();
+        };
+        /* end temp - add a close all option - move to context menu on the tab label */
     });
 
     var buildTree = function () {
@@ -64,9 +106,9 @@ require([
     };
     var versionChange = function (e) {
         // summary:
-        //		Change the version displayed.
+        //    Change the version displayed.
         var v = this.options[this.selectedIndex].value;
-        //	if we reverted, bug out.
+        // if we reverted, bug out.
         if (currentVersion === v) { return; }
         currentVersion = v;
         buildTree();
