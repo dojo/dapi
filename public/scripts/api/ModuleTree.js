@@ -3,12 +3,12 @@ define(["dojo/_base/declare", "dojo/_base/lang", "dijit/Tree", "dijit/registry",
     ], function (declare, lang, Tree, registry, ContentPane, query, domConstruct, config, on, domClass, domStyle) {
 
 	return declare("ModuleTree", Tree, {
+        version : "",
+        tabContainerId : "",
 		// summary:
 		//		Variation on Tree to have icons and correct click behavior
 		getIconClass: function (item, /*Boolean*/ opened) {
-
 			var type = item.type.toLowerCase();
-
 			if (type === "folder") {
 				return opened ? "dijitFolderOpened" : "dijitFolderClosed";
 			} else {
@@ -17,7 +17,6 @@ define(["dojo/_base/declare", "dojo/_base/lang", "dijit/Tree", "dijit/registry",
 				if (/undefined|instance/.test(type)) {
 					type = "object";
 				}
-
 				return "icon16 " + type + "Icon16";
 			}
 		},
@@ -69,6 +68,7 @@ define(["dojo/_base/declare", "dojo/_base/lang", "dijit/Tree", "dijit/registry",
                 //title: title,
                 title: item.fullname + " (" + version + ")",
                 closable: true,
+                version : version,
                 parseOnLoad: false
             });
             pane.startup();
