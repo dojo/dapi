@@ -1,27 +1,34 @@
 define(["dojo/_base/declare",
-	"dojo/_base/kernel", // kernel.deprecated
-	"dojo/_base/lang", // lang.mixin lang.delegate lang.hitch lang.isFunction lang.isObject
-	"dijit/layout/ContentPane",
-	"dojo/query", "dojo/dom-construct", "dojo/_base/config", "dojo/on", "dojo/dom-class", "dojo/dom-style"
+    "dojo/_base/kernel", // kernel.deprecated
+    "dojo/_base/lang", // lang.mixin lang.delegate lang.hitch lang.isFunction lang.isObject
+    "dijit/layout/ContentPane",
+    "dojo/query",
+    "dojo/dom-construct",
+    "dojo/_base/config",
+    "dojo/on",
+    "dojo/dom-class",
+    "dojo/dom-style"
 ], function (declare, kernel, lang, ContentPane, query, domConstruct, config, on, domClass, domStyle) {
 
 // module:
-//		api/ContentPane
+//        api/ContentPane
 
 
-    return declare("api.ContentPane", [ContentPane], {
+    return declare("api.ModuleContentPane", [ContentPane], {
+        version : "",
         extensionOn : true, //possibly move to the contructor though its not an object
         privateOn : false, //possibly move to the contructor though its not an object
         inheritedOn : true, //possibly move to the contructor though its not an object
 
         onLoad : function (data) {
+            console.log("api.ContentPane version = " + this.version);
             this.initModulePane();
 
         }, /// end onLoad
         adjustLists : function (context, obj) {
             // summary:
-            //		Hide/show privates and inherited methods according to setting of private and inherited toggle buttons.
-            //		Set/remove "odd" class on alternating rows.
+            //        Hide/show privates and inherited methods according to setting of private and inherited toggle buttons.
+            //        Set/remove "odd" class on alternating rows.
 
             // The alternate approach is to do this through CSS: Toggle a jsdoc-hide-privates and jsdoc-hide-inherited
             // class on the pane's DOMNode, and use :nth-child(odd) to get the gray/white shading of table rows.   The
@@ -36,7 +43,8 @@ define(["dojo/_base/declare",
                 (!obj.privateOn && domClass.contains(li, "private")) ||
                 (!obj.inheritedOn && domClass.contains(li, "inherited"));
                 if (hide === true) {
-                    console.log(li);
+                    //console.log(li);
+                    console.log("hidden = true");
                 }
                 domStyle.set(li, "display", hide ? "none" : "block");
                 domClass.toggle(li, "odd", cnt % 2);
@@ -47,12 +55,13 @@ define(["dojo/_base/declare",
         },
         initModulePane : function () {
             var context = this.domNode;
-            console.log(this.domNode);
+            this._setUpDocLinks(context);
+            //console.log(this.domNode);
 
 ///////////////// TODO: IN PROGRESS
 
             var link = query("div.jsdoc-permalink", context);
-            if (link.length === 0) { // handle loading the intro screen
+            if (link.length === 0) { // handle loading the intro screen - this is probably not needed now
                 return;
             }
             link = link[0].innerHTML;
@@ -81,7 +90,7 @@ define(["dojo/_base/declare",
             }));
 
             var privateBtn = query(".jsdoc-private", toolbar)[0];
-            domClass.add(privateBtn, "off");	// initially off
+            domClass.add(privateBtn, "off");    // initially off
             on(privateBtn, "click", lang.hitch(this, function (e) {
                 this.privateOn = !this.privateOn;
                 var _this = this;
@@ -102,7 +111,7 @@ define(["dojo/_base/declare",
             this._highlighter(context);
 
 
-            //	make the summary sections collapsible.
+            //    make the summary sections collapsible.
             query("h2.jsdoc-summary-heading", this.domNode).forEach(function (item) {
                 on(item, "click", function (e) {
                     var d = e.target.nextSibling;
@@ -118,7 +127,7 @@ define(["dojo/_base/declare",
 
                 query("span.jsdoc-summary-toggle", item).addClass("closed");
 
-                //	probably should replace this with next or something.
+                //    probably should replace this with next or something.
                 var d = item.nextSibling;
                 while (d.nodeType !== 1 && d.nextSibling) { d = d.nextSibling; }
                 if (d) {
@@ -130,7 +139,7 @@ define(["dojo/_base/declare",
 
         },
         _highlighter : function (context) {
-            //	if SyntaxHighlighter is present, run it in the content
+            //    if SyntaxHighlighter is present, run it in the content
             if (SyntaxHighlighter) {
                 // quick hack to convert <pre><code> --> <pre class="brush: js;" lang="javascript">,
                 // as expected by the SyntaxHighlighter
@@ -144,6 +153,63 @@ define(["dojo/_base/declare",
             // run highlighter
                 SyntaxHighlighter.highlight();
             }
+        },
+        _setUpDocLinks : function (context) {
+            var _this = this;
+            on(context, on.selector("a.jsdoc-link", "click"), function (evt) {
+                // Don't do this code for the permalink button, that's handled in a different place
+                if (domClass.contains(this.parentNode, "jsdoc-permalink")) {
+                    return;
+                }
+                // Stop the browser from navigating to a new page
+                evt.preventDefault();
+                // Open tab for specified module
+                var tmp = this.href.replace(/^[a-z]*:/, "").replace(config.baseUrl, "").replace(/#.*/, "").split("/");
+                var version = tmp[0];
+                var page = tmp.slice(1).join("/");
+                var url = config.apiPath + "/" + version + "/" + page;  // TODO fix this later, should pass in the context
+                console.log("parent ==== " + _this.getParent());
+                console.log("api.ContentPane page ====" + page);
+                //var pane = addTabPane(page, version);
+                var pane = new api.ModuleContentPane({
+                    id: page.replace(/[\/.]/g, "_") + "_" + version,
+                    page: page,		// save page because when we select a tab we locate the corresponding TreeNode
+                    href: url,
+                    //content : {version: "version" , itemtid: item.id, namel: item.name, fullname : item.fullname, type: item.type},  
+                    //title: title,
+                    title: page + " (" + version + ")",
+                    closable: true,
+                    version : version,
+                    parseOnLoad: false
+                });
+                pane.startup();
+                _this.getParent().addChild(pane);
+                _this.getParent().selectChild(pane);
+                pane.initModulePane();
+            });
+
+/*
+
+            on(context, on.selector("a.jsdoc-link", "click"), lang.hitch(this, function(evt) {
+                // Don't do this code for the permalink button, that's handled in a different place
+                if(domClass.contains(_this.parentNode, "jsdoc-permalink")) {
+                    return;
+                }
+                // Stop the browser from navigating to a new page
+                evt.preventDefault();
+                
+                // Open tab for specified module
+                
+                var version = tmp[0];
+                var page = tmp.slice(1).join("/");
+                console.log("parent ==== " + this.getParent());
+                console.log("api.ContentPane page ====" + page);
+                //var pane = addTabPane(page, version);
+            }));
+
+
+*/
+
         }
 
     });

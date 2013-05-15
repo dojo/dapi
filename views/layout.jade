@@ -6,11 +6,13 @@ html
     link(rel='stylesheet', href="#{config.contextPath}css/site_original.css")
     script(type="text/javascript")
         // packages: [{name:"api", location:location.pathname.replace(/\/[^/]+$/, '/') + "#{config.contextPath}scripts/api"}],
+        var tmp = "//" + location.host + "#{config.contextPath}" +"#{config.apiDataPath}";
         dojoConfig = {async:1, debug:1, noGlobals:0, 
             packages: [{name:"api", location: "#{config.contextPath}scripts/api"}],
             apiPath : '#{config.contextPath}#{config.apiDataPath}',
             context : '#{config.contextPath}',
-            apiDefault : '#{config.defaultVersion}'
+            apiDefault : '#{config.defaultVersion}',
+            baseUrl : tmp
         }
     link(rel='stylesheet', href="#{config.dojoBase}/dijit/themes/#{config.theme}/#{config.theme}.css")
     // link(rel='stylesheet', href="/#{config.dojobase}/dijit/themes/#{config.theme}/#{config.theme}.css")
