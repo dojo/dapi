@@ -10,5 +10,7 @@
     "port" : 3000,
     "defaultVersion" : "1.8",
     "versions" : ["1.6", "1.7", "1.8", "1.9rc2"],
-    "apiDataPath" : "api"
+    "apiDataPath" : "api",
+    "viewsDirectory" : "views",
+    "isDebug" : false
 }

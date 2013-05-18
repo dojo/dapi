@@ -29,9 +29,12 @@ function compile(str, path) {
     .set('filename', path)
     .use(nib());
 }
-app.set('views', __dirname + '/views');
+app.set('views', __dirname + '/' + config.viewsDirectory);
 app.set('view engine', 'jade');
-app.use(express.logger('dev'));
+if (config.isDebug === true) {
+    app.use(express.logger('dev'));
+}
+
 app.use(stylus.middleware(
   { src: __dirname + '/public',
   compile: compile
@@ -46,13 +49,13 @@ app.get('/', function (req, res) {
 
 // apidata should be config - already used in dojoConfig // for module clicks
 // also should be able to generate htlml from module urls (and version) e.g. this currently works http://localhost:3000/apidata/version/dijit/_TemplatedMixin
-app.get(config.contextPath + config.apiDataPath + '/*', function (req, res) {
+app.get(config.contextPath + config.apiDataPath + '/*', function (req, res, next) {
     // replace with regex
     console.log("is xhr = " + req.xhr); // use this to determine if it's a permalink url or a module request url
     console.log("requested = " + req.params.toString());
     var requested = req.params.toString().replace(/\/$/, ""); // TODO - replace(/\/$/, ""); added, no time to look at but for example loading 1.6/dojo/Animation adds a trailing slash whilst 1.6/dojo/AdapterRegistry doesnt, something browser related? 
     var idxslash = requested.indexOf("/");
-    var requestedVersion = requested.substring(0, idxslash + 1);
+    var requestedVersion = requested.substring(0, idxslash);
     var modulefile = requested.slice(idxslash + 1);
 
     var version = req.params.toString().substring(0, 3); // should be done with regex? or is this the implied api?
@@ -74,11 +77,16 @@ app.get(config.contextPath + config.apiDataPath + '/*', function (req, res) {
     //var version = requested.slice(0, idxslash);
 
 
-    console.log("version = " + version + ", modulefile = " + modulefile);
+    console.log("version = " + version + ", modulefile = " + modulefile  + ", requestedVersion = " + requestedVersion);
     var detailsFile = "./public/" + config.apiDataPath + "/" + requestedVersion + "/details.json";
     /// and a jade modulefile render
-    generate.generate(detailsFile, modulefile, version, function (retObjectItem) {
-        if (req.xhr) {
+    //generate.generate(detailsFile, modulefile, version, function (retObjectItem) {
+    generate.generate(detailsFile, modulefile, requestedVersion, function (err, retObjectItem) {
+        if (err) {
+            console.error(err);
+            next();
+        }
+        else if (req.xhr) {
             res.render('module', { module : retObjectItem, config: config});
         } else { // permalink request
             res.render('index', { title : 'DOJO API Viewer', config: config, module: retObjectItem});
