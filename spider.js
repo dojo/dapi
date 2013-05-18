@@ -39,7 +39,7 @@ console.log("REMEMBER TO SET THE CORRECT CONTEXT PATH CONFIGURATION FOR YOUR GEN
 console.log("==========================================================");
 console.log("Static API viewer generation started");
 // generate index  config.version config.staticfolder
-var indexjade = __dirname + "/views/index.jade";
+var indexjade = __dirname + "/" + config.viewsDirectory + "/index.jade";
 var data = fs.readFileSync(indexjade, "utf8");
 
 var fn = jade.compile(data, {filename: indexjade, pretty: true});
@@ -53,12 +53,15 @@ fs.writeFileSync("public/staticapi.html", indexhtml); // FTM make sure it's a di
 var starttime = new Date().getTime();
 // get details json (so it can iterate over the objects, generate html and so it's also cached)
 var detailsFile = "./public/" + config.apiDataPath + "/" + config.defaultVersion + "/details.json";
-generate.loadDetails(detailsFile,  config.defaultVersion, function (details) {
+generate.loadDetails(detailsFile,  config.defaultVersion, function (err, details) {
     var versionfolder = staticFolder + config.defaultVersion + "/";
+    if (err) {
+        console.error(err);
+    }
     Object.keys(details).forEach(function (item) {
         var itemlcl = details[item];
         var modulefile = itemlcl.location;
-        generate.generate(detailsFile, modulefile, config.defaultVersion, function (retObjectItem) {
+        generate.generate(detailsFile, modulefile, config.defaultVersion, function (err, retObjectItem) {
             // modulefile.match(/[^/]* /); // move to regex
             var patharr = modulefile.split("/");
 
@@ -68,7 +71,7 @@ generate.loadDetails(detailsFile,  config.defaultVersion, function (details) {
                     mkdirp.sync(versionfolder + patharr.join("/"));
                 }
             }
-            var modulejade = __dirname + "/views/module.jade";
+            var modulejade = __dirname + "/" + config.viewsDirectory + "/module.jade";
             var data = fs.readFileSync(modulejade, "utf8");
             var fn = jade.compile(data, {filename: modulejade, pretty: true, autoHyperlink: autoHyperlink, convertType: convertType});
             var html = fn({ module : retObjectItem, config: config, autoHyperLink: autoHyperlink});

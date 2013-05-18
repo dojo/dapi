@@ -103,6 +103,46 @@ require([
         });
         moduleTree.placeAt("moduleTreePane");
         moduleTree.startup();
+
+// started selectedChildWidget
+
+        var tabContainer = registry.byId("content");
+		tabContainer.watch("selectedChildWidget", function (attr, oldVal, selectedChildWidget) {
+			// If we are still scrolling the Tree from a previous run, cancel that animation
+			if (moduleTree.scrollAnim) {
+				moduleTree.scrollAnim.stop();
+			}
+
+			if (!selectedChildWidget.page) {
+				// This tab doesn't have a corresponding entry in the tree.   It must be the welcome tab.
+				return;
+			}
+
+			// Select the TreeNode corresponding to this tab's object.   For dijit/form/Button the path must be
+			// ["root", "dijit/", "dijit/form/", "dijit/form/Button"]
+			var parts = selectedChildWidget.page.match(/[^/\.]+[/\.]?/g),
+				path = ["root"].concat(array.map(parts, function (part, idx) {
+				return parts.slice(0, idx + 1).join("").replace(/\.$/, "");
+			}));
+			moduleTree.set("path", path).then(function () {
+				// And then scroll it into view.
+				moduleTree.scrollAnim = smoothScroll({
+					node: moduleTree.selectedNodes[0].domNode,
+					win: dom.byId("moduleTreePane"),
+					duration: 300
+				}).play();
+			},
+			function (err) {
+				console.log("tree: error setting path to " + path);
+			});
+		}, true);
+
+
+
+//end selectedChildWidgets        
+
+
+
     };
     var versionChange = function (e) {
         // summary:
