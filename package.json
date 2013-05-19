@@ -8,7 +8,7 @@
         "stylus": "*",
         "nib": "*",
         "jade": "0.28.2",
-        "mkdirp": "*"
+        "mkdirp": "0.3.x"
     },
     "scripts": {
       "test": "grunt travis --verbose"
