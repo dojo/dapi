@@ -27,4 +27,6 @@
                     returnTypes = method.returnTypes
                     returnDescription = method.returnDescription
                     include parametertable
-                
+                - if (method.examples)
+                    examples = method.examples                
+                    include examples                
