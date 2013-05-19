@@ -10,9 +10,17 @@
                 td.jsdoc-param-type !{item.types.join(" | ")}
                 if (item.summary)
                     //- ! used instead of # to unescape
-                    td.jsdoc-param-description !{item.summary} 
+                    td.jsdoc-param-description
+                        - if (item.usage.toLowerCase() == 'optional')
+                            div
+                                em Optional
+                         !{item.summary} 
                 else
-                    td.jsdoc-param-description !{item.description}
+                    td.jsdoc-param-description
+                        - if (item.usage.toLowerCase() == 'optional')
+                            div
+                                em Optional
+                        !{item.description}
                      
 - if (returnTypes != null && returnTypes.length > 0)
     div
