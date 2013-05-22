@@ -40,9 +40,9 @@ app.use(stylus.middleware(
   compile: compile
   }
 ));
-app.use(express.static(__dirname + '/public'));
+app.use(config.contextPath, express.static(__dirname + '/public'));
 // index - / at the moment - change so it's more specific/configurable 
-app.get('/', function (req, res) {
+app.get(config.contextPath, function (req, res) {
     console.log("is xhr = " + req.xhr); // use this to determine if it's a permalink url or a module request url
     res.render('index', { title : 'DOJO API Viewer', config: config, module : null});
 });

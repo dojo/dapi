@@ -19,8 +19,8 @@
                     - else if (prop.inherited)
                          span.jsdoc-inherited(title='inherited')
                 - if (prop.summary !=null)
-                    div.jsdoc-summary !{autoHyperlink(prop.summary)}
+                    div.jsdoc-summary !{autoHyperlink(prop.summary, config, module.version)}
                 - else if (prop.description !=null)
                     div.jsdoc-summary
-                        div.jsdoc-summary !{autoHyperlink(prop.description)}
+                        div.jsdoc-summary !{autoHyperlink(prop.description, config, module.version)}
                 
