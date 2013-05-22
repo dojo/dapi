@@ -42,10 +42,6 @@ define(["dojo/_base/declare",
                 (!obj.extensionOn && domClass.contains(li, "extension-module")) ||
                 (!obj.privateOn && domClass.contains(li, "private")) ||
                 (!obj.inheritedOn && domClass.contains(li, "inherited"));
-                if (hide === true) {
-                    //console.log(li);
-                    console.log("hidden = true");
-                }
                 domStyle.set(li, "display", hide ? "none" : "block");
                 domClass.toggle(li, "odd", cnt % 2);
                 if (!hide) {

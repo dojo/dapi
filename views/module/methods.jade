@@ -23,7 +23,7 @@
                       span.jsdoc-inherited(title='inherited')
                 div.jsdoc-full-summary !{method.summary}
                 - if (method.description)
-                    div.jsdoc-full-summary !{method.description}
+                    div.jsdoc-full-summary !{autoHyperlink(method.description, config, module.version)}
                 - if (method.parameters)
                     params = method.parameters
                     returnTypes = method.returnTypes

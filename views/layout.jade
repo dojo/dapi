@@ -1,7 +1,11 @@
 !!!5
 html
   head
-    title #{title} Version #{module !=null ? module.version : config.defaultVersion} 
+    title #{title} Version #{module !=null ? module.version : config.defaultVersion}
+    link(rel='stylesheet', href="#{config.dojoBase}/dojo/resources/dojo.css")
+    link(rel='stylesheet', href="#{config.dojoBase}/dijit/themes/#{config.theme}/#{config.theme}.css")
+    // link(rel='stylesheet', href="/#{config.dojobase}/dijit/themes/#{config.theme}/#{config.theme}.css")
+     
     link(rel='stylesheet', href="#{config.contextPath}css/jsdoc_original.css")
     link(rel='stylesheet', href="#{config.contextPath}css/site_original.css")
     script(type="text/javascript")
@@ -14,9 +18,6 @@ html
             apiDefault : '#{config.defaultVersion}',
             baseUrl : tmp
         }
-    link(rel='stylesheet', href="#{config.dojoBase}/dojo/resources/dojo.css")
-    link(rel='stylesheet', href="#{config.dojoBase}/dijit/themes/#{config.theme}/#{config.theme}.css")
-    // link(rel='stylesheet', href="/#{config.dojobase}/dijit/themes/#{config.theme}/#{config.theme}.css")
 
     //script(type="text/javascript", src="//ajax.googleapis.com/ajax/libs/dojo/1.8.3/dojo/dojo.js")
     script(type="text/javascript", src="#{config.dojoBase}/dojo/dojo.js")

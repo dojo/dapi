@@ -1,7 +1,7 @@
 div.jsdoc-permalink(style="display:none") #{config.contextPath}api/#{module !=null ? module.version : config.defaultVersion}/#{module.location}
 h1(class="#{convertType(module.type)}Icon36 jsdoc-title") #{module.location}
         span(style="font-size:11px;color:#999;")  (version #{module.version})
-//  h2 !{autoHyperlink(module.description)}  SUMMARY - broke - need to understand hyperlink      
+//  h2 !{autoHyperlink(module.description, config, module.version)}  SUMMARY - broke - need to understand hyperlink      
      
 - if (module.mixins != null)
     div.jsdoc-mixins
@@ -19,7 +19,7 @@ h1(class="#{convertType(module.type)}Icon36 jsdoc-title") #{module.location}
             span.keyword var
             |  foo = new #{module.location}
             span.parameters (#{module.usage.parameterList});
-      div.jsdoc-inheritance Defined by #{module.usage.from}
+      div.jsdoc-inheritance Defined by !{autoHyperlink(module.usage.from, config, module.version)}
       - if (module.usage.description !=null)
         div.jsdoc-summary
             !{module.usage.description}
