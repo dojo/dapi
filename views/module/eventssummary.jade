@@ -7,7 +7,7 @@
                 - var klass = (event.private == true ? "private" : "")
                 - if (event.inherited) klass = klass + ' inherited' 
                 li.functionIcon(class="#{klass}")
-                    a.inline-link(href='##{event.name}') !{event.name}
+                    a.inline-link(href='##{(module.version + module.location + '_' +event.name).replace(/\/|\./g, "_")}')  !{event.name}
                     span.parameters (
                     -  each parm, idx in event.parameters
                         | #{parm.name}

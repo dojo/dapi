@@ -8,7 +8,7 @@
                 - klass += (prop.private == true ? " private" : "")
                 - if (prop.inherited) klass += ' inherited' 
                 li(class="#{klass}")
-                    a.inline-link(href='##{prop.name}')  !{prop.name} 
+                    a.inline-link(href='##{(module.version + module.location + '_' +prop.name).replace(/\/|\./g, "_")}')  !{prop.name} 
                     span !{prop.shortSummary}
                     - if (prop.private)
                       span.jsdoc-private(title="private")
