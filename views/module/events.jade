@@ -7,7 +7,7 @@
             - if (event.inherited) klass += ' inherited' 
             div(class="#{klass}")
                 div.jsdoc-title
-                    a(name='#{event.name}')
+                    a(name='#{(module.version + module.location + '_' +event.name).replace(/\/|\./g, "_")}')
                     span.functionIcon #{event.name}
                     | <span class="parameters">(
                     -  each parm, idx in event.parameters

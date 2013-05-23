@@ -7,7 +7,7 @@
                 - var klass = (method.private == true ? "private" : "")
                 - if (method.inherited) klass = klass + ' inherited' 
                 li.functionIcon(class="#{klass}")
-                    a.inline-link(href='##{method.name}') !{method.name}
+                    a.inline-link(href='##{(module.version + module.location + '_' +method.name).replace(/\/|\./g, "_")}')  !{method.name}
                     span.parameters (
                     -  each parm, idx in method.parameters
                         | #{parm.name}

@@ -7,7 +7,7 @@
             - if (prop.extensionModule) klass += ' extension-module' 
             div(class="#{klass}")
                 div.jsdoc-title
-                    a(name='#{prop.name}')
+                    a(name='#{(module.version + module.location + '_' +prop.name).replace(/\/|\./g, "_")}')
                     span(class="#{convertType(prop.types[0])}Icon") #{prop.name}
                     - if (prop.private)
                       span.jsdoc-private(title="private") 
