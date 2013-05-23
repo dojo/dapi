@@ -1,7 +1,7 @@
 div.jsdoc-permalink(style="display:none") #{config.contextPath}api/#{module !=null ? module.version : config.defaultVersion}/#{module.location}
 h1(class="#{convertType(module.type)}Icon36 jsdoc-title") #{module.location}
         span(style="font-size:11px;color:#999;")  (version #{module.version})
-//  h2 !{autoHyperlink(module.description, config, module.version)}  SUMMARY - broke - need to understand hyperlink      
+- //  h2 !{autoHyperlink(module.description, config, module.version)}  SUMMARY - broke - need to understand hyperlink      
      
 - if (module.mixins != null)
     div.jsdoc-mixins
@@ -9,9 +9,9 @@ h1(class="#{convertType(module.type)}Icon36 jsdoc-title") #{module.location}
         each item in module.mixins
             a.jsdoc-link(href='#{config.contextPath}api/#{module !=null ? module.version : config.defaultVersion}/#{item.location}') #{item.location},   
 - if (module.summary != null)
-      div.jsdoc-full-summary !{module.summary}
+      div.jsdoc-full-summary !{autoHyperlink(module.summary, config, module.version)}
 - if (module.description != null)
-      div.jsdoc-full-summary !{module.description}
+      div.jsdoc-full-summary !{autoHyperlink(module.description, config, module.version)}
 - if (module.usage !=null)
       div.jsdoc-function-information 
         h3 Usage:
