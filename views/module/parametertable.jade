@@ -25,6 +25,6 @@
 - if (returnTypes != null && returnTypes.length > 0)
     div
         strong Returns: 
-        span.jsdoc-return-type !{returnTypes.join(" | ")}
+        span.jsdoc-return-type !{autoHyperlink(returnTypes.join(" | "), config, module.version)}
 - if (returnDescription)
     div.jsdoc-return-description !{returnDescription}
