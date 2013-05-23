@@ -4,7 +4,9 @@
     div.jsdoc-summary-list
         ul.jsdoc-property-list
             each event in module.events
-                li.functionIcon
+                - var klass = (event.private == true ? "private" : "")
+                - if (event.inherited) klass = klass + ' inherited' 
+                li.functionIcon(class="#{klass}")
                     a.inline-link(href='##{event.name}') !{event.name}
                     span.parameters (
                     -  each parm, idx in event.parameters
