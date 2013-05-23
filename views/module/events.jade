@@ -2,7 +2,10 @@
     h2 Events
     div.jsdoc-property-list
         each event in module.events
-            div.jsdoc-field.TODOpublic
+            - var klass = 'jsdoc-field' 
+            - klass += (event.private == true ? " private" : "")
+            - if (event.inherited) klass += ' inherited' 
+            div(class="#{klass}")
                 div.jsdoc-title
                     a(name='#{event.name}')
                     span.functionIcon #{event.name}
