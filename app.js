@@ -6,23 +6,20 @@ var express = require('express'),
     mkdirp = require("mkdirp"),
     generate = require('./lib/generate'),
     envConfig = require('./lib/config'),
+    refdoc = require('./lib/refdoc'),
     config = envConfig.appConfig;
 
 console.log("started at " + new Date());
-// hardcoded config atm - move to configurable arguments object with these as defaults - mixins
-//var details = __dirname +'/public/apidata/version/details.xml'; // only dojo exists
-//var details = __dirname +'/public/apidata/version/details_dijit.xml'; // dijit/_WidgetBase good 1 to try
-//var details = __dirn  ame +'/public/apidata/version/details_huge.xml'; // all mods
-//var details = __dirname +'/public/apidata/version/details_all.xml'; // latest doc parse with all packs 
 var details = __dirname + '/public/' + config.apiDataPath + '/' + config.defaultVersion + '/details.json'; // latest doc parse with all packs
 var app = express();
 // jade indenting
 app.locals.pretty = true;
 
+// macro calls
 // fails with static generation - todo: FOR SOME REASON I NEED TO USE A GLOBAL so it works???
 app.locals.convertType = generate.convertType;
 app.locals.autoHyperlink = generate.autoHyperlink;
-
+app.locals.hasRefDoc = refdoc.hasRefDoc;
 
 function compile(str, path) {
     return stylus(str)
@@ -43,7 +40,7 @@ app.use(stylus.middleware(
 app.use(config.contextPath, express.static(__dirname + '/public'));
 // index - / at the moment - change so it's more specific/configurable 
 app.get(config.contextPath, function (req, res) {
-    console.log("is xhr = " + req.xhr); // use this to determine if it's a permalink url or a module request url
+    console.log(new Date() + "is xhr = " + req.xhr); // use this to determine if it's a permalink url or a module request url
     res.render('index', { title : 'DOJO API Viewer', config: config, module : null});
 });
 
@@ -51,8 +48,7 @@ app.get(config.contextPath, function (req, res) {
 // also should be able to generate htlml from module urls (and version) e.g. this currently works http://localhost:3000/apidata/version/dijit/_TemplatedMixin
 app.get(config.contextPath + config.apiDataPath + '/*', function (req, res, next) {
     // replace with regex
-    console.log("is xhr = " + req.xhr); // use this to determine if it's a permalink url or a module request url
-    console.log("requested = " + req.params.toString());
+    console.log(new Date() + "is xhr = " + req.xhr + ", requested = " + req.params.toString()); // use this to determine if it's a permalink url or a module request url
     var requested = req.params.toString().replace(/\/$/, ""); // TODO - replace(/\/$/, ""); added, no time to look at but for example loading 1.6/dojo/Animation adds a trailing slash whilst 1.6/dojo/AdapterRegistry doesnt, something browser related? 
     var idxslash = requested.indexOf("/");
     var requestedVersion = requested.substring(0, idxslash);
@@ -67,17 +63,11 @@ app.get(config.contextPath + config.apiDataPath + '/*', function (req, res, next
     if (parseFloat(version) < 1.8) { // currently expects a float i.e. no num
         // item.fullname.replace(/\./g, "/")
         var legacyfile = __dirname + '/public/api/' + version + '/' + modulefile.replace(/\./g, "/") + '.html';
-        console.log("legacy file requested " + legacyfile);
+        //console.log("legacy file requested " + legacyfile);
         res.sendfile(legacyfile); // could be a security issue here
         return;
     }
 
-    //if (parseFloat(version) < 1.8) 
-    console.log("temp version = " + version + ", isNan = " + isNaN(version));
-    //var version = requested.slice(0, idxslash);
-
-
-    console.log("version = " + version + ", modulefile = " + modulefile  + ", requestedVersion = " + requestedVersion);
     var detailsFile = "./public/" + config.apiDataPath + "/" + requestedVersion + "/details.json";
     /// and a jade modulefile render
     //generate.generate(detailsFile, modulefile, version, function (retObjectItem) {
