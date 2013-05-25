@@ -27,9 +27,10 @@ params = module.parameters
 returnTypes = module.returnTypes
 returnDescription = module.returnDescription
 include module/parametertable
-p See the 
-    a(href='##{module.location}', target='_blank') #{module.location} reference documentation
-    |  for more information  TODO:
+- if (config.refDocs.enabled == true &&  hasRefDoc(module.location, module.version, config))
+    p See the 
+        a(href='#{config.refDocs.url + module.version + "/" + module.location + config.refDocs.suffix}', target='_blank') #{module.location} reference documentation
+        |  for more information.
      
 div.jsdoc-children
     div.jsdoc-fieldlist

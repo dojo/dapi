@@ -5,30 +5,16 @@ var stylus = require('stylus'),
     mkdirp = require("mkdirp"),
     generate = require('./lib/generate'),
     envConfig = require('./lib/config'),
+    refdoc = require('./lib/refdoc'),
     config = envConfig.appConfig;
 
-// hardcoded config atm - move to configurable arguments object with these as defaults - mixins
-//var details = __dirname +'/public/scripts/apidata/version/details.xml'; // only dojo exists
-//var details = __dirname +'/public/scripts/apidata/version/details_dijit.xml'; // dijit/_WidgetBase good 1 to try
-//var details = __dirn  ame +'/public/scripts/apidata/version/details_huge.xml'; // all mods
-//var details = __dirname +'/public/scripts/apidata/version/details_all.xml'; // latest doc parse with all packs 
 var details = __dirname + '/public/scripts/' + config.apiDataPath + '/' + config.defaultVersion + '/details.json'; // latest doc parse with all packs
-/*
-var config = {dojobase: 'scripts/dojo-release-1.8.3',
-                        theme: 'claro',
-                        version: '1.8_not_implemented_yet',
-                        detailsFile: details,
-                        staticfolder : __dirname + '/staticoutput/'
-                     };
-*/
-/* config.generate='live' (default), config.generate='static' static html, maybe add template config e.g. mobile or flat structure e.g. non tab container */
 
-// testing macro calls
+// macro calls
 // fails with static generation - todo: FOR SOME REASON I NEED TO USE A GLOBAL so it works???
-
 convertType = generate.convertType;
 autoHyperlink = generate.autoHyperlink;
-
+hasRefDoc = refdoc.hasRefDoc;
 
 function compile(str, path) {
     return stylus(str)
@@ -85,5 +71,3 @@ process.on('exit', function () {
     console.log("elapsed time = " + (new Date().getTime() - starttime) + " ms");
 });
 // end generate modules
-
-

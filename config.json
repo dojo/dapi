@@ -12,5 +12,11 @@
     "versions" : ["1.6", "1.7", "1.8", "1.9rc2"],
     "apiDataPath" : "api",
     "viewsDirectory" : "views",
+    "refDocs" : {
+        "enabled" : true,
+        "dir" : "reference-guide/",
+        "url" : "/reference-guide/",
+        "suffix" : ".rst"
+    },
     "isDebug" : false
 }

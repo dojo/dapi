@@ -26,7 +26,8 @@ Installation:
 cd into the *dapi* directory and install the dependencies  
 
     npm install --production
-    
+----
+
 Configuration:
 --------------
 <pre>config.json</pre>  
@@ -40,10 +41,16 @@ Configuration:
        "versions" : ["1.6", "1.7", "1.8", "1.9rc2"],
        "apiDataPath" : "api",
        "viewsDirectory" : "views",
+       "refDocs" : {
+          "enabled" : true,
+          "dir" : "reference-guide/",
+          "url" : "/reference-guide/",
+          "suffix" : ".rst"
+       },
        "isDebug" : false
     }
 
-* *contextPath* - set to whatever environment you are running in. If you're generating static documentation this will be burned into the path for all links i.e. if your websites context is http://yourhost/yourcontext, static links will be generated for /yourcontext/1.8/dojo/Animation etc. Typically running using your node app server the context path will be / (the default is /).
+* *contextPath* - set to whatever environment you are running in. If you're generating static documentation this will be used as the context path for all API links i.e. if your websites context is http://yourhost/yourcontext, static links will be generated for /yourcontext/1.8/dojo/Animation etc. Typically running using your node app server the context path will be / (the default is /).
 
 * *theme* - set to whatever DIJIT theme you need (default is claro).
 
@@ -57,8 +64,18 @@ Configuration:
 
 * *viewsDirectory* - this is for extending/rebranding for your own UI needs. The default location is 'views', if you want to rebrand the application, copy the views directory to another and set the relevant name.
 
+* __reference documuments__
+  * *refDocs.enabled* - set to false to switch off reference docs
+
+  * *refDocs.dir* - set to a local directory to search for reference documentation. You can set to an absolute path or relative to the app directory itself e.g. *"reference-guide/"*
+
+  * *refDocs.url* - set to a URL you want the reference document to point to. The version path will be added and module full path location e.g. *"/reference-guide/1.9/dojo/_base/sniff"*. You can also use an absolute URL path.
+
+  * *refDocs.suffix* - set to the file extension of the reference docs you want to locally search for. This is also used to append a file extension to the module reference document URL to link to.
+
 * *isDebug* - set this to true to view any express logging. 
 
+----
 
 Legacy API documentation:
 -------------------------
@@ -95,14 +112,4 @@ This has been tested under the latest Chrome and Firefox browsers, it is expecte
 Limited IE testing has been performed with IE8/9 (but not IE10), however we all know MS browsers suck and *savvy* developers really shouldn't care about them either.  
   
 If you find any IE UI bugs, please report them (though it's not guaranteed I'll give a ****).
-
-TODO:
-------
-
-1. module contentpane link loading
-2. html extension handling for app/static server
-3. Code cleanup & refactor
-4. Add configuration to extend/replace existing JADE templates
-5. docs
-
 
