@@ -7,8 +7,9 @@ define(["dojo/_base/declare",
     "dojo/_base/config",
     "dojo/on",
     "dojo/dom-class",
-    "dojo/dom-style"
-], function (declare, kernel, lang, ContentPane, query, domConstruct, config, on, domClass, domStyle) {
+    "dojo/dom-style",
+    "dijit/registry"
+], function (declare, kernel, lang, ContentPane, query, domConstruct, config, on, domClass, domStyle, registry) {
 
 // module:
 //        api/ContentPane
@@ -167,21 +168,29 @@ define(["dojo/_base/declare",
                 console.log("parent ==== " + _this.getParent());
                 console.log("api.ContentPane page ====" + page);
                 //var pane = addTabPane(page, version);
-                var pane = new api.ModuleContentPane({
-                    id: page.replace(/[\/.]/g, "_") + "_" + version,
-                    page: page,		// save page because when we select a tab we locate the corresponding TreeNode
-                    href: url,
-                    //content : {version: "version" , itemtid: item.id, namel: item.name, fullname : item.fullname, type: item.type},  
-                    //title: title,
-                    title: page + " (" + version + ")",
-                    closable: true,
-                    version : version,
-                    parseOnLoad: false
-                });
-                pane.startup();
-                _this.getParent().addChild(pane);
-                _this.getParent().selectChild(pane);
-                pane.initModulePane();
+
+                var id = page.replace(/[\/.]/g, "_") + "_" + version;
+                var existingPane = registry.byId(id);
+                if (existingPane) {
+                    _this.getParent().selectChild(existingPane);
+                    return existingPane;
+                } else {
+                    var pane = new api.ModuleContentPane({
+                        id: id,
+                        page: page,		// save page because when we select a tab we locate the corresponding TreeNode
+                        href: url,
+                        //content : {version: "version" , itemtid: item.id, namel: item.name, fullname : item.fullname, type: item.type},  
+                        //title: title,
+                        title: page + " (" + version + ")",
+                        closable: true,
+                        version : version,
+                        parseOnLoad: false
+                    });
+                    pane.startup();
+                    _this.getParent().addChild(pane);
+                    _this.getParent().selectChild(pane);
+                    pane.initModulePane();
+                }
             });
 
 /*

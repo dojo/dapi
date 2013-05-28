@@ -15,6 +15,7 @@ var details = __dirname + '/public/scripts/' + config.apiDataPath + '/' + config
 convertType = generate.convertType;
 autoHyperlink = generate.autoHyperlink;
 hasRefDoc = refdoc.hasRefDoc;
+getRefDoc = refdoc.getRefDoc;
 
 function compile(str, path) {
     return stylus(str)
