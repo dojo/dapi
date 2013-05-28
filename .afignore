@@ -1,4 +1,5 @@
 node_modules
+reference-guide
 # ignore .git
 .git/
 public/api/1.8/dijit/

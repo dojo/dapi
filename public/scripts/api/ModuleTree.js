@@ -56,10 +56,14 @@ define(["dojo/_base/declare", "dojo/_base/lang", "dijit/Tree", "dijit/registry",
                 fullName = item.fullname.replace(/\./g, "/").trim();
             }
             // END TODO
-
             var url = config.apiPath + "/" + version + "/" + fullName;  // TODO fix this later, should pass in the context
             console.log("requested url = " + url);
             var id = page.replace(/[\/.]/g, "_") + "_" + version;
+            var existingPane = registry.byId(id);
+            if (existingPane) {
+                p.selectChild(existingPane);
+                return existingPane;
+            }
             var pane = new ContentPane({
                 id: id,
                 page: page,		// save page because when we select a tab we locate the corresponding TreeNode
