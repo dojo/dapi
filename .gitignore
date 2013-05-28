@@ -1,5 +1,6 @@
 # node nodule deps
 node_modules
+reference-guide
 # editor files
 *~
 # ignore .git
