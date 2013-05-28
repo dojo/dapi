@@ -106,10 +106,35 @@ When 'spidering', only the *defaultVersion* will be generated, so update this to
 
 When you've created all the static HTML you need, simply copy ALL of the contents of the public directory to whereever you need.
 
+Notes for reference guide document linking
+------------------------------------------
+Currently this application follows the same logic of the PHP API viewer i.e. it reads local directories to see if a reference document exists.
+This means if you generate __static__ docs using `spider.js`, the reference docs must exist locally otherwise the reference doc links will not be generated.
+
+Using app.js, the reference docs are searched for at runtime, again this means they need to exist on the local file system.
+
+This application provides the same configuration to configure a root directory of ref docs to search, file extensions of docs to search for and a URL path to point links of the reference guide to.
+
+The generated URL (if the refDoc exists) is of the form (generated in `views/module.jade`):
+
+    #{config.refDocs.url + module.version + "/" + refDoc + config.refDocs.suffix}
+
+> The logic behind this code is dealing with inconsistencies between reference documents and defined modules/objects in the API, ideally there would be a matching reference document for every module/object however that is not the current situation.  
+
+Using `config.refDocs.url` configuration you can point reference guide doc links to where ever you choose e.g.
+
+    refDocs.url : "//dojotoolkit.org/reference-guide/"
+
+Which would render:
+
+    http://dojotoolkit.org/reference-guide/#{module.version}/dijit/_Calendar#{refDocs.suffix}
+
+
 Browser compatability:
 ----------------------
 This has been tested under the latest Chrome and Firefox browsers, it is expected browser support will not have changed from the PHP viewer.  
 Limited IE testing has been performed with IE8/9 (but not IE10), however we all know MS browsers suck and *savvy* developers really shouldn't care about them either.  
   
 If you find any IE UI bugs, please report them (though it's not guaranteed I'll give a ****).
+
 
