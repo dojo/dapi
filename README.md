@@ -18,8 +18,22 @@ You want to use this if:
    * dapi can generate static html so you can host the API documentation through apache etc instead  (without PHP).
 * You want to *brand* the API viewer for your own needs, or even completely alter markup generation to something entirely different.
 
+Tools you'll need:
+------------------
+* git 
+* node (0.8 > 0.10 currently tested)
+* npm
+
+####Windows users####
+This is outwith the realms of this repository but may be helpful to unfortunate __Windows__ users and those stuck in corporate environments:
+
+1.   If you're using git you really should be using msysGit (https://github.com/msysgit/msysgit/wiki and http://code.google.com/p/msysgit/downloads/list?q=net+installer).
+    *   If you're not using msysGit, you really, really should 
+2.   If you use NTLM authentication for your firewalls and your corporates have issues with how GIT and npm authenticate, it's worth considering CNTLM (http://cntlm.sourceforge.net/)
+
 Installation:
 ------
+Clone the repository into a dapi directory, open a terminal/CMD(mysysGit shell)
 
     git clone --recursive https://github.com/lbod/dapi.git
 
@@ -114,12 +128,11 @@ This means if you generate __static__ docs using `spider.js`, the reference docs
 Using `app.js`, the reference docs are searched for at runtime, again this means they need to exist on the local file system.
 
 This application provides the same configuration to configure a root directory of ref docs to search, file extensions of docs to search for and a URL path to point links of the reference guide to.
+> The logic behind this code is dealing with inconsistencies between reference documents and defined modules/objects in the API, ideally there would be a matching reference document for every module/object however that is not the current situation.  
 
 The generated URL (if the refDoc exists) is of the form (generated in `views/module.jade`):
 
     #{config.refDocs.url + module.version + "/" + refDoc + config.refDocs.suffix}
-
-> The logic behind this code is dealing with inconsistencies between reference documents and defined modules/objects in the API, ideally there would be a matching reference document for every module/object however that is not the current situation.  
 
 Using `refDocs.url` configuration you can point reference guide doc links to where ever you choose e.g.
 
@@ -136,6 +149,7 @@ This has been tested under the latest Chrome and Firefox browsers, it is expecte
 Limited IE testing has been performed with IE8/9 (but not IE10), however we all know MS browsers suck and *savvy* developers really shouldn't care about them either.  
   
 If you find any IE UI bugs, please report them (though it's not guaranteed I'll give a ****).
+
 
 
 
