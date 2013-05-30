@@ -8,7 +8,7 @@ Why is this library special?
 It's not, well not compared to the original code it was ported from.  
 The original API viewer is [here](https://github.com/wkeese/api-viewer) (also, many thanks to [wkeese](https://github.com/wkeese) for writing the dapi exporter for js-doc-parse which makes loading and parsing a breeze compared to loading/parsing XML).  
   
-This repository is *just a port of the exisiting PHP code to node.js*, however it's main aims are to remove the PHP dependency for viewing API docs and leverage node.js instead (eat what you preach), make it simpler to change the UI (templating, separating logical UI code from the data) and be able to generate a *static output* of the API documentation if needed.
+This repository is *just a port of the existing PHP code to node.js*, however it's main aims are to remove the PHP dependency for viewing API docs and leverage node.js instead (eat what you preach), make it simpler to change the UI (templating, separating logical UI code from the data) and be able to generate a *static output* of the API documentation if needed.
 
 You want to use this if:
 ----------------------------
@@ -143,7 +143,7 @@ Which would render:
     http://dojotoolkit.org/reference-guide/#{module.version}/dijit/_Calendar#{refDocs.suffix}
 
 
-Browser compatability:
+Browser compatibility:
 ----------------------
 This has been tested under the latest Chrome and Firefox browsers, it is expected browser support will not have changed from the PHP viewer.  
 Limited IE testing has been performed with IE8/9 (but not IE10), however we all know MS browsers suck and *savvy* developers really shouldn't care about them either.  
