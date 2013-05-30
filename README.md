@@ -8,7 +8,7 @@ Why is this library special?
 It's not, well not compared to the original code it was ported from.  
 The original API viewer is [here](https://github.com/wkeese/api-viewer) (also, many thanks to [wkeese](https://github.com/wkeese) for writing the dapi exporter for js-doc-parse which makes loading and parsing a breeze compared to loading/parsing XML).  
   
-This respository is *just a port of the exisiting PHP code to node.js*, however it's main aims are to remove the PHP dependency for viewing API docs and leverage node.js instead (eat what you preach), make it simpler to change the UI (templating, seperating logical UI code from the data) and be able to generate a *static output* of the API documentation if needed.
+This repository is *just a port of the exisiting PHP code to node.js*, however it's main aims are to remove the PHP dependency for viewing API docs and leverage node.js instead (eat what you preach), make it simpler to change the UI (templating, separating logical UI code from the data) and be able to generate a *static output* of the API documentation if needed.
 
 You want to use this if:
 ----------------------------
@@ -64,11 +64,11 @@ Configuration:
        "isDebug" : false
     }
 
-* `contextPath` - set to whatever environment you are running in. If you're generating static documentation this will be used as the context path for all API links i.e. if your websites context is http://yourhost/yourcontext, static links will be generated for /yourcontext/1.8/dojo/Animation etc. Typically running using your node app server the context path will be / (the default is /).
+* `contextPath` - set to whatever environment you are running in. If you're generating static documentation this will be used as the context path for all API links i.e. if your website's context is http://yourhost/yourcontext, static links will be generated for /yourcontext/1.8/dojo/Animation etc. Typically running using your node app server the context path will be / (the default is /).
 
 * `theme` - set to whatever DIJIT theme you need (default is claro).
 
-* `dojoBase` - set to whereever you want the application to load dojo from (shouldn't really need changed unless you want to switch DOJO script inclusion to a different location).
+* `dojoBase` - set to wherever you want the application to load dojo from (shouldn't really need changed unless you want to switch DOJO script inclusion to a different location).
 
 * `port` - set to whatever you choose (relevant only to the node.js app server, the default is 3000).
 
@@ -78,7 +78,7 @@ Configuration:
 
 * `viewsDirectory` - this is for extending/rebranding for your own UI needs. The default location is 'views', if you want to rebrand the application, copy the views directory to another and set the relevant name.
 
-* __reference documuments__
+* __reference documents__
   * `refDocs.enabled` - set to false to switch off reference docs
 
   * `refDocs.dir` - set to a local directory to search for reference documentation. You can set to an absolute path or relative to the app directory itself e.g. *"reference-guide/"*
@@ -93,9 +93,9 @@ Configuration:
 
 Legacy API documentation:
 -------------------------
-The documentation parser for DOJO was redeveloped after version 1.7 and the previous API viewer relied on the legacy documentation parsers output. The PHP API viewer also contained a *spider* option, it's function was to create static API documentation for *offline* viewing e.g. no app server.  
+The documentation parser for DOJO was redeveloped after version 1.7 and the previous API viewer relied on the legacy documentation parser's output. The PHP API viewer also contained a *spider* option; it's function was to create static API documentation for *offline* viewing e.g. no app server.
 This application does not intend to support generating API documentation for legacy i.e. pre 1.8, versions of DOJO. It will however, support __viewing__ legacy versions of API documentation.  
-There is therefore a caveat if you need to provide API docs for *legacy* versions, you must generate them with the legacy API viewer and manually copy them to API directory. This viewier (the node.js viewer) is configurable such that context paths can be configured according to your requirements, however if you need to use legacy API docs you will have to generate them first (using the PHP viewer) with the correct context path. 
+There is therefore a caveat if you need to provide API docs for *legacy* versions, you must generate them with the legacy API viewer and manually copy them to API directory. This viewer (the node.js viewer) is configurable such that context paths can be configured according to your requirements, however if you need to use legacy API docs you will have to generate them first (using the PHP viewer) with the correct context path.
 
 
 Running:
@@ -109,23 +109,23 @@ Generating HTML docs for static viewing
     node spider.js
 
 
-Editting/theming:
+Editing/theming:
 -----------------
 Jade Views are constructed such like (give an example showing the structure of templates including any data dependencies):
 
 Spider option:
 --------------
 When 'spidering', only the *defaultVersion* will be generated, so update this to whatever version you need (if users want to generate all versions at the same time, please request this as an enhancement)  
-'Spidering' will create the default index HTML file as `/public/staticapi.html`. If it were named `/public/index.html` express would load this instead of index.jade.  I've therefore renamed it incase you are generating static docs and viewing them in the dapi repository whilst also needing to use the API viewer.
+'Spidering' will create the default index HTML file as `/public/staticapi.html`. If it were named `/public/index.html` express would load this instead of index.jade.  I've therefore renamed it in case you are generating static docs and viewing them in the dapi repository whilst also needing to use the API viewer.
 
-When you've created all the static HTML you need, simply copy ALL of the contents of the public directory to whereever you need.
+When you've created all the static HTML you need, simply copy ALL of the contents of the public directory to wherever you need.
 
 Notes for reference guide document linking
 ------------------------------------------
 Currently this application follows the same logic of the PHP API viewer i.e. it reads local directories to see if a reference document exists.
 This means if you generate __static__ docs using `spider.js`, the reference docs must exist locally otherwise the reference doc links will not be generated.
 
-Using `app.js`, the reference docs are searched for at runtime, again this means they need to exist on the local file system.
+Using `app.js`, the reference docs are searched for at runtime; again this means they need to exist on the local file system.
 
 This application provides the same configuration to configure a root directory of ref docs to search, file extensions of docs to search for and a URL path to point links of the reference guide to.
 > The logic behind this code is dealing with inconsistencies between reference documents and defined modules/objects in the API, ideally there would be a matching reference document for every module/object however that is not the current situation.  
