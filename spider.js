@@ -6,6 +6,7 @@ var stylus = require('stylus'),
     generate = require('./lib/generate'),
     envConfig = require('./lib/config'),
     refdoc = require('./lib/refdoc'),
+    tree = require('./lib/tree'),
     config = envConfig.appConfig;
 
 var details = __dirname + '/public/scripts/' + config.apiDataPath + '/' + config.defaultVersion + '/details.json'; // latest doc parse with all packs
@@ -28,9 +29,15 @@ console.log("Static API viewer generation started");
 // generate index  config.version config.staticfolder
 var indexjade = __dirname + "/" + config.viewsDirectory + "/index.jade";
 var data = fs.readFileSync(indexjade, "utf8");
-
 var fn = jade.compile(data, {filename: indexjade, pretty: true});
 var indexhtml = fn({ title : 'DOJO API Viewer', config: config, module : null});
+// generate tree.html
+var treeitems = tree.getTree(config.defaultVersion, config);
+var treejade = __dirname + "/" + config.viewsDirectory + "/tree.jade";
+var treedata = fs.readFileSync(treejade, "utf8");
+var fntree = jade.compile(treedata, {filename: treejade, pretty: true});
+var treehtml = fntree({ title : 'DOJO API Viewer', config: config, version: config.defaultVersion, tree : treeitems});
+
 // generate modules
 //var staticFolder = process.cwd() + config.staticFolder;
 var staticFolder = process.cwd() + "/public/" + config.apiDataPath + "/";
@@ -42,6 +49,7 @@ var starttime = new Date().getTime();
 var detailsFile = "./public/" + config.apiDataPath + "/" + config.defaultVersion + "/details.json";
 generate.loadDetails(detailsFile,  config.defaultVersion, function (err, details) {
     var versionfolder = staticFolder + config.defaultVersion + "/";
+    fs.writeFileSync(versionfolder + "/tree.html", treehtml);
     if (err) {
         console.error(err);
     }

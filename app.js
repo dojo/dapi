@@ -7,6 +7,7 @@ var express = require('express'),
     generate = require('./lib/generate'),
     envConfig = require('./lib/config'),
     refdoc = require('./lib/refdoc'),
+    tree = require('./lib/tree'),
     config = envConfig.appConfig;
 
 console.log("started at " + new Date());
@@ -58,6 +59,11 @@ app.get(config.contextPath + config.apiDataPath + '/*', function (req, res, next
     var version = req.params.toString().substring(0, 3); // should be done with regex? or is this the implied api?
     if (isNaN(version)) {
         throw new Error("Version not understood - " + version);
+    }
+    if (modulefile === "tree.html") {
+        var treeitems = tree.getTree(version, config);
+        res.render('tree', { title : 'DOJO API Viewer', config: config, tree : treeitems, version: version});
+        return;
     }
 
     // not sure if this is bad - handle versions earlier than 1.8 i.e. static html generated docs
