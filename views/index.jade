@@ -33,10 +33,13 @@ block main
                                 option(selected=config.defaultVersion == version) #{version}
                         
                 div(data-dojo-type="dijit.layout.AccordionContainer",data-dojo-props="region: 'center'") 
-                    div#moduleTreePane(data-dojo-type="dijit.layout.ContentPane", data-dojo-props="title: 'By Module', selected: true") 
-                
+                    div#moduleTreePane(data-dojo-type="dijit.layout.ContentPane", data-dojo-props="title: 'By Module', selected: true")
+                    p#plainTree See the 
+                        a(href="#{config.contextPath}#{config.apiDataPath}/#{module !=null ? module.version : config.defaultVersion}/tree.html") plain HTML tree 
+                        | listing all modules.
+                    script(type="text/javascript")
+                        document.getElementById("plainTree").style.display = "none";  
                     include legend   
-
         block content            
             div#content(data-dojo-type="dijit.layout.TabContainer", data-dojo-props="region: 'center', tabStrip: true")
                 - if (module !=null)
