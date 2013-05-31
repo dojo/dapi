@@ -61,8 +61,8 @@ app.get(config.contextPath + config.apiDataPath + '/*', function (req, res, next
         throw new Error("Version not understood - " + version);
     }
     if (modulefile === "tree.html") {
-        var treeitems = tree.getTree(version, config);
-        res.render('tree', { title : 'DOJO API Viewer', config: config, tree : treeitems, version: version});
+        var treeitems = tree.getTree(requestedVersion, config);
+        res.render('tree', { title : 'DOJO API Viewer', config: config, tree : treeitems, version: requestedVersion});
         return;
     }
 
