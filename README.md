@@ -23,9 +23,10 @@ Tools you'll need:
 * git 
 * node (0.8 > 0.10 currently tested)
 * npm
+* exported versions of details.json and tree.json which dojo's js-doc-parse application exports
 
 ####Windows users####
-This is outwith the realms of this repository but may be helpful to unfortunate __Windows__ users and those stuck in corporate environments:
+This is outside the scope of this repository but may be helpful to unfortunate __Windows__ users and those stuck in corporate environments:
 
 1.   If you're using git you really should be using msysGit (https://github.com/msysgit/msysgit/wiki and http://code.google.com/p/msysgit/downloads/list?q=net+installer).
     *   If you're not using msysGit, you really, really should 
@@ -41,10 +42,12 @@ cd into the *dapi* directory and install the dependencies
 
     npm install --production
 
+You need to create directories in `public/api/{version}` and copy the exported details.json and tree.json files from dojo's js-doc-parse for each version you want to view. 
+The `version` name of the directory must match the configuration you provide (see below).
 
 Configuration:
 --------------
-This configuration covers 2 uses, app server runtime and static generation.  
+This configuration covers 2 uses (explained below), app server runtime and static generation.  
 <pre>config.json</pre>  
 
     {
@@ -106,15 +109,19 @@ Running:
 --------
 There are two ways to run this application:
 
+### app.js ###
+Use __app.js__ when you want to run the API viewer using node and view over HTTP using Node.js express/jade. The application by default can be viewed in a browser at http://localhost:3000
 
-Use __app.js__ when you want to run the API viewer using node - You don't need to generate any static docs, only details.json and tree.json are needed (however as explained, you will still need to include static HTML files for legacy doc versions)
+You don't need to generate any static docs, only details.json and tree.json are needed whic are exported by dojo's js-doc-parse (however as explained, you will still need to include static HTML files for legacy doc versions if you want to also view 'legacy' docs)
 
 Running the node.js app server API viewer
 
     node app.js
 
-- - - 
-Use __spider.js__ when you want to generate static documentation files (so you can load anywhere)
+### spider.js ###
+Use __spider.js__ when you want to generate static documentation HTML files (so you can view using any HTTP server). The files will be generated in the `public/api/{version}` directory where the specified details.json and tree.json are located
+
+You copy the output HTML docs to whatever HTTP server you use.
 
 Generating HTML docs for static viewing
 
@@ -134,6 +141,8 @@ When you've created all the static HTML you need, simply copy ALL of the content
 
 Notes for reference guide document linking
 ------------------------------------------
+The API viewer tries to automatically generate links from an API page to the corresponding reference page (if it exists), for example, a link from the API page for dijit/Dialog to the reference doc of dijit/Dialog.
+
 Currently this application follows the same logic of the PHP API viewer i.e. it reads local directories to see if a reference document exists.
 This means if you generate __static__ docs using `spider.js`, the reference docs must exist locally otherwise the reference doc links will not be generated.
 
@@ -161,6 +170,7 @@ This has been tested under the latest Chrome and Firefox browsers, it is expecte
 Limited IE testing has been performed with IE8/9 (but not IE10), however we all know MS browsers suck and *savvy* developers really shouldn't care about them either.  
   
 If you find any IE UI bugs, please report them (though it's not guaranteed I'll give a ****).
+
 
 
 
