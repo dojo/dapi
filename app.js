@@ -1,3 +1,4 @@
+/** @module app */
 var express = require('express'),
     stylus = require('stylus'),
     fs = require('fs'),
@@ -5,7 +6,7 @@ var express = require('express'),
     jade = require('jade'),
     mkdirp = require("mkdirp"),
     generate = require('./lib/generate'),
-    envConfig = require('./lib/config'),
+    envConfig = require('./appConfig'),
     refdoc = require('./lib/refdoc'),
     tree = require('./lib/tree'),
     config = envConfig.appConfig;
@@ -13,6 +14,7 @@ var express = require('express'),
 console.log("started at " + new Date());
 var details = __dirname + '/public/' + config.apiDataPath + '/' + config.defaultVersion + '/details.json'; // latest doc parse with all packs
 var app = express();
+app.use(express.compress());
 // jade indenting
 app.locals.pretty = true;
 
@@ -22,6 +24,11 @@ app.locals.convertType = generate.convertType;
 app.locals.autoHyperlink = generate.autoHyperlink;
 app.locals.hasRefDoc = refdoc.hasRefDoc;
 app.locals.getRefDoc = refdoc.getRefDoc;
+
+/*
+1.7 dojo.cache and dojo.colors file does not exist (but exists for 1.6 - does that mean a doc parse problem with 1.7?)
+*/
+
 
 function compile(str, path) {
     return stylus(str)
@@ -45,7 +52,7 @@ app.get(config.contextPath, function (req, res) {
     console.log(new Date().toTimeString() + ", is xhr = " + req.xhr); // use this to determine if it's a permalink url or a module request url
     res.render('index', { title : 'DOJO API Viewer', config: config, module : null});
 });
-
+var re = new RegExp(config.moduleExtension + "$");
 // apidata should be config - already used in dojoConfig // for module clicks
 // also should be able to generate htlml from module urls (and version) e.g. this currently works http://localhost:3000/apidata/version/dijit/_TemplatedMixin
 app.get(config.contextPath + config.apiDataPath + '/*', function (req, res, next) {
@@ -65,8 +72,7 @@ app.get(config.contextPath + config.apiDataPath + '/*', function (req, res, next
         res.render('tree', { title : 'DOJO API Viewer', config: config, tree : treeitems, version: requestedVersion});
         return;
     }
-    var re = new RegExp(config.moduleExtension + "$");
-    modulefile = modulefile.replace(re, ""); // replace the last occurrence
+    modulefile = modulefile.replace(re, ""); // replace the file extension
 
     // not sure if this is bad - handle versions earlier than 1.8 i.e. static html generated docs
     if (parseFloat(version) < 1.8) { // currently expects a float i.e. no num
@@ -97,7 +103,8 @@ app.get(config.contextPath + config.apiDataPath + '/*', function (req, res, next
 
 
 app.listen(config.port);
-console.error("REMEMBER TO DELETE ANY STATIC .HTML FILES WHICH EXPRESS STATIC WILL RENDER INSTEAD OF TEMPLATES");
+console.log("==========================================================");
+console.warn("REMEMBER TO DELETE ANY STATIC .HTML FILES WHICH EXPRESS STATIC WILL RENDER INSTEAD OF JADE TEMPLATES \ni.e. if you've already generated static docs, these will be served instead if they exist");
 console.log("==========================================================");
 console.log("API viewer started on port " + config.port);
 

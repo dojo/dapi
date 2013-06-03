@@ -1,10 +1,11 @@
+/** @module spider */
 var stylus = require('stylus'),
     fs = require('fs'),
     nib = require('nib'),
     jade = require('jade'),
     mkdirp = require("mkdirp"),
     generate = require('./lib/generate'),
-    envConfig = require('./lib/config'),
+    envConfig = require('./appConfig'),
     refdoc = require('./lib/refdoc'),
     tree = require('./lib/tree'),
     config = envConfig.appConfig;
