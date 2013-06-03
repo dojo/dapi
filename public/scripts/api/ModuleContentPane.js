@@ -178,7 +178,7 @@ define(["dojo/_base/declare",
                     var pane = new api.ModuleContentPane({
                         id: id,
                         page: page,		// save page because when we select a tab we locate the corresponding TreeNode
-                        href: url,
+                        href: url + config.moduleExtension,
                         //content : {version: "version" , itemtid: item.id, namel: item.name, fullname : item.fullname, type: item.type},  
                         //title: title,
                         title: page + " (" + version + ")",
