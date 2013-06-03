@@ -40,10 +40,11 @@ Clone the repository into a dapi directory, open a terminal/CMD(mysysGit shell)
 cd into the *dapi* directory and install the dependencies  
 
     npm install --production
-----
+
 
 Configuration:
 --------------
+This configuration covers 2 uses, app server runtime and static generation.  
 <pre>config.json</pre>  
 
     {
@@ -55,6 +56,7 @@ Configuration:
        "versions" : ["1.6", "1.7", "1.8", "1.9rc2"],
        "apiDataPath" : "api",
        "viewsDirectory" : "views",
+       "moduleExtension" : ".html",
        "refDocs" : {
           "enabled" : true,
           "dir" : "reference-guide/",
@@ -78,6 +80,8 @@ Configuration:
 
 * `viewsDirectory` - this is for extending/rebranding for your own UI needs. The default location is 'views', if you want to rebrand the application, copy the views directory to another and set the relevant name.
 
+* `moduleExtension` - (this probably not needed) provide a file extenstion for HTTP requests for modules e.g. 1.8/dijit/_base.html. This allows easier HTTP server integration i.e. using apache - meaning folder object names don't clash with actual file names.
+
 * __reference documents__
   * `refDocs.enabled` - set to false to switch off reference docs
 
@@ -89,7 +93,7 @@ Configuration:
 
 * `isDebug` - set this to true to view any express logging. 
 
-----
+
 
 Legacy API documentation:
 -------------------------
@@ -100,9 +104,17 @@ There is therefore a caveat if you need to provide API docs for *legacy* version
 
 Running:
 --------
+There are two ways to run this application:
+
+
+Use __app.js__ when you want to run the API viewer using node - You don't need to generate any static docs, only details.json and tree.json are needed (however as explained, you will still need to include static HTML files for legacy doc versions)
+
 Running the node.js app server API viewer
 
     node app.js
+
+- - - 
+Use __spider.js__ when you want to generate static documentation files (so you can load anywhere)
 
 Generating HTML docs for static viewing
 
@@ -149,6 +161,7 @@ This has been tested under the latest Chrome and Firefox browsers, it is expecte
 Limited IE testing has been performed with IE8/9 (but not IE10), however we all know MS browsers suck and *savvy* developers really shouldn't care about them either.  
   
 If you find any IE UI bugs, please report them (though it's not guaranteed I'll give a ****).
+
 
 
 
