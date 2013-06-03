@@ -65,8 +65,9 @@ app.get(config.contextPath + config.apiDataPath + '/*', function (req, res, next
         res.render('tree', { title : 'DOJO API Viewer', config: config, tree : treeitems, version: requestedVersion});
         return;
     }
-    //modulefile = modulefile.replace(/\.html/, "");
-    modulefile = modulefile.substring(0, modulefile.length - config.moduleExtension.length); // TODO change this to regex
+    var re = new RegExp(config.moduleExtension + "$");
+    modulefile = modulefile.replace(re, ""); // replace the last occurrence
+
     // not sure if this is bad - handle versions earlier than 1.8 i.e. static html generated docs
     if (parseFloat(version) < 1.8) { // currently expects a float i.e. no num
         // item.fullname.replace(/\./g, "/")
