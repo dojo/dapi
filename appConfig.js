@@ -1,5 +1,6 @@
 /** @module apConfig.*/
 var configobject = {};
+configobject.refDocs = {};
 /**
  * dojoBase //ajax.googleapis.com/ajax/libs/dojo/1.8.3   or   /scripts/dojo-release-1.8.3-src
  * set to wherever you want the application to load dojo from (shouldn't really need changed unless you want to switch DOJO script inclusion to a different location). 
@@ -49,7 +50,6 @@ configobject.moduleExtension = ".html";
  * refDocs.url - set to a URL you want the reference document to point to. The version path will be added and module full path location e.g. "/reference-guide/1.9/dojo/_base/sniff". You can also use an absolute URL path.
  * refDocs.suffix - set to the file extension of the reference docs you want to locally search for. This is also used to append a file extension to the module reference document URL to link to     
 **/
-configobject.refDocs = {};
 configobject.refDocs.enabled = true;
 configobject.refDocs.dir = "reference-guide/";
 configobject.refDocs.url = "/reference-guide/";
