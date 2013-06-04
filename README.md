@@ -112,7 +112,7 @@ There are two ways to run this application:
 ### app.js ###
 Use __app.js__ when you want to run the API viewer using node and view over HTTP using Node.js express/jade. The application by default can be viewed in a browser at http://localhost:3000
 
-You don't need to generate any static docs, only details.json and tree.json are needed whic are exported by dojo's js-doc-parse (however as explained, you will still need to include static HTML files for legacy doc versions if you want to also view 'legacy' docs)
+You don't need to generate any static docs, only details.json and tree.json are needed which are exported by dojo's js-doc-parse (however as explained, you will still need to include static HTML files for legacy doc versions if you want to also view 'legacy' docs)
 
 Running the node.js app server API viewer
 
