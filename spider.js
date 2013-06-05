@@ -45,10 +45,16 @@ fs.writeFileSync("public/staticapi.html", indexhtml); // FTM make sure it's a di
 var starttime = new Date().getTime();
 var detailsFile = "./public/" + config.apiDataPath + "/" + config.defaultVersion + "/details.json";
 
+// compile module
+var modulejade = __dirname + "/" + config.viewsDirectory + "/module.jade";
+var data = fs.readFileSync(modulejade, "utf8");
+var fn = jade.compile(data, {filename: modulejade, pretty: true, autoHyperlink: autoHyperlink, convertType: convertType});
+
+var versionfolder = staticFolder + config.defaultVersion + "/";
+fs.writeFileSync(versionfolder + "/tree.html", treehtml);
+
 // load details json (so it can iterate over the objects and generate html)
 generate.loadDetails(detailsFile,  config.defaultVersion, function (err, details) {
-    var versionfolder = staticFolder + config.defaultVersion + "/";
-    fs.writeFileSync(versionfolder + "/tree.html", treehtml);
     if (err) {
         console.error(err);
     }
@@ -59,16 +65,12 @@ generate.loadDetails(detailsFile,  config.defaultVersion, function (err, details
         generate.generate(detailsFile, modulefile, config.defaultVersion, function (err, retObjectItem) {
             // modulefile.match(/[^/]* /); // move to regex
             var patharr = modulefile.split("/");
-
             var modname =  patharr.pop();
             if (patharr.length > 0) { // means a path - do this better
                 if (!fs.existsSync(versionfolder + patharr.join("/"))) {
                     mkdirp.sync(versionfolder + patharr.join("/"));
                 }
             }
-            var modulejade = __dirname + "/" + config.viewsDirectory + "/module.jade";
-            var data = fs.readFileSync(modulejade, "utf8");
-            var fn = jade.compile(data, {filename: modulejade, pretty: true, autoHyperlink: autoHyperlink, convertType: convertType});
             var html = fn({ module : retObjectItem, config: config, autoHyperLink: autoHyperlink});
             fs.writeFileSync(versionfolder + patharr.join("/") + "/" + modname + ".html", html);
             console.log("wrote file " + versionfolder + modulefile);
