@@ -1,7 +1,7 @@
 dapi
 ====
 
-Node.js/JavaScript DOJO API viewer and static API viewer document generator
+Node.js/JavaScript Dojo API viewer and static API viewer document generator
 
 Why is this library special?
 ----------------------------
@@ -12,8 +12,8 @@ This repository is *just a port of the existing PHP code to node.js*, however it
 
 You want to use this if:
 ----------------------------
-* You want to host the DOJO API documentation yourself.
-* You want to host and display your own API documentation as well as the DOJO API docs.
+* You want to host the Dojo API documentation yourself.
+* You want to host and display your own API documentation as well as the Dojo API docs.
 * You can't host a node.js app server to view API documentation.
    * dapi can generate static html so you can host the API documentation through apache etc instead  (without PHP).
 * You want to *brand* the API viewer for your own needs, or even completely alter markup generation to something entirely different.
@@ -23,7 +23,7 @@ Tools you'll need:
 * git 
 * node (0.8 > 0.10 currently tested)
 * npm
-* exported versions of details.json and tree.json which dojo's [js-doc-parse](https://github.com/wkeese/js-doc-parse) application exports
+* exported versions of details.json and tree.json which Dojo's [js-doc-parse](https://github.com/wkeese/js-doc-parse) application exports
 
 ####Windows users####
 This is outside the scope of this repository but may be helpful to unfortunate __Windows__ users and those stuck in corporate environments:
@@ -42,7 +42,7 @@ cd into the *dapi* directory and install the dependencies
 
     npm install --production
 
-You need to create directories in `public/api/{version}` and copy the exported details.json and tree.json files from dojo's js-doc-parse for each version you want to view. 
+You need to create directories in `public/api/{version}` and copy the exported details.json and tree.json files from Dojo's js-doc-parse for each version you want to view. 
 The `version` name of the directory must match the configuration you provide (see below).
 
 
@@ -53,7 +53,7 @@ There are two ways to run this application however it's likely you'll need to ch
 ### app.js ###
 Use __app.js__ when you want to run the API viewer using node and view over HTTP using Node.js express/jade. The application by default can be viewed in a browser at http://localhost:3000
 
-You don't need to generate any static docs, only details.json and tree.json are needed which are exported by dojo's js-doc-parse application (however as explained, you will still need to include static HTML files for legacy doc versions if you want to also view 'legacy' docs)
+You don't need to generate any static docs, only details.json and tree.json are needed which are exported by Dojo's js-doc-parse application (however as explained, you will still need to include static HTML files for legacy doc versions if you want to also view 'legacy' docs)
 
 Running the node.js app server API viewer
 
@@ -97,7 +97,7 @@ This configuration covers 2 uses (explained below), app server runtime and stati
 
 * `theme` - set to whatever DIJIT theme you need (default is claro).
 
-* `dojoBase` - set to wherever you want the application to load dojo from (shouldn't really need changed unless you want to switch DOJO script inclusion to a different location).
+* `dojoBase` - set to wherever you want the application to load Dojo from (shouldn't really need changed unless you want to switch Dojo script inclusion to a different location).
 
 * `port` - set to whatever you choose (relevant only to the node.js app server, the default is 3000).
 
@@ -124,8 +124,8 @@ This configuration covers 2 uses (explained below), app server runtime and stati
 
 Legacy API documentation:
 -------------------------
-The documentation parser for DOJO was redeveloped after version 1.7 and the previous API viewer relied on the legacy documentation parser's output. The PHP API viewer also contained a *spider* option; it's function was to create static API documentation for *offline* viewing e.g. no app server.
-This application does not intend to support generating API documentation for legacy i.e. pre 1.8, versions of DOJO. It will however, support __viewing__ legacy versions of API documentation.  
+The documentation parser for Dojo was redeveloped after version 1.7 and the previous API viewer relied on the legacy documentation parser's output. The PHP API viewer also contained a *spider* option; it's function was to create static API documentation for *offline* viewing e.g. no app server.
+This application does not intend to support generating API documentation for legacy i.e. pre 1.8, versions of Dojo. It will however, support __viewing__ legacy versions of API documentation.  
 There is therefore a caveat if you need to provide API docs for *legacy* versions, you must generate them with the legacy API viewer and manually copy them to API directory. This viewer (the node.js viewer) is configurable such that context paths can be configured according to your requirements, however if you need to use legacy API docs you will have to generate them first (using the PHP viewer) with the correct context path.
 
 
