@@ -25,10 +25,7 @@ app.locals.autoHyperlink = generate.autoHyperlink;
 app.locals.hasRefDoc = refdoc.hasRefDoc;
 app.locals.getRefDoc = refdoc.getRefDoc;
 
-/*
-1.7 dojo.cache and dojo.colors file does not exist (but exists for 1.6 - does that mean a doc parse problem with 1.7?)
-*/
-
+// 1.7 dojo.cache and dojo.colors file does not exist (but exists for 1.6 - does that mean a doc parse problem with 1.7?)
 
 function compile(str, path) {
     return stylus(str)
@@ -53,6 +50,7 @@ app.get(config.contextPath, function (req, res) {
     res.render('index', { title : 'DOJO API Viewer', config: config, module : null});
 });
 var re = new RegExp(config.moduleExtension + "$");
+
 // apidata should be config - already used in dojoConfig // for module clicks
 // also should be able to generate htlml from module urls (and version) e.g. this currently works http://localhost:3000/apidata/version/dijit/_TemplatedMixin
 app.get(config.contextPath + config.apiDataPath + '/*', function (req, res, next) {
@@ -73,7 +71,6 @@ app.get(config.contextPath + config.apiDataPath + '/*', function (req, res, next
         return;
     }
     modulefile = modulefile.replace(re, ""); // replace the file extension
-
     // not sure if this is bad - handle versions earlier than 1.8 i.e. static html generated docs
     if (parseFloat(version) < 1.8) { // currently expects a float i.e. no num
         // item.fullname.replace(/\./g, "/")
@@ -82,10 +79,7 @@ app.get(config.contextPath + config.apiDataPath + '/*', function (req, res, next
         res.sendfile(legacyfile); // could be a security issue here
         return;
     }
-
     var detailsFile = "./public/" + config.apiDataPath + "/" + requestedVersion + "/details.json";
-    /// and a jade modulefile render
-    //generate.generate(detailsFile, modulefile, version, function (retObjectItem) {
     generate.generate(detailsFile, modulefile, requestedVersion, function (err, retObjectItem) {
         if (err) {
             console.error(err);
@@ -99,8 +93,6 @@ app.get(config.contextPath + config.apiDataPath + '/*', function (req, res, next
     });
     // should do some error handling http responses    
 });
-
-
 
 app.listen(config.port);
 console.log("==========================================================");

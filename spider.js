@@ -39,21 +39,20 @@ var treedata = fs.readFileSync(treejade, "utf8");
 var fntree = jade.compile(treedata, {filename: treejade, pretty: true});
 var treehtml = fntree({ title : 'DOJO API Viewer', config: config, version: config.defaultVersion, tree : treeitems});
 
-// generate modules
-//var staticFolder = process.cwd() + config.staticFolder;
 var staticFolder = process.cwd() + "/public/" + config.apiDataPath + "/";
 mkdirp.sync(staticFolder);
-//fs.writeFileSync(staticFolder + "/index.html", indexhtml);
 fs.writeFileSync("public/staticapi.html", indexhtml); // FTM make sure it's a different name from index.html, express static will load generated spider index.html first (before template)
 var starttime = new Date().getTime();
-// get details json (so it can iterate over the objects, generate html and so it's also cached)
 var detailsFile = "./public/" + config.apiDataPath + "/" + config.defaultVersion + "/details.json";
+
+// load details json (so it can iterate over the objects and generate html)
 generate.loadDetails(detailsFile,  config.defaultVersion, function (err, details) {
     var versionfolder = staticFolder + config.defaultVersion + "/";
     fs.writeFileSync(versionfolder + "/tree.html", treehtml);
     if (err) {
         console.error(err);
     }
+    // generate modules
     Object.keys(details).forEach(function (item) {
         var itemlcl = details[item];
         var modulefile = itemlcl.location;
@@ -80,4 +79,3 @@ generate.loadDetails(detailsFile,  config.defaultVersion, function (err, details
 process.on('exit', function () {
     console.log("elapsed time = " + (new Date().getTime() - starttime) + " ms");
 });
-// end generate modules
