@@ -1,7 +1,7 @@
 dapi
 ====
 
-Node.js JavaScript DOJO API viewer and API document generator
+Node.js/JavaScript DOJO API viewer and static API viewer document generator
 
 Why is this library special?
 ----------------------------
@@ -23,7 +23,7 @@ Tools you'll need:
 * git 
 * node (0.8 > 0.10 currently tested)
 * npm
-* exported versions of details.json and tree.json which dojo's js-doc-parse application exports
+* exported versions of details.json and tree.json which dojo's [js-doc-parse](https://github.com/wkeese/js-doc-parse) application exports
 
 ####Windows users####
 This is outside the scope of this repository but may be helpful to unfortunate __Windows__ users and those stuck in corporate environments:
@@ -45,10 +45,34 @@ cd into the *dapi* directory and install the dependencies
 You need to create directories in `public/api/{version}` and copy the exported details.json and tree.json files from dojo's js-doc-parse for each version you want to view. 
 The `version` name of the directory must match the configuration you provide (see below).
 
+
+Running:
+--------
+There are two ways to run this application however it's likely you'll need to change configuration of the application to meet your needs (which is explained in the next section):
+
+### app.js ###
+Use __app.js__ when you want to run the API viewer using node and view over HTTP using Node.js express/jade. The application by default can be viewed in a browser at http://localhost:3000
+
+You don't need to generate any static docs, only details.json and tree.json are needed which are exported by dojo's js-doc-parse application (however as explained, you will still need to include static HTML files for legacy doc versions if you want to also view 'legacy' docs)
+
+Running the node.js app server API viewer
+
+    node app.js
+
+### spider.js ###
+Use __spider.js__ when you want to generate static documentation HTML files (so you can view using any HTTP server). The files will be generated in the `public/api/{version}` directory where the specified details.json and tree.json are located
+
+You copy the output HTML docs to whatever HTTP server you use.
+
+Generating HTML docs for static viewing
+
+    node spider.js
+
+
 Configuration:
 --------------
 This configuration covers 2 uses (explained below), app server runtime and static generation.  
-<pre>config.json</pre>  
+<pre>appConfig.json</pre> You should edit this for your own needs. A JSON object is exported and used by the application, comments on it's usage can also be found in the source. 
 
     {
        "contextPath" : "/",
@@ -105,29 +129,6 @@ This application does not intend to support generating API documentation for leg
 There is therefore a caveat if you need to provide API docs for *legacy* versions, you must generate them with the legacy API viewer and manually copy them to API directory. This viewer (the node.js viewer) is configurable such that context paths can be configured according to your requirements, however if you need to use legacy API docs you will have to generate them first (using the PHP viewer) with the correct context path.
 
 
-Running:
---------
-There are two ways to run this application:
-
-### app.js ###
-Use __app.js__ when you want to run the API viewer using node and view over HTTP using Node.js express/jade. The application by default can be viewed in a browser at http://localhost:3000
-
-You don't need to generate any static docs, only details.json and tree.json are needed which are exported by dojo's js-doc-parse (however as explained, you will still need to include static HTML files for legacy doc versions if you want to also view 'legacy' docs)
-
-Running the node.js app server API viewer
-
-    node app.js
-
-### spider.js ###
-Use __spider.js__ when you want to generate static documentation HTML files (so you can view using any HTTP server). The files will be generated in the `public/api/{version}` directory where the specified details.json and tree.json are located
-
-You copy the output HTML docs to whatever HTTP server you use.
-
-Generating HTML docs for static viewing
-
-    node spider.js
-
-
 Editing/theming:
 -----------------
 Jade Views are constructed such like (give an example showing the structure of templates including any data dependencies):
@@ -170,6 +171,7 @@ This has been tested under the latest Chrome and Firefox browsers, it is expecte
 Limited IE testing has been performed with IE8/9 (but not IE10), however we all know MS browsers suck and *savvy* developers really shouldn't care about them either.  
   
 If you find any IE UI bugs, please report them (though it's not guaranteed I'll give a ****).
+
 
 
 

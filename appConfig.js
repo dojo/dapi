@@ -7,11 +7,10 @@ configobject.refDocs = {};
 **/
 configobject.dojoBase = "//ajax.googleapis.com/ajax/libs/dojo/1.8.3";
 
-// dijit theme to use to style the app
+/**
+ * theme is used to configure the dijit theme and body class name to use. 
+**/
 configobject.theme = "claro";
-
-// details.json file to use
-configobject.detailsFile = "./public/scripts/version/details.json";
 
 /**
  * Change your contextPath to suit whatever environment you are using e.g. if generating static docs for www.yourhost/yourapipath/index.html,  
@@ -23,15 +22,18 @@ configobject.detailsFile = "./public/scripts/version/details.json";
 **/
 configobject.contextPath = "/";
 
+/**
+ * port is used to configure what port the app.js server runs on (as per usual you'll need to use sudo if using ports less than 1024) 
+**/
 configobject.port = 3000;
 
 /**
- * defaultVersion to load when app.js runs or when using spider.js, the version which will be generated 
+ * defaultVersion to load when app.js runs or when using spider.js, the static version of docs which will be generated 
 **/
 configobject.defaultVersion = "1.8";
 
 /**
- * versions to make available to load for app.js i.e. the list of versions in the dropdown - these need to match the directory names
+ * versions is used to make available versions loadable for app.js i.e. the list of versions in the dropdown - these need to match the directory names
 **/
 configobject.versions = ["1.6", "1.7", "1.8", "1.9rc2"];
 
@@ -39,10 +41,14 @@ configobject.apiDataPath = "api";
 
 
 /**
- * this is for extending/rebranding for your own UI needs. The default location is 'views', if you want to rebrand the application, copy the views directory to another and set the relevant name. 
+ * viewsDirectory used for extending/rebranding for your own UI needs. The default location is 'views', if you want to rebrand the application, copy the views directory to another and set the relevant name. 
 **/
 configobject.viewsDirectory = "views";
 
+/**
+ * moduleExtension is used to append a suffix to the module file name; it's unlikely you'll need to change this. 
+ * This is used to ensure portability between app server and http server runtimes i.e. object/folder names won't clash with module names.    
+**/
 configobject.moduleExtension = ".html";
 
 /**
