@@ -38,6 +38,39 @@ Clone the repository into a dapi directory, open a terminal/CMD(mysysGit shell)
 
     git clone --recursive https://github.com/lbod/dapi.git
 
+Which will create folders and files:
+
+    /dapi
+      app.js
+      spider.js
+      appConfig.js
+      /lib
+          generate.js
+          refdoc.js
+          tree.js
+      /public
+          /api
+          /scripts
+          /css
+          /images
+      /views
+          layout.jade
+          index.jade
+          module.jade
+          moduledefault.jade
+          tree.jade
+          legend.jade
+          module.jade
+          /module
+              events.jade
+              eventssummary.jade
+              examples.jade
+              methods.jade
+              methodsssummary.jade
+              parametertable.jade
+              properties.jade
+              propertiessummary.jade
+
 cd into the *dapi* directory and install the dependencies  
 
     npm install --production
@@ -171,6 +204,7 @@ This has been tested under the latest Chrome and Firefox browsers, it is expecte
 Limited IE testing has been performed with IE8/9 (but not IE10), however we all know MS browsers suck and *savvy* developers really shouldn't care about them either.  
   
 If you find any IE UI bugs, please report them (though it's not guaranteed I'll give a ****).
+
 
 
 
