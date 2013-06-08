@@ -54,12 +54,15 @@ configobject.moduleExtension = ".html";
 /**
  * refDocs.dir - set to a local directory to search for reference documentation. You can set to an absolute path or relative to the app directory itself e.g. "reference-guide/"
  * refDocs.url - set to a URL you want the reference document to point to. The version path will be added and module full path location e.g. "/reference-guide/1.9/dojo/_base/sniff". You can also use an absolute URL path.
- * refDocs.suffix - set to the file extension of the reference docs you want to locally search for. This is also used to append a file extension to the module reference document URL to link to     
+ * refDocs.suffix - set to the file extension of the reference docs you want to locally search for.      
+ * refDocs.suffixToGenerate - This is used to append a file extension to the module reference document URL to link to. 
+ *      The only reason this is here, is if you want to generate static docs and output the ref guide links without actually exporting the ref guide to .html. The rst files a re 1-1 match with exported rst files, therefore just checking against the .rst files is enough 
 **/
 configobject.refDocs.enabled = true;
 configobject.refDocs.dir = "reference-guide/";
 configobject.refDocs.url = "/reference-guide/";
 configobject.refDocs.suffix = ".rst";
+configobject.refDocs.suffixToGenerate = ".html";
 
 /**
  * isDebug - set this to true to view any express logging. 

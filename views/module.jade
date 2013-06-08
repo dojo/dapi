@@ -31,7 +31,7 @@ include module/parametertable
     - refDoc = getRefDoc(module.location, module.version, config)
         - if (refDoc)
             p See the 
-                a(href='#{config.refDocs.url + module.version + "/" + refDoc + config.refDocs.suffix}', target='_blank') #{module.location} reference documentation
+                a(href='#{config.refDocs.url + module.version + "/" + refDoc + config.refDocs.suffixToGenerate}', target='_blank') #{module.location} reference documentation
                 |  for more information.
 div.jsdoc-children
     div.jsdoc-fieldlist
