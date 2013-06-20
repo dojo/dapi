@@ -45,8 +45,10 @@ app.use(stylus.middleware(
 ));
 app.use(config.contextPath, express.static(__dirname + '/public'));
 // index - / at the moment - change so it's more specific/configurable 
-app.get(config.contextPath, function (req, res) {
-    console.log(new Date().toTimeString() + ", is xhr = " + req.xhr); // use this to determine if it's a permalink url or a module request url
+app.get(config.contextPath + "api", function (req, res) {
+    if (config.isDebug === true) {
+        console.log(new Date().toTimeString() + ", is xhr = " + req.xhr); // use this to determine if it's a permalink url or a module request url
+    }
     res.render('index', { title : 'DOJO API Viewer', config: config, module : null});
 });
 var re = new RegExp(config.moduleExtension + "$");
@@ -55,7 +57,9 @@ var re = new RegExp(config.moduleExtension + "$");
 // also should be able to generate htlml from module urls (and version) e.g. this currently works http://localhost:3000/apidata/version/dijit/_TemplatedMixin
 app.get(config.contextPath + config.apiDataPath + '/*', function (req, res, next) {
     // replace with regex
-    console.log(new Date().toTimeString() + ", is xhr = " + req.xhr + ", requested = " + req.params.toString()); // use this to determine if it's a permalink url or a module request url
+    if (config.isDebug === true) {
+        console.log(new Date().toTimeString() + ", is xhr = " + req.xhr + ", requested = " + req.params.toString()); // use this to determine if it's a permalink url or a module request url
+    }
     var requested = req.params.toString().replace(/\/$/, ""); // TODO - replace(/\/$/, ""); added, no time to look at but for example loading 1.6/dojo/Animation adds a trailing slash whilst 1.6/dojo/AdapterRegistry doesnt, something browser related? 
     var idxslash = requested.indexOf("/");
     var requestedVersion = requested.substring(0, idxslash);
@@ -75,7 +79,6 @@ app.get(config.contextPath + config.apiDataPath + '/*', function (req, res, next
     if (parseFloat(version) < 1.8) { // currently expects a float i.e. no num
         // item.fullname.replace(/\./g, "/")
         var legacyfile = __dirname + '/public/api/' + version + '/' + modulefile.replace(/\./g, "/") + '.html';
-        //console.log("legacy file requested " + legacyfile);
         res.sendfile(legacyfile); // could be a security issue here
         return;
     }

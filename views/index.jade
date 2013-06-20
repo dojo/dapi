@@ -31,14 +31,21 @@ block main
                         select#versionSelector(style="width:auto")
                             - each version in config.versions
                                 option(selected=config.defaultVersion == version) #{version}
+                        div(data-dojo-type="dijit.form.DropDownButton")
+                            span Search
+                            div#apiSearchToolTipDialog(data-dojo-type="dijit.TooltipDialog", style="display:none;")
+                                input#apiSearchWidget(data-dojo-type="dijit.form.FilteringSelect")
+
                         
                 div(data-dojo-type="dijit.layout.AccordionContainer",data-dojo-props="region: 'center'") 
                     div#moduleTreePane(data-dojo-type="dijit.layout.ContentPane", data-dojo-props="title: 'By Module', selected: true")
-                    p#plainTree See the 
+                    //- an alternative menu for google because we're ajax menu based
+                    p#plainTree See the - 
                         a(href="#{config.contextPath}#{config.apiDataPath}/#{module !=null ? module.version : config.defaultVersion}/tree.html") plain HTML tree 
                         | listing all modules.
                     script(type="text/javascript")
-                        document.getElementById("plainTree").style.display = "none";  
+                        //- hide the menu if JS is available, this is poor, it expects (and possibly incorrectly) that only search engines don't use js                    
+                        document.getElementById("plainTree").style.display = "none";
                     include legend   
         block content            
             div#content(data-dojo-type="dijit.layout.TabContainer", data-dojo-props="region: 'center', tabStrip: true")

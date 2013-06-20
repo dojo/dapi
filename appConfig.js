@@ -6,6 +6,7 @@ configobject.refDocs = {};
  * set to wherever you want the application to load dojo from (shouldn't really need changed unless you want to switch DOJO script inclusion to a different location). 
 **/
 configobject.dojoBase = "//ajax.googleapis.com/ajax/libs/dojo/1.8.3";
+// configobject.dojoBase = "/scripts/dojo-release-1.8.3-src";
 
 /**
  * theme is used to configure the dijit theme and body class name to use. 
@@ -65,7 +66,7 @@ configobject.refDocs.suffix = ".rst";
 configobject.refDocs.suffixToGenerate = ".html";
 
 /**
- * isDebug - set this to true to view any express logging. 
+ * isDebug - set this to true to view any node.js express and application logging. 
 **/
 configobject.isDebug =  false;
 

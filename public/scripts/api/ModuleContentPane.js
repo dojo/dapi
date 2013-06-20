@@ -161,14 +161,13 @@ define(["dojo/_base/declare",
                 // Stop the browser from navigating to a new page
                 evt.preventDefault();
                 // Open tab for specified module
-                var tmp = this.href.replace(/^[a-z]*:/, "").replace(config.baseUrl, "").replace(/#.*/, "").split("/");
-                var version = tmp[0];
-                var page = tmp.slice(1).join("/");
-                var url = config.apiPath + "/" + version + "/" + page;  // TODO fix this later, should pass in the context
-                console.log("parent ==== " + _this.getParent());
-                console.log("api.ContentPane page ====" + page);
-                //var pane = addTabPane(page, version);
 
+                // again this is shit but it needs fixed first to properly understand all url types e.g. +1 needing added for the / when running using localhost--
+                    // this ends up like /1.8/dojo/on  i.e. version then page 
+                var versionandpagearr = this.href.substr(this.href.lastIndexOf(config.apiPath) + config.apiPath.length + 1).split("/");
+                var version = versionandpagearr[0];
+                var page = versionandpagearr.splice(1).join("/");
+                var url = config.apiPath + "/" + version + "/" + page;
                 var id = page.replace(/[\/.]/g, "_") + "_" + version;
                 var existingPane = registry.byId(id);
                 if (existingPane) {
@@ -192,30 +191,6 @@ define(["dojo/_base/declare",
                     pane.initModulePane();
                 }
             });
-
-/*
-
-            on(context, on.selector("a.jsdoc-link", "click"), lang.hitch(this, function(evt) {
-                // Don't do this code for the permalink button, that's handled in a different place
-                if(domClass.contains(_this.parentNode, "jsdoc-permalink")) {
-                    return;
-                }
-                // Stop the browser from navigating to a new page
-                evt.preventDefault();
-                
-                // Open tab for specified module
-                
-                var version = tmp[0];
-                var page = tmp.slice(1).join("/");
-                console.log("parent ==== " + this.getParent());
-                console.log("api.ContentPane page ====" + page);
-                //var pane = addTabPane(page, version);
-            }));
-
-
-*/
-
         }
-
     });
 });

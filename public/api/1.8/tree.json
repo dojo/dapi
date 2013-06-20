@@ -363,7 +363,7 @@
 							"id": "dijit/_tree/dndSource",
 							"name": "dndSource",
 							"fullname": "dijit/_tree/dndSource",
-							"type": "undefined"
+							"type": "object"
 						}
 					]
 				},
@@ -1262,87 +1262,13 @@
 					"id": "dijit/robot",
 					"name": "robot",
 					"fullname": "dijit/robot",
-					"type": "object",
-					"children": [
-						{
-							"id": "dijit/robot._Calendar",
-							"name": "_Calendar",
-							"fullname": "dijit/robot._Calendar",
-							"type": "constructor",
-							"children": []
-						},
-						{
-							"id": "dijit/robot.place",
-							"name": "place",
-							"fullname": "dijit/robot.place",
-							"type": "object",
-							"children": []
-						},
-						{
-							"id": "dijit/robot.range",
-							"name": "range",
-							"fullname": "dijit/robot.range",
-							"type": "object",
-							"children": []
-						},
-						{
-							"id": "dijit/robot.registry",
-							"name": "registry",
-							"fullname": "dijit/robot.registry",
-							"type": "object",
-							"children": []
-						},
-						{
-							"id": "dijit/robot.typematic",
-							"name": "typematic",
-							"fullname": "dijit/robot.typematic",
-							"type": "object",
-							"children": []
-						}
-					]
+					"type": "undefined"
 				},
 				{
 					"id": "dijit/robotx",
 					"name": "robotx",
 					"fullname": "dijit/robotx",
-					"type": "object",
-					"children": [
-						{
-							"id": "dijit/robotx._Calendar",
-							"name": "_Calendar",
-							"fullname": "dijit/robotx._Calendar",
-							"type": "constructor",
-							"children": []
-						},
-						{
-							"id": "dijit/robotx.place",
-							"name": "place",
-							"fullname": "dijit/robotx.place",
-							"type": "object",
-							"children": []
-						},
-						{
-							"id": "dijit/robotx.range",
-							"name": "range",
-							"fullname": "dijit/robotx.range",
-							"type": "object",
-							"children": []
-						},
-						{
-							"id": "dijit/robotx.registry",
-							"name": "registry",
-							"fullname": "dijit/robotx.registry",
-							"type": "object",
-							"children": []
-						},
-						{
-							"id": "dijit/robotx.typematic",
-							"name": "typematic",
-							"fullname": "dijit/robotx.typematic",
-							"type": "object",
-							"children": []
-						}
-					]
+					"type": "undefined"
 				},
 				{
 					"id": "dijit/TitlePane",
@@ -1487,7 +1413,7 @@
 					"id": "doh/_browserRunner",
 					"name": "_browserRunner",
 					"fullname": "doh/_browserRunner",
-					"type": "undefined",
+					"type": "object",
 					"children": [
 						{
 							"id": "doh/_browserRunner._groups",
@@ -1516,7 +1442,7 @@
 					"id": "doh/_nodeRunner",
 					"name": "_nodeRunner",
 					"fullname": "doh/_nodeRunner",
-					"type": "undefined"
+					"type": "object"
 				},
 				{
 					"id": "doh/_parseURLargs",
@@ -1534,7 +1460,7 @@
 					"id": "doh/main",
 					"name": "main",
 					"fullname": "doh/main",
-					"type": "undefined",
+					"type": "object",
 					"children": [
 						{
 							"id": "doh/main._groups",
@@ -1598,7 +1524,7 @@
 					"id": "doh/runner",
 					"name": "runner",
 					"fullname": "doh/runner",
-					"type": "undefined",
+					"type": "object",
 					"children": [
 						{
 							"id": "doh/runner._groups",
@@ -3532,6 +3458,13 @@
 							"fullname": "dojo/request.__Options",
 							"type": "constructor",
 							"children": []
+						},
+						{
+							"id": "dojo/request.__Promise",
+							"name": "__Promise",
+							"fullname": "dojo/request.__Promise",
+							"type": "constructor",
+							"children": []
 						}
 					]
 				},
@@ -3586,7 +3519,30 @@
 							"id": "dojo/request/node",
 							"name": "node",
 							"fullname": "dojo/request/node",
-							"type": "function"
+							"type": "function",
+							"children": [
+								{
+									"id": "dojo/request/node.__BaseOptions",
+									"name": "__BaseOptions",
+									"fullname": "dojo/request/node.__BaseOptions",
+									"type": "constructor",
+									"children": []
+								},
+								{
+									"id": "dojo/request/node.__MethodOptions",
+									"name": "__MethodOptions",
+									"fullname": "dojo/request/node.__MethodOptions",
+									"type": "constructor",
+									"children": []
+								},
+								{
+									"id": "dojo/request/node.__Options",
+									"name": "__Options",
+									"fullname": "dojo/request/node.__Options",
+									"type": "constructor",
+									"children": []
+								}
+							]
 						},
 						{
 							"id": "dojo/request/notify",
@@ -4187,12 +4143,6 @@
 									"name": "Container",
 									"fullname": "dojox/app/widgets/Container",
 									"type": "constructor"
-								},
-								{
-									"id": "dojox/app/widgets/scrollable",
-									"name": "scrollable",
-									"fullname": "dojox/app/widgets/scrollable",
-									"type": "function"
 								}
 							]
 						}
@@ -6506,34 +6456,25 @@
 									"id": "dojox/drawing/annotations/Angle",
 									"name": "Angle",
 									"fullname": "dojox/drawing/annotations/Angle",
-									"type": "constructor"
+									"type": "undefined"
 								},
 								{
 									"id": "dojox/drawing/annotations/Arrow",
 									"name": "Arrow",
 									"fullname": "dojox/drawing/annotations/Arrow",
-									"type": "constructor"
+									"type": "undefined"
 								},
 								{
 									"id": "dojox/drawing/annotations/BoxShadow",
 									"name": "BoxShadow",
 									"fullname": "dojox/drawing/annotations/BoxShadow",
-									"type": "constructor"
+									"type": "undefined"
 								},
 								{
 									"id": "dojox/drawing/annotations/Label",
 									"name": "Label",
 									"fullname": "dojox/drawing/annotations/Label",
-									"type": "object",
-									"children": [
-										{
-											"id": "dojox/drawing/annotations/Label.Label",
-											"name": "Label",
-											"fullname": "dojox/drawing/annotations/Label.Label",
-											"type": "constructor",
-											"children": []
-										}
-									]
+									"type": "object"
 								}
 							]
 						},
@@ -6799,13 +6740,13 @@
 									"id": "dojox/drawing/manager/Anchors",
 									"name": "Anchors",
 									"fullname": "dojox/drawing/manager/Anchors",
-									"type": "constructor"
+									"type": "undefined"
 								},
 								{
 									"id": "dojox/drawing/manager/Canvas",
 									"name": "Canvas",
 									"fullname": "dojox/drawing/manager/Canvas",
-									"type": "constructor"
+									"type": "undefined"
 								},
 								{
 									"id": "dojox/drawing/manager/keys",
@@ -6817,25 +6758,25 @@
 									"id": "dojox/drawing/manager/Mouse",
 									"name": "Mouse",
 									"fullname": "dojox/drawing/manager/Mouse",
-									"type": "constructor"
+									"type": "undefined"
 								},
 								{
 									"id": "dojox/drawing/manager/Stencil",
 									"name": "Stencil",
 									"fullname": "dojox/drawing/manager/Stencil",
-									"type": "constructor"
+									"type": "undefined"
 								},
 								{
 									"id": "dojox/drawing/manager/StencilUI",
 									"name": "StencilUI",
 									"fullname": "dojox/drawing/manager/StencilUI",
-									"type": "constructor"
+									"type": "undefined"
 								},
 								{
 									"id": "dojox/drawing/manager/Undo",
 									"name": "Undo",
 									"fullname": "dojox/drawing/manager/Undo",
-									"type": "constructor"
+									"type": "undefined"
 								}
 							]
 						},
@@ -6849,7 +6790,7 @@
 									"id": "dojox/drawing/plugins/_Plugin",
 									"name": "_Plugin",
 									"fullname": "dojox/drawing/plugins/_Plugin",
-									"type": "constructor"
+									"type": "undefined"
 								},
 								{
 									"id": "dojox/drawing/plugins/drawing/",
@@ -6867,7 +6808,7 @@
 											"id": "dojox/drawing/plugins/drawing/Grid",
 											"name": "Grid",
 											"fullname": "dojox/drawing/plugins/drawing/Grid",
-											"type": "constructor"
+											"type": "undefined"
 										},
 										{
 											"id": "dojox/drawing/plugins/drawing/Silverlight",
@@ -6887,7 +6828,7 @@
 											"id": "dojox/drawing/plugins/tools/Iconize",
 											"name": "Iconize",
 											"fullname": "dojox/drawing/plugins/tools/Iconize",
-											"type": "constructor",
+											"type": "undefined",
 											"children": [
 												{
 													"id": "dojox/drawing/plugins/tools/Iconize.setup",
@@ -6902,7 +6843,7 @@
 											"id": "dojox/drawing/plugins/tools/Pan",
 											"name": "Pan",
 											"fullname": "dojox/drawing/plugins/tools/Pan",
-											"type": "constructor",
+											"type": "undefined",
 											"children": [
 												{
 													"id": "dojox/drawing/plugins/tools/Pan.setup",
@@ -6917,30 +6858,7 @@
 											"id": "dojox/drawing/plugins/tools/Zoom",
 											"name": "Zoom",
 											"fullname": "dojox/drawing/plugins/tools/Zoom",
-											"type": "object",
-											"children": [
-												{
-													"id": "dojox/drawing/plugins/tools/Zoom.Zoom100",
-													"name": "Zoom100",
-													"fullname": "dojox/drawing/plugins/tools/Zoom.Zoom100",
-													"type": "constructor",
-													"children": []
-												},
-												{
-													"id": "dojox/drawing/plugins/tools/Zoom.ZoomIn",
-													"name": "ZoomIn",
-													"fullname": "dojox/drawing/plugins/tools/Zoom.ZoomIn",
-													"type": "constructor",
-													"children": []
-												},
-												{
-													"id": "dojox/drawing/plugins/tools/Zoom.ZoomOut",
-													"name": "ZoomOut",
-													"fullname": "dojox/drawing/plugins/tools/Zoom.ZoomOut",
-													"type": "constructor",
-													"children": []
-												}
-											]
+											"type": "object"
 										}
 									]
 								}
@@ -6956,43 +6874,43 @@
 									"id": "dojox/drawing/stencil/_Base",
 									"name": "_Base",
 									"fullname": "dojox/drawing/stencil/_Base",
-									"type": "constructor"
+									"type": "undefined"
 								},
 								{
 									"id": "dojox/drawing/stencil/Ellipse",
 									"name": "Ellipse",
 									"fullname": "dojox/drawing/stencil/Ellipse",
-									"type": "constructor"
+									"type": "undefined"
 								},
 								{
 									"id": "dojox/drawing/stencil/Image",
 									"name": "Image",
 									"fullname": "dojox/drawing/stencil/Image",
-									"type": "constructor"
+									"type": "undefined"
 								},
 								{
 									"id": "dojox/drawing/stencil/Line",
 									"name": "Line",
 									"fullname": "dojox/drawing/stencil/Line",
-									"type": "constructor"
+									"type": "undefined"
 								},
 								{
 									"id": "dojox/drawing/stencil/Path",
 									"name": "Path",
 									"fullname": "dojox/drawing/stencil/Path",
-									"type": "constructor"
+									"type": "undefined"
 								},
 								{
 									"id": "dojox/drawing/stencil/Rect",
 									"name": "Rect",
 									"fullname": "dojox/drawing/stencil/Rect",
-									"type": "constructor"
+									"type": "undefined"
 								},
 								{
 									"id": "dojox/drawing/stencil/Text",
 									"name": "Text",
 									"fullname": "dojox/drawing/stencil/Text",
-									"type": "constructor"
+									"type": "undefined"
 								}
 							]
 						},
@@ -7006,7 +6924,7 @@
 									"id": "dojox/drawing/tools/Arrow",
 									"name": "Arrow",
 									"fullname": "dojox/drawing/tools/Arrow",
-									"type": "constructor",
+									"type": "undefined",
 									"children": [
 										{
 											"id": "dojox/drawing/tools/Arrow.setup",
@@ -7027,7 +6945,7 @@
 											"id": "dojox/drawing/tools/custom/Axes",
 											"name": "Axes",
 											"fullname": "dojox/drawing/tools/custom/Axes",
-											"type": "constructor",
+											"type": "undefined",
 											"children": [
 												{
 													"id": "dojox/drawing/tools/custom/Axes.setup",
@@ -7042,7 +6960,7 @@
 											"id": "dojox/drawing/tools/custom/Equation",
 											"name": "Equation",
 											"fullname": "dojox/drawing/tools/custom/Equation",
-											"type": "constructor",
+											"type": "undefined",
 											"children": [
 												{
 													"id": "dojox/drawing/tools/custom/Equation.setup",
@@ -7057,7 +6975,7 @@
 											"id": "dojox/drawing/tools/custom/Vector",
 											"name": "Vector",
 											"fullname": "dojox/drawing/tools/custom/Vector",
-											"type": "constructor",
+											"type": "undefined",
 											"children": [
 												{
 													"id": "dojox/drawing/tools/custom/Vector.setup",
@@ -7074,7 +6992,7 @@
 									"id": "dojox/drawing/tools/Ellipse",
 									"name": "Ellipse",
 									"fullname": "dojox/drawing/tools/Ellipse",
-									"type": "constructor",
+									"type": "undefined",
 									"children": [
 										{
 											"id": "dojox/drawing/tools/Ellipse.setup",
@@ -7089,7 +7007,7 @@
 									"id": "dojox/drawing/tools/Line",
 									"name": "Line",
 									"fullname": "dojox/drawing/tools/Line",
-									"type": "constructor",
+									"type": "undefined",
 									"children": [
 										{
 											"id": "dojox/drawing/tools/Line.setup",
@@ -7104,7 +7022,7 @@
 									"id": "dojox/drawing/tools/Path",
 									"name": "Path",
 									"fullname": "dojox/drawing/tools/Path",
-									"type": "constructor",
+									"type": "undefined",
 									"children": [
 										{
 											"id": "dojox/drawing/tools/Path.setup",
@@ -7119,7 +7037,7 @@
 									"id": "dojox/drawing/tools/Pencil",
 									"name": "Pencil",
 									"fullname": "dojox/drawing/tools/Pencil",
-									"type": "constructor",
+									"type": "undefined",
 									"children": [
 										{
 											"id": "dojox/drawing/tools/Pencil.setup",
@@ -7134,7 +7052,7 @@
 									"id": "dojox/drawing/tools/Rect",
 									"name": "Rect",
 									"fullname": "dojox/drawing/tools/Rect",
-									"type": "constructor",
+									"type": "undefined",
 									"children": [
 										{
 											"id": "dojox/drawing/tools/Rect.setup",
@@ -7149,7 +7067,7 @@
 									"id": "dojox/drawing/tools/TextBlock",
 									"name": "TextBlock",
 									"fullname": "dojox/drawing/tools/TextBlock",
-									"type": "constructor",
+									"type": "undefined",
 									"children": [
 										{
 											"id": "dojox/drawing/tools/TextBlock.setup",
@@ -7172,7 +7090,7 @@
 									"id": "dojox/drawing/ui/Button",
 									"name": "Button",
 									"fullname": "dojox/drawing/ui/Button",
-									"type": "constructor"
+									"type": "undefined"
 								},
 								{
 									"id": "dojox/drawing/ui/dom/",
@@ -7184,7 +7102,7 @@
 											"id": "dojox/drawing/ui/dom/Pan",
 											"name": "Pan",
 											"fullname": "dojox/drawing/ui/dom/Pan",
-											"type": "constructor",
+											"type": "undefined",
 											"children": [
 												{
 													"id": "dojox/drawing/ui/dom/Pan.setup",
@@ -7205,7 +7123,7 @@
 											"id": "dojox/drawing/ui/dom/Zoom",
 											"name": "Zoom",
 											"fullname": "dojox/drawing/ui/dom/Zoom",
-											"type": "constructor"
+											"type": "undefined"
 										}
 									]
 								},
@@ -7219,7 +7137,7 @@
 									"id": "dojox/drawing/ui/Tooltip",
 									"name": "Tooltip",
 									"fullname": "dojox/drawing/ui/Tooltip",
-									"type": "constructor"
+									"type": "undefined"
 								}
 							]
 						},
@@ -9242,17 +9160,17 @@
 							"children": []
 						},
 						{
-							"id": "dojox/gfx.Path",
-							"name": "Path",
-							"fullname": "dojox/gfx.Path",
-							"type": "constructor",
-							"children": []
-						},
-						{
 							"id": "dojox/gfx.path",
 							"name": "path",
 							"fullname": "dojox/gfx.path",
 							"type": "object",
+							"children": []
+						},
+						{
+							"id": "dojox/gfx.Path",
+							"name": "Path",
+							"fullname": "dojox/gfx.Path",
+							"type": "constructor",
 							"children": []
 						},
 						{
@@ -9690,17 +9608,17 @@
 									"children": []
 								},
 								{
-									"id": "dojox/gfx/_base.Path",
-									"name": "Path",
-									"fullname": "dojox/gfx/_base.Path",
-									"type": "constructor",
-									"children": []
-								},
-								{
 									"id": "dojox/gfx/_base.path",
 									"name": "path",
 									"fullname": "dojox/gfx/_base.path",
 									"type": "object",
+									"children": []
+								},
+								{
+									"id": "dojox/gfx/_base.Path",
+									"name": "Path",
+									"fullname": "dojox/gfx/_base.Path",
+									"type": "constructor",
 									"children": []
 								},
 								{
@@ -10132,17 +10050,17 @@
 									"children": []
 								},
 								{
-									"id": "dojox/gfx/_gfxBidiSupport.Path",
-									"name": "Path",
-									"fullname": "dojox/gfx/_gfxBidiSupport.Path",
-									"type": "constructor",
-									"children": []
-								},
-								{
 									"id": "dojox/gfx/_gfxBidiSupport.path",
 									"name": "path",
 									"fullname": "dojox/gfx/_gfxBidiSupport.path",
 									"type": "object",
+									"children": []
+								},
+								{
+									"id": "dojox/gfx/_gfxBidiSupport.Path",
+									"name": "Path",
+									"fullname": "dojox/gfx/_gfxBidiSupport.Path",
+									"type": "constructor",
 									"children": []
 								},
 								{
@@ -16675,42 +16593,6 @@
 							"name": "xmppSession",
 							"fullname": "dojox/xmpp/xmppSession",
 							"type": "function"
-						}
-					]
-				}
-			]
-		},
-		{
-			"id": "util/",
-			"name": "util",
-			"fullname": "util",
-			"type": "folder",
-			"children": [
-				{
-					"id": "util/docscripts/",
-					"name": "docscripts",
-					"fullname": "util/docscripts",
-					"type": "folder",
-					"children": [
-						{
-							"id": "util/docscripts/cheat/",
-							"name": "cheat",
-							"fullname": "util/docscripts/cheat",
-							"type": "folder",
-							"children": [
-								{
-									"id": "util/docscripts/cheat/floatup",
-									"name": "floatup",
-									"fullname": "util/docscripts/cheat/floatup",
-									"type": "object"
-								},
-								{
-									"id": "util/docscripts/cheat/lib",
-									"name": "lib",
-									"fullname": "util/docscripts/cheat/lib",
-									"type": "object"
-								}
-							]
 						}
 					]
 				}
