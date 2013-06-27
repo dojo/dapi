@@ -19,10 +19,10 @@ require([
     "dijit/form/FilteringSelect",
     "dijit/TooltipDialog",
     "dijit/form/DropDownButton",
-    "dojo/_base/connect",
+    "dojo/on",
     "dijit/popup"
 ], function (parser, dom, lang, ready, BorderContainer, TabContainer, ContentPane, AccordionContainer,
-        ModuleTreeModel, ModuleTree, config, query, registry, MenuItem, Menu, array, MenuSeparator, FilteringSelect, TooltipDialog, DropDownButton, connect, popup) {
+        ModuleTreeModel, ModuleTree, config, query, registry, MenuItem, Menu, array, MenuSeparator, FilteringSelect, TooltipDialog, DropDownButton, on, popup) {
     var moduleModel = null, moduleTree = null, currentVersion = null, apiSearchToolTipDialog = null, apiSearchWidget = null;
     ready(function () {
         var parsed = parser.parse();
@@ -31,6 +31,28 @@ require([
         apiSearchToolTipDialog.closable = true;
         s.onchange = lang.hitch(s, versionChange);
         buildTree();
+// selectAndClick setup the welcome page (selectAndClick is defined by buildTree)
+        var welcomeTab = registry.byId("baseTab_welcomeTab");
+        query(".dtk-object-title a", welcomeTab.domNode).forEach(function (node, index) {
+            on(node, "click", function (e) {
+                console.log(e.target.innerHTML);
+                var targetpatharr = e.target.name.split("/"), treepatharr = [], tmp2 = null;
+                // TODO : do this better, filter/map?
+                // builds an array of paths for a tree (must be in this order) -> an ending slash (empty i.e. a folder) -> a module path to but not the module i.e.charting in dojox/charting/Chart (idx < arr.length -1) -> and the module name (the last item)   
+                array.forEach(targetpatharr, function (item, idx, arr) {
+                    if (arr[idx] === "") {
+                    } else if (idx < arr.length - 1) {
+                        var tmp2 = (arr.slice(0, idx + 1).join("/")  + "/");
+                        treepatharr.push(tmp2);
+                    } else {
+                        treepatharr.push(arr.slice(0, idx + 1).join("/"));
+                    }
+                });
+                moduleTree.selectAndClick(treepatharr);
+                e.preventDefault();
+            });
+        });
+// end selectAndClick
 
         // TODO - syntax highlighter for premalinked loaded modules -- plus this should be reusable (mixin?) as its also used in moduletree.js
         // should do as i thought, create an extended ContentPane with these functions because the show/hide semantics needs to be captured too (for summaries)
@@ -174,12 +196,9 @@ require([
 		}));
 
 		moduleTree.set("path", path).then(function () {
-            //debugger;
             var selectednode = moduleTree.selectedNode;
-            var top = selectednode.domNode.offsetTop;
-            var left = selectednode.domNode.offsetLeft;
-            //selectednode.domNode.focus();
-            //window.scrollTo(top, left);
+            //var top = selectednode.domNode.offsetTop;
+            //var left = selectednode.domNode.offsetLeft;
 
             selectednode.domNode.scrollIntoView();
             popup.close(apiSearchToolTipDialog);

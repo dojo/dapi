@@ -50,10 +50,10 @@ block main
         block content            
             div#content(data-dojo-type="dijit.layout.TabContainer", data-dojo-props="region: 'center', tabStrip: true")
                 - if (module !=null)
-                    div#baseTab_LBchanged(data-dojo-type="api.ModuleContentPane",data-dojo-props="title: 'Welcome'")
+                    div#baseTab_welcomeTab(data-dojo-type="api.ModuleContentPane",data-dojo-props="title: 'Welcome'")
                         include moduledefault
                     div#baseTab(data-dojo-type="api.ModuleContentPane",data-dojo-props="title: '#{module.location} (#{module.version})', selected: true, closable: true")
                         include module
                 - else
-                    div#baseTab_LBchanged(data-dojo-type="api.ModuleContentPane",data-dojo-props="title: 'Welcome'")
+                    div#baseTab_welcomeTab(data-dojo-type="api.ModuleContentPane",data-dojo-props="title: 'Welcome'")
                         include moduledefault

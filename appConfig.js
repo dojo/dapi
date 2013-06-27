@@ -5,7 +5,7 @@ configobject.refDocs = {};
  * dojoBase //ajax.googleapis.com/ajax/libs/dojo/1.8.3   or   /scripts/dojo-release-1.8.3-src
  * set to wherever you want the application to load dojo from (shouldn't really need changed unless you want to switch DOJO script inclusion to a different location). 
 **/
-configobject.dojoBase = "//ajax.googleapis.com/ajax/libs/dojo/1.8.3";
+configobject.dojoBase = "//ajax.googleapis.com/ajax/libs/dojo/1.9.1";
 // configobject.dojoBase = "/scripts/dojo-release-1.8.3-src";
 
 /**
@@ -31,12 +31,12 @@ configobject.port = 3000;
 /**
  * defaultVersion to load when app.js runs or when using spider.js, the static version of docs which will be generated 
 **/
-configobject.defaultVersion = "1.8";
+configobject.defaultVersion = "1.9";
 
 /**
  * versions is used to make available versions loadable for app.js i.e. the list of versions in the dropdown - these need to match the directory names
 **/
-configobject.versions = ["1.6", "1.7", "1.8", "1.9rc2"];
+configobject.versions = ["1.6", "1.7", "1.8", "1.9"];
 
 configobject.apiDataPath = "api";
 
