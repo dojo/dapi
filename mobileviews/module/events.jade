@@ -1,0 +1,23 @@
+- if (module.events)
+    h2 Events
+    div.jsdoc-property-list
+        each event in module.events
+            - var klass = 'jsdoc-field' 
+            - klass += (event.private == true ? " private" : "")
+            - if (event.inherited) klass += ' inherited' 
+            div(class="#{klass}")
+                div.jsdoc-title
+                    a(name='#{(module.version + module.location + '_' +event.name).replace(/\/|\./g, "_")}')
+                    span.functionIcon #{event.name}
+                    | <span class="parameters">(
+                    -  each parm, idx in event.parameters
+                        | #{parm.name}
+                        - if (idx < event.parameters.length-1)
+                            | , 
+                    | )</span>
+                div.jsdoc-inheritance.TODO Defined by: 
+                    a.jsdoc-link(href='#{config.contextPath}api/#{module.version}/#{event.from}') #{event.from}
+                    span.jsdoc-inherited.TODO(title='inherited')       
+                - // event.summary must be null here for dojo/html (though just for spider??)
+                - if (event.summary)
+                    div.jsdoc-summary !{autoHyperlink(event.summary, config, module.version)}

@@ -1,0 +1,17 @@
+- if (module.properties)
+    h2.jsdoc-summary-heading Property Summary
+        span.jsdoc-summary-toggle
+    div.jsdoc-summary-list
+        ul.jsdoc-property-list
+            each prop in module.properties
+                - var klass = convertType(prop.types[0]) + 'Icon' 
+                - klass += (prop.private == true ? " private" : "")
+                - if (prop.inherited) klass += ' inherited' 
+                li(class="#{klass}")
+                    a.inline-link(href='##{(module.version + module.location + '_' +prop.name).replace(/\/|\./g, "_")}')  !{prop.name} 
+                    span !{prop.shortSummary}
+                    - if (prop.private)
+                      span.jsdoc-private(title="private")
+                    - if (prop.inherited)
+                      span.jsdoc-inherited(title='inherited from #{prop.from}')
+

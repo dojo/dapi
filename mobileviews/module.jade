@@ -1,0 +1,47 @@
+div.jsdoc-permalink(style="display:none") #{config.contextPath}api/#{module !=null ? module.version : config.defaultVersion}/#{module.location}
+h1(class="#{convertType(module.type)}Icon36 jsdoc-title") #{module.location}
+        span(style="font-size:11px;color:#999;")  (version #{module.version})
+- //  h2 !{autoHyperlink(module.description, config, module.version)}  SUMMARY - broke - need to understand hyperlink      
+     
+- if (module.mixins != null)
+    div.jsdoc-mixins
+        label Extends 
+        each item in module.mixins
+            a.jsdoc-link(href='#{config.contextPath}api/#{module !=null ? module.version : config.defaultVersion}/#{item.location}') #{item.location},   
+- if (module.summary != null)
+      div.jsdoc-full-summary !{autoHyperlink(module.summary, config, module.version)}
+- if (module.description != null)
+      div.jsdoc-full-summary !{autoHyperlink(module.description, config, module.version)}
+- if (module.usage !=null)
+      div.jsdoc-function-information 
+        h3 Usage:
+        div.function-signature
+            span.keyword var
+            |  foo = new #{module.location}
+            span.parameters (#{module.usage.parameterList});
+      div.jsdoc-inheritance Defined by !{autoHyperlink(module.usage.from, config, module.version)}
+      - if (module.usage.description !=null)
+        div.jsdoc-summary
+            !{module.usage.description}
+params = module.parameters
+returnTypes = module.returnTypes
+returnDescription = module.returnDescription
+include module/parametertable
+- if (config.refDocs.enabled == true)
+    - refDoc = getRefDoc(module.location, module.version, config)
+        - if (refDoc)
+            p See the 
+                a(href='#{config.refDocs.url + module.version + "/" + refDoc + config.refDocs.suffixToGenerate}', target='_blank') #{module.location} reference documentation
+                |  for more information.
+div.jsdoc-children
+    div.jsdoc-fieldlist
+examples = module.examples
+        include module/examples
+        include module/propertiessummary
+        include module/methodssummary
+        include module/eventssummary
+div.jsdoc-children
+    div.jsdoc-fields
+        include module/properties
+        include module/methods
+        include module/events

@@ -1,0 +1,38 @@
+!!!5
+html
+  head
+    meta(name="viewport", content="width=device-width,initial-scale=1,maximum-scale=1,minimum-scale=1,user-scalable=no")
+    meta(name="apple-mobile-web-app-capable", content="yes")
+  
+    title #{title} Version #{module !=null ? module.version : config.defaultVersion}
+    // link(rel='stylesheet', href="#{config.dojoBase}/dojo/resources/dojo.css")
+    link(rel='stylesheet', href="#{config.dojoBase}/dojox/mobile/themes/#{config.theme}/#{config.theme}.css")
+    // link(rel='stylesheet', href="/#{config.dojobase}/dijit/themes/#{config.theme}/#{config.theme}.css")
+     
+    // link(rel='stylesheet', href="#{config.contextPath}css/jsdoc_original.css")
+    // link(rel='stylesheet', href="#{config.contextPath}css/site_original.css")
+    script(type="text/javascript")
+        // packages: [{name:"api", location:location.pathname.replace(/\/[^/]+$/, '/') + "#{config.contextPath}scripts/api"}],
+        dojoConfig = {async:1, debug:1, noGlobals:0, 
+            packages: [{name:"api", location: "#{config.contextPath}scripts/api"}],
+            apiPath : '#{config.contextPath}#{config.apiDataPath}',
+            context : '#{config.contextPath}',
+            apiDefault : '#{config.defaultVersion}',
+            moduleExtension : '#{config.moduleExtension}'
+        }
+
+    script(type="text/javascript", src="#{config.dojoBase}/dojo/dojo.js")
+    script(type="text/javascript", src="#{config.contextPath}scripts/mobileapi.js")
+    
+    
+    //script(type="text/javascript", src="#{config.contextPath}scripts/syntaxhighlighter/scripts/shCore.js")
+    //script(type="text/javascript", src="#{config.contextPath}scripts/syntaxhighlighter/scripts/shBrushJScript.js")
+    //script(type="text/javascript", src="#{config.contextPath}scripts/syntaxhighlighter/scripts/shBrushXml.js")
+    
+    //link(rel='stylesheet', href="#{config.contextPath}scripts/syntaxhighlighter/css/shCore.css")
+    //link(rel='stylesheet', href="#{config.contextPath}scripts/syntaxhighlighter/css/shThemeDefault.css")
+
+
+  body(class="#{config.theme}")
+    block main
+        block welcomepage

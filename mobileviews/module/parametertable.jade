@@ -1,0 +1,30 @@
+- if (params && params.length > 0)
+    table.jsdoc-parameters
+        tr
+            th Parameter
+            th Type
+            th Description
+        each item in params
+            tr
+                td.jsdoc-param-name #{item.name}
+                td.jsdoc-param-type !{item.types.join(" | ")}
+                if (item.summary)
+                    //- ! used instead of # to unescape
+                    td.jsdoc-param-description
+                        - if (item.usage.toLowerCase() == 'optional')
+                            div
+                                em Optional
+                         !{item.summary} 
+                else
+                    td.jsdoc-param-description
+                        - if (item.usage.toLowerCase() == 'optional')
+                            div
+                                em Optional
+                        !{item.description}
+                     
+- if (returnTypes != null && returnTypes.length > 0)
+    div
+        strong Returns: 
+        span.jsdoc-return-type !{autoHyperlink(returnTypes.join(" | "), config, module.version)}
+- if (returnDescription)
+    div.jsdoc-return-description !{returnDescription}

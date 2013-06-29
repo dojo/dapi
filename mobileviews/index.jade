@@ -1,0 +1,16 @@
+extend layout
+block main
+    block welcomepage
+        div#maincontent(data-dojo-type="dojox/mobile/View", data-dojo-props="selected: true")
+            h1#heading(data-dojo-type="dojox/mobile/Heading", data-dojo-props="label:\'The Dojo Toolkit API\'")
+            div(data-dojo-type="dojox/mobile/RoundRect", data-dojo-props='shadow:true') 
+                p Welcome to the DOJO API viewer, this API viewer is optimised for mobile devices. 
+                p Please select the version you want to view which are listed below
+            ul#versionlist(data-dojo-type="dojox/mobile/RoundRectList")
+                - each version in config.versions
+                    li(data-dojo-type="dojox/mobile/ListItem", data-dojo-props="label:'Version #{version}', rightIcon:'mblDomButtonBlueCircleArrow', moveTo:'#{version}' ")
+                        
+                        
+            
+        div#treesdata(data-dojo-type="dojox/mobile/View")
+            div#headversion(data-dojo-type="dojox/mobile/Heading", data-dojo-props="label:\'DOJO Version\'")            

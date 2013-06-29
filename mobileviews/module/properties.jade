@@ -1,0 +1,26 @@
+- if (module.properties)
+    h2 Properties
+    div.jsdoc-property-list
+        each prop in module.properties
+            - var klass = 'jsdoc-field' 
+            - klass += (prop.private == true ? " private" : " public")
+            - if (prop.extensionModule) klass += ' extension-module' 
+            div(class="#{klass}")
+                div.jsdoc-title
+                    a(name='#{(module.version + module.location + '_' +prop.name).replace(/\/|\./g, "_")}')
+                    span(class="#{convertType(prop.types[0])}Icon") #{prop.name}
+                    - if (prop.private)
+                      span.jsdoc-private(title="private") 
+                    
+                div.jsdoc-inheritance Defined by: 
+                    a.jsdoc-link(href='#{config.contextPath}api/#{module.version}/#{prop.from}') #{prop.from}
+                    - if (prop.extensionModule)
+                        span.jsdoc-extension(title="Must manually require () " + prop.from +" to access")
+                    - else if (prop.inherited)
+                         span.jsdoc-inherited(title='inherited')
+                - if (prop.summary !=null)
+                    div.jsdoc-summary !{autoHyperlink(prop.summary, config, module.version)}
+                - else if (prop.description !=null)
+                    div.jsdoc-summary
+                        div.jsdoc-summary !{autoHyperlink(prop.description, config, module.version)}
+                

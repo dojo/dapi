@@ -11,7 +11,7 @@ configobject.dojoBase = "//ajax.googleapis.com/ajax/libs/dojo/1.9.1";
 /**
  * theme is used to configure the dijit theme and body class name to use. 
 **/
-configobject.theme = "claro";
+configobject.theme = "iphone";
 
 /**
  * Change your contextPath to suit whatever environment you are using e.g. if generating static docs for www.yourhost/yourapipath/index.html,  
@@ -36,7 +36,7 @@ configobject.defaultVersion = "1.9";
 /**
  * versions is used to make available versions loadable for app.js i.e. the list of versions in the dropdown - these need to match the directory names
 **/
-configobject.versions = ["1.6", "1.7", "1.8", "1.9"];
+configobject.versions = ["1.8", "1.9"];
 
 configobject.apiDataPath = "api";
 
@@ -44,7 +44,7 @@ configobject.apiDataPath = "api";
 /**
  * viewsDirectory used for extending/rebranding for your own UI needs. The default location is 'views', if you want to rebrand the application, copy the views directory to another and set the relevant name. 
 **/
-configobject.viewsDirectory = "views";
+configobject.viewsDirectory = "mobileviews";
 
 /**
  * moduleExtension is used to append a suffix to the module file name; it's unlikely you'll need to change this. 
@@ -68,7 +68,7 @@ configobject.refDocs.suffixToGenerate = ".html";
 /**
  * isDebug - set this to true to view any node.js express and application logging. 
 **/
-configobject.isDebug =  false;
+configobject.isDebug =  true;
 
 
 exports.appConfig = configobject;

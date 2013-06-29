@@ -1,0 +1,22 @@
+- if (module.methods)
+    h2.jsdoc-summary-heading Method Summary
+        span.jsdoc-summary-toggle
+    div.jsdoc-summary-list
+        ul.jsdoc-property-list
+            each method in module.methods
+                - var klass = (method.private == true ? "private" : "")
+                - if (method.inherited) klass = klass + ' inherited' 
+                li.functionIcon(class="#{klass}")
+                    a.inline-link(href='##{(module.version + module.location + '_' +method.name).replace(/\/|\./g, "_")}')  !{method.name}
+                    span.parameters (
+                    -  each parm, idx in method.parameters
+                        | #{parm.name}
+                        - if (idx < method.parameters.length-1)
+                            | , 
+                    | ) 
+                    span !{method.shortSummary}
+                    - if (method.private)
+                      span.jsdoc-private(title="private") 
+                    - if (method.inherited)
+                      span.jsdoc-inherited(title='inherited from #{method.from}')
+                    

@@ -1,0 +1,19 @@
+- if (module.events)
+    h2.jsdoc-summary-heading Event Summary
+        span.jsdoc-summary-toggle
+    div.jsdoc-summary-list
+        ul.jsdoc-property-list
+            each event in module.events
+                - var klass = (event.private == true ? "private" : "")
+                - if (event.inherited) klass = klass + ' inherited' 
+                li.functionIcon(class="#{klass}")
+                    a.inline-link(href='##{(module.version + module.location + '_' +event.name).replace(/\/|\./g, "_")}')  !{event.name}
+                    span.parameters (
+                    -  each parm, idx in event.parameters
+                        | #{parm.name}
+                        - if (idx < event.parameters.length-1)
+                            | , 
+                    | ) 
+                    span !{event.shortSummary}
+                    span.jsdoc-extension(title="TODO")
+                    
