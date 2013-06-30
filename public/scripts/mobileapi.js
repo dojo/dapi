@@ -11,11 +11,14 @@ require([
     "dojox/mobile/RoundRect",
     "dojox/mobile/ListItem",
     "dijit/registry",
-    "dojo/request"
-], function (parser, dom, lang, ready, config, on, Heading, View, RoundRectList, RoundRect, ListItem, registry, request) {
-    var moduleModel = null, moduleTree = null, currentVersion = null, apiSearchToolTipDialog = null, apiSearchWidget = null;
+    "dojo/request",
+    "dojox/mobile/ViewController"
+], function (parser, dom, lang, ready, config, on, Heading, View, RoundRectList, RoundRect, ListItem, registry, request, ViewController) {
+    var moduleModel = null, moduleTree = null, currentVersion = null, apiSearchToolTipDialog = null, apiSearchWidget = null, vc = ViewController.getInstance(), treesdataview = null, mainview = null;
     ready(function () {
         var parsed = parser.parse();
+        treesdataview = registry.byId("treesdataview");
+        mainview = registry.byId("mainview");
         console.log("Will use all ECMA6 features like querySelectorAll/forEach etc therefore I won't work in browsers that don't support me and I won't be using the compat package");
         // don't use query
         // query vars: 
@@ -24,12 +27,17 @@ require([
         for (idx; idx < versionlistitems.length; ++idx) {
             //console.log(versionlistitems[idx]);
             on(versionlistitems[idx], "click", function (ev) {
-                var version = registry.byId(ev.currentTarget.id).moveTo;
+                var versionlistlink = registry.byId(ev.currentTarget.id);
+                var version = versionlistlink.moveTo;
                 console.log(version);
                 //debugger;
                 var jsonfile = config.apiPath + '/' + version + '/tree.json';
-                request(jsonfile).then(function (data) {
-                    console.log(data);
+                request(jsonfile, {handleAs : "json"}).then(function (data) {
+                    console.log(data, vc);
+                    data.version = version;
+                    buildTreeView(data, "", "");
+                    // mainview.performTransition(treesdataview);
+                    versionlistlink.transitionTo("treesdataview");
                 }, function (err) {
                     alert(err);
                 });
@@ -125,6 +133,113 @@ require([
         // end temp - add a close all option - move to context menu on the tab label
 */
     });
+
+
+    var buildTreeView = function (data, path, djtype) {
+        var treedatalist = registry.byId("treedatalist"), treecontainernode = treedatalist.containerNode, treeitem = null, children = data.children;
+        var viewsfromto = getTreeViewsToTransition(path);
+
+        //treedatalist.destroyDescendants();
+        //console.log(treesdataview);
+        // we're not root and we've been sent a path that looks like folder/dijit/Tree  (folder|object|function etc) 
+
+/*
+        if (path && path.length > 0 && djtype && djtype !== "object" && djtype !== "function") {
+            var tmparr = data.children.filter(function (item) {
+                var pathsplit = path.split("/");
+                //.replace(/[^\/]*./, '');
+                var objtype = pathsplit[0];
+                var pathfolder = pathsplit.splice(1, pathsplit.length).join("/");
+                console.log(objtype, pathfolder);
+
+                return (item.fullname === pathfolder);
+                //return (item.fullname == path.replace(\^/\\, "")) ;
+            });
+            children = tmparr[0] && tmparr[0].children ? tmparr[0].children : children;
+        } else if (djtype === "object" || djtype === "function"){
+            console.log(path, djtype);
+        } else {
+            // empty path is the root folder - change crap logic later
+            children = data.children;
+        }
+*/
+        children.forEach(function (item, idx, arr) {
+            //var id = data.version + '/' + item.name;
+            // TODO ignore objects which are expandable i.e. they likely have a item.type = 'object' (as compared to item.type = 'folder')
+            var itemtype = item.type;
+            //console.log(item.type, item.name);
+            if (itemtype === 'object') {
+                return;
+            }
+            treeitem = new ListItem({label : item.name, moveTo : '#', id : itemtype + "/" + item.fullname});
+            treeitem.startup();
+            //treeitem.placeAt(treecontainernode);
+            treeitem.placeAt(viewsfromto.from.containerNode);
+
+            treeitem.on("click", function (ev) {
+                var linkto = this.id;
+
+                var pathsplit = linkto.split("/");
+                //.replace(/[^\/]*./, '');
+                var objtype = pathsplit[0];
+                //var pathfolder = pathsplit.splice(1, pathsplit.length).join("/");
+
+                console.log(linkto, this.type);
+                if (item.type === 'folder') {
+                    buildTreeView(item, linkto, objtype);
+                    //viewsfromto.to.destroyDescendants();
+                    viewsfromto.from.performTransition(viewsfromto.to.id, 1, "slide");
+                    console.log(viewsfromto);
+                    //treeitem.transitionTo("treesdataview");
+                } else {
+                    showModuleView(item, linkto, objtype);
+                }
+                ev.preventDefault();
+            });
+        });
+    };
+
+    // TODO : use this to get the from and to views to transition to, Return an object {from:view, to:view} so transitions can be performed, based on the level in the tree i.e. dijit (1), dijit/form (2)
+    var getTreeViewsToTransition = function (path) {
+        var obj = {};
+        obj.to = "";
+        obj.from = "";
+        if (path === "") {
+            obj.from = registry.byId("treesdataview");
+            obj.to = registry.byId("treesdataview1");
+        } else {
+            var pathsplit = path.split("/");
+            //var objtype = pathsplit[0];
+            var objectitem = pathsplit.shift();
+            //var idxadd = pathsplit.length == 1 ? "" : pathsplit.length; 
+            obj.from = registry.byId("treesdataview" + pathsplit.length);
+            obj.to = registry.byId("treesdataview" + (pathsplit.length + 1));
+            //console.log(obj);
+        }
+        return obj;
+    };
+
+    var showModuleView = function (item, linkto, objtype) {
+        console.log(item, linkto, objtype);
+    };
+
+    var buildModuleView = function (data) {
+
+    };
+
+
+
+
+
+
+
+
+
+
+
+
+
+/////// old stuff >
 
     var buildTree = function () {
         if (moduleModel !== null) {

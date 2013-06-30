@@ -5,7 +5,8 @@ configobject.refDocs = {};
  * dojoBase //ajax.googleapis.com/ajax/libs/dojo/1.8.3   or   /scripts/dojo-release-1.8.3-src
  * set to wherever you want the application to load dojo from (shouldn't really need changed unless you want to switch DOJO script inclusion to a different location). 
 **/
-configobject.dojoBase = "//ajax.googleapis.com/ajax/libs/dojo/1.9.1";
+//configobject.dojoBase = "//ajax.googleapis.com/ajax/libs/dojo/1.9.1";
+configobject.dojoBase = "/scripts/dojo-release-1.9.1-src";
 // configobject.dojoBase = "/scripts/dojo-release-1.8.3-src";
 
 /**
