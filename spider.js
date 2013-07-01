@@ -5,10 +5,9 @@ var stylus = require('stylus'),
     jade = require('jade'),
     mkdirp = require("mkdirp"),
     generate = require('./lib/generate'),
-    envConfig = require('./appConfig'),
+    config = require('./appConfig'),
     refdoc = require('./lib/refdoc'),
-    tree = require('./lib/tree'),
-    config = envConfig.appConfig;
+    tree = require('./lib/tree');
 
 var details = __dirname + '/public/scripts/' + config.apiDataPath + '/' + config.defaultVersion + '/details.json'; // latest doc parse with all packs
 
