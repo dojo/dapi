@@ -5,7 +5,7 @@ var stylus = require('stylus'),
     jade = require('jade'),
     mkdirp = require("mkdirp"),
     generate = require('./lib/generate'),
-    config = require('./appConfig'),
+    config = require('./config'),
     refdoc = require('./lib/refdoc'),
     tree = require('./lib/tree');
 
