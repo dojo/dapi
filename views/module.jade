@@ -17,7 +17,7 @@ h1(class="#{convertType(module.type)}Icon36 jsdoc-title") #{module.location}
         h3 Usage:
         div.function-signature
             span.keyword var
-            |  foo = new #{module.location}
+            |  foo = new #{module.location.replace(/.*\//, "")}
             span.parameters (#{module.usage.parameterList});
       div.jsdoc-inheritance Defined by !{autoHyperlink(module.usage.from, config, module.version)}
       - if (module.usage.description !=null)
