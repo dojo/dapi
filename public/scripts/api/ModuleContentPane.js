@@ -22,7 +22,6 @@ define(["dojo/_base/declare",
         inheritedOn : true, //possibly move to the contructor though its not an object
 
         onLoad : function (data) {
-            console.log("api.ContentPane version = " + this.version);
             this.initModulePane();
 
         }, /// end onLoad
@@ -53,8 +52,6 @@ define(["dojo/_base/declare",
         initModulePane : function () {
             var context = this.domNode;
             this._setUpDocLinks(context);
-            //console.log(this.domNode);
-
 ///////////////// TODO: IN PROGRESS
 
             var link = query("div.jsdoc-permalink", context);
