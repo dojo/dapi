@@ -20,9 +20,10 @@ require([
     "dijit/TooltipDialog",
     "dijit/form/DropDownButton",
     "dojo/on",
-    "dijit/popup"
+    "dijit/popup",
+    "dojo/window" //djwindow
 ], function (parser, dom, lang, ready, BorderContainer, TabContainer, ContentPane, AccordionContainer,
-        ModuleTreeModel, ModuleTree, config, query, registry, MenuItem, Menu, array, MenuSeparator, FilteringSelect, TooltipDialog, DropDownButton, on, popup) {
+        ModuleTreeModel, ModuleTree, config, query, registry, MenuItem, Menu, array, MenuSeparator, FilteringSelect, TooltipDialog, DropDownButton, on, popup, djwindow) {
     var moduleModel = null, moduleTree = null, currentVersion = null, apiSearchToolTipDialog = null, apiSearchWidget = null;
     ready(function () {
         var parsed = parser.parse();
@@ -31,6 +32,14 @@ require([
         apiSearchToolTipDialog.closable = true;
         s.onchange = lang.hitch(s, versionChange);
         buildTree();
+        // test if baseTab exists - this is maybe poor as it's expectation is that onLoad a baseTab is created (as well as the welcome tab) which means we've permalink loaded
+        var baseTab = registry.byId("baseTab");
+        if (baseTab) {
+            var permalinkarr = query(".jsdoc-permalink", baseTab.domNode)[0].innerHTML.split("/");
+            // /contextPath/version/modulepath e.g. /api/1.9/dijit/Dialog 
+            var requestedpath = permalinkarr.splice(3, permalinkarr.length).join("/");
+            setTreePath(requestedpath);
+        }
 // selectAndClick setup the welcome page (selectAndClick is defined by buildTree)
         var welcomeTab = registry.byId("baseTab_welcomeTab");
         query(".dtk-object-title a", welcomeTab.domNode).forEach(function (node, index) {
@@ -201,6 +210,7 @@ require([
             //var left = selectednode.domNode.offsetLeft;
 
             selectednode.domNode.scrollIntoView();
+            //djwindow.scrollIntoView(selectednode);
             popup.close(apiSearchToolTipDialog);
             //apiSearchWidget.setValue("");
         },
