@@ -20,10 +20,9 @@ require([
     "dijit/TooltipDialog",
     "dijit/form/DropDownButton",
     "dojo/on",
-    "dijit/popup",
-    "dojo/window" //djwindow
+    "dijit/popup"
 ], function (parser, dom, lang, ready, BorderContainer, TabContainer, ContentPane, AccordionContainer,
-        ModuleTreeModel, ModuleTree, config, query, registry, MenuItem, Menu, array, MenuSeparator, FilteringSelect, TooltipDialog, DropDownButton, on, popup, djwindow) {
+        ModuleTreeModel, ModuleTree, config, query, registry, MenuItem, Menu, array, MenuSeparator, FilteringSelect, TooltipDialog, DropDownButton, on, popup) {
     var moduleModel = null, moduleTree = null, currentVersion = null, apiSearchToolTipDialog = null, apiSearchWidget = null;
     ready(function () {
         var parsed = parser.parse();
@@ -212,7 +211,6 @@ require([
             selectednode.domNode.scrollIntoView();
             //djwindow.scrollIntoView(selectednode);
             popup.close(apiSearchToolTipDialog);
-            //apiSearchWidget.setValue("");
         },
 		function (err) {
 			console.log("tree: error setting path to " + path);
