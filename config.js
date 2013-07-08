@@ -19,7 +19,7 @@ module.exports = {
 	 *
 	 *  set to whatever environment you are running in. If you're generating static documentation this will be used as the context path for all API links
 	 *  i.e. if your website's context is http://yourhost/yourcontext, static links will be generated for /yourcontext/1.8/dojo/Animation etc.
-	 *  Typically running using your node app server the context path will be / (the default is /).
+	 *  Running using your node app server the root context is /api
 	 **/
 	contextPath: "/",
 
