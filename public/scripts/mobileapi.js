@@ -168,8 +168,14 @@ require([
             // TODO ignore objects which are expandable i.e. they likely have a item.type = 'object' (as compared to item.type = 'folder')
             var itemtype = item.type;
             //console.log(item.type, item.name);
-            if (itemtype === 'object') {
-                return;
+
+            // object|constructor|folder all seem to be able to have children
+            console.log("name = " + item.fullname + ", type = " + item.type + ", hasChildren = " + (item.children && item.children.length>0 ? "true" : "false"));
+
+            // constructor|object|folder|function|instance|undefined(this isn't right "dijit/robot") 
+            // only folder will have no associated view - also test for children to add a new list
+            if (itemtype === 'folder') {
+                //return;
             }
             treeitem = new ListItem({label : item.name, moveTo : '#', id : itemtype + "/" + item.fullname});
             treeitem.startup();
