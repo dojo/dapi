@@ -11,6 +11,6 @@ block main
                     li(data-dojo-type="dojox/mobile/ListItem", data-dojo-props="label:'Version #{version}', rightIcon:'mblDomButtonBlueCircleArrow', moveTo:'treesdataview_#{version.replace(/\./, '_')}' , version: '#{version}'") 
                         
         - each version, idx in config.versions
-            div(id="treesdataview_#{version.replace(/\./, '_')}", data-dojo-type="dojox/mobile/View")
-                div(id="headversion_#{version.replace(/\./, '_')}", data-dojo-type="dojox/mobile/Heading", data-dojo-props="label:\'DOJO Version\ #{version}', back:'Back', moveTo:'mainview'")
+            div(id="treesdataview_#{version.replace(/\./, '_')}", data-dojo-type="dojox/mobile/View", data-dojo-props="keepScrollPos:false")
+                div(id="headversion_#{version.replace(/\./, '_')}", data-dojo-type="dojox/mobile/Heading", data-dojo-props="label:\'DOJO Version\ #{version}', back:'Back', moveTo:'mainview' ")
                 div(id="treedatalist_#{version.replace(/\./, '_')}", data-dojo-type="dojox/mobile/RoundRectList")

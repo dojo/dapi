@@ -227,7 +227,7 @@ require([
                 obj.from = registry.byId("treesdataview_" + versionformatted);
                 toview = registry.byId(toviewid);
                 if (!toview) {
-                    toview = new View({id: toviewid});
+                    toview = new View({id: toviewid, keepScrollPos: false});
                     toview.placeAt(document.body);
                     var heading = new Heading({
                         label: toviewid + " " + version,
@@ -245,7 +245,7 @@ require([
                 var fromview =  registry.byId(fromviewid);
 
                 if (!fromview) {
-                    fromview = new View({id: fromviewid});
+                    fromview = new View({id: fromviewid, keepScrollPos: false});
                     fromview.placeAt(document.body);
                     var headingfrom = new Heading({
                         label: fromviewid + " " + version,
@@ -258,7 +258,7 @@ require([
 
 
                 if (!toview) {
-                    toview = new View({id: toviewid});
+                    toview = new View({id: toviewid, keepScrollPos: false});
                     toview.placeAt(document.body);
                     var headingto = new Heading({
                         label: toviewid + " " + version,
