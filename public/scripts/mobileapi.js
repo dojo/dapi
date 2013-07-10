@@ -28,16 +28,17 @@ require([
             //console.log(versionlistitems[idx]);
             on(versionlistitems[idx], "click", function (ev) {
                 var versionlistlink = registry.byId(ev.currentTarget.id);
-                var version = versionlistlink.moveTo;
+                var version = versionlistlink.version;
                 console.log(version);
                 //debugger;
                 var jsonfile = config.apiPath + '/' + version + '/tree.json';
                 request(jsonfile, {handleAs : "json"}).then(function (data) {
                     console.log(data, vc);
                     data.version = version;
-                    buildTreeView(data, "", "");
+                    buildTreeView(data, "", "", version);
                     // mainview.performTransition(treesdataview);
-                    versionlistlink.transitionTo("treesdataview");
+                    var versionrenamed = data.version.replace(/\./, '_');
+                    versionlistlink.transitionTo("treesdataview_" + versionrenamed);
                 }, function (err) {
                     alert(err);
                 });
@@ -135,9 +136,10 @@ require([
     });
 
 
-    var buildTreeView = function (data, path, djtype) {
-        var treedatalist = registry.byId("treedatalist"), treecontainernode = treedatalist.containerNode, treeitem = null, children = data.children;
-        var viewsfromto = getTreeViewsToTransition(path);
+    var buildTreeView = function (data, path, objtype, version) {
+        //var treedatalist = registry.byId("treedatalist"), treecontainernode = treedatalist.containerNode;
+        var treeitem = null, children = data.children;
+        var viewsfromto = getTreeViewsToTransition(path, data, version);
 
         //treedatalist.destroyDescendants();
         //console.log(treesdataview);
@@ -170,7 +172,7 @@ require([
             //console.log(item.type, item.name);
 
             // object|constructor|folder all seem to be able to have children
-            console.log("name = " + item.fullname + ", type = " + item.type + ", hasChildren = " + (item.children && item.children.length>0 ? "true" : "false"));
+            console.log("name = " + item.fullname + ", type = " + item.type + ", hasChildren = " + (item.children && item.children.length > 0 ? "true" : "false"));
 
             // constructor|object|folder|function|instance|undefined(this isn't right "dijit/robot") 
             // only folder will have no associated view - also test for children to add a new list
@@ -180,11 +182,11 @@ require([
             treeitem = new ListItem({label : item.name, moveTo : '#', id : itemtype + "/" + item.fullname});
             treeitem.startup();
             //treeitem.placeAt(treecontainernode);
-            treeitem.placeAt(viewsfromto.from.containerNode);
+            treeitem.placeAt(viewsfromto.to.containerNode);
 
             treeitem.on("click", function (ev) {
                 var linkto = this.id;
-
+                var viewsfromtoinner = getTreeViewsToTransition(linkto, data, version);
                 var pathsplit = linkto.split("/");
                 //.replace(/[^\/]*./, '');
                 var objtype = pathsplit[0];
@@ -192,10 +194,10 @@ require([
 
                 console.log(linkto, this.type);
                 if (item.type === 'folder') {
-                    buildTreeView(item, linkto, objtype);
+                    buildTreeView(item, linkto, objtype, version);
                     //viewsfromto.to.destroyDescendants();
-                    viewsfromto.from.performTransition(viewsfromto.to.id, 1, "slide");
-                    console.log(viewsfromto);
+                    viewsfromtoinner.from.performTransition(viewsfromtoinner.to.id, 1, "slide");
+                    console.log(viewsfromtoinner);
                     //treeitem.transitionTo("treesdataview");
                 } else {
                     showModuleView(item, linkto, objtype);
@@ -206,20 +208,71 @@ require([
     };
 
     // TODO : use this to get the from and to views to transition to, Return an object {from:view, to:view} so transitions can be performed, based on the level in the tree i.e. dijit (1), dijit/form (2)
-    var getTreeViewsToTransition = function (path) {
+    var getTreeViewsToTransition = function (path, data, version) {
         var obj = {};
         obj.to = "";
         obj.from = "";
+        var toview = null;
+        var versionformatted = version.replace(/\./, '_');
         if (path === "") {
-            obj.from = registry.byId("treesdataview");
-            obj.to = registry.byId("treesdataview1");
+            obj.from = registry.byId("mainview");
+            obj.to = registry.byId("treesdataview_" + versionformatted);
         } else {
             var pathsplit = path.split("/");
             //var objtype = pathsplit[0];
             var objectitem = pathsplit.shift();
-            //var idxadd = pathsplit.length == 1 ? "" : pathsplit.length; 
-            obj.from = registry.byId("treesdataview" + pathsplit.length);
-            obj.to = registry.byId("treesdataview" + (pathsplit.length + 1));
+            //var idxadd = pathsplit.length == 1 ? "" : pathsplit.length;
+            var toviewid =  pathsplit.join("/");
+            if (pathsplit.length === 1) { // i.e. we're at a root e.g. dijit, dojo, dojox etc
+                obj.from = registry.byId("treesdataview_" + versionformatted);
+                toview = registry.byId(toviewid);
+                if (!toview) {
+                    toview = new View({id: toviewid});
+                    toview.placeAt(document.body);
+                    var heading = new Heading({
+                        label: toviewid + " " + version,
+                        back : "back",
+                        moveTo : "treesdataview_" + versionformatted
+                    });
+                    toview.addChild(heading);
+                    toview.startup();
+                }
+                obj.to = toview;
+            } else {
+                toview = registry.byId(toviewid);
+                pathsplit.pop(); // remove the last element i.e. this will be the parent of the object i.e. dijit/form/_FormSelectWidget will be dijit/form
+                var fromviewid = pathsplit.join("/");
+                var fromview =  registry.byId(fromviewid);
+
+                if (!fromview) {
+                    fromview = new View({id: fromviewid});
+                    fromview.placeAt(document.body);
+                    var headingfrom = new Heading({
+                        label: fromviewid + " " + version,
+                        back : "back"
+                    });
+                    fromview.addChild(headingfrom);
+
+                    fromview.startup();
+                }
+
+
+                if (!toview) {
+                    toview = new View({id: toviewid});
+                    toview.placeAt(document.body);
+                    var headingto = new Heading({
+                        label: toviewid + " " + version,
+                        back : "back",
+                        moveTo : fromview.id
+                    });
+                    toview.addChild(headingto);
+                    toview.startup();
+                }
+                obj.from = fromview;
+                obj.to = toview;
+            }
+//            obj.from = registry.byId("treesdataview" + pathsplit.length);
+//            obj.to = registry.byId("treesdataview" + (pathsplit.length + 1));
             //console.log(obj);
         }
         return obj;
