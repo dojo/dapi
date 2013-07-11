@@ -12,10 +12,13 @@ require([
     "dojox/mobile/ListItem",
     "dijit/registry",
     "dojo/request",
-    "dojox/mobile/ViewController"
-], function (parser, dom, lang, ready, config, on, Heading, View, RoundRectList, RoundRect, ListItem, registry, request, ViewController) {
+    "dojox/mobile/ViewController",
+    "dojox/mobile/ScrollableView",
+    "dojo/dom-style"
+], function (parser, dom, lang, ready, config, on, Heading, View, RoundRectList, RoundRect, ListItem, registry, request, ViewController, ScrollableView, domStyle) {
     var moduleModel = null, moduleTree = null, currentVersion = null, apiSearchToolTipDialog = null, apiSearchWidget = null, vc = ViewController.getInstance(), treesdataview = null, mainview = null;
     ready(function () {
+        domStyle.set(document.body, "display", "block"); // naff but prevents the FOUC (body.display set to none in markup)
         var parsed = parser.parse();
         treesdataview = registry.byId("treesdataview");
         mainview = registry.byId("mainview");
@@ -209,6 +212,7 @@ require([
 
     // TODO : use this to get the from and to views to transition to, Return an object {from:view, to:view} so transitions can be performed, based on the level in the tree i.e. dijit (1), dijit/form (2)
     var getTreeViewsToTransition = function (path, data, version) {
+        var scrollableParams = {fixed : "top"};
         var obj = {};
         obj.to = "";
         obj.from = "";
@@ -227,14 +231,15 @@ require([
                 obj.from = registry.byId("treesdataview_" + versionformatted);
                 toview = registry.byId(toviewid);
                 if (!toview) {
-                    toview = new View({id: toviewid, keepScrollPos: false});
+                    toview = new ScrollableView({id: toviewid, keepScrollPos: false});
                     toview.placeAt(document.body);
                     var heading = new Heading({
                         label: toviewid + " " + version,
                         back : "back",
+                        fixed : "top",
                         moveTo : "treesdataview_" + versionformatted
                     });
-                    toview.addChild(heading);
+                    toview.addFixedBar(heading);
                     toview.startup();
                 }
                 obj.to = toview;
@@ -245,27 +250,29 @@ require([
                 var fromview =  registry.byId(fromviewid);
 
                 if (!fromview) {
-                    fromview = new View({id: fromviewid, keepScrollPos: false});
+                    fromview = new ScrollableView({id: fromviewid, keepScrollPos: false});
                     fromview.placeAt(document.body);
                     var headingfrom = new Heading({
                         label: fromviewid + " " + version,
+                        fixed : "top",
                         back : "back"
                     });
-                    fromview.addChild(headingfrom);
+                    fromview.addFixedBar(headingfrom);
 
                     fromview.startup();
                 }
 
 
                 if (!toview) {
-                    toview = new View({id: toviewid, keepScrollPos: false});
+                    toview = new ScrollableView({id: toviewid, keepScrollPos: false});
                     toview.placeAt(document.body);
                     var headingto = new Heading({
                         label: toviewid + " " + version,
                         back : "back",
+                        fixed : "top",
                         moveTo : fromview.id
                     });
-                    toview.addChild(headingto);
+                    toview.addFixedBar(headingto);
                     toview.startup();
                 }
                 obj.from = fromview;
