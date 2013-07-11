@@ -14,14 +14,18 @@ require([
     "dojo/request",
     "dojox/mobile/ViewController",
     "dojox/mobile/ScrollableView",
-    "dojo/dom-style"
-], function (parser, dom, lang, ready, config, on, Heading, View, RoundRectList, RoundRect, ListItem, registry, request, ViewController, ScrollableView, domStyle) {
+    "dojo/dom-style",
+    "dojox/mobile/bookmarkable"
+], function (parser, dom, lang, ready, config, on, Heading, View, RoundRectList, RoundRect, ListItem, registry, request, ViewController, ScrollableView, domStyle, bookmarkable) {
     var moduleModel = null, moduleTree = null, currentVersion = null, apiSearchToolTipDialog = null, apiSearchWidget = null, vc = ViewController.getInstance(), treesdataview = null, mainview = null;
     ready(function () {
         domStyle.set(document.body, "display", "block"); // naff but prevents the FOUC (body.display set to none in markup)
         var parsed = parser.parse();
         treesdataview = registry.byId("treesdataview");
         mainview = registry.byId("mainview");
+        console.warn("%cThis DOJO mobile API viewer is just a proof of concept and not fully functional", "color:black; background-color:red; font-size:14px");
+        console.warn("---- %cIt's aim is to show extending the API viewer to show an alternate presentation. Configure the views directory to mobileviews to see it in action", "text-decoration:underline;");
+
         console.log("Will use all ECMA6 features like querySelectorAll/forEach etc therefore I won't work in browsers that don't support me and I won't be using the compat package");
         // don't use query
         // query vars: 
