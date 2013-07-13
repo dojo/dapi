@@ -23,7 +23,7 @@ require([
     var moduleModel = null, moduleTree = null, currentVersion = null, apiSearchToolTipDialog = null, apiSearchWidget = null, vc = ViewController.getInstance(), treesdataview = null, mainview = null;
     ready(function () {
         domStyle.set(document.body, "display", "block"); // naff but prevents the FOUC (body.display set to none in markup)
-        new Accordion();// TODO : test if it's specific to Accordion i.e. by loading an instance first - this works if you load another Accordion module xhr pane first
+        //new Accordion();// TODO : test if it's specific to Accordion i.e. by loading an instance first - this works if you load another Accordion module xhr pane first
         var parsed = parser.parse();
         treesdataview = registry.byId("treesdataview");
         mainview = registry.byId("mainview");
