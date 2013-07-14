@@ -2,6 +2,7 @@ node_modules
 reference-guide
 # ignore .git
 .git/
+.git
 public/api/1.8/dijit/
 public/api/1.8/dojo/
 public/api/1.8/dojox/

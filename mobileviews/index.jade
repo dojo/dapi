@@ -4,7 +4,7 @@ block main
         div#mainview(data-dojo-type="dojox/mobile/View", data-dojo-props="selected: true, scrollType:2")
             h1#heading(data-dojo-type="dojox/mobile/Heading", data-dojo-props="label:\'The Dojo Toolkit API\', fixed:'top' ")
             div(data-dojo-type="dojox/mobile/RoundRect", data-dojo-props='shadow:true') 
-                p Welcome to the DOJO API viewer, this API viewer is optimised for mobile devices. 
+                p Welcome to the DOJO API viewer, this API viewer is optimised for mobile devices. This is intended as a demonstration of "theming" the DOJO API viewer
                 p Please select the version you want to view which are listed below
             ul#versionlist(data-dojo-type="dojox/mobile/RoundRectList")
                 - each version in config.versions

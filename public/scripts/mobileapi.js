@@ -18,8 +18,10 @@ require([
     "dojox/mobile/bookmarkable",
     "dojo/has",
     "dojox/mobile/ContentPane",
-    "dojox/mobile/Accordion"
-], function (parser, dom, lang, ready, config, on, Heading, View, RoundRectList, RoundRect, ListItem, registry, request, ViewController, ScrollableView, domStyle, bookmarkable, has, ContentPane, Accordion) {
+    "dojox/mobile/Accordion",
+    "dojox/mobile/lazyLoadUtils",
+    "dojox/mobile/Container"
+], function (parser, dom, lang, ready, config, on, Heading, View, RoundRectList, RoundRect, ListItem, registry, request, ViewController, ScrollableView, domStyle, bookmarkable, has, ContentPane, Accordion, lazyLoadUtils, Container) {
     var moduleModel = null, moduleTree = null, currentVersion = null, apiSearchToolTipDialog = null, apiSearchWidget = null, vc = ViewController.getInstance(), treesdataview = null, mainview = null;
     ready(function () {
         domStyle.set(document.body, "display", "block"); // naff but prevents the FOUC (body.display set to none in markup)
@@ -68,7 +70,7 @@ require([
         //treedatalist.destroyDescendants();
         //console.log(treesdataview);
         // we're not root and we've been sent a path that looks like folder/dijit/Tree  (folder|object|function etc) 
-        if (!dataitem.children ||  dataitem.children &&  dataitem.children > 0) {
+        if (!dataitem.children ||  dataitem.children &&  dataitem.children.length === 0) {
             return;
         }
         var roundlist = new RoundRectList();
@@ -153,8 +155,12 @@ require([
                 obj.to = toview;
             } else {
                 toview = registry.byId(toviewid);
-                pathsplit.pop(); // remove the last element i.e. this will be the parent of the object i.e. dijit/form/_FormSelectWidget will be dijit/form
-                var fromviewid = pathsplit.join("/"), fromview =  registry.byId(fromviewid);
+                var lastitem = pathsplit.pop(); // remove the last element i.e. this will be the parent of the object i.e. dijit/form/_FormSelectWidget will be dijit/form
+                var fromviewid = pathsplit.join("/");
+                if (lastitem.indexOf(".") > -1) {
+                    fromviewid = fromviewid + "/" + lastitem.split(".")[0]; // i.e. this is like dojox/mobile/Accordion.ChildWidgetProperties 
+                }
+                var fromview =  registry.byId(fromviewid);
 
                 if (!fromview) {
                     fromview = createView(item, fromview, versionformatted, fromview + " " + version);

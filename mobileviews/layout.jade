@@ -6,7 +6,7 @@ html
   
     title #{title} Version #{module !=null ? module.version : config.defaultVersion}
     // link(rel='stylesheet', href="#{config.dojoBase}/dojo/resources/dojo.css")
-    script(src='#{config.dojoBase}/dojox/mobile/deviceTheme.js')
+    script(src='#{config.dojoBase}/dojox/mobile/deviceTheme.js', data-dojo-config="mblUserAgent: 'iPad'")
     //link(rel='stylesheet', href="#{config.dojoBase}/dojox/mobile/themes/#{config.theme}/#{config.theme}.css")
     // link(rel='stylesheet', href="/#{config.dojobase}/dijit/themes/#{config.theme}/#{config.theme}.css")
      
@@ -23,7 +23,7 @@ html
             mblAlwaysHideAddressBar : 1,
             mblForceBookmarkable: 1
         }
-
+    link(rel='stylesheet', href="#{config.contextPath}css/mobile.css")
     script(type="text/javascript", src="#{config.dojoBase}/dojo/dojo.js")
     script(type="text/javascript", src="#{config.contextPath}scripts/mobileapi.js")
 
@@ -33,12 +33,6 @@ html
     
     //link(rel='stylesheet', href="#{config.contextPath}scripts/syntaxhighlighter/css/shCore.css")
     //link(rel='stylesheet', href="#{config.contextPath}scripts/syntaxhighlighter/css/shThemeDefault.css")
-    | <style type="text/css">
-    |   .moduleRoundRect {word-wrap: break-word;font-size: .75rem;}
-    |   .moduleDescription {margin-bottom: 12px;}
-    |   /* .moduleRoundRect .jsdoc-field {border-top: 1px solid black; margin : 2 0 2 0;} */
-    |   /* .moduleRoundRect .jsdoc-field {margin-top: 5px; border: 1px solid black; border-radius: 10px; box-sizing: content-box; padding: 5px; } */
-    | </style>
 
   body(class="#{config.theme}", style="display:none;")
     block main

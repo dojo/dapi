@@ -5,41 +5,42 @@ div.moduleRoundRect(data-dojo-type="dojox/mobile/RoundRect", data-dojo-props='sh
     - //  h2 !{autoHyperlink(module.description, config, module.version)}  SUMMARY - broke - need to understand hyperlink
     div.moduleDescription(data-dojo-type="dojox/mobile/Accordion", data-dojo-props='singleOpen:true')
         div(data-dojo-type='dojox/mobile/ContentPane', data-dojo-props="label:'Description', animation : true")
-            - if (module.mixins != null)
-                div.jsdoc-mixins
-                    label Extends 
-                    each item in module.mixins
-                        a.jsdoc-link(href='#{config.contextPath}api/#{module !=null ? module.version : config.defaultVersion}/#{item.location}') #{item.location},   
-            - if (module.summary != null)
-                  div.jsdoc-full-summary !{autoHyperlink(module.summary, config, module.version)}
-            - if (module.description != null)
-                  div.jsdoc-full-summary !{autoHyperlink(module.description, config, module.version)}
-            - if (module.usage !=null)
-                  div.jsdoc-function-information 
-                    h3 Usage:
-                    div.function-signature
-                        span.keyword var
-                        |  foo = new #{module.location}
-                        span.parameters (#{module.usage.parameterList});
-                  div.jsdoc-inheritance Defined by !{autoHyperlink(module.usage.from, config, module.version)}
-                  - if (module.usage.description !=null)
-                    div.jsdoc-summary
-                        !{module.usage.description}
-            params = module.parameters
-            returnTypes = module.returnTypes
-            returnDescription = module.returnDescription
-            include module/parametertable
-            - if (config.refDocs.enabled == true)
-                - refDoc = getRefDoc(module.location, module.version, config)
-                    - if (refDoc)
-                        p See the 
-                            a(href='#{config.refDocs.url + module.version + "/" + refDoc + config.refDocs.suffixToGenerate}', target='_blank') #{module.location} reference documentation
-                            |  for more information.
-            div.jsdoc-children
-                div.jsdoc-fieldlist
-            examples = module.examples
-                    include module/examples
-            - // end description
+            div(data-dojo-type="dojox/mobile/RoundRect", data-dojo-props='shadow:true')
+                - if (module.mixins != null)
+                    div.jsdoc-mixins
+                        label Extends 
+                        each item in module.mixins
+                            a.jsdoc-link(href='#{config.contextPath}api/#{module !=null ? module.version : config.defaultVersion}/#{item.location}') #{item.location},   
+                - if (module.summary != null)
+                      div.jsdoc-full-summary !{autoHyperlink(module.summary, config, module.version)}
+                - if (module.description != null)
+                      div.jsdoc-full-summary !{autoHyperlink(module.description, config, module.version)}
+                - if (module.usage !=null)
+                      div.jsdoc-function-information 
+                        h3 Usage:
+                        div.function-signature
+                            span.keyword var
+                            |  foo = new #{module.location}
+                            span.parameters (#{module.usage.parameterList});
+                      div.jsdoc-inheritance Defined by !{autoHyperlink(module.usage.from, config, module.version)}
+                      - if (module.usage.description !=null)
+                        div.jsdoc-summary
+                            !{module.usage.description}
+                params = module.parameters
+                returnTypes = module.returnTypes
+                returnDescription = module.returnDescription
+                include module/parametertable
+                - if (config.refDocs.enabled == true)
+                    - refDoc = getRefDoc(module.location, module.version, config)
+                        - if (refDoc)
+                            p See the 
+                                a(href='#{config.refDocs.url + module.version + "/" + refDoc + config.refDocs.suffixToGenerate}', target='_blank') #{module.location} reference documentation
+                                |  for more information.
+                div.jsdoc-children
+                    div.jsdoc-fieldlist
+                examples = module.examples
+                        include module/examples
+                - // end description
     
     div.jsdoc-children
         div.jsdoc-fields
