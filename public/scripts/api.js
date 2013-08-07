@@ -20,9 +20,10 @@ require([
     "dijit/TooltipDialog",
     "dijit/form/DropDownButton",
     "dojo/on",
-    "dijit/popup"
+    "dijit/popup",
+    "dojo/window" //djwindow
 ], function (parser, dom, lang, ready, BorderContainer, TabContainer, ContentPane, AccordionContainer,
-        ModuleTreeModel, ModuleTree, config, query, registry, MenuItem, Menu, array, MenuSeparator, FilteringSelect, TooltipDialog, DropDownButton, on, popup) {
+        ModuleTreeModel, ModuleTree, config, query, registry, MenuItem, Menu, array, MenuSeparator, FilteringSelect, TooltipDialog, DropDownButton, on, popup, djwindow) {
     var moduleModel = null, moduleTree = null, currentVersion = null, apiSearchToolTipDialog = null, apiSearchWidget = null;
     ready(function () {
         var parsed = parser.parse();
@@ -31,11 +32,19 @@ require([
         apiSearchToolTipDialog.closable = true;
         s.onchange = lang.hitch(s, versionChange);
         buildTree();
+        // test if baseTab exists - this is maybe poor as it's expectation is that onLoad a baseTab is created (as well as the welcome tab) which means we've permalink loaded
+        var baseTab = registry.byId("baseTab");
+        if (baseTab) {
+            var permalinkarr = query(".jsdoc-permalink", baseTab.domNode)[0].innerHTML.split("/");
+            // /contextPath/version/modulepath e.g. /api/1.9/dijit/Dialog 
+            var requestedpath = permalinkarr.splice(3, permalinkarr.length).join("/");
+            baseTab.set("page", requestedpath);
+            setTreePath(requestedpath);
+        }
 // selectAndClick setup the welcome page (selectAndClick is defined by buildTree)
         var welcomeTab = registry.byId("baseTab_welcomeTab");
         query(".dtk-object-title a", welcomeTab.domNode).forEach(function (node, index) {
             on(node, "click", function (e) {
-                console.log(e.target.innerHTML);
                 var targetpatharr = e.target.name.split("/"), treepatharr = [], tmp2 = null;
                 // TODO : do this better, filter/map?
                 // builds an array of paths for a tree (must be in this order) -> an ending slash (empty i.e. a folder) -> a module path to but not the module i.e.charting in dojox/charting/Chart (idx < arr.length -1) -> and the module name (the last item)   
@@ -61,8 +70,6 @@ require([
         if (contentpane) {
             contentpane.initModulePane();
         }
-
-
         var tabContainer = registry.byId("content");
         /* temp - add a close all option - move to context menu on the tab label */
         dojo.getObject("dijit.layout._ScrollingTabControllerMenuButton").prototype.loadDropDown = function (callback) {
@@ -118,8 +125,6 @@ require([
         if (moduleModel !== null) {
             moduleTree.destroyRecursive();
         }
-        //moduleModel = new ModuleTreeModel(baseUrl + 'lib/tree.php?v=' + currentVersion);
-        // moduleModel = new ModuleTreeModel(config.apiPath + '/' + selectedVersion + '/tree.json'); // for loading different versions
         // this is the default version - will need a global to check on when the selected version is changed
         var version = currentVersion ?  currentVersion : config.apiDefault;
         var jsonfile = config.apiPath + '/' + version + '/tree.json';
@@ -197,12 +202,7 @@ require([
 
 		moduleTree.set("path", path).then(function () {
             var selectednode = moduleTree.selectedNode;
-            //var top = selectednode.domNode.offsetTop;
-            //var left = selectednode.domNode.offsetLeft;
-
-            selectednode.domNode.scrollIntoView();
-            popup.close(apiSearchToolTipDialog);
-            //apiSearchWidget.setValue("");
+            djwindow.scrollIntoView(selectednode.domNode);
         },
 		function (err) {
 			console.log("tree: error setting path to " + path);

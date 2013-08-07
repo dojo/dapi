@@ -6,10 +6,9 @@ var express = require('express'),
     jade = require('jade'),
     mkdirp = require("mkdirp"),
     generate = require('./lib/generate'),
-    envConfig = require('./appConfig'),
+    config = require('./config'),
     refdoc = require('./lib/refdoc'),
-    tree = require('./lib/tree'),
-    config = envConfig.appConfig;
+    tree = require('./lib/tree');
 
 console.log("started at " + new Date());
 var details = __dirname + '/public/' + config.apiDataPath + '/' + config.defaultVersion + '/details.json'; // latest doc parse with all packs
