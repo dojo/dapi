@@ -1,0 +1,45 @@
+table.jsdoc-parameters {
+	font-size: 1em;
+	width: auto;
+	margin: 1em 0;
+	border-collapse: collapse;
+}
+table.jsdoc-parameters th,
+table.jsdoc-parameters td {
+	padding: 0.25em 0.5em;
+	text-align: left;
+	vertical-align: top;
+	border: 1px solid #999;
+}
+table.jsdoc-parameters th {
+	background-color: #5BAED5;
+	
+	
+	font-weight: bold;
+}
+table.jsdoc-parameters td {
+	/* background-color: #fff; */
+}
+table.jsdoc-parameters .jsdoc-param-description p {
+	margin: 0;
+}
+.moduleRoundRect { word-wrap: break-word;font-size: .75rem; }
+.moduleDescription { margin-bottom: 12px; }
+
+
+.moduleRoundRect .jsdoc-title {
+    color: grey;
+    font-size: 1.6em;
+    margin-bottom: 3px;
+}
+.moduleRoundRect .jsdoc-link {
+    color: grey;
+}
+.toggleoptions {
+   color : #5BAED5; 
+ }
+ .privatecheck, .inheritedcheck, .extensioncheck {
+     width : 100%;
+     text-align: left;
+     margin: 5px 0px 5px 0px;
+  }

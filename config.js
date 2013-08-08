@@ -11,7 +11,7 @@ module.exports = {
 	/**
 	 * theme is used to configure the dijit theme and body class name to use.
 	 **/
-	theme: "claro",
+	theme: "iphone",
 
 	/**
 	 * Change your contextPath to suit whatever environment you are using e.g. if generating static docs for www.yourhost/yourapipath/index.html,
@@ -49,7 +49,7 @@ module.exports = {
 	/**
 	 * viewsDirectory used for extending/rebranding for your own UI needs. The default location is 'views', if you want to rebrand the application, copy the views directory to another and set the relevant name.
 	 **/
-	viewsDirectory: "views",
+	viewsDirectory: "mobileviews",
 
 	/**
 	 * moduleExtension is used to append a suffix to the module file name; it's unlikely you'll need to change this.
