@@ -21,7 +21,7 @@ module.exports = {
 	 *  i.e. if your website's context is http://yourhost/yourcontext, static links will be generated for /yourcontext/1.8/dojo/Animation etc.
 	 *  Running using your node app server the root context is /api
 	 **/
-	contextPath: "/",
+	contextPath: "/api/public/",
 
 	/**
 	 * port is used to configure what port the app.js server runs on (as per usual you'll need to use sudo if using ports less than 1024)
@@ -36,7 +36,7 @@ module.exports = {
 	/**
 	 * versions is used to make available versions loadable for app.js i.e. the list of versions in the dropdown - these need to match the directory names
 	 **/
-	versions: ["1.6", "1.7", "1.8", "1.9"],
+	versions: ["1.3", "1.4", "1.5", "1.6", "1.7", "1.8", "1.9"],
 
 
 	/**
@@ -61,9 +61,9 @@ module.exports = {
 		enabled: true,
 
 		/**
-		 * dir - set to a local directory to search for reference documentation. You can set to an absolute path or relative to the app directory itself e.g. "reference-guide/"
+		 * dir - set to a local directory to search for reference documentation. You can set to an absolute path or relative to the api directory itself e.g. "reference-guide/"
 		 **/
-		dir: "reference-guide/",
+		dir: "../website/reference-guide/",
 
 		/**
 		 * url - set to a URL you want the reference document to point to. The version path will be added and module full path location e.g. "/reference-guide/1.9/dojo/_base/sniff". You can also use an absolute URL path.
@@ -72,7 +72,7 @@ module.exports = {
 		/**
 		 * suffix - set to the file extension of the reference docs you want to locally search for.
 		 **/
-		suffix: ".rst",
+		suffix: ".html",
 
 		/**
 		 * suffixToGenerate - This is used to append a file extension to the module reference document URL to link to.
