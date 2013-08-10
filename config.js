@@ -21,7 +21,7 @@ module.exports = {
 	 *  i.e. if your website's context is http://yourhost/yourcontext, static links will be generated for /yourcontext/1.8/dojo/Animation etc.
 	 *  Running using your node app server the root context is /api
 	 **/
-	contextPath: "/api/public/",
+	contextPath: "/api/",
 
 	/**
 	 * port is used to configure what port the app.js server runs on (as per usual you'll need to use sudo if using ports less than 1024)

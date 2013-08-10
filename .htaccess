@@ -1,28 +1,20 @@
-# Uncomment these for debugging
-# php_flag display_startup_errors on
-# php_flag display_errors on
-# php_flag html_errors on
-
 RewriteEngine On
 
 # Set the prefix for all matches
 RewriteBase   /api/
 
-# Use old PHP code to serve old documentation
-RewriteRule ^public/api/(1.[3-7])/tree.json$ lib.old/tree.php?v=$1 [L,QSA]
-RewriteRule ^public/api/(1.[3-7])/(.*).html$ lib.old/item.php?v=$1&p=$2 [L,QSA]
+# Dojo's Website's api data is stored in the /api-data directory, parallel to the /api directory,
+# so redirect data requests there
+RewriteRule ^api/(.+)$ /api-data/$1 [L]
 
-# Workaround behavior where this file runs again after the RewriteRules above execute.
+# Requests for images, scripts etc. that are accessed from the staticapi.html page
+RewriteRule ^(css|images|scripts)/(.+)$ public/$1/$2 [L]
+
+# Workaround behavior where this file runs again after the RewriteRule above execute.
 # Want to use the END flag instead of L flag but it's only available in Apache 2.4.
-# It will be a URL like lib.old/item.php?v=1.7&p=dojo/AdapterRegistry
-RewriteRule ^lib.old/(.*)$ lib.old/$1 [L]
+RewriteRule ^public/(.*)$ public/$1 [L]
 
-# Pass through URL's that are accessed from the staticapi.html page
-RewriteRule ^public/(.+) public/$1 [L]
 
-# For anything else (ex: permalink like 1.8/dijit/Dialog), handle it from statically generated doc, if available
-# RewriteCond %{DOCUMENT_ROOT}/dapi/public/staticapi.html -f
+# For anything else (ex: permalink like 1.8/dijit/Dialog), handle it from statically generated doc
+#RewriteRule ^(index.html|index.php|index)(/)(.*)$ public/staticapi.html?qs=$3 [L,QSA]
 RewriteRule ^(.*)$ public/staticapi.html?qs=$1 [L,QSA]
-
-# And otherwise use app.js (untested)
-# RewriteRule ^(.*)$ http://%{HTTP_HOST}:3000/$1 [L,QSA]
