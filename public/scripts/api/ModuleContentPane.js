@@ -11,20 +11,20 @@ define(["dojo/_base/declare",
     "dijit/registry"
 ], function (declare, kernel, lang, ContentPane, query, domConstruct, config, on, domClass, domStyle, registry) {
 
-// module:
-//        api/ContentPane
+	// module:
+	//        api/ContentPane
 
-
-    return declare("api.ModuleContentPane", [ContentPane], {
+    return declare("api.ModuleContentPane", ContentPane, {
         version : "",
-        extensionOn : true, //possibly move to the contructor though its not an object
-        privateOn : false, //possibly move to the contructor though its not an object
-        inheritedOn : true, //possibly move to the contructor though its not an object
+        extensionOn : true, //possibly move to the constructor though its not an object
+        privateOn : false, //possibly move to the constructor though its not an object
+        inheritedOn : true, //possibly move to the constructor though its not an object
 
         onLoad : function (data) {
             this.initModulePane();
 
         }, /// end onLoad
+
         adjustLists : function (context, obj) {
             // summary:
             //        Hide/show privates and inherited methods according to setting of private and inherited toggle buttons.
@@ -72,8 +72,6 @@ define(["dojo/_base/declare",
                 innerHTML: tbc
             }, this.domNode, "first");
             //this.adjustLists(this.domNode);
-
-
 
             var extensionBtn = query(".jsdoc-extension", toolbar)[0];
             on(extensionBtn, "click", lang.hitch(this, function (e) {
@@ -144,7 +142,7 @@ define(["dojo/_base/declare",
                     domConstruct.place("<pre class='brush: " + (isXML ? "xml" : "js") + ";'>" + child.innerHTML + "</pre>", parent, "after");
                     domConstruct.destroy(parent);
                 });
-            // run highlighter
+            	// run highlighter
                 SyntaxHighlighter.highlight();
             }
         },
