@@ -157,14 +157,18 @@ define(["dojo/_base/declare",
                 }
                 // Stop the browser from navigating to a new page
                 evt.preventDefault();
-                // Open tab for specified module
 
-                // again this is shit but it needs fixed first to properly understand all url types e.g. +1 needing added for the / when running using localhost--
-                    // this ends up like /1.8/dojo/on  i.e. version then page 
-                var versionandpagearr = this.href.substr(this.href.lastIndexOf(config.apiPath) + config.apiPath.length + 1).split("/");
-                var version = versionandpagearr[0];
-                var page = versionandpagearr.splice(1).join("/");
-                var url = config.apiPath + "/" + version + "/" + page;
+				// Open tab for specified module
+				var tmp = this.href.
+					replace(/^[a-z]*:\/\//, "").	// remove http://
+					replace(/[^/]+/, "").			// remove localhost
+					replace(config.context, "").	// remove /api/
+					replace(/#.*/, "").				// remove #foo
+					split("/");
+				var version = tmp[0];
+				var page = tmp.slice(1).join("/");
+				var url = config.apiPath + "/" + version + "/" + page;
+
                 var id = page.replace(/[\/.]/g, "_") + "_" + version;
                 var existingPane = registry.byId(id);
                 if (existingPane) {
@@ -175,17 +179,33 @@ define(["dojo/_base/declare",
                         id: id,
                         page: page,		// save page because when we select a tab we locate the corresponding TreeNode
                         href: url + config.moduleExtension,
-                        //content : {version: "version" , itemtid: item.id, namel: item.name, fullname : item.fullname, type: item.type},  
-                        //title: title,
                         title: page + " (" + version + ")",
                         closable: true,
-                        version : version,
+                        version: version,
                         parseOnLoad: false
                     });
                     pane.startup();
                     _this.getParent().addChild(pane);
                     _this.getParent().selectChild(pane);
                     pane.initModulePane();
+
+					// TODO:
+					// After the page has loaded, scroll to specified anchor in the page
+					/*
+					var anchor = this.href.replace(/.*#/, "");
+					if(anchor){
+						pane.onLoadDeferred.then(function(){
+							var target = query('a[name="' + anchor + '"]', context);
+							if(target[0]){
+								var anim = smoothScroll({
+									node: target[0],
+									win: context,
+									duration: 600
+								}).play();
+							}
+						});
+					}
+					*/
                 }
             });
         }
