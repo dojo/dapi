@@ -1,7 +1,0 @@
-# Only item.php and class-tree.php should be accessed directly
-<FilesMatch "(item|tree)\.php">
-    Order Allow,Deny
-    Allow from all
-</FilesMatch>
-Order Deny,Allow
-Deny from all
