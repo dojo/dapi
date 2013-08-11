@@ -11,7 +11,7 @@ var express = require('express'),
     tree = require('./lib/tree');
 
 console.log("started at " + new Date());
-var details = __dirname + '/public/' + config.apiDataPath + '/' + config.defaultVersion + '/details.json'; // latest doc parse with all packs
+var details = __dirname + '/public/' + config.contextPath + config.defaultVersion + '/details.json'; // latest doc parse with all packs
 var app = express();
 app.use(express.compress());
 // jade indenting
@@ -44,7 +44,7 @@ app.use(stylus.middleware(
 ));
 app.use(config.contextPath, express.static(__dirname + '/public'));
 // index - / at the moment - change so it's more specific/configurable 
-app.get(config.contextPath + "api", function (req, res) {
+app.get(config.contextPath , function (req, res) {
     if (config.isDebug === true) {
         console.log(new Date().toTimeString() + ", is xhr = " + req.xhr); // use this to determine if it's a permalink url or a module request url
     }
@@ -54,7 +54,7 @@ var re = new RegExp(config.moduleExtension + "$");
 
 // apidata should be config - already used in dojoConfig // for module clicks
 // also should be able to generate htlml from module urls (and version) e.g. this currently works http://localhost:3000/apidata/version/dijit/_TemplatedMixin
-app.get(config.contextPath + config.apiDataPath + '/*', function (req, res, next) {
+app.get(config.contextPath + '*', function (req, res, next) {
     // replace with regex
     if (config.isDebug === true) {
         console.log(new Date().toTimeString() + ", is xhr = " + req.xhr + ", requested = " + req.params.toString()); // use this to determine if it's a permalink url or a module request url
@@ -81,7 +81,7 @@ app.get(config.contextPath + config.apiDataPath + '/*', function (req, res, next
         res.sendfile(legacyfile); // could be a security issue here
         return;
     }
-    var detailsFile = "./public/" + config.apiDataPath + "/" + requestedVersion + "/details.json";
+    var detailsFile = "./public/data/" + requestedVersion + "/details.json";
     generate.generate(detailsFile, modulefile, requestedVersion, function (err, retObjectItem) {
         if (err) {
             console.error(err);

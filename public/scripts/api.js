@@ -127,7 +127,7 @@ require([
         }
         // this is the default version - will need a global to check on when the selected version is changed
         var version = currentVersion ?  currentVersion : config.apiDefault;
-        var jsonfile = config.apiPath + '/' + version + '/tree.json';
+        var jsonfile = config.apiPath + "data/" + version + '/tree.json';
         moduleModel = new ModuleTreeModel(jsonfile);
         moduleTree = new ModuleTree({
             id: "moduleTree",

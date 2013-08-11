@@ -159,13 +159,13 @@ define(["dojo/_base/declare",
 				// Open tab for specified module
 				var tmp = this.href.
 					replace(/^[a-z]*:\/\//, "").	// remove http://
-					replace(/[^/]+/, "").			// remove localhost
+					replace(/[^/]+/, "").			// remove domain
 					replace(config.context, "").	// remove /api/
 					replace(/#.*/, "").				// remove #foo
 					split("/");
 				var version = tmp[0];
 				var page = tmp.slice(1).join("/");
-				var url = config.apiPath + "/" + version + "/" + page;
+				var url = config.apiPath + version + "/" + page;
 
                 var id = page.replace(/[\/.]/g, "_") + "_" + version;
                 var existingPane = registry.byId(id);

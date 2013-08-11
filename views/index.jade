@@ -41,7 +41,7 @@ block main
                     div#moduleTreePane(data-dojo-type="dijit.layout.ContentPane", data-dojo-props="title: 'By Module', selected: true")
                     //- an alternative menu for google because we're ajax menu based
                     p#plainTree See the - 
-                        a(href="#{config.contextPath}#{config.apiDataPath}/#{module !=null ? module.version : config.defaultVersion}/tree.html") plain HTML tree 
+                        a(href="#{config.contextPath}#{module !=null ? module.version : config.defaultVersion}/tree.html") plain HTML tree
                         | listing all modules.
                     script(type="text/javascript")
                         //- hide the menu if JS is available, this is poor, it expects (and possibly incorrectly) that only search engines don't use js                    
