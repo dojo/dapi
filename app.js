@@ -11,7 +11,6 @@ var express = require('express'),
     tree = require('./lib/tree');
 
 console.log("started at " + new Date());
-//var details = __dirname + '/public/' + config.contextPath + config.defaultVersion + '/details.json'; // latest doc parse with all packs
 var app = express();
 app.use(express.compress());
 // jade indenting
