@@ -11,7 +11,7 @@ var express = require('express'),
     tree = require('./lib/tree');
 
 console.log("started at " + new Date());
-var details = __dirname + '/public/' + config.contextPath + config.defaultVersion + '/details.json'; // latest doc parse with all packs
+//var details = __dirname + '/public/' + config.contextPath + config.defaultVersion + '/details.json'; // latest doc parse with all packs
 var app = express();
 app.use(express.compress());
 // jade indenting
@@ -44,7 +44,7 @@ app.use(stylus.middleware(
 ));
 app.use(config.contextPath, express.static(__dirname + '/public'));
 // index - / at the moment - change so it's more specific/configurable 
-app.get(config.contextPath , function (req, res) {
+app.get(config.contextPath, function (req, res) {
     if (config.isDebug === true) {
         console.log(new Date().toTimeString() + ", is xhr = " + req.xhr); // use this to determine if it's a permalink url or a module request url
     }

@@ -8,9 +8,8 @@ grunt.registerTask('travis', 'jshint');
     jshint: {
       // define the files to lint
       files: ['Guntfile.js', 'app.js', 'spider.js', 'config.js', 'lib/**/*.js', 'test/**/*.js', 'public/scripts/api.js', 'public/scripts/api/*.js'],
-      jshintrc : "jshint.config",
       // configure JSHint (documented at http://www.jshint.com/docs/)
-      options: {jshintrc: 'jshint.config'}
+      options: {jshintrc: '.jshintrc'}
       }
    });
 };
