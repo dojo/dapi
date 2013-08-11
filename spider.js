@@ -7,9 +7,8 @@ var stylus = require('stylus'),
     generate = require('./lib/generate'),
     config = require('./config'),
     refdoc = require('./lib/refdoc'),
-    tree = require('./lib/tree');
-
-var details = __dirname + '/public/scripts/api/' + config.defaultVersion + '/details.json'; // latest doc parse with all packs
+    tree = require('./lib/tree'),
+    staticFolder = 'staticoutput/';
 
 // macro calls
 // fails with static generation - todo: FOR SOME REASON I NEED TO USE A GLOBAL so it works???
@@ -38,19 +37,24 @@ var treedata = fs.readFileSync(treejade, "utf8");
 var fntree = jade.compile(treedata, {filename: treejade, pretty: true});
 var treehtml = fntree({ title : 'DOJO API Viewer', config: config, version: config.defaultVersion, tree : treeitems});
 
-var staticFolder = process.cwd() + "/public/api/";
-mkdirp.sync(staticFolder);
-fs.writeFileSync("public/staticapi.html", indexhtml); // FTM make sure it's a different name from index.html, express static will load generated spider index.html first (before template)
+fs.writeFileSync(staticFolder + "index.html", indexhtml); // FTM make sure it's a different name from index.html, express static will load generated spider index.html first (before template)
 var starttime = new Date().getTime();
-var detailsFile = "./public/api/" + config.defaultVersion + "/details.json";
+var detailsFile = "./public/data/" + config.defaultVersion + "/details.json";
 
 // compile module
 var modulejade = __dirname + "/" + config.viewsDirectory + "/module.jade";
 var data = fs.readFileSync(modulejade, "utf8");
 var fn = jade.compile(data, {filename: modulejade, pretty: true, autoHyperlink: autoHyperlink, convertType: convertType});
 
-var versionfolder = staticFolder + config.defaultVersion + "/";
-fs.writeFileSync(versionfolder + "/tree.html", treehtml);
+var versionfolder = staticFolder  + config.defaultVersion + "/";
+mkdirp.sync(versionfolder);
+fs.writeFileSync(versionfolder + "tree.html", treehtml);
+
+// write data
+var dataFolder = staticFolder + 'data/' + config.defaultVersion;
+mkdirp.sync(dataFolder);
+fs.writeFileSync(dataFolder + "/tree.json", JSON.stringify(treeitems));
+
 
 // load details json (so it can iterate over the objects and generate html)
 generate.loadDetails(detailsFile,  config.defaultVersion, function (err, details) {

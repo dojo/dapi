@@ -142,7 +142,7 @@ define(["dojo/_base/declare",
                     domConstruct.place("<pre class='brush: " + (isXML ? "xml" : "js") + ";'>" + child.innerHTML + "</pre>", parent, "after");
                     domConstruct.destroy(parent);
                 });
-            	// run highlighter
+                // run highlighter
                 SyntaxHighlighter.highlight();
             }
         },
