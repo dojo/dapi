@@ -40,13 +40,6 @@ module.exports = {
 
 
 	/**
-	 * used to control the URL (portion after contextPath), and also the subdirectory under public/ where the API data
-	 * is retrieved from
-	 **/
-	apiDataPath: "api",
-
-
-	/**
 	 * viewsDirectory used for extending/rebranding for your own UI needs. The default location is 'views', if you want to rebrand the application, copy the views directory to another and set the relevant name.
 	 **/
 	viewsDirectory: "views",
@@ -84,5 +77,5 @@ module.exports = {
 	/**
 	 * isDebug - set this to true to view any node.js express and application logging.
 	 **/
-	isDebug: false
+	isDebug: true
 };

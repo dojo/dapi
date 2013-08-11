@@ -9,7 +9,7 @@ var stylus = require('stylus'),
     refdoc = require('./lib/refdoc'),
     tree = require('./lib/tree');
 
-var details = __dirname + '/public/scripts/' + config.apiDataPath + '/' + config.defaultVersion + '/details.json'; // latest doc parse with all packs
+var details = __dirname + '/public/scripts/api/' + config.defaultVersion + '/details.json'; // latest doc parse with all packs
 
 // macro calls
 // fails with static generation - todo: FOR SOME REASON I NEED TO USE A GLOBAL so it works???
@@ -38,11 +38,11 @@ var treedata = fs.readFileSync(treejade, "utf8");
 var fntree = jade.compile(treedata, {filename: treejade, pretty: true});
 var treehtml = fntree({ title : 'DOJO API Viewer', config: config, version: config.defaultVersion, tree : treeitems});
 
-var staticFolder = process.cwd() + "/public/" + config.apiDataPath + "/";
+var staticFolder = process.cwd() + "/public/api/";
 mkdirp.sync(staticFolder);
 fs.writeFileSync("public/staticapi.html", indexhtml); // FTM make sure it's a different name from index.html, express static will load generated spider index.html first (before template)
 var starttime = new Date().getTime();
-var detailsFile = "./public/" + config.apiDataPath + "/" + config.defaultVersion + "/details.json";
+var detailsFile = "./public/api/" + config.defaultVersion + "/details.json";
 
 // compile module
 var modulejade = __dirname + "/" + config.viewsDirectory + "/module.jade";
