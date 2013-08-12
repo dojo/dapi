@@ -121,7 +121,6 @@ require([
 	// Initial setup code
 
 	var parsed = parser.parse();
-
 	var s = dom.byId("versionSelector");
 	apiSearchToolTipDialog = registry.byId("apiSearchToolTipDialog");
 	apiSearchToolTipDialog.closable = true;
@@ -184,14 +183,7 @@ require([
 			label: "Close all",
 			iconClass: "dijitInline dijitIcon dijitMenuItemIcon dijitIconDelete",
 			onClick: function () {
-				var _this = this;
-				tabContainer.getChildren().forEach(function (item) {
-					console.log(item);
-					if (item.closable) {
-						tabContainer.removeChild(item);
-						item.destroyRecursive();
-					}
-				});
+                closeAllTabs();
 			}
 		});
 		this.dropDown.addChild(menuItem);
@@ -216,6 +208,25 @@ require([
 		}, this);
 		callback();
 	};
-	/* end temp - add a close all option - move to context menu on the tab label */
+    // found via layout/TabController.js - id: this.id + "_Menu"
+    var contentTabListMenu = dijit.registry.byId("content_tablist_Menu");
+    var closeMenu = new MenuItem({
+        id: this.id + "_Menu_CloseAll",
+        label: "Close All",
+        onClick: function(evt){
+            closeAllTabs();
+        }
+    });
+    contentTabListMenu.addChild(closeMenu);
+
+    function closeAllTabs() {
+        tabContainer.getChildren().forEach(function (item) {
+            if (item.closable) {
+                tabContainer.removeChild(item);
+                item.destroyRecursive();
+            }
+        });
+    }
+
 });
 
