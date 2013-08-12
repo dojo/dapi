@@ -6,6 +6,7 @@ RewriteBase   /api/
 # Dojo's Website's api data is stored in the /api-data directory, parallel to the /api directory,
 # so redirect data requests there
 RewriteRule ^api/(.+)$ /api-data/$1 [L]
+RewriteRule ^([0-9].+)$ /api-data/$1 [L]
 
 # Requests for images, scripts etc. that are accessed from the staticapi.html page
 RewriteRule ^(css|images|scripts|data)/(.+)$ public/$1/$2 [L]
