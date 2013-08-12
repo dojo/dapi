@@ -8,7 +8,7 @@ RewriteBase   /api/
 RewriteRule ^api/(.+)$ /api-data/$1 [L]
 
 # Requests for images, scripts etc. that are accessed from the staticapi.html page
-RewriteRule ^(css|images|scripts)/(.+)$ public/$1/$2 [L]
+RewriteRule ^(css|images|scripts|data)/(.+)$ public/$1/$2 [L]
 
 # Workaround behavior where this file runs again after the RewriteRule above execute.
 # Want to use the END flag instead of L flag but it's only available in Apache 2.4.
@@ -17,4 +17,4 @@ RewriteRule ^public/(.*)$ public/$1 [L]
 
 # For anything else (ex: permalink like 1.8/dijit/Dialog), handle it from statically generated doc
 #RewriteRule ^(index.html|index.php|index)(/)(.*)$ public/staticapi.html?qs=$3 [L,QSA]
-RewriteRule ^(.*)$ public/staticapi.html?qs=$1 [L,QSA]
+RewriteRule ^(.*)$ staticoutput/index.html?qs=$1 [L,QSA]
