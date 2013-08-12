@@ -129,15 +129,18 @@ require([
 
 	buildTree();
 
-	// test if baseTab exists - this is maybe poor as it's expectation is that onLoad a baseTab is created
-	// (as well as the welcome tab) which means we've permalink loaded
-	var baseTab = registry.byId("baseTab");
-	if (baseTab) {
-		var permalinkarr = query(".jsdoc-permalink", baseTab.domNode)[0].innerHTML.split("/");
-		// /contextPath/version/modulepath e.g. /api/1.9/dijit/Dialog
-		var requestedpath = permalinkarr.splice(3, permalinkarr.length).join("/");
-		baseTab.set("page", requestedpath);
-		setTreePath(requestedpath);
+	// Handle URL argument for initial tab
+	if(location.search){
+		// The only formats we support are qs=dijit/Dialog or qs=1.9/dijit/Dialog
+		var page = location.search.replace("?qs=", "");
+		if(/^[0-9]/.test(page)){
+			currentVersion = page.replace(/\/.*/, "");
+			buildTree();
+			page = page.replace(/[^/]+\//, "");
+		}
+		moduleTree.addTabPane(page, currentVersion|| config.apiDefault);
+		// TODO: select element in tree (setTreePath(requestedpath))... but where is good place for that code,
+		// it's needed whenever the user selects a tab too
 	}
 
 	// selectAndClick setup the welcome page (selectAndClick is defined by buildTree)
@@ -164,15 +167,7 @@ require([
 	});
 	// end selectAndClick
 
-	// TODO - syntax highlighter for permalinked loaded modules -- plus this should be reusable (mixin?) as it's also
-	// used in moduletree.js
-	// should do as i thought, create an extended ContentPane with these functions because the show/hide semantics
-	// needs to be captured too (for summaries)
-	var content = dom.byId("content");
-	var contentpane = registry.byId("baseTab"); // the default loaded module tab (even when there is a permalink and intro screen) will always be named baseTab - intro screen id changed
-	if (contentpane) {
-		contentpane.initModulePane();
-	}
+
 	var tabContainer = registry.byId("content");
 	/* temp - add a close all option - move to context menu on the tab label */
 	dojo.getObject("dijit.layout._ScrollingTabControllerMenuButton").prototype.loadDropDown = function (callback) {
