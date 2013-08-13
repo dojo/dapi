@@ -186,24 +186,6 @@ define(["dojo/_base/declare",
                     _this.getParent().addChild(pane);
                     _this.getParent().selectChild(pane);
                     pane.initModulePane();
-
-					// TODO:
-					// After the page has loaded, scroll to specified anchor in the page
-					/*
-					var anchor = this.href.replace(/.*#/, "");
-					if(anchor){
-						pane.onLoadDeferred.then(function(){
-							var target = query('a[name="' + anchor + '"]', context);
-							if(target[0]){
-								var anim = smoothScroll({
-									node: target[0],
-									win: context,
-									duration: 600
-								}).play();
-							}
-						});
-					}
-					*/
                 }
             });
         }
