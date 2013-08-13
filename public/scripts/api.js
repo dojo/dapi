@@ -130,16 +130,26 @@ require([
 
 	// Handle URL argument for initial tab
 	if(location.search){
-		// The only formats we support are qs=dijit/Dialog or qs=1.9/dijit/Dialog
+		// The only formats we support are qs=dijit/Dialog or qs=1.9/dijit/Dialog#show
 		var page = location.search.replace("?qs=", "");
 		if(/^[0-9]/.test(page)){
 			currentVersion = page.replace(/\/.*/, "");
 			buildTree();
 			page = page.replace(/[^/]+\//, "");
 		}
-		moduleTree.addTabPane(page, currentVersion|| config.apiDefault);
-		// TODO: select element in tree (setTreePath(requestedpath))... but where is good place for that code,
-		// it's needed whenever the user selects a tab too
+		var version = currentVersion || config.apiDefault,
+			pane = moduleTree.addTabPane(page, version);
+
+		var anchor = location.hash && location.hash.substring(1);
+		if(anchor){
+			anchor = (version + page).replace(/[/\.]/g, "_") + "_" + anchor;	// ex: 1_9dijit_Dialog_show
+			pane.onLoadDeferred.then(function(){
+				var target = query('a[name="' + anchor + '"]', pane.domNode);
+				if(target[0]){
+					djwindow.scrollIntoView(target[0]);
+				}
+			});
+		}
 	}
 
 	// selectAndClick setup the welcome page (selectAndClick is defined by buildTree)
