@@ -16,7 +16,7 @@ module.exports = function(grunt) {
                 options: {                      // Options
                     stdout: true
                 },
-                command: 'git clone https://github.com/lbod/dojo-api-data.git ./public/data'
+                command: ['rm -r -f ./public/data', 'git clone https://github.com/lbod/dojo-api-data.git public/data'].join(';')
             }
         }
     });
