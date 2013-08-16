@@ -32,8 +32,9 @@ require([
 			moduleTree.destroyRecursive();
 		}
 		// this is the default version - will need a global to check on when the selected version is changed
-		var version = currentVersion ?  currentVersion : config.apiDefault;
-		var jsonfile = config.apiPath + "data/" + version + '/tree.json';
+		var version = currentVersion ?  currentVersion : config.apiDefault,
+            jsonfile = config.apiPath + "data/" + version + '/tree.json',
+            tabContainer = null;
 		moduleModel = new ModuleTreeModel(jsonfile);
 		moduleTree = new ModuleTree({
 			id: "moduleTree",
@@ -49,7 +50,7 @@ require([
 		moduleModel.getRoot(function (data) {
 			buildSearch(data);
 		});
-		var tabContainer = registry.byId("content");
+		tabContainer = registry.byId("content");
 		tabContainer.watch("selectedChildWidget", function (attr, oldVal, selectedChildWidget) {
 			// If we are still scrolling the Tree from a previous run, cancel that animation
 			if (moduleTree.scrollAnim) {
@@ -84,7 +85,6 @@ require([
 		apiSearchWidget.store.setData(store);
 
 		apiSearchWidget.on("Change", function (data) {
-			//var path = ["root"].concat(data.split("/"));
 			setTreePath(data);
 		});
 	}
@@ -120,8 +120,7 @@ require([
 
 	// Initial setup code
 
-	var parsed = parser.parse();
-	var s = dom.byId("versionSelector");
+	var parsed = parser.parse(),s = dom.byId("versionSelector");
 	apiSearchToolTipDialog = registry.byId("apiSearchToolTipDialog");
 	apiSearchToolTipDialog.closable = true;
 	s.onchange = lang.hitch(s, versionChange);
@@ -131,16 +130,16 @@ require([
 	// Handle URL argument for initial tab
 	if(location.search){
 		// The only formats we support are qs=dijit/Dialog or qs=1.9/dijit/Dialog#show
-		var page = location.search.replace("?qs=", "");
+		var page = location.search.replace("?qs=", ""), version = null, anchor = null;
 		if(/^[0-9]/.test(page)){
 			currentVersion = page.replace(/\/.*/, "");
 			buildTree();
 			page = page.replace(/[^/]+\//, "");
 		}
-		var version = currentVersion || config.apiDefault,
+		version = currentVersion || config.apiDefault,
 			pane = moduleTree.addTabPane(page, version);
 
-		var anchor = location.hash && location.hash.substring(1);
+		anchor = location.hash && location.hash.substring(1);
 		if(anchor){
 			anchor = (version + page).replace(/[/\.]/g, "_") + "_" + anchor;	// ex: 1_9dijit_Dialog_show
 			pane.onLoadDeferred.then(function(){
@@ -176,9 +175,8 @@ require([
 	});
 	// end selectAndClick
 
-
 	var tabContainer = registry.byId("content");
-	/* temp - add a close all option - move to context menu on the tab label */
+	/* monkey patch to add close all option to the context menu popup (as well as each tab) - mainly helps with touch devices that can't use tablist right click */
 	dojo.getObject("dijit.layout._ScrollingTabControllerMenuButton").prototype.loadDropDown = function (callback) {
 		this.dropDown = new Menu({
 			id: this.containerId + "_menu",
@@ -218,7 +216,7 @@ require([
 		}, this);
 		callback();
 	};
-    // found via layout/TabController.js - id: this.id + "_Menu"
+    // found via layout/TabController.js - id: this.id + "_Menu" (another monkey patch)
     var contentTabListMenu = dijit.registry.byId("content_tablist_Menu");
     var closeMenu = new MenuItem({
         id: this.id + "_Menu_CloseAll",
@@ -237,6 +235,5 @@ require([
             }
         });
     }
-
 });
 
