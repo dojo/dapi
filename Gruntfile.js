@@ -4,7 +4,7 @@ module.exports = function(grunt) {
     grunt.loadNpmTasks('grunt-contrib-clean');
     grunt.registerTask('default', ['jshint']);
     grunt.registerTask('travis', 'jshint');
-    grunt.registerTask('devTasks', ['shell']); // i.e. grunt devTasks:installAPIExampleData
+    grunt.registerTask('devTasks', ['shell']); // i.e. grunt --verbose clean:dev devTasks:installAPIExampleData
     grunt.initConfig({
         jshint: {
             // define the files to lint
