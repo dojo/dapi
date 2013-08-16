@@ -10,7 +10,7 @@ h1(class="#{convertType(module.type)}Icon36 jsdoc-title") #{module.location}
 - if (module.kwArgs && module.kwArgs == true)
     p <strong>Note:</strong> This is not a real constructor, but just a description of the type of object that should be passed as
         | a parameter to some method(s), and/or the return value from some method(s).
-        | In other words, the type exists only for documentation purposes, and you cannot call <code>new #{module.location.replace(/.*\//, "")}</code>
+        | In other words, the type exists only for documentation purposes, and you <strong>cannot</strong> call <code>new #{module.location.replace(/.*\//, "")}()</code>
 - if (module.mixins != null)
     div.jsdoc-mixins
         label Extends 
