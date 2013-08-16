@@ -20,10 +20,11 @@ require([
     "dijit/form/DropDownButton",
     "dojo/on",
     "dijit/popup",
-    "dojo/window", //djwindow
+    "dojo/window", // djwindow
+    "dojo/aspect", // aspect
 	"dojo/domReady!"
 ], function (parser, dom, lang, BorderContainer, TabContainer, ContentPane, AccordionContainer,
-        ModuleTreeModel, ModuleTree, config, query, registry, MenuItem, Menu, array, MenuSeparator, FilteringSelect, TooltipDialog, DropDownButton, on, popup, djwindow) {
+        ModuleTreeModel, ModuleTree, config, query, registry, MenuItem, Menu, array, MenuSeparator, FilteringSelect, TooltipDialog, DropDownButton, on, popup, djwindow, aspect) {
 
     var moduleModel = null, moduleTree = null, currentVersion = null, apiSearchToolTipDialog = null, apiSearchWidget = null;
 
@@ -177,45 +178,19 @@ require([
 
 	var tabContainer = registry.byId("content");
 	/* monkey patch to add close all option to the context menu popup (as well as each tab) - mainly helps with touch devices that can't use tablist right click */
-	dojo.getObject("dijit.layout._ScrollingTabControllerMenuButton").prototype.loadDropDown = function (callback) {
-		this.dropDown = new Menu({
-			id: this.containerId + "_menu",
-			ownerDocument: this.ownerDocument,
-			dir: this.dir,
-			lang: this.lang,
-			textDir: this.textDir
-		});
-		var container = registry.byId(this.containerId);
-		// add close all
-		var menuItem = new MenuItem({
-			label: "Close all",
-			iconClass: "dijitInline dijitIcon dijitMenuItemIcon dijitIconDelete",
-			onClick: function () {
+    aspect.after(tabContainer.tablist._menuBtn, 'loadDropDown', function (data) {
+        var menuItem = new MenuItem({
+            label: "Close all",
+            iconClass: "dijitInline dijitIcon dijitMenuItemIcon dijitIconDelete",
+            onClick: function () {
                 closeAllTabs();
-			}
-		});
-		this.dropDown.addChild(menuItem);
-		this.dropDown.addChild(new MenuSeparator());
-		// end close all
+            }
+        });
+        this.dropDown.addChild(menuItem, 0);
+        this.dropDown.addChild(new MenuSeparator(), 1);
 
-		array.forEach(container.getChildren(), function (page) {
-			var menuItem = new MenuItem({
-				id: page.id + "_stcMi",
-				label: page.title,
-				iconClass: page.iconClass,
-				disabled: page.disabled,
-				ownerDocument: this.ownerDocument,
-				dir: page.dir,
-				lang: page.lang,
-				textDir: page.textDir,
-				onClick: function () {
-					container.selectChild(page);
-				}
-			});
-			this.dropDown.addChild(menuItem);
-		}, this);
-		callback();
-	};
+    });
+
     // found via layout/TabController.js - id: this.id + "_Menu" (another monkey patch)
     var contentTabListMenu = dijit.registry.byId("content_tablist_Menu");
     var closeMenu = new MenuItem({
