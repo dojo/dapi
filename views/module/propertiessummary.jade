@@ -12,6 +12,8 @@
                     span !{prop.shortSummary}
                     - if (prop.private)
                       span.jsdoc-private(title="private")
+                    - if (prop.extensionModule)
+                        span.jsdoc-extension(title="Must manually require () " + prop.from +" to access")
                     - if (prop.inherited)
                       span.jsdoc-inherited(title='inherited from #{prop.from}')
 
