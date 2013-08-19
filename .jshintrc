@@ -55,6 +55,6 @@
 "supernew": true,
 "trailing": true,
 "validthis": true,
-"white": false,
+"white": true,
 "wsh": false
 }
