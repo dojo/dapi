@@ -58,8 +58,9 @@ require([
 				moduleTree.scrollAnim.stop();
 			}
 
-			if (!selectedChildWidget.page) {
-				// This tab doesn't have a corresponding entry in the tree.   It must be the welcome tab.
+			if (!selectedChildWidget.page || moduleTree.version !== selectedChildWidget.version) {
+				// This tab doesn't have a corresponding entry in the tree, it must be the welcome tab or it's a different version from the tree displayed
+                moduleTree.set("path", []);
 				return;
 			}
 			setTreePath(selectedChildWidget.page);
@@ -121,10 +122,10 @@ require([
 
 	// Initial setup code
 
-	var parsed = parser.parse(),s = dom.byId("versionSelector");
+	var parsed = parser.parse(),versionSelector = dom.byId("versionSelector");
 	apiSearchToolTipDialog = registry.byId("apiSearchToolTipDialog");
 	apiSearchToolTipDialog.closable = true;
-	s.onchange = lang.hitch(s, versionChange);
+	versionSelector.onchange = lang.hitch(versionSelector, versionChange);
 
 	buildTree();
 
