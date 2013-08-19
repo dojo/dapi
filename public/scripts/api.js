@@ -117,12 +117,12 @@ require([
             },
             function (err) {
                 console.log("tree: error setting path to " + path);
-        });
+            });
     }
 
     // Initial setup code
 
-    var parsed = parser.parse(),versionSelector = dom.byId("versionSelector");
+    var parsed = parser.parse(), versionSelector = dom.byId("versionSelector");
     apiSearchToolTipDialog = registry.byId("apiSearchToolTipDialog");
     apiSearchToolTipDialog.closable = true;
     versionSelector.onchange = lang.hitch(versionSelector, versionChange);
@@ -130,23 +130,23 @@ require([
     buildTree();
 
     // Handle URL argument for initial tab
-    if(location.search){
+    if (location.search) {
         // The only formats we support are qs=dijit/Dialog or qs=1.9/dijit/Dialog#show
         var page = location.search.replace("?qs=", ""), version = null, anchor = null;
-        if(/^[0-9]/.test(page)){
+        if (/^[0-9]/.test(page)) {
             currentVersion = page.replace(/\/.*/, "");
             buildTree();
             page = page.replace(/[^/]+\//, "");
         }
         version = currentVersion || config.apiDefault,
-            pane = moduleTree.addTabPane(page, version);
+        pane = moduleTree.addTabPane(page, version);
 
         anchor = location.hash && location.hash.substring(1);
-        if(anchor){
+        if (anchor) {
             anchor = (version + page).replace(/[/\.]/g, "_") + "_" + anchor;    // ex: 1_9dijit_Dialog_show
-            pane.onLoadDeferred.then(function(){
+            pane.onLoadDeferred.then(function () {
                 var target = query('a[name="' + anchor + '"]', pane.domNode);
-                if(target[0]){
+                if (target[0]) {
                     djwindow.scrollIntoView(target[0]);
                 }
             });
@@ -155,7 +155,7 @@ require([
 
     // selectAndClick setup the welcome page (selectAndClick is defined by buildTree)
     var welcomeTab = registry.byId("baseTab_welcomeTab");
-    query(".dtk-object-title a", welcomeTab.domNode).forEach(function (node, index) {
+	query(".dtk-object-title a", welcomeTab.domNode).forEach(function (node, index) {
         on(node, "click", function (e) {
             var targetpatharr = e.target.name.split("/"), treepatharr = [], tmp2 = null;
             // TODO : do this better, filter/map?
@@ -197,7 +197,7 @@ require([
     var closeMenu = new MenuItem({
         id: this.id + "_Menu_CloseAll",
         label: "Close All",
-        onClick: function(evt){
+        onClick: function (evt) {
             closeAllTabs();
         }
     });
