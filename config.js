@@ -50,6 +50,11 @@ module.exports = {
 	 **/
 	moduleExtension: '.html',
 
+    /**
+     * bugdb link for reporting errors in the documentation, remove if this isn't necessary
+     **/
+    bugdb : 'https://docs.google.com/spreadsheet/viewform?hl=en_US&formkey=dFlDcHEyaHMwbEd4MFBObkNrX0E1MFE6MQ&entry_0=',
+
 	refDocs: {
 		enabled: true,
 

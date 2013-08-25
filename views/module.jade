@@ -53,3 +53,6 @@ div.jsdoc-children
         include module/properties
         include module/methods
         include module/events
+
+- if (config.bugdb != null)
+    a.feedback(href='#{config.bugdb}#{config.contextPath}#{module !=null ? module.version : config.defaultVersion}/#{module.location}') Error in the documentation? Can’t find what you are looking for? Let us know!

@@ -15,7 +15,8 @@ html
             apiPath : '#{config.contextPath}',
             context : '#{config.contextPath}',
             apiDefault : '#{config.defaultVersion}',
-            moduleExtension : '#{config.moduleExtension}'
+            moduleExtension : '#{config.moduleExtension}',
+            #{(config.bugdb != null) ? 'bugdb : \'' + config.bugdb + '\'' : 'bugdb : null'}
         }
 
     script(type="text/javascript", src="#{config.dojoBase}/dojo/dojo.js")
