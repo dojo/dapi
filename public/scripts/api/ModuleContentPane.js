@@ -8,11 +8,14 @@ define(["dojo/_base/declare",
     "dojo/on",
     "dojo/dom-class",
     "dojo/dom-style",
-    "dijit/registry"
-], function (declare, kernel, lang, ContentPane, query, domConstruct, config, on, domClass, domStyle, registry) {
+    "dijit/registry",
+    "dijit/Dialog"
+], function (declare, kernel, lang, ContentPane, query, domConstruct, config, on, domClass, domStyle, registry, Dialog) {
 
 	// module:
 	//        api/ContentPane
+    helpDialog = new Dialog({ title: "Feedback" }).placeAt(document.body); // global
+    helpDialog.startup();
 
     return declare("api.ModuleContentPane", ContentPane, {
         version : "",
@@ -126,6 +129,10 @@ define(["dojo/_base/declare",
                     domStyle.set(d, "display", "none");
                 }
             });
+            // bugdb link
+            if (config.bugdb) {
+                this._bugDbReport(context, link);
+            }
 
 ///////////////// TODO: END IN PROGRESS
 
@@ -186,6 +193,20 @@ define(["dojo/_base/declare",
                     _this.getParent().addChild(pane);
                     _this.getParent().selectChild(pane);
                     pane.initModulePane();
+                }
+            });
+        },
+        _bugDbReport : function (context, link) {
+            var reportlink = query("a.feedback", context)[0];
+            on(reportlink, 'click', function (event) {
+                event.preventDefault();
+                if (!event.button && !event.metaKey && !event.ctrlKey && !event.shiftKey && !event.altKey) {
+                    helpDialog.set("content", domConstruct.create("iframe", {
+                        src: this.href,
+                        frameborder: "0",
+                        style: "width: 47em; height: 500px; border: 0 none"
+                    }));
+                    helpDialog.show();
                 }
             });
         }
