@@ -16,7 +16,7 @@ convertType = generate.convertType;
 autoHyperlink = generate.autoHyperlink;
 hasRefDoc = refdoc.hasRefDoc;
 getRefDoc = refdoc.getRefDoc;
-
+var versions = tree.getVersions(config, false);
 function compile(str, path) {
     return stylus(str)
     .set('filename', path)
@@ -31,33 +31,33 @@ var data = fs.readFileSync(indexjade, "utf8");
 var fn = jade.compile(data, {filename: indexjade, pretty: true});
 var indexhtml = fn({ title : 'DOJO API Viewer', config: config, module : null});
 // generate tree.html
-var treeitems = tree.getTree(config.defaultVersion, config);
+var treeitems = tree.getTree(config.spiderVersion, config);
 var treejade = __dirname + "/" + config.viewsDirectory + "/tree.jade";
 var treedata = fs.readFileSync(treejade, "utf8");
 var fntree = jade.compile(treedata, {filename: treejade, pretty: true});
-var treehtml = fntree({ title : 'DOJO API Viewer', config: config, version: config.defaultVersion, tree : treeitems});
+var treehtml = fntree({ title : 'DOJO API Viewer', config: config, version: config.spiderVersion, tree : treeitems});
 
 fs.writeFileSync(staticFolder + "index.html", indexhtml); // FTM make sure it's a different name from index.html, express static will load generated spider index.html first (before template)
 var starttime = new Date().getTime();
-var detailsFile = "./public/data/" + config.defaultVersion + "/details.json";
+var detailsFile = "./public/data/" + config.spiderVersion + "/details.json";
 
 // compile module
 var modulejade = __dirname + "/" + config.viewsDirectory + "/module.jade";
 var data = fs.readFileSync(modulejade, "utf8");
 var fn = jade.compile(data, {filename: modulejade, pretty: true, autoHyperlink: autoHyperlink, convertType: convertType});
 
-var versionfolder = staticFolder  + config.defaultVersion + "/";
+var versionfolder = staticFolder  + config.spiderVersion + "/";
 mkdirp.sync(versionfolder);
 fs.writeFileSync(versionfolder + "tree.html", treehtml);
 
 // write data
-var dataFolder = staticFolder + 'data/' + config.defaultVersion;
+var dataFolder = staticFolder + 'data/' + config.spiderVersion;
 mkdirp.sync(dataFolder);
 fs.writeFileSync(dataFolder + "/tree.json", JSON.stringify(treeitems));
 
 
 // load details json (so it can iterate over the objects and generate html)
-generate.loadDetails(detailsFile,  config.defaultVersion, function (err, details) {
+generate.loadDetails(detailsFile,  config.spiderVersion, function (err, details) {
     if (err) {
         console.error(err);
     }
@@ -65,7 +65,7 @@ generate.loadDetails(detailsFile,  config.defaultVersion, function (err, details
     Object.keys(details).forEach(function (item) {
         var itemlcl = details[item];
         var modulefile = itemlcl.location;
-        generate.generate(detailsFile, modulefile, config.defaultVersion, function (err, retObjectItem) {
+        generate.generate(detailsFile, modulefile, config.spiderVersion, function (err, retObjectItem) {
             // modulefile.match(/[^/]* /); // move to regex
             var patharr = modulefile.split("/");
             var modname =  patharr.pop();

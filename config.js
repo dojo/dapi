@@ -33,10 +33,17 @@ module.exports = {
 	 **/
 	defaultVersion: '1.9',
 
+    /**
+     * spiderVersion version to generate via spider.js
+     **/
+    spiderVersion : '1.8',
+
 	/**
 	 * versions is used to make available versions loadable for app.js i.e. the list of versions in the dropdown - these need to match the directory names
+     * TODO: (maybe remove from tree.js, or if keeping, add a flag to enable this) Read and set the versions read from the available versions in the api directory
 	 **/
 	versions: ['1.3', '1.4', '1.5', '1.6', '1.7', '1.8', '1.9'],
+    versionIgnores : /(\.git|\.md)/,
 
 
 	/**
@@ -82,5 +89,5 @@ module.exports = {
 	/**
 	 * isDebug - set this to true to view any node.js express and application logging.
 	 **/
-	isDebug: true
+	isDebug: false
 };
