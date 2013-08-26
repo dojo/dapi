@@ -11,6 +11,7 @@ var express = require('express'),
     tree = require('./lib/tree');
 
 console.log("started at " + new Date());
+var versions = tree.getVersions(config, false);
 var app = express();
 app.use(express.compress());
 // jade indenting
@@ -49,6 +50,7 @@ app.get(config.contextPath, function (req, res) {
     }
     res.render('index', { title : 'DOJO API Viewer', config: config, module : null});
 });
+
 var re = new RegExp(config.moduleExtension + "$");
 
 // apidata should be config - already used in dojoConfig // for module clicks
