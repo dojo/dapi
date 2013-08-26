@@ -36,7 +36,7 @@ module.exports = {
     /**
      * spiderVersion version to generate via spider.js
      **/
-    spiderVersion : '1.8',
+    spiderVersion : '1.9',
 
 	/**
 	 * versions is used to make available versions loadable for app.js i.e. the list of versions in the dropdown - these need to match the directory names
