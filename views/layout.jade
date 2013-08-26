@@ -10,17 +10,15 @@ html
     link(rel='stylesheet', href="#{config.contextPath}css/site_original.css")
     script(type="text/javascript")
         // packages: [{name:"api", location:location.pathname.replace(/\/[^/]+$/, '/') + "#{config.contextPath}scripts/api"}],
-        var tmp = "//" + location.host + "#{config.contextPath}" +"#{config.apiDataPath}";
-        dojoConfig = {async:1, debug:1, noGlobals:0, 
+        dojoConfig = {async:1, debug:1, noGlobals:0,
             packages: [{name:"api", location: "#{config.contextPath}scripts/api"}],
-            apiPath : '#{config.contextPath}#{config.apiDataPath}',
+            apiPath : '#{config.contextPath}',
             context : '#{config.contextPath}',
             apiDefault : '#{config.defaultVersion}',
-            moduleExtension : '#{config.moduleExtension}'
+            moduleExtension : '#{config.moduleExtension}',
+            #{(config.bugdb != null) ? 'bugdb : \'' + config.bugdb + '\'' : 'bugdb : null'}
         }
-        // , baseUrl : tmp
 
-    //script(type="text/javascript", src="//ajax.googleapis.com/ajax/libs/dojo/1.8.3/dojo/dojo.js")
     script(type="text/javascript", src="#{config.dojoBase}/dojo/dojo.js")
     script(type="text/javascript", src="#{config.contextPath}scripts/api.js")
     

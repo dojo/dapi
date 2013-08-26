@@ -29,3 +29,5 @@ public/api/1.8/details_huge.xml
 staticoutput/
 .idea/dapi.iml
 
+#ignore data
+public/data

@@ -8,23 +8,26 @@ define(["dojo/_base/declare",
     "dojo/on",
     "dojo/dom-class",
     "dojo/dom-style",
-    "dijit/registry"
-], function (declare, kernel, lang, ContentPane, query, domConstruct, config, on, domClass, domStyle, registry) {
+    "dijit/registry",
+    "dijit/Dialog"
+], function (declare, kernel, lang, ContentPane, query, domConstruct, config, on, domClass, domStyle, registry, Dialog) {
 
-// module:
-//        api/ContentPane
+	// module:
+	//        api/ContentPane
+    helpDialog = new Dialog({ title: "Feedback" }).placeAt(document.body); // global
+    helpDialog.startup();
 
-
-    return declare("api.ModuleContentPane", [ContentPane], {
+    return declare("api.ModuleContentPane", ContentPane, {
         version : "",
-        extensionOn : true, //possibly move to the contructor though its not an object
-        privateOn : false, //possibly move to the contructor though its not an object
-        inheritedOn : true, //possibly move to the contructor though its not an object
+        extensionOn : true, //possibly move to the constructor though its not an object
+        privateOn : false, //possibly move to the constructor though its not an object
+        inheritedOn : true, //possibly move to the constructor though its not an object
 
         onLoad : function (data) {
             this.initModulePane();
 
         }, /// end onLoad
+
         adjustLists : function (context, obj) {
             // summary:
             //        Hide/show privates and inherited methods according to setting of private and inherited toggle buttons.
@@ -72,8 +75,6 @@ define(["dojo/_base/declare",
                 innerHTML: tbc
             }, this.domNode, "first");
             //this.adjustLists(this.domNode);
-
-
 
             var extensionBtn = query(".jsdoc-extension", toolbar)[0];
             on(extensionBtn, "click", lang.hitch(this, function (e) {
@@ -128,6 +129,10 @@ define(["dojo/_base/declare",
                     domStyle.set(d, "display", "none");
                 }
             });
+            // bugdb link
+            if (config.bugdb) {
+                this._bugDbReport(context, link);
+            }
 
 ///////////////// TODO: END IN PROGRESS
 
@@ -144,7 +149,7 @@ define(["dojo/_base/declare",
                     domConstruct.place("<pre class='brush: " + (isXML ? "xml" : "js") + ";'>" + child.innerHTML + "</pre>", parent, "after");
                     domConstruct.destroy(parent);
                 });
-            // run highlighter
+                // run highlighter
                 SyntaxHighlighter.highlight();
             }
         },
@@ -157,14 +162,18 @@ define(["dojo/_base/declare",
                 }
                 // Stop the browser from navigating to a new page
                 evt.preventDefault();
-                // Open tab for specified module
 
-                // again this is shit but it needs fixed first to properly understand all url types e.g. +1 needing added for the / when running using localhost--
-                    // this ends up like /1.8/dojo/on  i.e. version then page 
-                var versionandpagearr = this.href.substr(this.href.lastIndexOf(config.apiPath) + config.apiPath.length + 1).split("/");
-                var version = versionandpagearr[0];
-                var page = versionandpagearr.splice(1).join("/");
-                var url = config.apiPath + "/" + version + "/" + page;
+				// Open tab for specified module
+				var tmp = this.href
+                    .replace(/^[a-z]*:\/\//, "")	// remove http://
+                    .replace(/[^/]+/, "")			// remove domain
+                    .replace(config.context, "")	// remove /api/
+                    .replace(/#.*/, "")				// remove #foo
+                    .split("/");
+				var version = tmp[0];
+				var page = tmp.slice(1).join("/");
+				var url = config.apiPath + version + "/" + page;
+
                 var id = page.replace(/[\/.]/g, "_") + "_" + version;
                 var existingPane = registry.byId(id);
                 if (existingPane) {
@@ -175,17 +184,29 @@ define(["dojo/_base/declare",
                         id: id,
                         page: page,		// save page because when we select a tab we locate the corresponding TreeNode
                         href: url + config.moduleExtension,
-                        //content : {version: "version" , itemtid: item.id, namel: item.name, fullname : item.fullname, type: item.type},  
-                        //title: title,
                         title: page + " (" + version + ")",
                         closable: true,
-                        version : version,
+                        version: version,
                         parseOnLoad: false
                     });
                     pane.startup();
                     _this.getParent().addChild(pane);
                     _this.getParent().selectChild(pane);
                     pane.initModulePane();
+                }
+            });
+        },
+        _bugDbReport : function (context, link) {
+            var reportlink = query("a.feedback", context)[0];
+            on(reportlink, 'click', function (event) {
+                event.preventDefault();
+                if (!event.button && !event.metaKey && !event.ctrlKey && !event.shiftKey && !event.altKey) {
+                    helpDialog.set("content", domConstruct.create("iframe", {
+                        src: this.href,
+                        frameborder: "0",
+                        style: "width: 47em; height: 500px; border: 0 none"
+                    }));
+                    helpDialog.show();
                 }
             });
         }

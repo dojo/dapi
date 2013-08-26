@@ -1,0 +1,27 @@
+RewriteEngine On
+# This .htaccess should sit in the php api viewer directory. The intention is to rewrite only data requests (and item.php) to the php lib.old dir in the api viewer
+# All other requests should be sent to the dapi static output html (including data) e.g. lib.old/api_data for <1.8 and public/data for 1.8+
+# Set the prefix for all matches
+RewriteBase   /api/
+
+RewriteRule ^data/(1.[3-7].+)$ api_data/$1 [L]
+
+# rewrite for legacy module api requests, the new front end requests everything with .html and therefore needs stripped for item.php
+RewriteRule ^(1.[3-7])/(.*)(.html)$ lib.old/item.php?v=$1&p=$2 [L,QSA]
+# rewite rule for permalinks that are < 1.8 i.e. don't have the qs meta redirect added e.g. http://localhost/api/1.6/dijit/Calendar > http://localhost/api/index.html?qs=1.6/dijit/Calendar
+RewriteRule ^(1.[3-7])/(.*)$ /api/index.html?qs=$1/$2 [R=301,L]
+
+# Requests for images, scripts etc. that are accessed from the index.html page
+# Want to use the END flag instead of L flag but it's only available in Apache 2.4.
+RewriteRule ^(css|images|scripts|data)/(.+)$ /dapi/public/$1/$2 [L]
+
+# Add version if it's a permalink URL for a module but no version specified
+RewriteRule ^(dijit|dojo|dojox)/(.+)$ 1.9/$1
+
+# Module summaries for 1.8+ are stored in staticoutput/, and older ones in the /api-data directory, parallel to the /api directory
+# change 'dapi' to whatever dir you have the dapi installed into
+RewriteRule ^(1.[8-9])/(.+)$ /dapi/staticoutput/$1/$2 [L]
+
+# Index.html is currently in staticoutput/
+# Redirect URLs like http://localhost/api and http://localhost/api/index.html there
+RewriteRule ^(index.html|index.php|)$ /dapi/staticoutput/index.html [L]

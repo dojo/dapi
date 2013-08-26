@@ -2,7 +2,6 @@ require([
     "dojo/parser",
     "dojo/dom",
     "dojo/_base/lang",
-    "dojo/ready",
     "dijit/layout/BorderContainer",
     "dijit/layout/TabContainer",
     "api/ModuleContentPane",
@@ -21,113 +20,22 @@ require([
     "dijit/form/DropDownButton",
     "dojo/on",
     "dijit/popup",
-    "dojo/window" //djwindow
-], function (parser, dom, lang, ready, BorderContainer, TabContainer, ContentPane, AccordionContainer,
-        ModuleTreeModel, ModuleTree, config, query, registry, MenuItem, Menu, array, MenuSeparator, FilteringSelect, TooltipDialog, DropDownButton, on, popup, djwindow) {
+    "dojo/window", // djwindow
+    "dojo/aspect", // aspect
+    "dojo/domReady!"
+], function (parser, dom, lang, BorderContainer, TabContainer, ContentPane, AccordionContainer,
+        ModuleTreeModel, ModuleTree, config, query, registry, MenuItem, Menu, array, MenuSeparator, FilteringSelect, TooltipDialog, DropDownButton, on, popup, djwindow, aspect) {
+
     var moduleModel = null, moduleTree = null, currentVersion = null, apiSearchToolTipDialog = null, apiSearchWidget = null;
-    ready(function () {
-        var parsed = parser.parse();
-        var s = dom.byId("versionSelector");
-        apiSearchToolTipDialog = registry.byId("apiSearchToolTipDialog");
-        apiSearchToolTipDialog.closable = true;
-        s.onchange = lang.hitch(s, versionChange);
-        buildTree();
-        // test if baseTab exists - this is maybe poor as it's expectation is that onLoad a baseTab is created (as well as the welcome tab) which means we've permalink loaded
-        var baseTab = registry.byId("baseTab");
-        if (baseTab) {
-            var permalinkarr = query(".jsdoc-permalink", baseTab.domNode)[0].innerHTML.split("/");
-            // /contextPath/version/modulepath e.g. /api/1.9/dijit/Dialog 
-            var requestedpath = permalinkarr.splice(3, permalinkarr.length).join("/");
-            baseTab.set("page", requestedpath);
-            setTreePath(requestedpath);
-        }
-// selectAndClick setup the welcome page (selectAndClick is defined by buildTree)
-        var welcomeTab = registry.byId("baseTab_welcomeTab");
-        query(".dtk-object-title a", welcomeTab.domNode).forEach(function (node, index) {
-            on(node, "click", function (e) {
-                var targetpatharr = e.target.name.split("/"), treepatharr = [], tmp2 = null;
-                // TODO : do this better, filter/map?
-                // builds an array of paths for a tree (must be in this order) -> an ending slash (empty i.e. a folder) -> a module path to but not the module i.e.charting in dojox/charting/Chart (idx < arr.length -1) -> and the module name (the last item)   
-                array.forEach(targetpatharr, function (item, idx, arr) {
-                    if (arr[idx] === "") {
-                    } else if (idx < arr.length - 1) {
-                        var tmp2 = (arr.slice(0, idx + 1).join("/")  + "/");
-                        treepatharr.push(tmp2);
-                    } else {
-                        treepatharr.push(arr.slice(0, idx + 1).join("/"));
-                    }
-                });
-                moduleTree.selectAndClick(treepatharr);
-                e.preventDefault();
-            });
-        });
-// end selectAndClick
 
-        // TODO - syntax highlighter for premalinked loaded modules -- plus this should be reusable (mixin?) as its also used in moduletree.js
-        // should do as i thought, create an extended ContentPane with these functions because the show/hide semantics needs to be captured too (for summaries)
-        var content = dom.byId("content");
-        var contentpane = registry.byId("baseTab"); // the default loaded module tab (even when there is a permalink and intro screen) will always be named baseTab - intro screen id changed
-        if (contentpane) {
-            contentpane.initModulePane();
-        }
-        var tabContainer = registry.byId("content");
-        /* temp - add a close all option - move to context menu on the tab label */
-        dojo.getObject("dijit.layout._ScrollingTabControllerMenuButton").prototype.loadDropDown = function (callback) {
-            this.dropDown = new Menu({
-                id: this.containerId + "_menu",
-                ownerDocument: this.ownerDocument,
-                dir: this.dir,
-                lang: this.lang,
-                textDir: this.textDir
-            });
-            var container = registry.byId(this.containerId);
-            // add close all
-            var menuItem = new MenuItem({
-                label: "Close all",
-                iconClass: "dijitInline dijitIcon dijitMenuItemIcon dijitIconDelete",
-                onClick: function () {
-                    var _this = this;
-                    tabContainer.getChildren().forEach(function (item) {
-                        console.log(item);
-                        if (item.closable) {
-                            tabContainer.removeChild(item);
-                            item.destroyRecursive();
-                        }
-                    });
-                }
-            });
-            this.dropDown.addChild(menuItem);
-            this.dropDown.addChild(new MenuSeparator());
-            // end close all            
-
-            array.forEach(container.getChildren(), function (page) {
-                var menuItem = new MenuItem({
-                    id: page.id + "_stcMi",
-                    label: page.title,
-                    iconClass: page.iconClass,
-                    disabled: page.disabled,
-                    ownerDocument: this.ownerDocument,
-                    dir: page.dir,
-                    lang: page.lang,
-                    textDir: page.textDir,
-                    onClick: function () {
-                        container.selectChild(page);
-                    }
-                });
-                this.dropDown.addChild(menuItem);
-            }, this);
-            callback();
-        };
-        /* end temp - add a close all option - move to context menu on the tab label */
-    });
-
-    var buildTree = function () {
+    function buildTree() {
         if (moduleModel !== null) {
             moduleTree.destroyRecursive();
         }
         // this is the default version - will need a global to check on when the selected version is changed
-        var version = currentVersion ?  currentVersion : config.apiDefault;
-        var jsonfile = config.apiPath + '/' + version + '/tree.json';
+        var version = currentVersion ?  currentVersion : config.apiDefault,
+            jsonfile = config.apiPath + "data/" + version + '/tree.json',
+            tabContainer = null;
         moduleModel = new ModuleTreeModel(jsonfile);
         moduleTree = new ModuleTree({
             id: "moduleTree",
@@ -139,26 +47,28 @@ require([
         moduleTree.placeAt("moduleTreePane");
         moduleTree.startup();
 
-// started selectedChildWidget
+        // started selectedChildWidget
         moduleModel.getRoot(function (data) {
             buildSearch(data);
         });
-        var tabContainer = registry.byId("content");
-		tabContainer.watch("selectedChildWidget", function (attr, oldVal, selectedChildWidget) {
-			// If we are still scrolling the Tree from a previous run, cancel that animation
-			if (moduleTree.scrollAnim) {
-				moduleTree.scrollAnim.stop();
-			}
+        tabContainer = registry.byId("content");
+        tabContainer.watch("selectedChildWidget", function (attr, oldVal, selectedChildWidget) {
+            // If we are still scrolling the Tree from a previous run, cancel that animation
+            if (moduleTree.scrollAnim) {
+                moduleTree.scrollAnim.stop();
+            }
 
-			if (!selectedChildWidget.page) {
-				// This tab doesn't have a corresponding entry in the tree.   It must be the welcome tab.
-				return;
-			}
-			setTreePath(selectedChildWidget.page);
-		}, true);
-//end selectedChildWidgets        
-    };
-    var versionChange = function (e) {
+            if (!selectedChildWidget.page || moduleTree.version !== selectedChildWidget.version) {
+                // This tab doesn't have a corresponding entry in the tree, it must be the welcome tab or it's a different version from the tree displayed
+                moduleTree.set("path", []);
+                return;
+            }
+            setTreePath(selectedChildWidget.page);
+        }, true);
+        //end selectedChildWidgets
+    }
+
+    function versionChange(e) {
         // summary:
         //    Change the version displayed.
         var v = this.options[this.selectedIndex].value;
@@ -166,8 +76,9 @@ require([
         if (currentVersion === v) { return; }
         currentVersion = v;
         buildTree();
-    };
-    var buildSearch = function (rootjson) {
+    }
+
+    function buildSearch(rootjson) {
         // TODO: maybe test if theres an existing widget and disconnect?
         apiSearchWidget = registry.byId("apiSearchWidget");
         apiSearchWidget.queryExpr = "*${0}*"; //contains
@@ -176,11 +87,11 @@ require([
         apiSearchWidget.store.setData(store);
 
         apiSearchWidget.on("Change", function (data) {
-            //var path = ["root"].concat(data.split("/"));
             setTreePath(data);
         });
-    };
-    var treeToStore = function (jsonObj, store) {
+    }
+
+    function treeToStore(jsonObj, store) {
         if (jsonObj.children) {
             array.forEach(jsonObj.children, function (item) {
                 store.items.push({id: item.id, name: item.id});
@@ -190,23 +101,115 @@ require([
             });
         }
         return store;
-    };
+    }
 
-    var setTreePath = function (page) {
+    function setTreePath(page) {
         // Select the TreeNode corresponding to this tab's object.   For dijit/form/Button the path must be
         // ["root", "dijit/", "dijit/form/", "dijit/form/Button"]
-		var parts = page.match(/[^/\.]+[/\.]?/g), path = "";
+        var parts = page.match(/[^/\.]+[/\.]?/g), path = "";
         path = ["root"].concat(array.map(parts, function (part, idx) {
-			return parts.slice(0, idx + 1).join("").replace(/\.$/, "");
-		}));
+            return parts.slice(0, idx + 1).join("").replace(/\.$/, "");
+        }));
 
-		moduleTree.set("path", path).then(function () {
-            var selectednode = moduleTree.selectedNode;
-            djwindow.scrollIntoView(selectednode.domNode);
-        },
-		function (err) {
-			console.log("tree: error setting path to " + path);
-		});
-    };
+        moduleTree.set("path", path).then(function () {
+                var selectednode = moduleTree.selectedNode;
+                djwindow.scrollIntoView(selectednode.domNode);
+            },
+            function (err) {
+                console.log("tree: error setting path to " + path);
+            });
+    }
+
+    // Initial setup code
+
+    var parsed = parser.parse(), versionSelector = dom.byId("versionSelector");
+    apiSearchToolTipDialog = registry.byId("apiSearchToolTipDialog");
+    apiSearchToolTipDialog.closable = true;
+    versionSelector.onchange = lang.hitch(versionSelector, versionChange);
+
+    buildTree();
+
+    // Handle URL argument for initial tab
+    if (location.search) {
+        // The only formats we support are qs=dijit/Dialog or qs=1.9/dijit/Dialog#show
+        var page = location.search.replace("?qs=", ""), version = null, anchor = null;
+        if (/^[0-9]/.test(page)) {
+            currentVersion = page.replace(/\/.*/, "");
+            buildTree();
+            page = page.replace(/[^/]+\//, "");
+        }
+        version = currentVersion || config.apiDefault,
+        pane = moduleTree.addTabPane(page, version);
+
+        anchor = location.hash && location.hash.substring(1);
+        if (anchor) {
+            anchor = (version + page).replace(/[/\.]/g, "_") + "_" + anchor;    // ex: 1_9dijit_Dialog_show
+            pane.onLoadDeferred.then(function () {
+                var target = query('a[name="' + anchor + '"]', pane.domNode);
+                if (target[0]) {
+                    djwindow.scrollIntoView(target[0]);
+                }
+            });
+        }
+    }
+
+    // selectAndClick setup the welcome page (selectAndClick is defined by buildTree)
+    var welcomeTab = registry.byId("baseTab_welcomeTab");
+	query(".dtk-object-title a", welcomeTab.domNode).forEach(function (node, index) {
+        on(node, "click", function (e) {
+            var targetpatharr = e.target.name.split("/"), treepatharr = [], tmp2 = null;
+            // TODO : do this better, filter/map?
+            // builds an array of paths for a tree (must be in this order) -> an ending slash (empty i.e. a folder) ->
+            // a module path to but not the module i.e.charting in dojox/charting/Chart (idx < arr.length -1) ->
+            // and the module name (the last item)
+            array.forEach(targetpatharr, function (item, idx, arr) {
+                if (arr[idx] === "") {
+                } else if (idx < arr.length - 1) {
+                    var tmp2 = (arr.slice(0, idx + 1).join("/")  + "/");
+                    treepatharr.push(tmp2);
+                } else {
+                    treepatharr.push(arr.slice(0, idx + 1).join("/"));
+                }
+            });
+            moduleTree.selectAndClick(treepatharr);
+            e.preventDefault();
+        });
+    });
+    // end selectAndClick
+
+    var tabContainer = registry.byId("content");
+    /* monkey patch to add close all option to the context menu popup (as well as each tab) - mainly helps with touch devices that can't use tablist right click */
+    aspect.after(tabContainer.tablist._menuBtn, 'loadDropDown', function (data) {
+        var menuItem = new MenuItem({
+            label: "Close all",
+            iconClass: "dijitInline dijitIcon dijitMenuItemIcon dijitIconDelete",
+            onClick: function () {
+                closeAllTabs();
+            }
+        });
+        this.dropDown.addChild(menuItem, 0);
+        this.dropDown.addChild(new MenuSeparator(), 1);
+
+    });
+
+    // found via layout/TabController.js - id: this.id + "_Menu" (another monkey patch)
+    var contentTabListMenu = dijit.registry.byId("content_tablist_Menu");
+    var closeMenu = new MenuItem({
+        id: this.id + "_Menu_CloseAll",
+        label: "Close All",
+        onClick: function (evt) {
+            closeAllTabs();
+        }
+    });
+    contentTabListMenu.addChild(closeMenu);
+
+    function closeAllTabs() {
+        tabContainer.getChildren().forEach(function (item) {
+            if (item.closable) {
+                tabContainer.removeChild(item);
+                item.destroyRecursive();
+            }
+        });
+    }
 });
 

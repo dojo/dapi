@@ -29,7 +29,7 @@ define(["dojo/_base/declare", "dojo/_base/lang", "dijit/Tree", "dijit/registry",
 				this._onExpandoClick({node: nodeWidget});
 			} else {
 				// Open the page for this module.
-				this.addTabPane(item, item.fullname, this.version);
+				this.addTabPane(item.fullname, this.version);
 			}
 		},
 
@@ -42,21 +42,18 @@ define(["dojo/_base/declare", "dojo/_base/lang", "dijit/Tree", "dijit/registry",
 				this.onClick(node.item, node);
 			}));
 		},
-        addTabPane : function (item, page, version) {
+        addTabPane : function (page, version) {
             var p = registry.byId("content");
+
             // Get the URL to get the tab content.
-            // versions[] lists what directory (lib or lib.old) contains the item.php script used to display this page
-            //var url = baseUrl + versions[version] + "/item.php?p=" + page + "&v=" + (version || currentVersion);
-            // clean this, apidata moved to config, fullname - start docing jsstructures
-            //console.log(item.fullname);
             // TODO - this is shit and need to change - probably push node side -
-            var fullName = item.fullname;
+            var fullName = page;
 
             if (parseFloat(version.match(/[0-9]../)) < 1.8) {
-                fullName = item.fullname.replace(/\./g, "/").trim();
+                fullName = page.replace(/\./g, "/").trim();
             }
             // END TODO
-            var url = config.apiPath + "/" + version + "/" + fullName;  // TODO fix this later, should pass in the context
+            var url = config.apiPath + version + "/" + fullName;  // TODO fix this later, should pass in the context
             console.log("requested url = " + url);
             var id = page.replace(/[\/.]/g, "_") + "_" + version;
             var existingPane = registry.byId(id);
@@ -70,7 +67,7 @@ define(["dojo/_base/declare", "dojo/_base/lang", "dijit/Tree", "dijit/registry",
                 href: url + config.moduleExtension,
                 //content : {version: "version" , itemtid: item.id, namel: item.name, fullname : item.fullname, type: item.type},  
                 //title: title,
-                title: item.fullname + " (" + version + ")",
+                title: page + " (" + version + ")",
                 closable: true,
                 version : version,
                 parseOnLoad: false

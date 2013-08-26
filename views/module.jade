@@ -1,19 +1,27 @@
-div.jsdoc-permalink(style="display:none") #{config.contextPath}api/#{module !=null ? module.version : config.defaultVersion}/#{module.location}
+script(type="text/javascript")
+    // If user loads this page directly, redirect to index page, with parameter to initially show tab for this module.
+    // If google loads this page directly it will hopefully ignore this script and just index the documentation below.
+    // Also, when this page is loaded via XHR this script block should be ignored.
+    location = "#{config.contextPath}?qs=#{module !=null ? module.version : config.defaultVersion}/#{module.location}" + location.hash;
+
+div.jsdoc-permalink(style="display:none") #{config.contextPath}#{module !=null ? module.version : config.defaultVersion}/#{module.location}.html
 h1(class="#{convertType(module.type)}Icon36 jsdoc-title") #{module.location}
         span(style="font-size:11px;color:#999;")  (version #{module.version})
-- //  h2 !{autoHyperlink(module.description, config, module.version)}  SUMMARY - broke - need to understand hyperlink      
-     
 - if (module.mixins != null)
     div.jsdoc-mixins
         label Extends 
         each item, idx in module.mixins
-            a.jsdoc-link(href='#{config.contextPath}api/#{module !=null ? module.version : config.defaultVersion}/#{item.location}') #{item.location}#{idx < module.mixins.length-1 ? ", " : ""}
+            a.jsdoc-link(href='#{config.contextPath}#{module !=null ? module.version : config.defaultVersion}/#{item.location}') #{item.location}#{idx < module.mixins.length-1 ? ", " : ""}
 - if (module.summary != null)
       div.jsdoc-full-summary !{autoHyperlink(module.summary, config, module.version)}
 - if (module.description != null)
       div.jsdoc-full-summary !{autoHyperlink(module.description, config, module.version)}
-- if (module.usage !=null)
-      div.jsdoc-function-information 
+- if (module.kwArgs && module.kwArgs == true)
+    p <strong>Note:</strong> This is not a real constructor, but just a description of the type of object that should be passed as
+        | a parameter to some method(s), and/or the return value from some method(s).
+        | In other words, the type exists only for documentation purposes, and you <strong>cannot</strong> call <code>new #{module.location.replace(/.*\//, "")}()</code>
+- if (module.usage != null)
+      div.jsdoc-function-information
         h3 Usage:
         div.function-signature
             span.keyword var
@@ -33,9 +41,9 @@ include module/parametertable
             p See the 
                 a(href='#{config.refDocs.url + module.version + "/" + refDoc + config.refDocs.suffixToGenerate}', target='_blank') #{module.location} reference documentation
                 |  for more information.
-div.jsdoc-children
-    div.jsdoc-fieldlist
 examples = module.examples
+div.jsdoc-children
+    div.jsdoc-field-list
         include module/examples
         include module/propertiessummary
         include module/methodssummary
@@ -45,3 +53,6 @@ div.jsdoc-children
         include module/properties
         include module/methods
         include module/events
+
+- if (config.bugdb != null)
+    a.feedback(href='#{config.bugdb}#{config.contextPath}#{module !=null ? module.version : config.defaultVersion}/#{module.location}') Error in the documentation? Can’t find what you are looking for? Let us know!
