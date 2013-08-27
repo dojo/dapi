@@ -1,0 +1,19 @@
+node_modules
+reference-guide
+# ignore .git
+.git/
+public/api/1.8/dijit/
+public/api/1.8/dojo/
+public/api/1.8/dojox/
+public/api/1.8/doh/
+public/api/1.9/dijit/
+public/api/1.9/dojo/
+public/api/1.9/dojox/
+public/api/1.9/doh/
+
+# old data
+public/api/1.8/widgetbase.json
+public/api/1.8/details_dijit.xml
+public/api/1.8/details_huge.xml
+staticoutput/
+
