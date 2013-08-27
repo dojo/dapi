@@ -29,3 +29,6 @@ public/api/1.8/details_huge.xml
 
 #ignore data
 public/data
+
+# ignore ide
+.idea
