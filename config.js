@@ -9,7 +9,7 @@ module.exports = {
 	dojoBase: '//ajax.googleapis.com/ajax/libs/dojo/1.9.1',
 
 	/**
-	 * theme is used to configure the dijit theme and body class name to use.
+	 * theme is used to configure the dijit theme and body class name to use. If using 'mobileviews' then deviceTheme is used instead and overrides this.
 	 **/
 	theme: 'claro',
 
@@ -42,14 +42,14 @@ module.exports = {
 	 * versions is used to make available versions loadable for app.js i.e. the list of versions in the dropdown - these need to match the directory names
      * TODO: (maybe remove from tree.js, or if keeping, add a flag to enable this) Read and set the versions read from the available versions in the api directory
 	 **/
-	versions: ['1.3', '1.4', '1.5', '1.6', '1.7', '1.8', '1.9'],
+	versions: ['1.8', '1.9'],
     versionIgnores : /(\.git|\.md)/,
 
 
 	/**
 	 * viewsDirectory used for extending/rebranding for your own UI needs. The default location is 'views', if you want to rebrand the application, copy the views directory to another and set the relevant name.
 	 **/
-	viewsDirectory: 'views',
+	viewsDirectory: 'mobileviews',
 
 	/**
 	 * moduleExtension is used to append a suffix to the module file name; it's unlikely you'll need to change this.
