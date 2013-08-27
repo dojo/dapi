@@ -44,7 +44,7 @@ require([
                 var version = versionlistlink.version;
                 console.log(version);
                 //debugger;
-                var jsonfile = config.apiPath + '/' + version + '/tree.json';
+                var jsonfile = config.apiPath + 'data/' + version + '/tree.json';
                 request(jsonfile, {handleAs : "json"}).then(function (data) {
                     console.log(data, vc);
                     data.version = version;
