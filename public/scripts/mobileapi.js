@@ -42,8 +42,6 @@ require([
             on(versionlistitems[idx], "click", function (ev) {
                 var versionlistlink = registry.byId(ev.currentTarget.id);
                 var version = versionlistlink.version;
-                console.log(version);
-                //debugger;
                 var jsonfile = config.apiPath + 'data/' + version + '/tree.json';
                 request(jsonfile, {handleAs : "json"}).then(function (data) {
                     console.log(data, vc);
@@ -92,11 +90,13 @@ require([
             }
             var rightIcon2 = (item.type === "folder" ? "mblDomButtonSilverCircleDownArrow" : "mblDomButtonBlueCircleArrow"); // 
             var rightText = (item.type === "folder" ? "Expand" : "View"); //
-            treeitem = new ListItem({label : item.name + (item.type === "folder" ? "    >" : ""), moveTo : '#', id : itemtype + "/" + item.fullname, noArrow: true, rightIcon2 : rightIcon2, rightText : rightText});
+            var treeitemId = itemtype + "/" + item.fullname;
+            if (registry.byId(treeitemId)) {
+                registry.byId(treeitemId).destroy();
+            }
+            treeitem = new ListItem({label : item.name + (item.type === "folder" ? "    >" : ""), moveTo : '#', id : treeitemId, noArrow: true, rightIcon2 : rightIcon2, rightText : rightText});
             treeitem.startup();
             roundlist.addChild(treeitem);
-            //treeitem.placeAt(treecontainernode);
-            //treeitem.placeAt(viewsfromto.to.containerNode);
             roundlist.placeAt(viewsfromto.to.containerNode);
 
             treeitem.on("click", function (ev) {
@@ -114,7 +114,6 @@ require([
                     //viewsfromto.to.destroyDescendants();
                     viewsfromtoinner.from.performTransition(viewsfromtoinner.to.id, 1, "slide");
                     console.log(viewsfromtoinner);
-                    //treeitem.transitionTo("treesdataview");
                 } else {
                     //viewsfromtoinner.to    
                     createModulePane(item, linkto, objtype, version);
@@ -226,113 +225,5 @@ require([
 
     };
 
-
-
-
-
-
-
-
-
-
-
-
-
-/////// old stuff >
-
-    var buildTree = function () {
-        if (moduleModel !== null) {
-            moduleTree.destroyRecursive();
-        }
-        //moduleModel = new ModuleTreeModel(baseUrl + 'lib/tree.php?v=' + currentVersion);
-        // moduleModel = new ModuleTreeModel(config.apiPath + '/' + selectedVersion + '/tree.json'); // for loading different versions
-        // this is the default version - will need a global to check on when the selected version is changed
-        var version = currentVersion ?  currentVersion : config.apiDefault;
-        var jsonfile = config.apiPath + '/' + version + '/tree.json';
-        moduleModel = new ModuleTreeModel(jsonfile);
-        moduleTree = new ModuleTree({
-            id: "moduleTree",
-            model: moduleModel,
-            showRoot: false,
-            persist: false,
-            version : version
-        });
-        moduleTree.placeAt("moduleTreePane");
-        moduleTree.startup();
-
-// started selectedChildWidget
-        moduleModel.getRoot(function (data) {
-            buildSearch(data);
-        });
-        var tabContainer = registry.byId("content");
-		tabContainer.watch("selectedChildWidget", function (attr, oldVal, selectedChildWidget) {
-			// If we are still scrolling the Tree from a previous run, cancel that animation
-			if (moduleTree.scrollAnim) {
-				moduleTree.scrollAnim.stop();
-			}
-
-			if (!selectedChildWidget.page) {
-				// This tab doesn't have a corresponding entry in the tree.   It must be the welcome tab.
-				return;
-			}
-			setTreePath(selectedChildWidget.page);
-		}, true);
-//end selectedChildWidgets        
-    };
-    var versionChange = function (e) {
-        // summary:
-        //    Change the version displayed.
-        var v = this.options[this.selectedIndex].value;
-        // if we reverted, bug out.
-        if (currentVersion === v) { return; }
-        currentVersion = v;
-        buildTree();
-    };
-    var buildSearch = function (rootjson) {
-        // TODO: maybe test if theres an existing widget and disconnect?
-        apiSearchWidget = registry.byId("apiSearchWidget");
-        apiSearchWidget.queryExpr = "*${0}*"; //contains
-        apiSearchWidget.autoComplete = false;
-        var store = treeToStore(rootjson, {identifier: 'id', items: []});
-        apiSearchWidget.store.setData(store);
-
-        apiSearchWidget.on("Change", function (data) {
-            //var path = ["root"].concat(data.split("/"));
-            setTreePath(data);
-        });
-    };
-    var treeToStore = function (jsonObj, store) {
-        if (jsonObj.children) {
-            array.forEach(jsonObj.children, function (item) {
-                store.items.push({id: item.id, name: item.id});
-                if (item.children) {
-                    treeToStore(item, store);
-                }
-            });
-        }
-        return store;
-    };
-
-    var setTreePath = function (page) {
-        // Select the TreeNode corresponding to this tab's object.   For dijit/form/Button the path must be
-        // ["root", "dijit/", "dijit/form/", "dijit/form/Button"]
-		var parts = page.match(/[^/\.]+[/\.]?/g), path = "";
-        path = ["root"].concat(array.map(parts, function (part, idx) {
-			return parts.slice(0, idx + 1).join("").replace(/\.$/, "");
-		}));
-
-		moduleTree.set("path", path).then(function () {
-            var selectednode = moduleTree.selectedNode;
-            //var top = selectednode.domNode.offsetTop;
-            //var left = selectednode.domNode.offsetLeft;
-
-            selectednode.domNode.scrollIntoView();
-            popup.close(apiSearchToolTipDialog);
-            //apiSearchWidget.setValue("");
-        },
-		function (err) {
-			console.log("tree: error setting path to " + path);
-		});
-    };
 });
 
