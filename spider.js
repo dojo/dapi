@@ -1,7 +1,5 @@
 /** @module spider */
-var stylus = require('stylus'),
-    fs = require('fs'),
-    nib = require('nib'),
+var fs = require('fs'),
     jade = require('jade'),
     mkdirp = require("mkdirp"),
     generate = require('./lib/generate'),
@@ -17,11 +15,6 @@ autoHyperlink = generate.autoHyperlink;
 hasRefDoc = refdoc.hasRefDoc;
 getRefDoc = refdoc.getRefDoc;
 var versions = tree.getVersions(config, false);
-function compile(str, path) {
-    return stylus(str)
-    .set('filename', path)
-    .use(nib());
-}
 console.log("REMEMBER TO SET THE CORRECT CONTEXT PATH CONFIGURATION FOR YOUR GENERATED DOCS");
 console.log("==========================================================");
 console.log("Static API viewer generation started");
@@ -29,15 +22,15 @@ console.log("Static API viewer generation started");
 var indexjade = __dirname + "/" + config.viewsDirectory + "/index.jade";
 var data = fs.readFileSync(indexjade, "utf8");
 var fn = jade.compile(data, {filename: indexjade, pretty: true});
-var indexhtml = fn({ title : 'DOJO API Viewer', config: config, module : null});
+var indexhtml = fn({ title : 'API Documentation' + config.siteName, config: config, module : null});
 // generate tree.html
 var treeitems = tree.getTree(config.spiderVersion, config);
 var treejade = __dirname + "/" + config.viewsDirectory + "/tree.jade";
 var treedata = fs.readFileSync(treejade, "utf8");
 var fntree = jade.compile(treedata, {filename: treejade, pretty: true});
-var treehtml = fntree({ title : 'DOJO API Viewer', config: config, version: config.spiderVersion, tree : treeitems});
+var treehtml = fntree({ title : 'API Documentation', config: config, version: config.spiderVersion, tree : treeitems});
 
-fs.writeFileSync(staticFolder + "index.html", indexhtml); // FTM make sure it's a different name from index.html, express static will load generated spider index.html first (before template)
+fs.writeFileSync(staticFolder + "index.html", indexhtml);
 var starttime = new Date().getTime();
 var detailsFile = "./public/data/" + config.spiderVersion + "/details.json";
 
@@ -56,7 +49,7 @@ mkdirp.sync(dataFolder);
 fs.writeFileSync(dataFolder + "/tree.json", JSON.stringify(treeitems));
 
 
-// load details json (so it can iterate over the objects and generate html)
+// load details json (iterate over the objects and generate html)
 generate.loadDetails(detailsFile,  config.spiderVersion, function (err, details) {
     if (err) {
         console.error(err);

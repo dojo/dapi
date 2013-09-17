@@ -16,6 +16,7 @@ html
             context : '#{config.contextPath}',
             apiDefault : '#{config.defaultVersion}',
             moduleExtension : '#{config.moduleExtension}',
+            siteName : '#{config.siteName}',
             #{(config.bugdb != null) ? 'bugdb : \'' + config.bugdb + '\'' : 'bugdb : null'}
         }
 

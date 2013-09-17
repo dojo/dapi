@@ -133,7 +133,8 @@ define(["dojo/_base/declare",
             if (config.bugdb) {
                 this._bugDbReport(context, link);
             }
-
+            // finally set the window title
+            document.title = this.title + config.siteName;
 ///////////////// TODO: END IN PROGRESS
 
         },

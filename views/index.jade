@@ -38,7 +38,7 @@ block main
 
                         
                 div(data-dojo-type="dijit.layout.AccordionContainer",data-dojo-props="region: 'center'") 
-                    div#moduleTreePane(data-dojo-type="dijit.layout.ContentPane", data-dojo-props="title: 'By Module', selected: true")
+                    div#moduleTreePane(data-dojo-type="dijit.layout.ContentPane", data-dojo-props="title: '', selected: true")
                     //- an alternative menu for google because we're ajax menu based
                     p#plainTree See the - 
                         a(href="#{config.contextPath}#{module !=null ? module.version : config.defaultVersion}/tree.html") plain HTML tree

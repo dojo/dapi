@@ -13,6 +13,11 @@ module.exports = {
 	 **/
 	theme: 'claro',
 
+    /**
+     * siteName is used in the title of the window
+     **/
+    siteName: ' - The Dojo Toolkit',
+
 	/**
 	 * Change your contextPath to suit whatever environment you are using e.g. if generating static docs for www.yourhost/yourapipath/index.html,
 	 * change it to /yourapipath/ (or /dapi/public/ if you want to run from the node's app directory)

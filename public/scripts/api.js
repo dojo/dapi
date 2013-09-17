@@ -51,6 +51,7 @@ require([
         moduleModel.getRoot(function (data) {
             buildSearch(data);
         });
+        registry.byId("moduleTreePane").set('title', 'By Module ' + version);
         tabContainer = registry.byId("content");
         tabContainer.watch("selectedChildWidget", function (attr, oldVal, selectedChildWidget) {
             // If we are still scrolling the Tree from a previous run, cancel that animation

@@ -44,17 +44,14 @@ define(["dojo/_base/declare", "dojo/_base/lang", "dijit/Tree", "dijit/registry",
 		},
         addTabPane : function (page, version) {
             var p = registry.byId("content");
-
             // Get the URL to get the tab content.
-            // TODO - this is shit and need to change - probably push node side -
+            // TODO - not great
             var fullName = page;
-
             if (parseFloat(version.match(/[0-9]../)) < 1.8) {
                 fullName = page.replace(/\./g, "/").trim();
             }
             // END TODO
             var url = config.apiPath + version + "/" + fullName;  // TODO fix this later, should pass in the context
-            console.log("requested url = " + url);
             var id = page.replace(/[\/.]/g, "_") + "_" + version;
             var existingPane = registry.byId(id);
             if (existingPane) {
@@ -65,8 +62,6 @@ define(["dojo/_base/declare", "dojo/_base/lang", "dijit/Tree", "dijit/registry",
                 id: id,
                 page: page,		// save page because when we select a tab we locate the corresponding TreeNode
                 href: url + config.moduleExtension,
-                //content : {version: "version" , itemtid: item.id, namel: item.name, fullname : item.fullname, type: item.type},  
-                //title: title,
                 title: page + " (" + version + ")",
                 closable: true,
                 version : version,
@@ -75,6 +70,7 @@ define(["dojo/_base/declare", "dojo/_base/lang", "dijit/Tree", "dijit/registry",
             pane.startup();
             p.addChild(pane);
             p.selectChild(pane);
+
             return pane;
         }
 	});
