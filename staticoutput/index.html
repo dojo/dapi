@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>API Documentation - The Dojo Toolkit Version 1.9</title>
+    <link rel="stylesheet" href="//ajax.googleapis.com/ajax/libs/dojo/1.9.1/dojo/resources/dojo.css">
+    <link rel="stylesheet" href="//ajax.googleapis.com/ajax/libs/dojo/1.9.1/dijit/themes/claro/claro.css">
+    <!-- link(rel='stylesheet', href="/#{config.dojobase}/dijit/themes/#{config.theme}/#{config.theme}.css")-->
+    <link rel="stylesheet" href="/api/css/jsdoc_original.css">
+    <link rel="stylesheet" href="/api/css/site_original.css">
+    <script type="text/javascript">
+      // packages: [{name:"api", location:location.pathname.replace(/\/[^/]+$/, '/') + "/api/scripts/api"}],
+      dojoConfig = {async:1, debug:1, noGlobals:0,
+          packages: [{name:"api", location: "/api/scripts/api"}],
+          apiPath : '/api/',
+          context : '/api/',
+          apiDefault : '1.9',
+          moduleExtension : '.html',
+          siteName : ' - The Dojo Toolkit',
+          bugdb : 'https://docs.google.com/spreadsheet/viewform?hl=en_US&amp;formkey=dFlDcHEyaHMwbEd4MFBObkNrX0E1MFE6MQ&amp;entry_0='
+      }
+      
+    </script>
+    <script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/dojo/1.9.1/dojo/dojo.js"></script>
+    <script type="text/javascript" src="/api/scripts/api.js"></script>
+    <script type="text/javascript" src="/api/scripts/syntaxhighlighter/scripts/shCore.js"></script>
+    <script type="text/javascript" src="/api/scripts/syntaxhighlighter/scripts/shBrushJScript.js"></script>
+    <script type="text/javascript" src="/api/scripts/syntaxhighlighter/scripts/shBrushXml.js"></script>
+    <link rel="stylesheet" href="/api/scripts/syntaxhighlighter/css/shCore.css">
+    <link rel="stylesheet" href="/api/scripts/syntaxhighlighter/css/shThemeDefault.css">
+  </head>
+  <body class="claro">
+    <div id="main" data-dojo-type="dijit.layout.BorderContainer" data-dojo-props="liveSplitters: false">
+      <div id="head" data-dojo-type="dijit.layout.ContentPane" data-dojo-props="region: 'top'">
+        <!-- move this header to a block later-->
+        <div id="header">
+          <div class="container"><span id="logo"><a href="/" title="home"><img src="/api/images/logo.png" alt="Dojo Toolkit"></a></span>
+            <ul id="navigation">
+              <li class="home"><a href="/"><span class="homeIcon"></span></a></li>
+              <li class="download"><a href="/download/">Download</a></li>
+              <li class="features"><a href="/features/">Features</a></li>
+              <li class="docs"><a href="/docs/">Documentation</a></li>
+              <li class="community"><a href="/community/">Community</a></li>
+              <li class="blog"><a href="/blog/">Blog</a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div id="navigation" data-dojo-type="dijit.layout.BorderContainer" data-dojo-props="minSize: 20, region:'leading', splitter: true, gutters: false" style="width:300px;"> 
+        <div data-dojo-type="dijit.layout.ContentPane" data-dojo-props="title:'Search', region:'top'">
+          <div style="padding:4px">
+            <label for="versionSelector">Version:</label>
+            <select id="versionSelector" style="width:auto">
+              <option>1.3</option>
+              <option>1.4</option>
+              <option>1.5</option>
+              <option>1.6</option>
+              <option>1.7</option>
+              <option>1.8</option>
+              <option selected>1.9</option>
+            </select>
+            <div data-dojo-type="dijit.form.DropDownButton"><span>Search</span>
+              <div id="apiSearchToolTipDialog" data-dojo-type="dijit.TooltipDialog" style="display:none;">
+                <input id="apiSearchWidget" data-dojo-type="dijit.form.FilteringSelect">
+              </div>
+            </div>
+          </div>
+        </div>
+        <div data-dojo-type="dijit.layout.AccordionContainer" data-dojo-props="region: 'center'"> 
+          <div id="moduleTreePane" data-dojo-type="dijit.layout.ContentPane" data-dojo-props="title: '', selected: true"></div>
+          <p id="plainTree">See the - <a href="/api/1.9/tree.html">plain HTML tree</a>listing all modules.</p>
+          <script type="text/javascript">
+            //- hide the menu if JS is available, this is poor, it expects (and possibly incorrectly) that only search engines don't use js                    
+            document.getElementById("plainTree").style.display = "none";
+          </script>
+          <div data-dojo-type="dijit.layout.ContentPane" title="Legend">Types:
+            <ul class="jsdoc-legend">
+              <li><img src="/api/css/icons/16x16/array.png" align="middle" title="Array" alt="Array" border="0">- Array</li>
+              <li>           <img src="/api/css/icons/16x16/boolean.png" align="middle" title="Boolean" alt="Boolean" border="0">- Boolean</li>
+              <li>           <img src="/api/css/icons/16x16/constructor.png" align="middle" title="Constructor" alt="Construcor" border="0">- Constructor</li>
+              <li>           <img src="/api/css/icons/16x16/date.png" align="middle" title="Date" alt="Date" border="0"> - Date</li>
+              <li>           <img src="/api/css/icons/16x16/domnode.png" align="middle" title="DomNode" alt="DomNode" border="0">- DomNode</li>
+              <li>           <img src="/api/css/icons/16x16/error.png" align="middle" title="Error" alt="Error" border="0">- Error</li>
+              <li>           <img src="/api/css/icons/16x16/function.png" align="middle" title="Function" alt="Function" border="0">- Function</li>
+              <li>           <img src="/api/css/icons/16x16/number.png" align="middle" title="Number" alt="Number" border="0"> - Number</li>
+              <li>           <img src="/api/css/icons/16x16/object.png" align="middle" title="Object" alt="Object" border="0"> - Object</li>
+              <li>           <img src="/api/css/icons/16x16/regexp.png" align="middle" title="RegExp" alt="RegExp" border="0">- RegExp</li>
+              <li>           <img src="/api/css/icons/16x16/singleton.png" align="middle" title="Singleton" alt="Singleton" border="0">- Array</li>
+              <li>           <img src="/api/css/icons/16x16/string.png" align="middle" title="String" alt="String" border="0">- String</li>
+            </ul>modifiers
+            <ul class="jsdoc-legend">
+              <li><span class="jsdoc-extension"></span>- extension property/method; must manually require() another module to access this</li>
+              <li><span class="jsdoc-private"></span>- private property/method</li>
+              <li><span class="jsdoc-inherited"></span>- inherited from a superclass</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div id="content" data-dojo-type="dijit.layout.TabContainer" data-dojo-props="region: 'center', tabStrip: true">
+        <div id="baseTab_welcomeTab" data-dojo-type="api.ModuleContentPane" data-dojo-props="title: 'Welcome'">
+          <h1>The Dojo Toolkit API</h1>
+          <p class="dtk-intro">Welcome to the Dojo Toolkit API documentation.  You are browsing version <strong>1.9</strong> of the Dojo Toolkit. Use the selector to the left to change versions.</p>
+          <p class="dtk-intro">To find the object you're interested in, use the tree to the left...or use the quick links below. To print the documentation, simply navigate to the object of your choice and hit Print.  </p>
+          <div class="dtk-objects">
+            <h2>The main packages of the Dojo Toolkit</h2>
+            <div class="dtk-object">
+              <div class="dtk-object-image dtk-dojo"></div>
+              <div class="dtk-object-title"><a href="#" name="dojo/">dojo</a></div>
+              <div class="dtk-object-description">The granddaddy of the Dojo Toolkit.  Look here for common methods such as dojo.byId or dojo.style.</div>
+            </div>
+            <div class="dtk-object">
+              <div class="dtk-object-image dtk-dijit"></div>
+              <div class="dtk-object-title"><a href="#" name="dijit/">dijit</a></div>
+              <div class="dtk-object-description">The user interface framework built on top of Dojo.</div>
+            </div>
+            <div class="dtk-object">
+              <div class="dtk-object-image dtk-dojox"></div>
+              <div class="dtk-object-title"><a href="#" name="dojox/">dojox</a></div>
+              <div class="dtk-object-description">The namespace of additional Dojo Toolkit projects, including things like Charting, the Grid and DTL.</div>
+            </div>
+            <div class="clear"></div>
+            <h2>Common modules and packages of the Dojo Toolkit</h2>
+            <div class="dtk-object">
+              <div class="dtk-object-image dtk-dojo-query"></div>
+              <div class="dtk-object-title"><a href="#" name="dojo/query">dojo/query</a></div>
+              <div class="dtk-object-description">The CSS3 query selector engine of the Dojo Toolkit.</div>
+            </div>
+            <div class="dtk-object">
+              <div class="dtk-object-image dtk-dojo-NodeList"></div>
+              <div class="dtk-object-title"><a href="#" name="dojo/NodeList">dojo/NodeList</a></div>
+              <div class="dtk-object-description">The return from any dojo/query call, with lots of goodies.</div>
+            </div>
+            <div class="dtk-object">
+              <div class="dtk-object-image dtk-dijit-form"></div>
+              <div class="dtk-object-title"><a href="#" name="dijit/form/">dijit/form</a></div>
+              <div class="dtk-object-description">The form elements of Dijit, including TextBox, Button, FilteringSelect and a lot more.</div>
+            </div>
+            <div class="dtk-object">
+              <div class="dtk-object-image dtk-dijit-layout"></div>
+              <div class="dtk-object-title"><a href="#" name="dijit/layout/">dijit/layout</a></div>
+              <div class="dtk-object-description">Layout widgets to help you design your Dijit-based interface, including BorderContainer and ContentPane.</div>
+            </div>
+            <div class="dtk-object">
+              <div class="dtk-object-image dtk-dojox-chart2d"></div>
+              <div class="dtk-object-title"><a href="#" name="dojox/charting/Chart">dojox/charting</a></div>
+              <div class="dtk-object-description">The main object of the Dojo Toolkit&#039;s amazing Charting library.</div>
+            </div>
+            <div class="dtk-object">
+              <div class="dtk-object-image dtk-dojox-grid"></div>
+              <div class="dtk-object-title"><a href="#" name="dojox/grid/DataGrid">dojox/grid</a></div>
+              <div class="dtk-object-description">The Grid classes in the Dojo Toolkit, including the DataGrid, EnhancedGrid and TreeGrid.</div>
+            </div>
+            <div class="clear"></div>
+          </div>
+          <div>Want to use these documentation tools for your own project?<a href="https://github.com/wkeese/api-viewer/blob/master/README.rst"> Find out how!</a></div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
