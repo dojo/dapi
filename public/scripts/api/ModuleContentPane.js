@@ -12,10 +12,10 @@ define(["dojo/_base/declare",
     "dijit/Dialog"
 ], function (declare, kernel, lang, ContentPane, query, domConstruct, config, on, domClass, domStyle, registry, Dialog) {
 
-	// module:
-	//        api/ContentPane
+    // module:
+    //        api/ContentPane
 
-	var helpDialog;
+    var helpDialog;
 
     return declare("api.ModuleContentPane", ContentPane, {
         version : "",
@@ -164,16 +164,16 @@ define(["dojo/_base/declare",
                 // Stop the browser from navigating to a new page
                 evt.preventDefault();
 
-				// Open tab for specified module
-				var tmp = this.href
-                    .replace(/^[a-z]*:\/\//, "")	// remove http://
-                    .replace(/[^/]+/, "")			// remove domain
-                    .replace(config.context, "")	// remove /api/
-                    .replace(/#.*/, "")				// remove #foo
+                // Open tab for specified module
+                var tmp = this.href
+                    .replace(/^[a-z]*:\/\//, "")    // remove http://
+                    .replace(/[^/]+/, "")            // remove domain
+                    .replace(config.context, "")    // remove /api/
+                    .replace(/#.*/, "")                // remove #foo
                     .split("/");
-				var version = tmp[0];
-				var page = tmp.slice(1).join("/");
-				var url = config.apiPath + version + "/" + page;
+                var version = tmp[0];
+                var page = tmp.slice(1).join("/");
+                var url = config.apiPath + version + "/" + page;
 
                 var id = page.replace(/[\/.]/g, "_") + "_" + version;
                 var existingPane = registry.byId(id);
@@ -183,7 +183,7 @@ define(["dojo/_base/declare",
                 } else {
                     var pane = new api.ModuleContentPane({
                         id: id,
-                        page: page,		// save page because when we select a tab we locate the corresponding TreeNode
+                        page: page,        // save page because when we select a tab we locate the corresponding TreeNode
                         href: url + config.moduleExtension,
                         title: page + " (" + version + ")",
                         closable: true,
@@ -202,10 +202,10 @@ define(["dojo/_base/declare",
             on(reportlink, 'click', function (event) {
                 event.preventDefault();
                 if (!event.button && !event.metaKey && !event.ctrlKey && !event.shiftKey && !event.altKey) {
-					if (!helpDialog){
-						helpDialog = new Dialog({ title: "Feedback" });
-						helpDialog.startup();
-					}
+                    if (!helpDialog) {
+                        helpDialog = new Dialog({ title: "Feedback" });
+                        helpDialog.startup();
+                    }
                     helpDialog.set("content", domConstruct.create("iframe", {
                         src: this.href,
                         frameborder: "0",
