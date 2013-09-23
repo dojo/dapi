@@ -14,8 +14,8 @@ define(["dojo/_base/declare",
 
 	// module:
 	//        api/ContentPane
-    helpDialog = new Dialog({ title: "Feedback" }).placeAt(document.body); // global
-    helpDialog.startup();
+
+	var helpDialog;
 
     return declare("api.ModuleContentPane", ContentPane, {
         version : "",
@@ -202,6 +202,10 @@ define(["dojo/_base/declare",
             on(reportlink, 'click', function (event) {
                 event.preventDefault();
                 if (!event.button && !event.metaKey && !event.ctrlKey && !event.shiftKey && !event.altKey) {
+					if (!helpDialog){
+						helpDialog = new Dialog({ title: "Feedback" });
+						helpDialog.startup();
+					}
                     helpDialog.set("content", domConstruct.create("iframe", {
                         src: this.href,
                         frameborder: "0",
