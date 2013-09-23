@@ -5,14 +5,14 @@ RewriteBase   /api/
 
 # Requests for images, scripts etc. that are accessed from the index.html page
 # Want to use the END flag instead of L flag but it's only available in Apache 2.4.
-RewriteRule ^(css|images|scripts|data)/(.+)$ public/$1/$2 [L]
+RewriteRule ^(css|images|scripts)/(.+)$ public/$1/$2 [L]
 
 # Add version if it's a permalink URL for a module but no version specified
-RewriteRule ^(dijit|dojo|dojox)/(.+)$ 1.9/$1
+RewriteRule ^(dijit|dojo|dojox|util|doh)/(.+)$ 1.9/$1
 
-# Module summaries for 1.9 are stored in staticoutput/, and older ones in the /api-data directory, parallel to the /api directory
-RewriteRule ^1.9/(.+)$ staticoutput/1.9/$1 [L]
+# Module summaries are in the /api-data directory, parallel to the /api directory
 RewriteRule ^([0-9].+)$ /api-data/$1 [L]
+RewriteRule ^data/([0-9].+)$ /api-data/$1 [L]
 
 # Index.html is currently in staticoutput/
 # Redirect URLs like http://localhost/api and http://localhost/api/index.html there
