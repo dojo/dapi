@@ -20,7 +20,7 @@ module.exports = {
 
     /**
      * Change your contextPath to suit whatever environment you are using e.g. if generating static docs for www.yourhost/yourapipath/index.html,
-     * change it to /yourapipath/ (or /dapi/public/ if you want to run from the node's app directory)
+     * change it to /yourapipath/ (or /dapi/staticoutput/ if you want to run from the node's app directory)
      *
      *  set to whatever environment you are running in. If you're generating static documentation this will be used as the context path for all API links
      *  i.e. if your website's context is http://yourhost/yourcontext, static links will be generated for /yourcontext/1.8/dojo/Animation etc.
@@ -39,12 +39,12 @@ module.exports = {
     defaultVersion: '1.9',
 
     /**
-     * spiderVersion version to generate via spider.js
+     * spiderVersions Array of versions to generate via spider.js
      **/
-    spiderVersion : '1.9',
+    spiderVersions : ['1.8', '1.9'],
 
     /**
-     * versions is used to make available versions loadable for app.js i.e. the list of versions in the dropdown - these need to match the directory names
+     * versions is used to make available versions loadable from app.js i.e. the list of versions in the version dropdown - these need to match the directory names
      * TODO: (maybe remove from tree.js, or if keeping, add a flag to enable this) Read and set the versions read from the available versions in the api directory
      **/
     versions: ['1.3', '1.4', '1.5', '1.6', '1.7', '1.8', '1.9'],

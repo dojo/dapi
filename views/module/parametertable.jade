@@ -7,7 +7,7 @@
         each item in params
             tr
                 td.jsdoc-param-name #{item.name}
-                td.jsdoc-param-type !{item.types.join(" | ")}
+                td.jsdoc-param-type !{autoHyperlink(item.types.join(" | "), config, module.version)}
                 if (item.summary)
                     //- ! used instead of # to unescape
                     td.jsdoc-param-description

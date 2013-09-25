@@ -31,10 +31,7 @@ block main
                         select#versionSelector(style="width:auto")
                             - each version in config.versions
                                 option(selected=config.defaultVersion == version) #{version}
-                        div(data-dojo-type="dijit.form.DropDownButton")
-                            span Search
-                            div#apiSearchToolTipDialog(data-dojo-type="dijit.TooltipDialog", style="display:none;")
-                                input#apiSearchWidget(data-dojo-type="dijit.form.FilteringSelect")
+                        input#apiSearchWidget(data-dojo-type="dijit.form.FilteringSelect", style="width:150px; display:'inline';", placeholder="Quick navigation")
 
                         
                 div(data-dojo-type="dijit.layout.AccordionContainer",data-dojo-props="region: 'center'") 

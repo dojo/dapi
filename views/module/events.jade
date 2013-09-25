@@ -20,4 +20,17 @@
                     span.jsdoc-inherited.TODO(title='inherited')       
                 - // event.summary must be null here for dojo/html (though just for spider??)
                 - if (event.summary)
-                    div.jsdoc-summary !{autoHyperlink(event.summary, config, module.version)}
+                    div.jsdoc-full-summary !{autoHyperlink(event.summary, config, module.version)}
+
+                - if (event.description)
+                    div.jsdoc-full-summary !{autoHyperlink(event.description, config, module.version)}
+
+                - if (event.parameters)
+                    params = event.parameters
+                returnTypes = event.returnTypes
+                returnDescription = event.returnDescription
+                include parametertable
+                - if (event.examples)
+                    examples = event.examples
+                include examples
+

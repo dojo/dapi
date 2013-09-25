@@ -16,17 +16,15 @@ require([
     "dojo/_base/array", // array.forEach
     "dijit/MenuSeparator",
     "dijit/form/FilteringSelect",
-    "dijit/TooltipDialog",
-    "dijit/form/DropDownButton",
     "dojo/on",
     "dijit/popup",
     "dojo/window", // djwindow
     "dojo/aspect", // aspect
     "dojo/domReady!"
 ], function (parser, dom, lang, BorderContainer, TabContainer, ContentPane, AccordionContainer,
-        ModuleTreeModel, ModuleTree, config, query, registry, MenuItem, Menu, array, MenuSeparator, FilteringSelect, TooltipDialog, DropDownButton, on, popup, djwindow, aspect) {
+        ModuleTreeModel, ModuleTree, config, query, registry, MenuItem, Menu, array, MenuSeparator, FilteringSelect, on, popup, djwindow, aspect) {
 
-    var moduleModel = null, moduleTree = null, currentVersion = null, apiSearchToolTipDialog = null, apiSearchWidget = null;
+    var moduleModel = null, moduleTree = null, currentVersion = null, apiSearchWidget = null;
 
     function buildTree() {
         if (moduleModel !== null) {
@@ -124,8 +122,6 @@ require([
     // Initial setup code
 
     var parsed = parser.parse(), versionSelector = dom.byId("versionSelector");
-    apiSearchToolTipDialog = registry.byId("apiSearchToolTipDialog");
-    apiSearchToolTipDialog.closable = true;
     versionSelector.onchange = lang.hitch(versionSelector, versionChange);
 
     buildTree();
