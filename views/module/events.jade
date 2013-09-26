@@ -15,9 +15,13 @@
                         - if (idx < event.parameters.length-1)
                             | , 
                     | )</span>
-                div.jsdoc-inheritance.TODO Defined by: 
+                div.jsdoc-inheritance Defined by:
                     a.jsdoc-link(href='#{config.contextPath}#{module.version}/#{event.from}') #{event.from}
-                    span.jsdoc-inherited.TODO(title='inherited')       
+                    - if (event.extensionModule)
+                        span.jsdoc-extension(title="Must manually require () " + event.from +" to access")
+                    - else if (event.inherited)
+                        span.jsdoc-inherited(title='inherited')
+
                 - // event.summary must be null here for dojo/html (though just for spider??)
                 - if (event.summary)
                     div.jsdoc-full-summary !{autoHyperlink(event.summary, config, module.version)}

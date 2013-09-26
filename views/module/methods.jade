@@ -17,10 +17,13 @@
                     | )</span> 
                     - if (method.private)
                       span.jsdoc-private(title="private") 
-                div.jsdoc-inheritance.TODO Defined by 
+                div.jsdoc-inheritance Defined by
                     a.jsdoc-link(href='#{config.contextPath}#{module.version}/#{method.from}') #{method.from}
-                    - if (method.inherited)
-                      span.jsdoc-inherited(title='inherited')
+                    - if (method.extensionModule)
+                        span.jsdoc-extension(title="Must manually require () " + method.from +" to access")
+                    - else if (method.inherited)
+                        span.jsdoc-inherited(title='inherited')
+
                 div.jsdoc-full-summary !{method.summary}
                 - if (method.description)
                     div.jsdoc-full-summary !{autoHyperlink(method.description, config, module.version)}
