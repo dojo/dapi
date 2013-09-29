@@ -4,7 +4,8 @@
         each event in module.events
             - var klass = 'jsdoc-field' 
             - klass += (event.private == true ? " private" : "")
-            - if (event.inherited) klass += ' inherited' 
+            - if (event.inherited) klass += ' inherited'
+            - if (event.extensionModule) klass += ' extension-module'
             div(class="#{klass}")
                 div.jsdoc-title
                     a(name='#{(module.version + module.location + '_' +event.name).replace(/\/|\./g, "_")}')

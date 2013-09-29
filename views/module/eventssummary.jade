@@ -5,7 +5,8 @@
         ul.jsdoc-property-list
             each event in module.events
                 - var klass = (event.private == true ? "private" : "")
-                - if (event.inherited) klass = klass + ' inherited' 
+                - if (event.inherited) klass = klass + ' inherited'
+                - if (event.extensionModule) klass += ' extension-module'
                 li.functionIcon(class="#{klass}")
                     a.inline-link(href='##{(module.version + module.location + '_' +event.name).replace(/\/|\./g, "_")}')  !{event.name}
                     span.parameters (

@@ -55,8 +55,6 @@ define(["dojo/_base/declare",
         initModulePane : function () {
             var context = this.domNode;
             this._setUpDocLinks(context);
-///////////////// TODO: IN PROGRESS
-
             var link = query("div.jsdoc-permalink", context);
             if (link.length === 0) { // handle loading the intro screen - this is probably not needed now
                 return;
@@ -134,9 +132,6 @@ define(["dojo/_base/declare",
                 this._bugDbReport(context, link);
             }
             // finally set the window title
-            document.title = this.title + config.siteName;
-///////////////// TODO: END IN PROGRESS
-
         },
         _highlighter : function (context) {
             //    if SyntaxHighlighter is present, run it in the content

@@ -6,6 +6,7 @@ var fs = require('fs'),
     config = require('./config'),
     refdoc = require('./lib/refdoc'),
     tree = require('./lib/tree'),
+    fsExtra = require('fs-extra'),
     staticFolder = 'staticoutput/';
 
 // macro calls
@@ -79,6 +80,19 @@ config.spiderVersions.forEach(function (version) {
             });
         });
     });
+});
+
+fsExtra.copy('./public/css', staticFolder + 'css', function (err) {
+    if (err) {console.log(err); }
+    else {console.log('Wrote CSS at ' + new Date().toISOString()); }
+});
+fsExtra.copy('./public/images', staticFolder + 'images', function (err) {
+    if (err) {console.log(err); }
+    else {console.log('Wrote Images at ' + new Date().toISOString()); }
+});
+fsExtra.copy('./public/scripts', staticFolder + 'scripts', function (err) {
+    if (err) {console.log(err); }
+    else {console.log('Wrote Scripts at ' + new Date().toISOString()); }
 });
 
 process.on('exit', function () {

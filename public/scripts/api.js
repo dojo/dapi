@@ -51,18 +51,19 @@ require([
         });
         registry.byId("moduleTreePane").set('title', 'By Module ' + version);
         tabContainer = registry.byId("content");
-        tabContainer.watch("selectedChildWidget", function (attr, oldVal, selectedChildWidget) {
+        tabContainer.watch("selectedChildWidget", function (name, oldChild, newChild) {
             // If we are still scrolling the Tree from a previous run, cancel that animation
             if (moduleTree.scrollAnim) {
                 moduleTree.scrollAnim.stop();
             }
+            document.title = newChild.title + config.siteName;
 
-            if (!selectedChildWidget.page || moduleTree.version !== selectedChildWidget.version) {
+            if (!newChild.page || moduleTree.version !== newChild.version) {
                 // This tab doesn't have a corresponding entry in the tree, it must be the welcome tab or it's a different version from the tree displayed
                 moduleTree.set("path", []);
                 return;
             }
-            setTreePath(selectedChildWidget.page);
+            setTreePath(newChild.page);
         }, true);
         //end selectedChildWidgets
     }

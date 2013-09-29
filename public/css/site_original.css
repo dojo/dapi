@@ -2340,3 +2340,5 @@ h4.commentsTitle, div.js-kit-comments {
 	margin-top: 2em;
 	text-align: right;
 }
+#widget_apiSearchWidget { float: right;}
+#versionSelector {min-width: 45px; min-height: 22px;margin: 0;}

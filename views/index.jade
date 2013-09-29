@@ -28,12 +28,11 @@ block main
                 div(data-dojo-type="dijit.layout.ContentPane", data-dojo-props="title:'Search', region:'top'")
                     div(style="padding:4px")
                         label(for="versionSelector") Version:
-                        select#versionSelector(style="width:auto")
+                        select#versionSelector
                             - each version in config.versions
                                 option(selected=config.defaultVersion == version) #{version}
-                        input#apiSearchWidget(data-dojo-type="dijit.form.FilteringSelect", style="width:150px; display:'inline';", placeholder="Quick navigation")
+                        input#apiSearchWidget(data-dojo-type="dijit.form.FilteringSelect", style="width:150px; display:'inline';", data-dojo-props="placeholder:\'Quick navigation\', missingMessage : \'Module name not found\', required: false, hasDownArrow : true")
 
-                        
                 div(data-dojo-type="dijit.layout.AccordionContainer",data-dojo-props="region: 'center'") 
                     div#moduleTreePane(data-dojo-type="dijit.layout.ContentPane", data-dojo-props="title: '', selected: true")
                     //- an alternative menu for google because we're ajax menu based
@@ -54,3 +53,4 @@ block main
                 - else
                     div#baseTab_welcomeTab(data-dojo-type="api.ModuleContentPane",data-dojo-props="title: 'Welcome'")
                         include moduledefault
+
