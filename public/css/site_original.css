@@ -2342,3 +2342,14 @@ h4.commentsTitle, div.js-kit-comments {
 }
 #widget_apiSearchWidget { float: right;}
 #versionSelector {min-width: 45px; min-height: 22px;margin: 0;}
+h2.jsdoc-summary-heading {
+    background-color: #f2f2f2;
+    -webkit-border-radius : 5px;
+    -moz-border-radius : 5px;
+    border-radius : 5px;
+}
+
+.jsdoc-field-list h2.jsdoc-summary-heading:hover {
+    background-color: #E5E3FF;
+    border-bottom: 1px solid #D4D4D4;
+}
