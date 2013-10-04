@@ -16,10 +16,11 @@
                             | , 
                     | ) 
                     span !{event.shortSummary}
-
+                    - if (event.private)
+                        span.jsdoc-private(title="private")
                     - if (event.extensionModule)
                         span.jsdoc-extension(title="Must manually require () " + event.from +" to access")
-                    - else if (event.inherited)
+                    - if (event.inherited)
                         span.jsdoc-inherited(title='inherited')
 
                     

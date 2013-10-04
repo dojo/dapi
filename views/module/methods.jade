@@ -4,7 +4,8 @@
         each method in module.methods
             - var klass = 'jsdoc-field' 
             - klass += (method.private == true ? " private" : "")
-            - if (method.inherited) klass += ' inherited' 
+            - if (method.inherited) klass += ' inherited'
+            - if (method.extensionModule) klass += ' extension-module'
             div(class="#{klass}")
                 div.jsdoc-title
                     a(name='#{(module.version + module.location + '_' +method.name).replace(/\/|\./g, "_")}')

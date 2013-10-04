@@ -5,15 +5,16 @@
         ul.jsdoc-property-list
             each prop in module.properties
                 - var klass = convertType(prop.types[0]) + 'Icon' 
-                - klass += (prop.private == true ? " private" : "")
-                - if (prop.inherited) klass += ' inherited' 
+                - klass += (prop.private == true ? " private" : " public")
+                - if (prop.inherited) klass += ' inherited'
+                - if (prop.extensionModule) klass += ' extension-module'
                 li(class="#{klass}")
                     a.inline-link(href='##{(module.version + module.location + '_' +prop.name).replace(/\/|\./g, "_")}')  !{prop.name} 
                     span !{prop.shortSummary}
                     - if (prop.private)
                       span.jsdoc-private(title="private")
                     - if (prop.extensionModule)
-                        span.jsdoc-extension(title="Must manually require () " + prop.from +" to access")
+                      span.jsdoc-extension(title="Must manually require () " + prop.from +" to access")
                     - if (prop.inherited)
                       span.jsdoc-inherited(title='inherited from #{prop.from}')
 

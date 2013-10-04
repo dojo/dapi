@@ -16,6 +16,8 @@
                         - if (idx < event.parameters.length-1)
                             | , 
                     | )</span>
+                    - if (event.private)
+                      span.jsdoc-private(title="private")
                 div.jsdoc-inheritance Defined by:
                     a.jsdoc-link(href='#{config.contextPath}#{module.version}/#{event.from}') #{event.from}
                     - if (event.extensionModule)

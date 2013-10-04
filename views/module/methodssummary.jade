@@ -5,7 +5,8 @@
         ul.jsdoc-property-list
             each method in module.methods
                 - var klass = (method.private == true ? "private" : "")
-                - if (method.inherited) klass = klass + ' inherited' 
+                - if (method.inherited) klass = klass + ' inherited'
+                - if (method.extensionModule) klass += ' extension-module'
                 li.functionIcon(class="#{klass}")
                     a.inline-link(href='##{(module.version + module.location + '_' +method.name).replace(/\/|\./g, "_")}')  !{method.name}
                     span.parameters (
@@ -19,4 +20,5 @@
                       span.jsdoc-private(title="private") 
                     - if (method.inherited)
                       span.jsdoc-inherited(title='inherited from #{method.from}')
-                    
+                    - if (method.extensionModule)
+                      span.jsdoc-extension(title="Must manually require () " + method.from +" to access")
