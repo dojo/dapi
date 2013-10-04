@@ -181,9 +181,9 @@ define(["dojo/_base/declare",
             var _this = this, position = "last";
             var inheritedCheckId = "checkBoxInherited_" + this.id, privateCheckId = "checkBoxPrivate_" + this.id,
                 extensionCheckId = "checkBoxExtension_" + this.id,
-                inputHtml = "<label for='"+ extensionCheckId + "'>Extensions</label> <input id='" + extensionCheckId + "' type='checkbox'/>" +
-                    "<label for='"+ privateCheckId + "'>Privates</label> <input id='" + privateCheckId + "' type='checkbox'/>" +
-                    "<label for='"+ inheritedCheckId + "'>Inheriteds</label> <input id='" + inheritedCheckId + "' type='checkbox'/>";
+                inputHtml = "<label for='" + extensionCheckId + "'>Extensions</label> <input id='" + extensionCheckId + "' type='checkbox'/>" +
+                    "<label for='" + privateCheckId + "'>Privates</label> <input id='" + privateCheckId + "' type='checkbox'/>" +
+                    "<label for='" + inheritedCheckId + "'>Inheriteds</label> <input id='" + inheritedCheckId + "' type='checkbox'/>";
             var check1 = domConstruct.create("div", {
                 className: "viewOptions",
                 innerHTML: inputHtml,
@@ -193,7 +193,7 @@ define(["dojo/_base/declare",
                 name: "checkBoxExtension",
                 value: "Extension",
                 checked: true,
-                onChange: function(b){
+                onChange: function (ev) {
                     _this.extensionOn = !_this.extensionOn;
                     _this.adjustLists(context, _this);
                 }
@@ -203,7 +203,7 @@ define(["dojo/_base/declare",
                 name: "checkBoxPrivate",
                 value: "Private",
                 checked: false,
-                onChange: function(b){
+                onChange: function (ev) {
                     _this.privateOn = !_this.privateOn;
                     _this.adjustLists(context, _this);
                 }
@@ -213,7 +213,7 @@ define(["dojo/_base/declare",
                 name: "checkBoxInherited",
                 value: "Inherited",
                 checked: true,
-                onChange: function(b){
+                onChange: function (ev) {
                     _this.inheritedOn = !_this.inheritedOn;
                     _this.adjustLists(context, _this);
                 }

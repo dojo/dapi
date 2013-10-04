@@ -214,7 +214,7 @@ require([
     }
     function clearSearch() {
         if (apiSearchWidget) {
-            apiSearchWidget.set('value','');
+            apiSearchWidget.set('value', '');
         }
     }
 });
