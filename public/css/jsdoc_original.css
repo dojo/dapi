@@ -241,9 +241,11 @@ div.jsdoc-toolbar label {
 	top: 10px;
 	right: 84px;
 }
+/* looks naff in FF
 div.jsdoc-toolbar * {
     opacity:1;
 }
+*/
 div.jsdoc-toolbar .off {
 	opacity: 0.25;
 }
@@ -406,4 +408,22 @@ ul.jsdoc-legend {
 ul.jsdoc-legend img, ul.jsdoc-legend li > span:first-child {
 	/* align icon vertically with text; note that icons in second list are <span> nodes */
 	vertical-align: middle;
+}
+/* TODO: reset of 'div.jsdoc-toolbar label' above, remove */
+div.jsdoc-toolbar label {
+    position: relative;
+    top : auto;
+    right : auto;
+    cursor : pointer;
+    color : #4477aa;
+    margin-left : 5px;
+}
+.dijitCheckBoxInput {
+    cursor : pointer;
+}
+.viewOptions {
+    right: 5px;
+    position: absolute;
+    top: 10px;
+    right: 8px;
 }

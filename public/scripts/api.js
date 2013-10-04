@@ -64,6 +64,7 @@ require([
                 return;
             }
             setTreePath(newChild.page);
+            clearSearch();
         }, true);
         //end selectedChildWidgets
     }
@@ -88,6 +89,8 @@ require([
 
         apiSearchWidget.on("Change", function (data) {
             setTreePath(data);
+            var input = query('input.dijitInputInner', this.domNode)[0];
+            input.blur();// unfocus after selecting a tree item, helps on mobile by hiding keyboard
         });
     }
 
@@ -208,6 +211,11 @@ require([
                 item.destroyRecursive();
             }
         });
+    }
+    function clearSearch() {
+        if (apiSearchWidget) {
+            apiSearchWidget.set('value','');
+        }
     }
 });
 

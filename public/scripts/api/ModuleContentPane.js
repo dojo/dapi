@@ -9,8 +9,9 @@ define(["dojo/_base/declare",
     "dojo/dom-class",
     "dojo/dom-style",
     "dijit/registry",
-    "dijit/Dialog"
-], function (declare, kernel, lang, ContentPane, query, domConstruct, config, on, domClass, domStyle, registry, Dialog) {
+    "dijit/Dialog",
+    "dijit/form/CheckBox"
+], function (declare, kernel, lang, ContentPane, query, domConstruct, config, on, domClass, domStyle, registry, Dialog, CheckBox) {
 
     // module:
     //        api/ContentPane
@@ -61,49 +62,15 @@ define(["dojo/_base/declare",
             }
             link = link[0].innerHTML;
             // TODO baseUrl ??
-            var baseUrl = "/";
-            // img should be moved to classes - im having to include the context path in order this works
-            var tbc = (link ? '<span class="jsdoc-permalink"><a class="jsdoc-link" href="' + link + '">Permalink</a></span>' : '')
-                + '<label>View options: </label>'
-                + '<span class="trans-icon jsdoc-extension"><img src="' + config.context + 'css/icons/24x24/extension.png" align="middle" border="0" alt="Toggle extension module members" title="Toggle extension module members" /></span>'
-                + '<span class="trans-icon jsdoc-private"><img src="' + config.context + 'css/icons/24x24/private.png" align="middle" border="0" alt="Toggle private members" title="Toggle private members" /></span>'
-                + '<span class="trans-icon jsdoc-inherited"><img src="' + config.context + 'css/icons/24x24/inherited.png" align="middle" border="0" alt="Toggle inherited members" title="Toggle inherited members" /></span>';
+            var baseUrl = "/",
+                tbc = (link ? '<span class="jsdoc-permalink"><a class="jsdoc-link" href="' + link + '">Permalink</a></span>' : '');
             var toolbar = domConstruct.create("div", {
                 className: "jsdoc-toolbar",
-                innerHTML: tbc
+                innerHTML: tbc,
             }, this.domNode, "first");
-            //this.adjustLists(this.domNode);
-
-            var extensionBtn = query(".jsdoc-extension", toolbar)[0];
-            on(extensionBtn, "click", lang.hitch(this, function (e) {
-                this.extensionOn = !this.extensionOn;
-                var _this = this;
-                domClass.toggle(extensionBtn, "off", !this.extensionOn);
-                this.adjustLists(context, _this);
-            }));
-
-            var privateBtn = query(".jsdoc-private", toolbar)[0];
-            domClass.add(privateBtn, "off");    // initially off
-            on(privateBtn, "click", lang.hitch(this, function (e) {
-                this.privateOn = !this.privateOn;
-                var _this = this;
-                domClass.toggle(privateBtn, "off", !this.privateOn);
-                this.adjustLists(context, _this);
-            }));
-
-            var inheritedBtn =  query(".jsdoc-inherited", toolbar)[0];
-            on(inheritedBtn, "click", lang.hitch(this, function (e) {
-                this.inheritedOn = !this.inheritedOn;
-                var _this = this;
-                domClass.toggle(inheritedBtn, "off", !this.inheritedOn);
-                this.adjustLists(context, _this);
-            }));
-
-
+            this._createCheckBoxes(toolbar, context);
             this.adjustLists(context, this);
             this._highlighter(context);
-
-
             //    make the summary sections collapsible.
             query("h2.jsdoc-summary-heading", this.domNode).forEach(function (item) {
                 on(item, "click", function (e) {
@@ -209,6 +176,49 @@ define(["dojo/_base/declare",
                     helpDialog.show();
                 }
             });
+        },
+        _createCheckBoxes : function (toolbardiv, context) {
+            var _this = this, position = "last";
+            var inheritedCheckId = "checkBoxInherited_" + this.id, privateCheckId = "checkBoxPrivate_" + this.id,
+                extensionCheckId = "checkBoxExtension_" + this.id,
+                inputHtml = "<label for='"+ extensionCheckId + "'>Extensions</label> <input id='" + extensionCheckId + "' type='checkbox'/>" +
+                    "<label for='"+ privateCheckId + "'>Privates</label> <input id='" + privateCheckId + "' type='checkbox'/>" +
+                    "<label for='"+ inheritedCheckId + "'>Inheriteds</label> <input id='" + inheritedCheckId + "' type='checkbox'/>";
+            var check1 = domConstruct.create("div", {
+                className: "viewOptions",
+                innerHTML: inputHtml,
+            }, toolbardiv, position);
+
+            var checkBoxExtension = new CheckBox({
+                name: "checkBoxExtension",
+                value: "Extension",
+                checked: true,
+                onChange: function(b){
+                    _this.extensionOn = !_this.extensionOn;
+                    _this.adjustLists(context, _this);
+                }
+            }, extensionCheckId).startup();
+
+            var checkBoxPrivate = new CheckBox({
+                name: "checkBoxPrivate",
+                value: "Private",
+                checked: false,
+                onChange: function(b){
+                    _this.privateOn = !_this.privateOn;
+                    _this.adjustLists(context, _this);
+                }
+            }, privateCheckId).startup();
+
+            var checkBoxInherited = new CheckBox({
+                name: "checkBoxInherited",
+                value: "Inherited",
+                checked: true,
+                onChange: function(b){
+                    _this.inheritedOn = !_this.inheritedOn;
+                    _this.adjustLists(context, _this);
+                }
+            }, inheritedCheckId).startup();
+
         }
     });
 });
