@@ -4,8 +4,7 @@ html
     title #{title} Version #{module !=null ? module.version : config.defaultVersion}
     link(rel='stylesheet', href="#{config.dojoBase}/dojo/resources/dojo.css")
     link(rel='stylesheet', href="#{config.dojoBase}/dijit/themes/#{config.theme}/#{config.theme}.css")
-    // link(rel='stylesheet', href="/#{config.dojobase}/dijit/themes/#{config.theme}/#{config.theme}.css")
-     
+
     link(rel='stylesheet', href="#{config.contextPath}css/jsdoc_original.css")
     link(rel='stylesheet', href="#{config.contextPath}css/site_original.css")
     script(type="text/javascript")
@@ -17,6 +16,7 @@ html
             apiDefault : '#{config.defaultVersion}',
             moduleExtension : '#{config.moduleExtension}',
             siteName : '#{config.siteName}',
+            baseUrl: '#{config.dojoBase}/dojo',
             #{(config.bugdb != null) ? 'bugdb : \'' + config.bugdb + '\'' : 'bugdb : null'}
         }
 

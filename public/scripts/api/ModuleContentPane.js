@@ -62,11 +62,16 @@ define(["dojo/_base/declare",
             }
             link = link[0].innerHTML;
             // TODO baseUrl ??
-            var baseUrl = "/",
-                tbc = (link ? '<span class="jsdoc-permalink"><a class="jsdoc-link" href="' + link + '">Permalink</a></span>' : '');
+            var baseUrl = "/";
+            var permalinkhtml = (link ? '<a class="jsdoc-link" href="' + link + '">Permalink</a>' : '');
+            domConstruct.create("span", {
+                className: "jsdoc-permalink",
+                innerHTML: permalinkhtml
+            }, this.domNode, "first");
+
+
             var toolbar = domConstruct.create("div", {
                 className: "jsdoc-toolbar",
-                innerHTML: tbc,
             }, this.domNode, "first");
             this._createCheckBoxes(toolbar, context);
             this.adjustLists(context, this);

@@ -2350,6 +2350,15 @@ h2.jsdoc-summary-heading {
 }
 
 .jsdoc-field-list h2.jsdoc-summary-heading:hover {
-    background-color: #E5E3FF;
+    background-color: #DEDEDE;
     border-bottom: 1px solid #D4D4D4;
+}
+
+.module-title {
+    display: block !important;
+    margin-top: 10px !important;
+}
+
+html {
+    zoom : 1.0 !important;
 }

@@ -5,7 +5,7 @@ script(type="text/javascript")
     location = "#{config.contextPath}?qs=#{module !=null ? module.version : config.defaultVersion}/#{module.location}" + location.hash;
 
 div.jsdoc-permalink(style="display:none") #{config.contextPath}#{module !=null ? module.version : config.defaultVersion}/#{module.location}.html
-h1(class="#{convertType(module.type)}Icon36 jsdoc-title") #{module.location}
+h1(class="#{convertType(module.type)}Icon36 jsdoc-title module-title") #{module.location}
         span(style="font-size:11px;color:#999;")  (version #{module.version})
 - if (module.mixins != null)
     div.jsdoc-mixins
@@ -45,11 +45,10 @@ examples = module.examples
 div.jsdoc-children
     div.jsdoc-field-list
         include module/examples
-        hr
         include module/propertiessummary
         include module/methodssummary
         include module/eventssummary
-        hr
+
 div.jsdoc-children
     div.jsdoc-fields
         include module/properties

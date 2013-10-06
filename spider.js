@@ -76,7 +76,7 @@ config.spiderVersions.forEach(function (version) {
                 }
                 var html = fn({ module : retObjectItem, config: config, autoHyperLink: autoHyperlink});
                 fs.writeFileSync(versionfolder + patharr.join("/") + "/" + modname + ".html", html);
-                console.log('Wrote at ' + new Date().toISOString() + ' - ' + versionfolder + modulefile);
+                //console.log('Wrote at ' + new Date().toISOString() + ' - ' + versionfolder + modulefile);
             });
         });
     });
@@ -84,15 +84,15 @@ config.spiderVersions.forEach(function (version) {
 
 fsExtra.copy('./public/css', staticFolder + 'css', function (err) {
     if (err) {console.log(err); }
-    else {console.log('Wrote CSS at ' + new Date().toISOString()); }
+
 });
 fsExtra.copy('./public/images', staticFolder + 'images', function (err) {
     if (err) {console.log(err); }
-    else {console.log('Wrote Images at ' + new Date().toISOString()); }
+
 });
 fsExtra.copy('./public/scripts', staticFolder + 'scripts', function (err) {
     if (err) {console.log(err); }
-    else {console.log('Wrote Scripts at ' + new Date().toISOString()); }
+
 });
 
 process.on('exit', function () {

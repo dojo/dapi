@@ -422,8 +422,40 @@ div.jsdoc-toolbar label {
     cursor : pointer;
 }
 .viewOptions {
-    right: 5px;
-    position: absolute;
-    top: 10px;
-    right: 8px;
+    float: right;
+}
+
+/* reset */
+div.jsdoc-toolbar {
+    margin : 0;
+}
+
+/* temp try out floating toolbar */
+div.jsdoc-toolbar {
+    position: fixed;
+    float: right;
+    right: 30px;
+    border-radius: 5px;
+    z-index: 1000;
+    border-bottom: 3px solid #E5E3CF;
+    padding: 0;
+    height : initial;
+    padding: 2px 6px 0px 6px;
+    border-right: 2px solid #E5E3CF;
+    border-top: 1px solid #E5E3CF;
+    border-left: 1px solid #E5E3CF;
+
+}
+/* temp - underline toolbar labels */
+.viewOptions label:hover {
+    text-decoration: underline;
+}
+/* temp - play with layout */
+div.jsdoc-toolbar .jsdoc-permalink {
+    position : initial;
+    top : initial;
+    left : initial;
+    float : left;
+    border : none;
+    width: initial;
 }
