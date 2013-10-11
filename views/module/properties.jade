@@ -4,7 +4,8 @@
         each prop in module.properties
             - var klass = 'jsdoc-field' 
             - klass += (prop.private == true ? " private" : " public")
-            - if (prop.extensionModule) klass += ' extension-module' 
+            - if (prop.extensionModule) klass += ' extension-module'
+            - if (prop.inherited) klass += ' inherited'
             div(class="#{klass}")
                 div.jsdoc-title
                     a(name='#{(module.version + module.location + '_' +prop.name).replace(/\/|\./g, "_")}')

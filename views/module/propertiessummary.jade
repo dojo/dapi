@@ -6,10 +6,10 @@
             each prop in module.properties
                 - var klass = convertType(prop.types[0]) + 'Icon' 
                 - klass += (prop.private == true ? " private" : " public")
-                - if (prop.inherited) klass += ' inherited'
-                - if (prop.extensionModule) klass += ' extension-module'
+                - if (prop.inherited == true) klass += ' inherited'
+                - if (prop.extensionModule == true) klass += ' extension-module'
                 li(class="#{klass}")
-                    a.inline-link(href='##{(module.version + module.location + '_' +prop.name).replace(/\/|\./g, "_")}')  !{prop.name} 
+                    a.inline-link(href='##{(module.version + module.location + '_' +prop.name).replace(/\/|\./g, "_")}') !{prop.name}
                     span !{prop.shortSummary}
                     - if (prop.private)
                       span.jsdoc-private(title="private")

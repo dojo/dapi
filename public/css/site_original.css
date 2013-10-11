@@ -1,5 +1,5 @@
 /* ---------- Begin Mobile ---------- */
-@media screen and (max-device-width: 320px) { 
+@media screen and (max-device-width: 320px) {
     #intro .dojoToolkit .homeIntro .introSubText {
         line-height: 14px;
         font-size: 14px;
@@ -2361,4 +2361,8 @@ h2.jsdoc-summary-heading {
 
 html {
     zoom : 1.0 !important;
+}
+/* override */
+#main h1 {
+    margin: 0 0 5px 0;
 }
