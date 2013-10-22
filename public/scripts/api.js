@@ -128,17 +128,25 @@ require([
     var parsed = parser.parse(), versionSelector = dom.byId("versionSelector");
     versionSelector.onchange = lang.hitch(versionSelector, versionChange);
 
-    buildTree();
+	// Initial module page to display (if any)
+	var page;
 
-    // Handle URL argument for initial tab
-    if (location.search) {
-        // The only formats we support are qs=dijit/Dialog or qs=1.9/dijit/Dialog#show
-        var page = location.search.replace("?qs=", ""), version = null, anchor = null;
-        if (/^[0-9]/.test(page)) {
-            currentVersion = page.replace(/\/.*/, "");
-            buildTree();
-            page = page.replace(/[^/]+\//, "");
-        }
+	// Handle URL argument
+	if (location.search) {
+		// The formats we support are:
+		// 		- qs=dijit/Dialog			(defaults to 1.9/dijit/Dialog)
+		//		- qs=1.9/dijit/Dialog#show
+		//		- qs=1.8					(open tree for 1.8, don't open a tab)
+		page = location.search.replace("?qs=", ""), version = null, anchor = null;
+		if (/^[0-9]/.test(page)) {
+			currentVersion = page.replace(/\/.*/, "");
+			page = page.replace(/[^/]+\/?/, "");
+		}
+	}
+
+	buildTree();
+
+	if (page) {
         version = currentVersion || config.apiDefault,
         pane = moduleTree.addTabPane(page, version);
 
