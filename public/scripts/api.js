@@ -128,29 +128,29 @@ require([
     var parsed = parser.parse(), versionSelector = dom.byId("versionSelector");
     versionSelector.onchange = lang.hitch(versionSelector, versionChange);
 
-	// Initial module page to display (if any)
-	var page;
+    // Initial module page to display (if any)
+    var page;
 
-	// Handle URL argument
-	if (location.search) {
-		// The formats we support are:
-		// 		- qs=dijit/Dialog			(defaults to 1.9/dijit/Dialog)
-		//		- qs=1.9/dijit/Dialog#show
-		//		- qs=1.8					(open tree for 1.8, don't open a tab)
-		page = location.search.replace("?qs=", ""), version = null, anchor = null;
-		if (/^[0-9]/.test(page)) {
-			currentVersion = page.replace(/\/.*/, "");
-			page = page.replace(/[^/]+\/?/, "");
-		}
-	}
+    // Handle URL argument
+    if (location.search) {
+        // The formats we support are:
+        //        - qs=dijit/Dialog            (defaults to 1.9/dijit/Dialog)
+        //        - qs=1.9/dijit/Dialog#show
+        //        - qs=1.8                    (open tree for 1.8, don't open a tab)
+        page = location.search.replace("?qs=", "");
+        if (/^[0-9]/.test(page)) {
+            currentVersion = page.replace(/\/.*/, "");
+            page = page.replace(/[^/]+\/?/, "");
+        }
+    }
 
-	buildTree();
+    buildTree();
 
-	if (page) {
-        version = currentVersion || config.apiDefault,
+    if (page) {
+        var version = currentVersion || config.apiDefault,
         pane = moduleTree.addTabPane(page, version);
 
-        anchor = location.hash && location.hash.substring(1);
+        var anchor = location.hash && location.hash.substring(1);
         if (anchor) {
             anchor = (version + page).replace(/[/\.]/g, "_") + "_" + anchor;    // ex: 1_9dijit_Dialog_show
             pane.onLoadDeferred.then(function () {
@@ -164,7 +164,7 @@ require([
 
     // selectAndClick setup the welcome page (selectAndClick is defined by buildTree)
     var welcomeTab = registry.byId("baseTab_welcomeTab");
-	query(".dtk-object-title a", welcomeTab.domNode).forEach(function (node, index) {
+    query(".dtk-object-title a", welcomeTab.domNode).forEach(function (node, index) {
         on(node, "click", function (e) {
             var targetpatharr = e.target.name.split("/"), treepatharr = [], tmp2 = null;
             // TODO : do this better, filter/map?
