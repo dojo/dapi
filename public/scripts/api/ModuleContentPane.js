@@ -71,7 +71,7 @@ define(["dojo/_base/declare",
 
 
             var toolbar = domConstruct.create("div", {
-                className: "jsdoc-toolbar",
+                className: "jsdoc-toolbar"
             }, this.domNode, "first");
             this._createCheckBoxes(toolbar, context);
             this.adjustLists(context, this);
@@ -191,7 +191,7 @@ define(["dojo/_base/declare",
                     "<label for='" + inheritedCheckId + "'>Inheriteds</label> <input id='" + inheritedCheckId + "' type='checkbox'/>";
             var check1 = domConstruct.create("div", {
                 className: "viewOptions",
-                innerHTML: inputHtml,
+                innerHTML: inputHtml
             }, toolbardiv, position);
 
             var checkBoxExtension = new CheckBox({
