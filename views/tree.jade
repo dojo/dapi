@@ -11,11 +11,11 @@ html
                             mixin treeitems(treeitem.children)
                     - else if (treeitem.children && treeitem.children.length > 0)
                         li 
-                            a(href='#{treeitem.fullname}') #{treeitem.name}
+                            a(href='#{treeitem.fullname}.html') #{treeitem.name}
                             mixin treeitems(treeitem.children)
                     - else
                         li 
-                            a(href='#{treeitem.fullname}') #{treeitem.name}
+                            a(href='#{treeitem.fullname}.html') #{treeitem.name}
         
         - if (tree)
         mixin treeitems(tree.children)
