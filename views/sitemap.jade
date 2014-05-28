@@ -1,0 +1,15 @@
+!!!xml
+urlset(xmlns="http://www.sitemaps.org/schemas/sitemap/0.9")
+    mixin treeitems(items)
+        each treeitem in items
+            - if (treeitem.type == 'folder')
+                mixin treeitems(treeitem.children)
+            - else if (treeitem.children && treeitem.children.length > 0)
+                url
+                    loc #{config.siteDomain}#{config.contextPath}#{treeitem.fullname}.html
+                mixin treeitems(treeitem.children)
+            - else
+                url
+                    loc #{config.siteDomain}#{config.contextPath}#{treeitem.fullname}.html
+        - if (tree)
+    mixin treeitems(tree.children)

@@ -24,6 +24,7 @@ app.locals.getRefDoc = refdoc.getRefDoc;
 
 app.set('views', __dirname + '/' + config.viewsDirectory);
 app.set('view engine', 'jade');
+config.runner = "app"; // set a flag to determine if we're running from the app server
 if (config.isDebug === true) {
     app.use(express.logger('dev'));
 }
@@ -50,9 +51,8 @@ app.get(config.contextPath + '*', function (req, res, next) {
     var requestedVersion = requested.substring(0, idxslash);
     var modulefile = requested.slice(idxslash + 1);
 
-    var version = req.params.toString().substring(0, 3); // should be done with regex? or is this the implied api?
-    if (isNaN(version)) {
-        throw new Error("Version not understood - " + version + ", " + new Date());
+    if (isNaN(requestedVersion)) {
+        throw new Error("Version not understood - " + requestedVersion + ", " + new Date());
     }
     if (modulefile === "tree.html") {
         var treeitems = tree.getTree(requestedVersion, config);
@@ -61,9 +61,10 @@ app.get(config.contextPath + '*', function (req, res, next) {
     }
     modulefile = modulefile.replace(re, ""); // replace the file extension
     // not sure if this is bad - handle versions earlier than 1.8 i.e. static html generated docs
-    if (parseFloat(version) < 1.8) { // currently expects a float i.e. no num
+	var lexicalVersions = requestedVersion.split('.');
+    if (parseFloat(lexicalVersions[1]) < 8) { // not great but more than unlikely we'll use 3 dot separated versions
         // item.fullname.replace(/\./g, "/")
-        var legacyfile = __dirname + '/public/api/' + version + '/' + modulefile.replace(/\./g, "/") + '.html';
+        var legacyfile = __dirname + '/public/api/' + requestedVersion + '/' + modulefile.replace(/\./g, "/") + '.html';
         res.sendfile(legacyfile); // could be a security issue here
         return;
     }

@@ -2,6 +2,7 @@
 html
   head
     title #{title} Version #{module !=null ? module.version : config.defaultVersion}
+    meta(name="Description", content="Dojo toolkit API documentation viewer, version #{module !=null ? module.version : config.defaultVersion}")
     link(rel='stylesheet', href="#{config.dojoBase}/dojo/resources/dojo.css")
     link(rel='stylesheet', href="#{config.dojoBase}/dijit/themes/#{config.theme}/#{config.theme}.css")
 

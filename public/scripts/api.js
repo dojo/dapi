@@ -143,6 +143,12 @@ require([
             page = page.replace(/[^/]+\/?/, "");
         }
     }
+	// handle declarative loaded content pane (only returned by the app server)
+	var declarativeTab = registry.byId("baseTab");
+	if (declarativeTab) {
+		//TODO : need to handle focusing the treepath (only for declaratively loaded contentpane)
+		declarativeTab.initModulePane();
+	}
 
     buildTree();
 

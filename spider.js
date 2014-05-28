@@ -33,6 +33,12 @@ var treedata = fs.readFileSync(treejade, "utf8");
 var fntree = jade.compile(treedata, {filename: treejade, pretty: true});
 // var treehtml = fntree({ title : 'API Documentation', config: config, version: config.spiderVersion, tree : treeitems});
 
+// write sitemap.xml
+var sitemapjade = __dirname + "/" + config.viewsDirectory + "/sitemap.jade";
+var sitemapdata = fs.readFileSync(sitemapjade, "utf8");
+var fnsitemap = jade.compile(sitemapdata, {filename: sitemapdata, pretty: true});
+//
+
 fs.writeFileSync(staticFolder + "index.html", indexhtml);
 var starttime = new Date().getTime();
 // var detailsFile = "./public/data/" + config.spiderVersion + "/details.json";
@@ -46,10 +52,13 @@ var now = null;
 config.spiderVersions.forEach(function (version) {
     var treeitems = tree.getTree(version, config);
     var treehtml = fntree({ title : 'API Documentation', config: config, version: version, tree : treeitems});
+	var sitemapxml = fnsitemap({ title : 'API Documentation', config: config, version: version, tree : treeitems});
+
     var detailsFile = "./public/data/" + version + "/details.json";
     var versionfolder = staticFolder  + version + "/";
     mkdirp.sync(versionfolder);
     fs.writeFileSync(versionfolder + "tree.html", treehtml);
+	fs.writeFileSync(versionfolder + "sitemap.xml", sitemapxml, {encoding : 'utf8'});
 
     var dataFolder = staticFolder + 'data/' + version;
     mkdirp.sync(dataFolder);

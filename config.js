@@ -29,6 +29,10 @@ module.exports = {
      **/
     contextPath: '/api/',
 
+	/**
+	 * Currently only used to write the <loc> url for the sitemap.xml
+	 **/
+	siteDomain: 'http://dojotoolkit.org',
     /**
      * port is used to configure what port the app.js server runs on (as per usual you'll need to use sudo if using ports less than 1024)
      **/
@@ -37,18 +41,18 @@ module.exports = {
     /**
      * defaultVersion to load when app.js runs or when using spider.js, the static version of docs which will be generated
      **/
-    defaultVersion: '1.9',
+    defaultVersion: '1.10',
 
     /**
      * spiderVersions Array of versions to generate via spider.js
      **/
-    spiderVersions : ['1.8', '1.9'],
+    spiderVersions : ['1.8', '1.9', "1.10"],
 
     /**
      * versions is used to make available versions loadable from app.js i.e. the list of versions in the version dropdown - these need to match the directory names
      * TODO: (maybe remove from tree.js, or if keeping, add a flag to enable this) Read and set the versions read from the available versions in the api directory
      **/
-    versions: ['1.3', '1.4', '1.5', '1.6', '1.7', '1.8', '1.9'],
+    versions: ['1.3', '1.4', '1.5', '1.6', '1.7', '1.8', '1.9', '1.10'],
     versionIgnores : /(\.git|\.md)/,
 
 
