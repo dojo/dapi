@@ -29,13 +29,15 @@ public/api/1.5
 public/api/1.6
 public/api/1.7
 
-# old data
-public/api/1.8/widgetbase.json
-public/api/1.8/details_dijit.xml
-public/api/1.8/details_huge.xml
-
-#ignore data
-public/data
+# ignore data
+public/data/1.3
+public/data/1.4
+public/data/1.5
+public/data/1.6
+public/data/1.7
+public/data/1.8
+public/data/1.9
+public/data/1.10
 
 # ignore ide
 .idea
