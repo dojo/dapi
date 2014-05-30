@@ -32,3 +32,6 @@ public/data
 
 # ignore ide
 .idea
+
+# ignore os
+.DS_Store
