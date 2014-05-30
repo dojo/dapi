@@ -63,19 +63,19 @@ app.get(config.contextPath + '*', function (req, res, next) {
     // not sure if this is bad - handle versions earlier than 1.8 i.e. static html generated docs
 	// TODO: see the bug with 23:16:04 GMT+0100 (BST), is xhr = true, requested = 1.10/dijit/CalendarLite/_MonthWidget.html
 	// i.e. load the tree module for dijit/CalendarLite/_MonthWidget
-	var lexicalVersions = requestedVersion.split('.');
+    var lexicalVersions = requestedVersion.split('.');
     if (parseFloat(lexicalVersions[1]) < 8) { // not great but more than unlikely we'll use 3 dot separated versions
-	    var legacyfilelocation = __dirname + '/public/api/' + requestedVersion + '/' + modulefile.replace(/\./g, "/") + '.html';
-	    if (req.xhr == true) { // it's a module xhr
-		    res.sendfile(legacyfilelocation); // could be a security issue here
-		    return;
-	    } else { // it's a permalink for legacy
-		    // rewite the url to the ?qs= parm, meaning all legacy permalinked docs are still loaded via XHR.
-		    // the only other option is dynamically including the html in the template which wouldn't be good for performance
-		    // TODO: the .html extension is an issue, here im stripping it (compared to legacyfilelocation), this is also mirrored in the client JS (and FWIW apache)
-		    res.redirect(301, config.contextPath + '?qs=' + requestedVersion + '/' + modulefile.replace(/\./g, "/"));
-		    return;
-	    }
+		var legacyfilelocation = __dirname + '/public/api/' + requestedVersion + '/' + modulefile.replace(/\./g, "/") + '.html';
+		if (req.xhr === true) { // it's a module xhr
+			res.sendfile(legacyfilelocation); // could be a security issue here
+			return;
+		} else { // it's a permalink for legacy
+			// rewite the url to the ?qs= parm, meaning all legacy permalinked docs are still loaded via XHR.
+			// the only other option is dynamically including the html in the template which wouldn't be good for performance
+			// TODO: the .html extension is an issue, here im stripping it (compared to legacyfilelocation), this is also mirrored in the client JS (and FWIW apache)
+			res.redirect(301, config.contextPath + '?qs=' + requestedVersion + '/' + modulefile.replace(/\./g, "/"));
+			return;
+		}
         // item.fullname.replace(/\./g, "/")
     }
     var detailsFile = "./public/data/" + requestedVersion + "/details.json";
