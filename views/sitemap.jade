@@ -5,11 +5,9 @@ urlset(xmlns="http://www.sitemaps.org/schemas/sitemap/0.9")
             - if (treeitem.type == 'folder')
                 mixin treeitems(treeitem.children)
             - else if (treeitem.children && treeitem.children.length > 0)
-                url
-                    loc #{config.siteDomain}#{config.contextPath}#{version}/#{treeitem.fullname}.html
+                url: loc #{config.siteDomain}#{config.contextPath}#{version}/#{treeitem.fullname}.html
                 mixin treeitems(treeitem.children)
             - else
-                url
-                    loc #{config.siteDomain}#{config.contextPath}#{version}/#{treeitem.fullname}.html
+                url: loc #{config.siteDomain}#{config.contextPath}#{version}/#{treeitem.fullname}.html
         - if (tree)
     mixin treeitems(tree.children)
