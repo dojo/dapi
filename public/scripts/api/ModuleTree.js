@@ -47,9 +47,10 @@ define(["dojo/_base/declare", "dojo/_base/lang", "dijit/Tree", "dijit/registry",
             // Get the URL to get the tab content.
             // TODO - not great
             var fullName = page;
-            if (parseFloat(version.match(/.[0-9]../)) < 1.8) {
-                fullName = page.replace(/\./g, "/").trim();
-            }
+	        var lexicalversion = version.split('.')[1];
+	        if (parseFloat(lexicalversion) < 8) {
+		        fullName = page.replace(/\./g, "/").trim();
+	        }
             // END TODO
             var url = config.apiPath + version + "/" + fullName;  // TODO fix this later, should pass in the context
             var id = page.replace(/[\/.]/g, "_") + "_" + version;
