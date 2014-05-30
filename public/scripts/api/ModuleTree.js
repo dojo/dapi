@@ -47,7 +47,7 @@ define(["dojo/_base/declare", "dojo/_base/lang", "dijit/Tree", "dijit/registry",
             // Get the URL to get the tab content.
             // TODO - not great
             var fullName = page;
-            if (parseFloat(version.match(/[0-9]../)) < 1.8) {
+            if (parseFloat(version.match(/.[0-9]../)) < 1.8) {
                 fullName = page.replace(/\./g, "/").trim();
             }
             // END TODO
