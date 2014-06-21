@@ -12,7 +12,7 @@ if [ "$CONT" != "y" ]; then
 fi
 
 # mkdir to a dapi directory you want to run this from, cd to it then run this script.
-echo Create directory in $DAPI_DIR
+echo "Create directory in directory '$DAPI_DIR'?"
 read -p "Continue (y/n)?" CONT
 if [ "$CONT" != "y" ]; then
   exit;
