@@ -1,7 +1,7 @@
 #!/bin/sh
 echo "================================================================"
-echo "\nRun this from the parent directory you want to clone the api viewer to (remember the ref docs need to be configured appropriately)."
-echo "This script runs clones, so cant clone to a non-empty directory"
+echo "\nCopy this script and run it from the parent directory you want to clone the api viewer to (remember the ref docs need to be configured appropriately)."
+echo "This script runs clones, so cannot clone to a non-empty directory"
 echo "Set the install folder if you want to change it in this script via DAPI_DIR variable"
 echo "\nIf this script doesn't work, just manually follow the simple steps in this script to install\n\n"
 
@@ -34,3 +34,5 @@ tar -x -f dojo-site-api/legacyhtml.tar.gz -C public/api
 
 # start the application
 node app
+
+### note theres an error with renamed files i.e. goto api 1.7 click dojox/grid it should look for grid_ns.html  instead
