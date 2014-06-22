@@ -6,6 +6,7 @@ var express = require('express'),
     generate = require('./lib/generate'),
     config = require('./config'),
     refdoc = require('./lib/refdoc'),
+    legacy = require('./lib/legacyrewrite'),
     tree = require('./lib/tree');
 
 console.log("started at " + new Date());
@@ -28,6 +29,8 @@ config.runner = "app"; // set a flag to determine if we're running from the app 
 if (config.isDebug === true) {
     app.use(express.logger('dev'));
 }
+
+legacy.handleLegacyRewrites(app, config);
 
 app.use(config.contextPath, express.static(__dirname + '/public'));
 
