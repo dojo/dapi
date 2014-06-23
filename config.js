@@ -101,21 +101,17 @@ module.exports = {
 	 *      and this only works under the Linux OS. So these files need to be name-spaced out of the way.
 	 *      This is likely never to be changed in future, it's a legacy issue, the generated document file names for legacy
 	 *      were modified in https://github.com/wkeese/dojo-api-data which https://github.com/lbod/dojo-site-api uses.
-	 *
-	 *      Note that you do not specify a contextPath here, nor a carrot as it's configured in code.
-	 *      Just specify the regex of the URL after the carrot and contextPath you expect.
 	 */
-
-	legacyNSReplacers : [{matcher:/(1.[3-7]\/dijit\/tree).html$/, replacer:'$1_ns.html'},
-		{matcher:/(1.[3-7]\/dojox\/form\/)(manager|uploader).html$/, replacer:'$1$2_ns.html'},
-		{matcher:/(1.[3-7]\/dojox\/form\/uploader)\/(.*)$/, replacer:'$1_ns/$2'},
-		{matcher:/(1.[3-7]\/dojox\/gfx\/)(shape|path).html$/, replacer:'$1$2_ns.html'},
-		{matcher:/(1.[3-7]\/dojox\/gfx\/)(shape|path)\/(.*)$/, replacer:'$1$2_ns/$3'},
-		{matcher:/(1.[3-7]\/dojox\/grid).html$/, replacer:'$1_ns.html'},
-		{matcher:/(1.[3-7]\/dojox\/grid\/selection).html$/, replacer:'$1_ns.html'},
-		{matcher:/(1.[3-7]\/dojox\/grid\/enhanced\/plugins\/)(exporter|filter|pagination).html$/, replacer:'$1$2_ns.html'},
-		{matcher:/(1.[3-7]\/dojox\/grid\/enhanced\/plugins\/)(exporter|pagination)\/(.*)$/, replacer:'$1$2_ns/$3'},
-		{matcher:/(1.[3-7]\/dojox\/widget\/rotator).html$/, replacer:'$1_ns.html'}],
+	legacyNSReplacers : [{matcher: /(1.[3-7]\/dijit\/tree).html$/, replacer: '$1_ns.html'},
+		{matcher: /(1.[3-7]\/dojox\/form\/)(manager|uploader).html$/, replacer: '$1$2_ns.html'},
+		{matcher: /(1.[3-7]\/dojox\/form\/uploader)\/(.*)$/, replacer: '$1_ns/$2'},
+		{matcher: /(1.[3-7]\/dojox\/gfx\/)(shape|path).html$/, replacer: '$1$2_ns.html'},
+		{matcher: /(1.[3-7]\/dojox\/gfx\/)(shape|path)\/(.*)$/, replacer: '$1$2_ns/$3'},
+		{matcher: /(1.[3-7]\/dojox\/grid).html$/, replacer: '$1_ns.html'},
+		{matcher: /(1.[3-7]\/dojox\/grid\/selection).html$/, replacer: '$1_ns.html'},
+		{matcher: /(1.[3-7]\/dojox\/grid\/enhanced\/plugins\/)(exporter|filter|pagination).html$/, replacer: '$1$2_ns.html'},
+		{matcher: /(1.[3-7]\/dojox\/grid\/enhanced\/plugins\/)(exporter|pagination)\/(.*)$/, replacer: '$1$2_ns/$3'},
+		{matcher: /(1.[3-7]\/dojox\/widget\/rotator).html$/, replacer: '$1_ns.html'}],
 
     /**
      * isDebug - set this to true to view any node.js express and application logging.

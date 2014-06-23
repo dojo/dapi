@@ -6,7 +6,6 @@ var express = require('express'),
     generate = require('./lib/generate'),
     config = require('./config'),
     refdoc = require('./lib/refdoc'),
-    legacy = require('./lib/legacyrewrite'),
     tree = require('./lib/tree');
 
 console.log("started at " + new Date());
@@ -30,7 +29,28 @@ if (config.isDebug === true) {
     app.use(express.logger('dev'));
 }
 
-legacy.handleLegacyRewrites(app, config);
+// handle legacy API file requests
+var apiCtxReStr = config.contextPath.replace(/\//g, '\\/');
+// only /\/api\/1.[3-7]/ is wanted i.e. only the contextPath followed by the version 1.[3-7] signifies legacy API HTML requests
+// excludes JSON data for legacy e.g. /api/data/1.7/tree.json
+var apiCtxRe = new RegExp('^' + apiCtxReStr + '1.[3-7]');
+app.use(function (req, res, next) {
+	if (!apiCtxRe.test(req.url)) { // not a legacy HTML request, so pass on to the next handler
+		next();
+		return;
+	}
+	config.legacyNSReplacers.some(function (obj) {
+		if (obj.matcher.test(req.url)) {
+			if (config.isDebug === true) {
+				console.log("matched legacy url " + req.url + " and rewriting");
+			}
+			req.url = req.url.replace(obj.matcher, obj.replacer);
+			return true;
+		}
+	});
+	next();// send the request to the next handler (if rewritten or not)
+});
+// end handle legacy API file requests
 
 app.use(config.contextPath, express.static(__dirname + '/public'));
 
