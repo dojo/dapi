@@ -46,7 +46,7 @@ require([
         moduleTree.startup();
 
         // started selectedChildWidget
-	    // TODO: note that tree.json is loaded twice, once creating the moduleTree above and then calling getRoot
+		// TODO: note that tree.json is loaded twice, once creating the moduleTree above and then calling getRoot
         moduleModel.getRoot(function (data) {
             buildSearch(data);
         });
