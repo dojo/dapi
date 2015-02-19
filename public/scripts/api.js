@@ -46,6 +46,7 @@ require([
         moduleTree.startup();
 
         // started selectedChildWidget
+	    // TODO: note that tree.json is loaded twice, once creating the moduleTree above and then calling getRoot
         moduleModel.getRoot(function (data) {
             buildSearch(data);
         });
@@ -148,9 +149,14 @@ require([
 	if (declarativeTab) {
 		//TODO : need to handle focusing the treepath (only for declaratively loaded contentpane)
 		declarativeTab.initModulePane();
+		currentVersion = versionSelector.value = declarativeTab.version;
 	}
 
     buildTree();
+
+	if (declarativeTab) { // tree needs to be refocused if a declarative tab was loaded
+		setTreePath(declarativeTab.page);
+	}
 
     if (page) {
         var version = currentVersion || config.apiDefault,

@@ -16,7 +16,6 @@ app.use(express.compress());
 app.locals.pretty = true;
 
 // macro calls
-// fails with static generation - TODO: FOR SOME REASON I NEED TO USE A GLOBAL so it works???
 app.locals.convertType = generate.convertType;
 app.locals.autoHyperlink = generate.autoHyperlink;
 app.locals.hasRefDoc = refdoc.hasRefDoc;
@@ -56,7 +55,7 @@ app.use(config.contextPath, express.static(__dirname + '/public'));
 
 app.get(config.contextPath, function (req, res) {
     if (config.isDebug === true) {
-        console.log(new Date().toTimeString() + ", is xhr = " + req.xhr); // use this to determine if it's a permalink url or a module request url
+		console.log(new Date().toTimeString() + ", is xhr = " + (req.query.xhr)); // use this to determine if it's a permalink url or a module request url
     }
     res.render('index', { title : 'API Documentation' + config.siteName, config: config, module : null});
 });
@@ -67,7 +66,7 @@ var re = new RegExp(config.moduleExtension + "$");
 app.get(config.contextPath + '*', function (req, res, next) {
     // replace with regex
     if (config.isDebug === true) {
-        console.log(new Date().toTimeString() + ", is xhr = " + req.xhr + ", requested = " + req.params.toString()); // use this to determine if it's a permalink url or a module request url
+		console.log(new Date().toTimeString() + ", is xhr = " + (req.query.xhr) + ", requested = " + req.params.toString()); // use this to determine if it's a permalink url or a module request url
     }
     var requested = req.params.toString().replace(/\/$/, ""); // TODO - replace(/\/$/, ""); added, no time to look at but for example loading 1.6/dojo/Animation adds a trailing slash whilst 1.6/dojo/AdapterRegistry doesnt, something browser related? 
     var idxslash = requested.indexOf("/");
@@ -83,14 +82,14 @@ app.get(config.contextPath + '*', function (req, res, next) {
         return;
     }
     modulefile = modulefile.replace(re, ""); // replace the file extension
-    // not sure if this is bad - handle versions earlier than 1.8 i.e. static html generated docs
-	// TODO: see the bug with 23:16:04 GMT+0100 (BST), is xhr = true, requested = 1.10/dijit/CalendarLite/_MonthWidget.html
+    // handle versions earlier than 1.8 i.e. static html generated docs
+	// TODO: see the bug with, is xhr = true, requested = 1.10/dijit/CalendarLite/_MonthWidget.html
 	// i.e. load the tree module for dijit/CalendarLite/_MonthWidget
     var lexicalVersions = requestedVersion.split('.');
     if (parseFloat(lexicalVersions[1]) < 8) { // not great but more than unlikely we'll use 3 dot separated versions
 		var legacyfilelocation = __dirname + '/public/api/' + requestedVersion + '/' + modulefile.replace(/\./g, "/") + '.html';
 		if (req.xhr === true) { // it's a module xhr
-			res.sendfile(legacyfilelocation); // could be a security issue here
+			res.sendfile(legacyfilelocation);
 			return;
 		} else { // it's a permalink for legacy
 			// rewite the url to the ?qs= parm, meaning all legacy permalinked docs are still loaded via XHR.

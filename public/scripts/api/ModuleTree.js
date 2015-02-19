@@ -62,7 +62,7 @@ define(["dojo/_base/declare", "dojo/_base/lang", "dijit/Tree", "dijit/registry",
             var pane = new ContentPane({
                 id: id,
                 page: page,		// save page because when we select a tab we locate the corresponding TreeNode
-                href: url + config.moduleExtension,
+                href: url + config.moduleExtension + "?xhr=true",
                 title: page + " (" + version + ")",
                 closable: true,
                 version : version,

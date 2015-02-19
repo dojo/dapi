@@ -61,8 +61,6 @@ define(["dojo/_base/declare",
                 return;
             }
             link = link[0].innerHTML;
-            // TODO baseUrl ??
-            var baseUrl = "/";
             var permalinkhtml = (link ? '<a class="jsdoc-link" href="' + link + '">Permalink</a>' : '');
             domConstruct.create("span", {
                 className: "jsdoc-permalink",
@@ -151,7 +149,7 @@ define(["dojo/_base/declare",
                     var pane = new api.ModuleContentPane({
                         id: id,
                         page: page,        // save page because when we select a tab we locate the corresponding TreeNode
-                        href: url + config.moduleExtension,
+                        href: url + config.moduleExtension + "?xhr=true",
                         title: page + " (" + version + ")",
                         closable: true,
                         version: version,
