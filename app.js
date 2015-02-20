@@ -88,7 +88,7 @@ app.get(config.contextPath + '*', function (req, res, next) {
     var lexicalVersions = requestedVersion.split('.');
     if (parseFloat(lexicalVersions[1]) < 8) { // not great but more than unlikely we'll use 3 dot separated versions
 		var legacyfilelocation = __dirname + '/public/api/' + requestedVersion + '/' + modulefile.replace(/\./g, "/") + '.html';
-		if (req.xhr === true) { // it's a module xhr
+		if (req.query.xhr === 'true') { // it's a module xhr
 			res.sendfile(legacyfilelocation);
 			return;
 		} else { // it's a permalink for legacy
@@ -98,7 +98,6 @@ app.get(config.contextPath + '*', function (req, res, next) {
 			res.redirect(301, config.contextPath + '?qs=' + requestedVersion + '/' + modulefile.replace(/\./g, "/"));
 			return;
 		}
-        // item.fullname.replace(/\./g, "/")
     }
     var detailsFile = "./public/data/" + requestedVersion + "/details.json";
     generate.generate(detailsFile, modulefile, requestedVersion, function (err, retObjectItem) {
@@ -106,7 +105,7 @@ app.get(config.contextPath + '*', function (req, res, next) {
             console.error(err);
             next();
         }
-        else if (req.xhr) {
+        else if (req.query.xhr === 'true') {
             res.render('module', { module : retObjectItem, config: config});
         } else { // permalink request
             res.render('index', {title : retObjectItem.location + config.siteName, config: config, module: retObjectItem});
