@@ -20,9 +20,11 @@ require([
     "dijit/popup",
     "dojo/window", // djwindow
     "dojo/aspect", // aspect
+	"dojo/sniff",
     "dojo/domReady!"
 ], function (parser, dom, lang, BorderContainer, TabContainer, ContentPane, AccordionContainer,
-        ModuleTreeModel, ModuleTree, config, query, registry, MenuItem, Menu, array, MenuSeparator, FilteringSelect, on, popup, djwindow, aspect) {
+        ModuleTreeModel, ModuleTree, config, query, registry, MenuItem, Menu, array, MenuSeparator,
+        FilteringSelect, on, popup, djwindow, aspect, sniff) {
 
     var moduleModel = null, moduleTree = null, currentVersion = null, apiSearchWidget = null;
 
@@ -150,6 +152,15 @@ require([
 		//TODO : need to handle focusing the treepath (only for declaratively loaded contentpane)
 		declarativeTab.initModulePane();
 		currentVersion = versionSelector.value = declarativeTab.version;
+		// versionSelector handling in IE
+		if (sniff("ie")) {
+			var options = versionSelector.options;
+			for (var i = 0; i < options.length; i++) {
+				if (options[i].value === currentVersion) {
+					options.selectedIndex = i;
+				}
+			}
+		}
 	}
 
     buildTree();
@@ -176,28 +187,27 @@ require([
 
     // selectAndClick setup the welcome page (selectAndClick is defined by buildTree)
     var welcomeTab = registry.byId("baseTab_welcomeTab");
-    query(".dtk-object-title a", welcomeTab.domNode).forEach(function (node, index) {
-        on(node, "click", function (e) {
-            var targetpatharr = e.target.name.split("/"), treepatharr = [], tmp2 = null;
-            // TODO : do this better, filter/map?
-            // builds an array of paths for a tree (must be in this order) -> an ending slash (empty i.e. a folder) ->
-            // a module path to but not the module i.e.charting in dojox/charting/Chart (idx < arr.length -1) ->
-            // and the module name (the last item)
-            array.forEach(targetpatharr, function (item, idx, arr) {
-                if (arr[idx] === "") {
-                } else if (idx < arr.length - 1) {
-                    var tmp2 = (arr.slice(0, idx + 1).join("/")  + "/");
-                    treepatharr.push(tmp2);
-                } else {
-                    treepatharr.push(arr.slice(0, idx + 1).join("/"));
-                }
-            });
-            moduleTree.selectAndClick(treepatharr);
-            e.preventDefault();
-        });
-    });
-    // end selectAndClick
-
+	//welcomeTab._setUpDocLinks(welcomeTab.domNode);
+	query(".dtk-object-title a", welcomeTab.domNode).forEach(function (node, index) {
+		on(node, "click", function (e) {
+			var targetpatharr = e.target.name.split("/"), treepatharr = [], tmp2 = null;
+			if (e.target.name === 'dojox/') {
+				var dojoxTreeNode = moduleTree.getNodesByItem('dojox/')[0];
+				if (!dojoxTreeNode.isExpanded) {
+					moduleTree.selectAndClick(['dojox/']);
+				} else {
+					setTreePath('dojox/');
+				}
+				return;
+			}
+			var version = config.apiDefault;
+			var homePageLink = e.target.href;
+			var regex = new RegExp("(.+)" + config.context + version + "\/" + "|" + ".html", 'g');
+			homePageLink = homePageLink.replace(regex, "");
+			moduleTree.addTabPane(homePageLink, version);
+			e.preventDefault();
+		});
+	});
     var tabContainer = registry.byId("content");
     /* monkey patch to add close all option to the context menu popup (as well as each tab) - mainly helps with touch devices that can't use tablist right click */
     aspect.after(tabContainer.tablist._menuBtn, 'loadDropDown', function (data) {
@@ -225,12 +235,12 @@ require([
     contentTabListMenu.addChild(closeMenu);
 
     function closeAllTabs() {
-        tabContainer.getChildren().forEach(function (item) {
-            if (item.closable) {
-                tabContainer.removeChild(item);
-                item.destroyRecursive();
-            }
-        });
+		array.forEach(tabContainer.getChildren(), function (item) {
+			if (item.closable) {
+				tabContainer.removeChild(item);
+				item.destroyRecursive();
+			}
+		});
     }
     function clearSearch() {
         if (apiSearchWidget) {
