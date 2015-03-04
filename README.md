@@ -3,7 +3,7 @@ dapi
 
 Node.js/JavaScript Dojo API viewer and static API viewer document generator
 
-Please see the [Wiki](https://github.com/lbod/dapi/wiki) for more information.
+Please see the [Wiki](https://github.com/dojo/dapi/wiki) for more information.
 
 Why is this library special?
 ----------------------------
