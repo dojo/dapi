@@ -12,7 +12,7 @@ h1(class="#{convertType(module.type)}Icon36 jsdoc-title module-title") #{module.
     div.jsdoc-mixins
         label Extends 
         each item, idx in module.mixins
-            a.jsdoc-link(href='#{config.contextPath}#{module !=null ? module.version : config.defaultVersion}/#{item.location}') #{item.location}#{idx < module.mixins.length-1 ? ", " : ""}
+            a.jsdoc-link(href='#{config.contextPath}#{module !=null ? module.version : config.defaultVersion}/#{item.location}#{config.moduleExtension}') #{item.location}#{idx < module.mixins.length-1 ? ", " : ""}
 - if (module.summary != null)
       div.jsdoc-full-summary !{autoHyperlink(module.summary, config, module.version)}
 - if (module.description != null)

@@ -53,7 +53,7 @@ define(["dojo/_base/declare", "dojo/_base/lang", "dijit/Tree", "dijit/registry",
 			}
             // END TODO
             var url = config.apiPath + version + "/" + fullName;  // TODO fix this later, should pass in the context
-            var id = page.replace(/[\/.]/g, "_") + "_" + version;
+			var id = page.replace(/[\/.]/g, "_") + "_" + version;
             var existingPane = registry.byId(id);
             if (existingPane) {
                 p.selectChild(existingPane);

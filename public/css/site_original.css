@@ -1501,8 +1501,7 @@ li.pearson { background-position: -628px 0; width: 62px }
 */
 
 #main h1 {
-    display: inline;
-    margin: 0 0 25px 0;
+    margin-top: 10px !important
 }
 
 h4.icon {

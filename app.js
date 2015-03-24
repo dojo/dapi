@@ -116,7 +116,14 @@ app.get(config.contextPath + '*', function (req, res, next) {
 app.listen(config.port);
 console.log("API viewer started on port " + config.port);
 
+app.use(function (req, res) {
+	console.error("looks like a 404 : ", req.url);
+	res.status(404);
+	res.render('error', {title: '404: Internal Server Error', module : null, config: config});
+});
+
 app.use(function (err, req, res, next) {
-    console.error(err.stack);
-    res.send(500, "Sorry there's been an error, please check the logs");
+    console.error("looks like an exception : ", err.stack);
+	res.status(500);
+	res.render('error', {title: '500: Internal Server Error', module : null, config: config});
 });

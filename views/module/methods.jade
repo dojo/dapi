@@ -19,7 +19,7 @@
                     - if (method.private)
                       span.jsdoc-private(title="private") 
                 div.jsdoc-inheritance Defined by 
-                    a.jsdoc-link(href='#{config.contextPath}#{module.version}/#{method.from}') #{method.from}
+                    a.jsdoc-link(href='#{config.contextPath}#{module.version}/#{method.from}#{config.moduleExtension}') #{method.from}
                     - if (method.extensionModule)
                         span.jsdoc-extension(title="Must manually require () " + method.from +" to access")
                     - else if (method.inherited)

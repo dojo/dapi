@@ -146,9 +146,14 @@ require([
             page = page.replace(/[^/]+\/?/, "");
         }
     }
-	// handle declarative loaded content pane (only returned by the app server)
-	var declarativeTab = registry.byId("baseTab");
-	if (declarativeTab) {
+	var declarativeTabNode = null, declarativeTab = null;
+	declarativeTabNode = dom.byId("declarativeTab");
+	query('div[data-dojo-props*="declarativeTab"]').forEach(function (node) {
+		declarativeTabNode = node;
+	});
+
+	if (declarativeTabNode) {
+		declarativeTab = registry.byNode(declarativeTabNode);
 		//TODO : need to handle focusing the treepath (only for declaratively loaded contentpane)
 		declarativeTab.initModulePane();
 		currentVersion = versionSelector.value = declarativeTab.version;

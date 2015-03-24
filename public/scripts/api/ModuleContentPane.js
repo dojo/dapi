@@ -19,6 +19,7 @@ define(["dojo/_base/declare",
     var helpDialog;
 
     return declare("api.ModuleContentPane", ContentPane, {
+		moduleExtensionRegex : new RegExp(config.moduleExtension),  //from config
         version : "",
         extensionOn : true, //possibly move to the constructor though its not an object
         privateOn : false, //possibly move to the constructor though its not an object
@@ -131,16 +132,16 @@ define(["dojo/_base/declare",
 
                 // Open tab for specified module
                 var tmp = this.href
-                    .replace(/^[a-z]*:\/\//, "")    // remove http://
-                    .replace(/[^/]+/, "")            // remove domain
-                    .replace(config.context, "")    // remove /api/
-                    .replace(/#.*/, "")                // remove #foo
-                    .split("/");
+					.replace(/^[a-z]*:\/\//, "")                // remove http://
+					.replace(/[^/]+/, "")                       // remove domain
+					.replace(config.context, "")                // remove /api/
+					.replace(/#.*/, "")                         // remove #foo
+					.replace(_this.moduleExtensionRegex, "")    // remove .html
+					.split("/");
                 var version = tmp[0];
                 var page = tmp.slice(1).join("/");
                 var url = config.apiPath + version + "/" + page;
-
-                var id = page.replace(/[\/.]/g, "_") + "_" + version;
+				var id = page.replace(/[\/.]/g, "_").replace(/[\//]/g, "_") + "_" + version;
                 var existingPane = registry.byId(id);
                 if (existingPane) {
                     _this.getParent().selectChild(existingPane);

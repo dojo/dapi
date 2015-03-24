@@ -14,7 +14,7 @@
                       span.jsdoc-private(title="private") 
                     
                 div.jsdoc-inheritance Defined by: 
-                    a.jsdoc-link(href='#{config.contextPath}#{module.version}/#{prop.from}') #{prop.from}
+                    a.jsdoc-link(href='#{config.contextPath}#{module.version}/#{prop.from}#{config.moduleExtension}') #{prop.from}
                     - if (prop.extensionModule)
                         span.jsdoc-extension(title="Must manually require () " + prop.from +" to access")
                     - else if (prop.inherited)

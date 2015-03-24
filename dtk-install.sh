@@ -20,7 +20,7 @@ fi
 mkdir $DAPI_DIR
 cd $DAPI_DIR
 # clone dapi
-git clone --recursive https://github.com/lbod/dapi.git .
+git clone --recursive https://github.com/dojo/dapi.git .
 
 #npm install --production # this needs grunt-cli
 npm install
